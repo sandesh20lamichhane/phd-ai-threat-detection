@@ -1,0 +1,6 @@
+# Raw data lives only in Google Drive
+data/
+*.part
+gated_urls.yaml
+__pycache__/
+.ipynb_checkpoints/
