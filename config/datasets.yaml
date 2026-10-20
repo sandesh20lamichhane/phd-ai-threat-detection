@@ -137,3 +137,27 @@ datasets:
           - https://raw.githubusercontent.com/defcom17/NSL_KDD/master/KDDTest-21.txt
           - https://raw.githubusercontent.com/defcom17/NSL_KDD/master/KDDTrain%2B_20Percent.txt
     note: GitHub mirror of the UNB files (the UNB page sits behind a form).
+
+  # ---- Duplicates of data already in Drive from earlier work (copied, originals left in place)
+  - id: edge_iiotset
+    name: Edge-IIoTset (copy from ids-adapt; not in the finalised plan)
+    objectives: []
+    approx_gb: 8.4          # verified: 26 CSVs in ids-adapt/data/raw/edge_iiotset
+    enabled: true
+    sources:
+      - type: drive_copy
+        path: ids-adapt/data/raw/edge_iiotset
+        include: '\.csv$'
+
+  - id: ids_adapt_processed_legacy
+    name: Processed parquet files from the ids-adapt project (provenance as recorded there)
+    objectives: []
+    approx_gb: 8.5          # verified: cse_cic_ids2018 8.1 GB, cicids2017 0.3 GB, unsw_nb15 0.1 GB
+    enabled: true
+    sources:
+      - type: drive_copy
+        path: ids-adapt/data/processed
+        include: '\.parquet$'
+    note: >-
+      Built for an earlier paper, probably from the original (uncorrected) CIC releases.
+      Kept for reference and comparison only; thesis experiments start from the raw folders.

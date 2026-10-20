@@ -30,10 +30,12 @@ The registry is [`config/datasets.yaml`](config/datasets.yaml). It follows the F
 | LANL Cyber1 | Los Alamos | ~12 GB, kept gzipped | fill in the LANL form, paste the 5 file links |
 | CICIoMT2024 | UNB CIC | check with `--plan` | fill in the UNB form, paste the folder link |
 | NSL-KDD | GitHub mirror of the UNB files | 0.03 GB | nothing |
+| Edge-IIoTset (copy of your existing Drive data) | `ids-adapt/data/raw/edge_iiotset` | 8.4 GB | nothing |
+| ids-adapt processed parquets (copy, reference only) | `ids-adapt/data/processed` | 8.5 GB | nothing |
 | CSE-CIC-IDS2018 original (off by default) | public AWS bucket | 6.4 GB | set `enabled: true` if you want the uncorrected baseline |
 
-PCAP captures are never downloaded. The known sizes add up to about 27 GB; run `--plan` to see the
-exact size of the others. The downloader refuses to push raw data past 190 GB (`--budget-gb`).
+PCAP captures are never downloaded. The planned datasets come to roughly 40–50 GB (about 27 GB of that
+is known exactly; run `--plan` for the rest), plus 17 GB of copies of data already in Drive. The downloader refuses to push raw data past 190 GB (`--budget-gb`).
 
 Command line, from the repo root:
 
