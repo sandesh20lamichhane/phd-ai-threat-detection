@@ -1,0 +1,10 @@
+# Model training and simulation (install when the experiments start; pin exact versions then)
+xgboost
+lightgbm
+imbalanced-learn
+torch
+shap
+matplotlib
+seaborn
+gymnasium
+# CybORG (CAGE 2/4) and CyberBattleSim are installed from their GitHub repos; see docs/protocol/experimental_protocol.md

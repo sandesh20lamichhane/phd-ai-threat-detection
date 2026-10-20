@@ -1,0 +1,10 @@
+# Drive locations (mirrors src/utils/paths.py). Raw data never goes to GitHub.
+drive_root: /content/drive/MyDrive/PhD-AI-Cyber
+raw: data/raw
+interim: data/interim
+processed: data/processed
+splits: data/splits
+external: data/external
+models: models
+runs: runs
+simulations: simulations

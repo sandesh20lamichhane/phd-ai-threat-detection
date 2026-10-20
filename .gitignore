@@ -4,3 +4,4 @@ data/
 gated_urls.yaml
 __pycache__/
 .ipynb_checkpoints/
+.pytest_cache/

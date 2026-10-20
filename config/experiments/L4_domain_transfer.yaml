@@ -1,0 +1,10 @@
+name: L4_domain_transfer
+data: best L1-L3 model -> ciciomt2024, ton_iot, ciciot2023
+split:
+  type: cross_domain
+  features: config/feature_mapping/iot_shared_features.yaml
+preprocessing: {drop_identifiers: true, drop_duplicates: true, balance: none}  # balance only on train folds
+models: [random_forest, xgboost, mlp, cnn_lstm, proposed]
+metrics: [macro_f1, per_class_recall, pr_auc, fpr_at_tpr_0.95]
+seeds: config/seeds.yaml
+stats: {two_models: wilcoxon, many_models: friedman_nemenyi}

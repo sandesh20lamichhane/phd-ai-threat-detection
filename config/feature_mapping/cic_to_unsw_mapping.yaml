@@ -1,0 +1,4 @@
+# Semantic mapping CICFlowMeter -> Argus/Bro features of UNSW-NB15 (Level 2, different tool).
+# Each entry: cic_name: {unsw: <name>, transform: identity|seconds_to_ms|..., note: ...}
+mapping: {}
+label_map: {}

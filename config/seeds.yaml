@@ -1,0 +1,2 @@
+# Every experiment runs with all of these seeds (protocol: at least 5)
+seeds: [11, 23, 37, 51, 73]

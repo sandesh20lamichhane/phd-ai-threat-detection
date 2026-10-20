@@ -1,0 +1,6 @@
+name: response_cyberbattlesim
+simulator: cyberbattlesim
+agents: [proposed_rl, rule_based_playbook, random]
+episodes: 1000
+metrics: [mean_time_to_contain, containment_rate, mean_disruption_cost]
+seeds: config/seeds.yaml

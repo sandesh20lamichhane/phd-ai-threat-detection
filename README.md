@@ -10,11 +10,12 @@ Code and results for the thesis *AI-Driven Cybersecurity: Predictive Threat Dete
 | Results (manifests, metrics, figures) | yes, in `results/` | yes, same clone |
 | Raw datasets | **never** (see `.gitignore`) | `data/raw/<dataset>/` |
 
-## Getting the data
+## Start here
 
-Open [`notebooks/01_download_datasets.ipynb`](notebooks/01_download_datasets.ipynb) in Google Colab
-(File → Open notebook → GitHub) and run it top to bottom. It mounts Drive, clones this repo into Drive,
-and pulls each dataset from its official source straight into Drive. Every file gets a SHA-256 entry in
+Open [`notebooks/00_setup_and_download.ipynb`](notebooks/00_setup_and_download.ipynb) in Google Colab and run it
+top to bottom. It mounts Drive, puts this repo in Drive, builds the full folder structure with
+[`setup_project.py`](setup_project.py) (run `python setup_project.py --tree` to see it), and pulls each dataset
+from its official source straight into Drive. Every file gets a SHA-256 entry in
 `data/raw/<dataset>/MANIFEST.json`; a copy of each manifest is committed under `results/data_manifest/`,
 so the exact bytes used in the thesis are on record.
 
@@ -45,6 +46,26 @@ python -m src.acquire.fetch                               # download all enabled
 python -m src.acquire.fetch --only ciciot2023 lanl_cyber1 # selected datasets
 python -m src.acquire.fetch --verify                      # re-check SHA-256 of everything in Drive
 ```
+
+## Layout
+
+| Path | Holds |
+|---|---|
+| `config/` | dataset registry, Drive paths, seeds, one YAML per experiment, feature mappings |
+| `src/acquire` | downloader |
+| `src/data` | cleaning (identifiers, duplicates), leakage checks, splits, train-only balancing, harmonisation |
+| `src/features`, `src/models` | features, baselines, deep models, proposed and predictive models, explainability |
+| `src/response` | CybORG / CyberBattleSim wrappers, RL agents, playbook baseline |
+| `src/threat_intel` | advisory collection, sector tagging, ATT&CK linking |
+| `src/evaluation` | macro-F1, per-class recall, PR-AUC, FPR at fixed detection rate, lead time, Wilcoxon, Friedman–Nemenyi, response metrics |
+| `scripts/` | run experiments, preprocess, build tables and figures |
+| `notebooks/` | 00 setup, 1x data, 2x levels 1–4, 30 response, 40 explainability, 50 paper figures |
+| `docs/` | protocol, hypotheses, data-quality rules, data cards, decisions, reproducibility checklist |
+| `results/` | metrics, tables and figures per protocol level, dataset manifests |
+| `paper/`, `thesis/` | journal paper and thesis LaTeX |
+
+In Drive (`MyDrive/PhD-AI-Cyber/`): `data/{raw,interim,processed,splits,external}`, `models/`, `runs/`,
+`simulations/`, `backups/`, plus `code/` (this repo).
 
 ## Citing the data
 

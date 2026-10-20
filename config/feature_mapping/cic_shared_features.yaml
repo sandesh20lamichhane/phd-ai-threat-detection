@@ -1,0 +1,4 @@
+# CICFlowMeter features shared by CICIDS2017 and CSE-CIC-IDS2018 (Level 2, same tool).
+# Fill from the column audit in notebooks/11_feature_harmonisation.ipynb; publish with the thesis.
+features: []
+label_map: {}
