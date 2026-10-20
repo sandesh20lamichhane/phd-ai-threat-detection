@@ -1,5 +1,5 @@
 # Raw data lives only in Google Drive
-data/
+/data/
 *.part
 gated_urls.yaml
 __pycache__/
