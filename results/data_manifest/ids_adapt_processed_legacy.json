@@ -1,0 +1,29 @@
+{
+  "dataset": "ids_adapt_processed_legacy",
+  "files": {
+    "cicids2017.parquet": {
+      "bytes": 287581720,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:05:10Z",
+      "sha256": "ebecdafd670b1dfd785ee9e361299b2112ecb03e3bbfadd834404b660c3b2430",
+      "source": "/content/drive/MyDrive/ids-adapt/data/processed/cicids2017.parquet"
+    },
+    "cse_cic_ids2018.parquet": {
+      "bytes": 8744039248,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:09:40Z",
+      "sha256": "aef9a18d184c6a71123edda35220f4049013f96d214eb0dcbba4d77bbc5b1c34",
+      "source": "/content/drive/MyDrive/ids-adapt/data/processed/cse_cic_ids2018.parquet"
+    },
+    "unsw_nb15.parquet": {
+      "bytes": 133720158,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:09:48Z",
+      "sha256": "e06746708f4689975e9474c0bb40b0d37ca58c07b2886b906b659bd49a217b9e",
+      "source": "/content/drive/MyDrive/ids-adapt/data/processed/unsw_nb15.parquet"
+    }
+  },
+  "name": "Processed parquet files from the ids-adapt project (provenance as recorded there)",
+  "total_bytes": 9165341126,
+  "updated_utc": "2026-10-20T09:15:21Z"
+}

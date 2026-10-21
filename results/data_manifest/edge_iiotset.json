@@ -1,0 +1,190 @@
+{
+  "dataset": "edge_iiotset",
+  "files": {
+    "Backdoor_attack.csv": {
+      "bytes": 17889603,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:00:42Z",
+      "sha256": "a3da7bfd919c5f238e5c721cbd0e24a0b2b717d7f231c87c3bc9bc083582295b",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Backdoor_attack.csv"
+    },
+    "DDoS_HTTP_Flood_attack.csv": {
+      "bytes": 95709749,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:00:46Z",
+      "sha256": "526ef4221d74c046d35db948e7aa534f2660270321510726f312409d6036ca33",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/DDoS_HTTP_Flood_attack.csv"
+    },
+    "DDoS_ICMP_Flood_attack.csv": {
+      "bytes": 892080000,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:01:07Z",
+      "sha256": "bd3a180a18e331976b1e320aa0def408fa9adeff002035758cd2d3e36f25d325",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/DDoS_ICMP_Flood_attack.csv"
+    },
+    "DDoS_TCP_SYN_Flood_attack.csv": {
+      "bytes": 941188405,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:01:31Z",
+      "sha256": "623e8a331af6412b002a6ee18df1fb914d026de4906bdebdc3d29890487283e1",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/DDoS_TCP_SYN_Flood_attack.csv"
+    },
+    "DDoS_UDP_Flood_attack.csv": {
+      "bytes": 900233551,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:01:57Z",
+      "sha256": "62dcd279cd2068d2f7055028fd823dfec526bd6167a5b6180eca460e1b5c9333",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/DDoS_UDP_Flood_attack.csv"
+    },
+    "DNN-EdgeIIoT-dataset.csv": {
+      "bytes": 1217413981,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:02:32Z",
+      "sha256": "1d3ef6c7cc22784a528a117f1158f5cad750273679437e18a39c360ee6b79fd7",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/DNN-EdgeIIoT-dataset.csv"
+    },
+    "Distance.csv": {
+      "bytes": 366056131,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:02:44Z",
+      "sha256": "067fcf364a6c4e35a6aa436e6263466ef4c8f3f84c423d0aadf932f65d6e1ee5",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Distance.csv"
+    },
+    "Flame_Sensor.csv": {
+      "bytes": 343523471,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:02:54Z",
+      "sha256": "e0f6812bd54e564d18e6f87d8d0566f86bde384f822d3252d7535f4239160528",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Flame_Sensor.csv"
+    },
+    "Heart_Rate.csv": {
+      "bytes": 52569102,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:02:56Z",
+      "sha256": "f5104511c7b67988ec67fc2f8262913b4ad6d4285db047500a04307491f4b9d5",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Heart_Rate.csv"
+    },
+    "IR_Receiver.csv": {
+      "bytes": 412738438,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:03:08Z",
+      "sha256": "40325a578b4edc4714eef585095a1f92e1cc076e510ad93edc3507dea8e4eef7",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/IR_Receiver.csv"
+    },
+    "MITM_attack.csv": {
+      "bytes": 329947,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:03:08Z",
+      "sha256": "c4fd9f0d33c1bcbf37a0c4e0cc378157d6af650300e657340ae3d86b40cfd498",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/MITM_attack.csv"
+    },
+    "ML-EdgeIIoT-dataset.csv": {
+      "bytes": 82184390,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:03:10Z",
+      "sha256": "53101fad091af20bee815860962a5016b802ee45d456a141042f6183094c3c1a",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/ML-EdgeIIoT-dataset.csv"
+    },
+    "Modbus.csv": {
+      "bytes": 67899662,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:03:12Z",
+      "sha256": "6ae11be7ebd506429f43a0ebb7aa38e836ffea39165fc0247e2a6c96c019c37a",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Modbus.csv"
+    },
+    "OS_Fingerprinting_attack.csv": {
+      "bytes": 311171,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:03:13Z",
+      "sha256": "b2dc428e1b5159ccbfff0e252b5fb096cd5c67fecca169f348a8d30342088613",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/OS_Fingerprinting_attack.csv"
+    },
+    "Password_attack.csv": {
+      "bytes": 653290138,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:03:30Z",
+      "sha256": "e8458c89e71706226ecd9d3730e3b0db5ae2d5f3fb87655fccf1d6e5f1730eba",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Password_attack.csv"
+    },
+    "Port_Scanning_attack.csv": {
+      "bytes": 7335171,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:03:31Z",
+      "sha256": "26f7f094254daa23e85ec7df1b7ad9352cf208d9ee9b55d7d7928d3415c793ad",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Port_Scanning_attack.csv"
+    },
+    "Ransomware_attack.csv": {
+      "bytes": 7592169,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:03:32Z",
+      "sha256": "60fa5257c73f0eef6736a56953c7afe6a99e08942a32c3b9716a64abd2be0c7a",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Ransomware_attack.csv"
+    },
+    "SQL_injection_attack.csv": {
+      "bytes": 26933868,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:03:33Z",
+      "sha256": "59d62ccfab6b708ce1c437a33b4c285e20e614e612edcd86260d4e5c2461c63d",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/SQL_injection_attack.csv"
+    },
+    "Soil_Moisture.csv": {
+      "bytes": 381588722,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:03:44Z",
+      "sha256": "d3bf5662fd28b515e29c2b1b296b3b79ffc415836cb5a5da1666e164c099c440",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Soil_Moisture.csv"
+    },
+    "Sound_Sensor.csv": {
+      "bytes": 478970099,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:03:59Z",
+      "sha256": "1ac318ea539be09ac0ae4c9ae6d7e0e2d0013633131354c37d4f76663c3dc52b",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Sound_Sensor.csv"
+    },
+    "Temperature_and_Humidity.csv": {
+      "bytes": 922587674,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:04:29Z",
+      "sha256": "2b48ddce8f1d60dbd0d189568c614ee04d4bc57b65f1c9089ea731b1a02a0c21",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Temperature_and_Humidity.csv"
+    },
+    "Uploading_attack.csv": {
+      "bytes": 17513308,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:04:30Z",
+      "sha256": "f65ae75444183004a47fcda9e197daa42b38e485ea58ebc28464e21f830197e3",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Uploading_attack.csv"
+    },
+    "Vulnerability_scanner_attack.csv": {
+      "bytes": 175747472,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:04:33Z",
+      "sha256": "5b8d9bca352875d9b8c76d517ecb33808c45d6a1259f718e21bd1c4d6fea7d59",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Vulnerability_scanner_attack.csv"
+    },
+    "Water_Level.csv": {
+      "bytes": 731458402,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:04:52Z",
+      "sha256": "19153cba2da0c69e2fd4f682a9e872af787fd04af5d7806cebb2ec01a6d83025",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/Water_Level.csv"
+    },
+    "XSS_attack.csv": {
+      "bytes": 6963363,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:04:53Z",
+      "sha256": "acce72d7e9f8d373d4be61d67576c10c55b3eb59063f4a9a1a63715ab85ebf48",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/XSS_attack.csv"
+    },
+    "phValue.csv": {
+      "bytes": 237328348,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T09:05:00Z",
+      "sha256": "7cd2d143bd079f2a6744bf22b1930c81ab034cf85ea4f8e3a815114d8b7fe07b",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/edge_iiotset/phValue.csv"
+    }
+  },
+  "name": "Edge-IIoTset (copy from ids-adapt; not in the finalised plan)",
+  "total_bytes": 9037436335,
+  "updated_utc": "2026-10-20T09:14:15Z"
+}

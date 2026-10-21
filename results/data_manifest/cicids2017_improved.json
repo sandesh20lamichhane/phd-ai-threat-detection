@@ -1,0 +1,43 @@
+{
+  "dataset": "cicids2017_improved",
+  "files": {
+    "friday.csv": {
+      "bytes": 285188226,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T08:43:52Z",
+      "sha256": "ebd499e6f23bd59f9cb81bec28178491b02b925fa5640a24215c9437d79482d0",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/cicids2017/friday.csv"
+    },
+    "monday.csv": {
+      "bytes": 207875155,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T08:44:00Z",
+      "sha256": "51fe5dc962626efb4ae70dce0303072fb780da0932822b651202ee9c2fbc1aff",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/cicids2017/monday.csv"
+    },
+    "thursday.csv": {
+      "bytes": 189519159,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T08:44:05Z",
+      "sha256": "78a4d11eaf473d099e30e71ddb01e0f38218e844c0a9cdd36602145d674af482",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/cicids2017/thursday.csv"
+    },
+    "tuesday.csv": {
+      "bytes": 178397720,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T08:44:09Z",
+      "sha256": "e2a0a5b631dfc6b455cc9f9a88b944110637d70a7f74171473925f76f38b6b0c",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/cicids2017/tuesday.csv"
+    },
+    "wednesday.csv": {
+      "bytes": 291290505,
+      "method": "drive_copy",
+      "retrieved_utc": "2026-10-20T08:44:17Z",
+      "sha256": "bf46c5f3c792e8817381f724511229569606918eaf07ac986d7a2592b6341bc2",
+      "source": "/content/drive/MyDrive/ids-adapt/data/raw/cicids2017/wednesday.csv"
+    }
+  },
+  "name": "CICIDS2017 (corrected labels, Engelen et al. 2021/2022)",
+  "total_bytes": 1152270765,
+  "updated_utc": "2026-10-20T09:10:20Z"
+}

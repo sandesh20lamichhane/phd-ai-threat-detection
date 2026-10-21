@@ -1,0 +1,15 @@
+{
+  "dataset": "csecicids2018_improved",
+  "files": {
+    "CSECICIDS2018_improved.zip": {
+      "bytes": 10426851729,
+      "method": "http_index",
+      "retrieved_utc": "2026-10-20T09:00:17Z",
+      "sha256": "7f7b6f8065a88527bcb6e1579f088e1d0480a49903c5fd7e4e907ab238344f6e",
+      "source": "https://intrusion-detection.distrinet-research.be/CNS2022/Datasets/CSECICIDS2018_improved.zip"
+    }
+  },
+  "name": "CSE-CIC-IDS2018 (corrected labels, Liu, Engelen et al. CNS 2022)",
+  "total_bytes": 10426851729,
+  "updated_utc": "2026-10-20T09:12:11Z"
+}

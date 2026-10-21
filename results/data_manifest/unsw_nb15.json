@@ -1,0 +1,15 @@
+{
+  "dataset": "unsw_nb15",
+  "files": {
+    "unsw-nb15.zip": {
+      "bytes": 156257637,
+      "method": "kaggle",
+      "retrieved_utc": "2026-10-20T09:00:37Z",
+      "sha256": "d923de23e2378ff9e750f37d38fa60828eda33d8a1bd481a752f64930bc4cec6",
+      "source": "kaggle:mrwellsdavid/unsw-nb15"
+    }
+  },
+  "name": "UNSW-NB15 (CSV feature files)",
+  "total_bytes": 156257637,
+  "updated_utc": "2026-10-20T09:12:14Z"
+}
