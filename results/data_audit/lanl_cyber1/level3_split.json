@@ -1,0 +1,16 @@
+{
+  "rule": "contingency (fewer than 30 compromised hosts in days 41-58)",
+  "train_days": [
+    1,
+    10
+  ],
+  "val_days": [
+    11,
+    13
+  ],
+  "test_days": [
+    14,
+    58
+  ],
+  "test_compromised_hosts": 44
+}
