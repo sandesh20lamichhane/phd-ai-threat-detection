@@ -1,0 +1,555 @@
+{
+  "dataset": "ton_iot",
+  "role": "domain_target",
+  "protocol_version": "1.1",
+  "output_version": "v1",
+  "run": {
+    "utc": "2026-10-25T16:29:04Z",
+    "git_commit": "d3e2ff7ff15cb40c5a963464762ff022ade30abf",
+    "python": "3.13.16",
+    "packages": {
+      "numpy": "2.1.3",
+      "pandas": "2.2.3",
+      "pyarrow": "23.0.1",
+      "scikit-learn": "1.6.1",
+      "scipy": "1.16.3",
+      "PyYAML": "6.0.3"
+    },
+    "config": "config/preprocessing.yaml",
+    "config_sha256": "9d38728188a87b1c8778fa782bf292c1a9409031504c4ed569baa37471da13cb"
+  },
+  "max_rows": null,
+  "inputs": [
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_1.csv",
+      "size": 146725605,
+      "rows": 1000000,
+      "bytes_read": 146725605,
+      "sha256": "37ea5238fcd2a7a18574b8e37e0427086c6c34d03a22f690256fc925946c0448",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_2.csv",
+      "size": 145496506,
+      "rows": 1000000,
+      "bytes_read": 145496506,
+      "sha256": "63b70bb96a95499b477b890674b74cc207ccb638b68ea4cc3a3dea9a448772c1",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_3.csv",
+      "size": 145618265,
+      "rows": 1000000,
+      "bytes_read": 145618265,
+      "sha256": "7c8710722f26679c5d795b60019975945a81730934c768083261e66e3b1ee366",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_4.csv",
+      "size": 145220077,
+      "rows": 1000000,
+      "bytes_read": 145220077,
+      "sha256": "a20b2aed18fa474681f3614d35d4a23554272d6424cf6148596015440fb84a91",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_5.csv",
+      "size": 145230697,
+      "rows": 1000000,
+      "bytes_read": 145230697,
+      "sha256": "2cfccfbc2816418b49ab8bf26bcd45f0a4796f634512f7e5dff9def7b601778e",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_6.csv",
+      "size": 165814042,
+      "rows": 1000000,
+      "bytes_read": 165814042,
+      "sha256": "e8aa726d8551ffe59ea816bb1199455c0ebd53f44993a8bbec67ef0843bab229",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_7.csv",
+      "size": 147175352,
+      "rows": 1000000,
+      "bytes_read": 147175352,
+      "sha256": "e5d3303520909b2e90e57199aa2159f8b2bef287b56502f453df2a6407ca39ab",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_8.csv",
+      "size": 146639523,
+      "rows": 1000000,
+      "bytes_read": 146639523,
+      "sha256": "485c53e676016c730018ec51ef885efa584546f6930035c75876b5ba520814be",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_9.csv",
+      "size": 146509873,
+      "rows": 1000000,
+      "bytes_read": 146509873,
+      "sha256": "ed86e18cd03c6b9e1963964e400a04c4b7684356f2ca7d3acca172c942c4dfba",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_10.csv",
+      "size": 146536008,
+      "rows": 1000000,
+      "bytes_read": 146536008,
+      "sha256": "c33290654db525d0f926d4bc010d27f82c615e1ba87cff0c9e87b1cff673d2ad",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_11.csv",
+      "size": 148428210,
+      "rows": 1000000,
+      "bytes_read": 148428210,
+      "sha256": "ffd77ddb051852facd348ec189cf1204a01c0cc840da312c1a440fd0d8c287cf",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_12.csv",
+      "size": 153629818,
+      "rows": 1000000,
+      "bytes_read": 153629818,
+      "sha256": "80fd7d6782d4acdd9c528085d38823e1036b530c551d3b646bc7d0eeb5298512",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_13.csv",
+      "size": 151016885,
+      "rows": 1000000,
+      "bytes_read": 151016885,
+      "sha256": "fc295ee26ebee93e3ab0b0e61ae7ab567fb86c1b67cbcd1d8025944c9e5ad24c",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_14.csv",
+      "size": 153329384,
+      "rows": 1000000,
+      "bytes_read": 153329384,
+      "sha256": "8eb759212e6b36c29478b5e45102814438b48e7929477a5bb8e734390cdc3ab0",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_15.csv",
+      "size": 153194923,
+      "rows": 1000000,
+      "bytes_read": 153194923,
+      "sha256": "f7dded78b7670900cfa9c56e4b3df1c6c6f8ec3d82262c1b184af7f9d87e9f43",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_16.csv",
+      "size": 153017885,
+      "rows": 1000000,
+      "bytes_read": 153017885,
+      "sha256": "415376cfbd6a4592b717b5e756ca5c1548d4491121e01fb0bab79555d8665cae",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_17.csv",
+      "size": 149859400,
+      "rows": 1000000,
+      "bytes_read": 149859400,
+      "sha256": "d933a39088804258386441d83e4dec29ad14b97378b2a216f9919b0f5180143a",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_18.csv",
+      "size": 150807171,
+      "rows": 1000000,
+      "bytes_read": 150807171,
+      "sha256": "32d04d9cfefee40774e979c600ec322e2da6518bb6d8974999075007794c3934",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_19.csv",
+      "size": 156962122,
+      "rows": 1000000,
+      "bytes_read": 156962122,
+      "sha256": "162203394dc41b3020bdc70b99e213f620fd66bacd333dbdf1cd5279adbd5f5d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_20.csv",
+      "size": 157610648,
+      "rows": 1000000,
+      "bytes_read": 157610648,
+      "sha256": "ca793a8ff6860c2a8b8e8b4bc72271bbbfc011b0b6c523765658949e1513fd0f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_21.csv",
+      "size": 158679239,
+      "rows": 1000000,
+      "bytes_read": 158679239,
+      "sha256": "63fe9f2c91c48c0f30721eda03864675e1d87103a36cd61c19a3ac68d8ac077b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_22.csv",
+      "size": 153268181,
+      "rows": 1000000,
+      "bytes_read": 153268181,
+      "sha256": "a1f6009f2be53bc1fba90f044d07ff5a9c5cfe4912b56690d8f02fb75aa335c0",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "Processed_datasets/Processed_Network_dataset/Network_dataset_23.csv",
+      "size": 51705634,
+      "rows": 339021,
+      "bytes_read": 51705634,
+      "sha256": "e89c54673961c2b260265cdd3f6c50355369f8a80e63c31999df04b0a757f213",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    }
+  ],
+  "schema": {
+    "label_map": {
+      "backdoor": "Backdoor",
+      "ddos": "DDoS",
+      "dos": "DoS",
+      "injection": "Injection",
+      "mitm": "MITM",
+      "normal": "BENIGN",
+      "password": "Password",
+      "ransomware": "Ransomware",
+      "scanning": "Scanning",
+      "xss": "XSS"
+    },
+    "removed_columns": {
+      "ts": "identifier (kept as metadata where configured)",
+      "src_ip": "identifier (kept as metadata where configured)",
+      "src_port": "identifier (kept as metadata where configured)",
+      "dst_ip": "identifier (kept as metadata where configured)",
+      "dst_port": "identifier (kept as metadata where configured)",
+      "dns_query": "excluded by protocol (label-derived, free text or meaningless)",
+      "ssl_subject": "excluded by protocol (label-derived, free text or meaningless)",
+      "ssl_issuer": "excluded by protocol (label-derived, free text or meaningless)",
+      "http_uri": "excluded by protocol (label-derived, free text or meaningless)",
+      "http_referrer": "excluded by protocol (label-derived, free text or meaningless)",
+      "http_user_agent": "excluded by protocol (label-derived, free text or meaningless)",
+      "http_orig_mime_types": "excluded by protocol (label-derived, free text or meaningless)",
+      "http_resp_mime_types": "excluded by protocol (label-derived, free text or meaningless)",
+      "weird_name": "excluded by protocol (label-derived, free text or meaningless)",
+      "weird_addl": "excluded by protocol (label-derived, free text or meaningless)",
+      "label": "label",
+      "type": "label",
+      "uid": "identifier (kept as metadata where configured)"
+    },
+    "feature_columns": [
+      "proto",
+      "service",
+      "duration",
+      "src_bytes",
+      "dst_bytes",
+      "conn_state",
+      "missed_bytes",
+      "src_pkts",
+      "src_ip_bytes",
+      "dst_pkts",
+      "dst_ip_bytes",
+      "dns_qclass",
+      "dns_qtype",
+      "dns_rcode",
+      "dns_AA",
+      "dns_RD",
+      "dns_RA",
+      "dns_rejected",
+      "ssl_version",
+      "ssl_cipher",
+      "ssl_resumed",
+      "ssl_established",
+      "http_trans_depth",
+      "http_method",
+      "http_version",
+      "http_request_body_len",
+      "http_response_body_len",
+      "http_status_code",
+      "weird_notice"
+    ],
+    "unparseable_values_to_nan": {
+      "src_bytes": 869
+    },
+    "inf_values_to_nan": {},
+    "float32_overflow_to_nan": {},
+    "timestamps_unparsed": 0,
+    "binary_label_disagreements": 0
+  },
+  "counts": {
+    "rows_read": 22339021,
+    "all_nan_rows_dropped": 0,
+    "exact_duplicates_removed": 16039985,
+    "rows_out": 6299036,
+    "attempted_rows": 0,
+    "attempted_rows_identical_to_a_benign_flow": 0,
+    "conflicting_label_feature_vectors": 33709,
+    "conflict_rows": 70705,
+    "conflicting_binary_feature_vectors": 981,
+    "binary_conflict_rows": 2535,
+    "rows_in_near_duplicate_groups": 4868293,
+    "hash_note": "64-bit row hashes; expected collisions below 1 per 10^3 datasets of 10^8 rows"
+  },
+  "classes": {
+    "raw_in": {
+      "normal": 796380,
+      "scanning": 7140161,
+      "dos": 3375328,
+      "injection": 452659,
+      "ddos": 6165008,
+      "password": 1718568,
+      "xss": 2108944,
+      "ransomware": 72805,
+      "backdoor": 508116,
+      "mitm": 1052
+    },
+    "family_in": {
+      "BENIGN": 796380,
+      "Scanning": 7140161,
+      "DoS": 3375328,
+      "Injection": 452659,
+      "DDoS": 6165008,
+      "Password": 1718568,
+      "XSS": 2108944,
+      "Ransomware": 72805,
+      "Backdoor": 508116,
+      "MITM": 1052
+    },
+    "family_out": {
+      "BENIGN": 301076,
+      "Scanning": 432980,
+      "DoS": 94965,
+      "Injection": 445287,
+      "DDoS": 2676140,
+      "Password": 767679,
+      "XSS": 1566647,
+      "Ransomware": 322,
+      "Backdoor": 12901,
+      "MITM": 1039
+    },
+    "duplicates_removed_by_family": {
+      "BENIGN": 495304,
+      "Scanning": 6707181,
+      "DoS": 3280363,
+      "Injection": 7372,
+      "DDoS": 3488868,
+      "Password": 950889,
+      "XSS": 542297,
+      "Ransomware": 72483,
+      "Backdoor": 495215,
+      "MITM": 13
+    }
+  },
+  "nan_counts_after_cleaning": {
+    "service": 2752542,
+    "src_bytes": 44,
+    "dns_AA": 6002823,
+    "dns_RD": 6002823,
+    "dns_RA": 6002823,
+    "dns_rejected": 6002823,
+    "ssl_version": 6275305,
+    "ssl_cipher": 6275305,
+    "ssl_resumed": 6273576,
+    "ssl_established": 6273576,
+    "http_trans_depth": 6275204,
+    "http_method": 6275223,
+    "http_version": 6275757,
+    "weird_notice": 6296939
+  },
+  "multiclass_families": {
+    "BENIGN": {
+      "flows": 301076,
+      "blocks": 1601,
+      "in_multiclass_task": true
+    },
+    "Backdoor": {
+      "flows": 12901,
+      "blocks": 316,
+      "in_multiclass_task": true
+    },
+    "DDoS": {
+      "flows": 2676140,
+      "blocks": 202,
+      "in_multiclass_task": true
+    },
+    "DoS": {
+      "flows": 94965,
+      "blocks": 105,
+      "in_multiclass_task": true
+    },
+    "Injection": {
+      "flows": 445287,
+      "blocks": 54,
+      "in_multiclass_task": true
+    },
+    "MITM": {
+      "flows": 1039,
+      "blocks": 28,
+      "in_multiclass_task": true
+    },
+    "Password": {
+      "flows": 767679,
+      "blocks": 169,
+      "in_multiclass_task": true
+    },
+    "Ransomware": {
+      "flows": 322,
+      "blocks": 17,
+      "in_multiclass_task": true
+    },
+    "Scanning": {
+      "flows": 432980,
+      "blocks": 54,
+      "in_multiclass_task": true
+    },
+    "XSS": {
+      "flows": 1566647,
+      "blocks": 86,
+      "in_multiclass_task": true
+    }
+  },
+  "splits": {
+    "primary": {
+      "type": "chronological_blocks",
+      "spec": {
+        "type": "chronological_blocks"
+      },
+      "seed": 11,
+      "block_seconds": 300,
+      "rows_per_partition": {
+        "train": 4475217,
+        "val": 936754,
+        "test": 877489,
+        "purged": 9576
+      },
+      "family_by_partition": {
+        "purged": {
+          "BENIGN": 109,
+          "Backdoor": 0,
+          "DDoS": 8504,
+          "DoS": 6,
+          "Injection": 28,
+          "MITM": 0,
+          "Password": 21,
+          "Ransomware": 0,
+          "Scanning": 868,
+          "XSS": 40
+        },
+        "test": {
+          "BENIGN": 52432,
+          "Backdoor": 1637,
+          "DDoS": 355564,
+          "DoS": 11070,
+          "Injection": 70244,
+          "MITM": 57,
+          "Password": 104879,
+          "Ransomware": 39,
+          "Scanning": 52202,
+          "XSS": 229365
+        },
+        "train": {
+          "BENIGN": 212669,
+          "Backdoor": 9595,
+          "DDoS": 1915503,
+          "DoS": 72616,
+          "Injection": 333138,
+          "MITM": 512,
+          "Password": 547908,
+          "Ransomware": 260,
+          "Scanning": 295708,
+          "XSS": 1087308
+        },
+        "val": {
+          "BENIGN": 35866,
+          "Backdoor": 1669,
+          "DDoS": 396569,
+          "DoS": 11273,
+          "Injection": 41877,
+          "MITM": 470,
+          "Password": 114871,
+          "Ransomware": 23,
+          "Scanning": 84202,
+          "XSS": 249934
+        }
+      },
+      "purged_rows": 9576,
+      "diagnostics": {
+        "strata_kept_in_train": [
+          {
+            "day": "2019-04-24",
+            "stratum": "BENIGN",
+            "blocks": 1
+          },
+          {
+            "day": "2019-04-26",
+            "stratum": "BENIGN",
+            "blocks": 1
+          },
+          {
+            "day": "2019-04-29",
+            "stratum": "BENIGN",
+            "blocks": 1
+          }
+        ],
+        "blocks_per_partition": {
+          "train": 1123,
+          "val": 241,
+          "test": 241
+        },
+        "bootstrap_groups": "300 s time blocks"
+      },
+      "integrity": {
+        "identifier_columns_in_features": 0,
+        "pairs": {
+          "train->val": {
+            "exact_feature_and_label_overlap": 0,
+            "same_features_other_label_share": 0.005655700429354985,
+            "near_duplicate_share": 0.7634523044470587
+          },
+          "train->test": {
+            "exact_feature_and_label_overlap": 0,
+            "same_features_other_label_share": 0.009416642259902974,
+            "near_duplicate_share": 0.718690490707006
+          },
+          "val->test": {
+            "exact_feature_and_label_overlap": 0,
+            "same_features_other_label_share": 0.0012421808136626215,
+            "near_duplicate_share": 0.597492390217997
+          }
+        },
+        "blocks_shared_between_partitions": 0
+      },
+      "file": "/content/drive/MyDrive/PhD-AI-Cyber/data/splits/ton_iot/primary.parquet",
+      "sha256": "128632209ebcf88e10323cb49f57840081dfe4a6695d19581af0c97874feeb4a"
+    }
+  },
+  "outputs": {
+    "dir": "/content/drive/MyDrive/PhD-AI-Cyber/data/processed/ton_iot/v1",
+    "parquet_sha256": {
+      "part-00000.parquet": "ab01ed101508332707c9bee39c64ba3bfd775f61ac314a3013fd8bd8f16d4e63",
+      "part-00001.parquet": "c25de8f245c6f4fc44d8d2f16f610555af3eaefccdb4432d8ca7ecbb2dd8d568",
+      "part-00002.parquet": "ed995eb84d33fe799157204844ef328c58956dc8caf6f7174c569d10f306b0cd",
+      "part-00003.parquet": "f3fd171ed3c88add1c5712e2bbfe316a22c665311cf680d4be40a9a9ace35a26",
+      "part-00004.parquet": "028a2f27d6c73b49b5901b51aa2e23b2be90d3d12652bd9183406d6546905ccd",
+      "part-00005.parquet": "4256ecaefc5cdf37e6603664692fa57ccb4c924a84668870fd5e4434b272dd09",
+      "part-00006.parquet": "869aebbd3ab1d6fbfadc853ba32a422491ffa0767df0efa8cf2d871c5f601845",
+      "part-00007.parquet": "9c8864e072e2faa8d168a24145246580585778d421e8c0e0305083f68bfc29e9",
+      "part-00008.parquet": "c31d7485ce60a738748aa6320f709ca5b2dd9a4357de93dadb9a673e1cf25d38",
+      "part-00009.parquet": "08118966c81145ebedda3f91b1ac1419d1a091ef4ef186aee536677473285782",
+      "part-00010.parquet": "f3d4dc479500b95a3f55fd97ab0e1f487cc38485361c24e47874f10f64cb4617",
+      "part-00011.parquet": "4357c70be63e3ac2b5a3f7296b7468b5221a17143bba2ebab9d6b67ec123e223",
+      "part-00012.parquet": "a23008b710255e661c7c781e423087a5bfa21cccc0f0c6f3acb56c6e583bc2bc",
+      "part-00013.parquet": "027d085fa3018c0e0f058bc18f11137150d54c2165d5646b03803ebc278f4aec",
+      "part-00014.parquet": "ee48be92316c02aaa2af94f70f96687ccbf7718618c8322e8abb59fd594cf5a9",
+      "part-00015.parquet": "928e798eb3c2f8f687e2f9fceeb3de981f077840c26827d08493d94374e6f8cd",
+      "part-00016.parquet": "51c264b3b1e7cb91105f24bb9c087c14b686c36702241544ef4162d266eb5b97",
+      "part-00017.parquet": "2a96033f158c9c86de237466a11b85fe2709945acdaf3811b71fab6ae14184b5",
+      "part-00018.parquet": "c0326ee6dbf19464a5aa70aacfadaf8867adb28d1b1f7e5310799e8a6054c8b3",
+      "part-00019.parquet": "536653a66a7d6033d5f2090d5bd1c90d5405555e0763c843d6643d2ffc3bcb9c",
+      "part-00020.parquet": "78273f65ad31c2d588c9ed065fd8ba4b26db66ab630559d33eff84459b941564",
+      "part-00021.parquet": "16a49541177f4d20ee72ebdc3d45b939858fe1f05b031d270188ed1d1791a708",
+      "part-00022.parquet": "f5df9941a2db0f5c09a3ca3834c841b5d05b4859028e6c7db89ff41877f07995"
+    }
+  }
+}
