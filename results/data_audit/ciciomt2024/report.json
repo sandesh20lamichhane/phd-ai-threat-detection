@@ -1,0 +1,911 @@
+{
+  "dataset": "ciciomt2024",
+  "role": "domain_target",
+  "protocol_version": "1.0",
+  "output_version": "v1",
+  "run": {
+    "utc": "2026-10-25T14:41:01Z",
+    "git_commit": "9dc984cdcd52fa973ad97d18b803da180ee416e8-dirty",
+    "python": "3.13.16",
+    "packages": {
+      "numpy": "2.1.3",
+      "pandas": "2.2.3",
+      "pyarrow": "23.0.1",
+      "scikit-learn": "1.6.1",
+      "scipy": "1.16.3",
+      "PyYAML": "6.0.3"
+    },
+    "config": "config/preprocessing.yaml",
+    "config_sha256": "e64c492f2a4c4e091646ce627f28ddca6b968674255f1021b2abc5d777f45510"
+  },
+  "max_rows": null,
+  "inputs": [
+    {
+      "file": "test/ARP_Spoofing_test.pcap.csv",
+      "size": 545650,
+      "rows": 1744,
+      "bytes_read": 545650,
+      "sha256": "a897da3919604aefb392ce88493441d3a871ac3174d95345f6c4d43dfa847a4a",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/Benign_test.pcap.csv",
+      "size": 11547726,
+      "rows": 37607,
+      "bytes_read": 11547726,
+      "sha256": "bfbc0299d0c0c7a2e13c17aa513b15cceeef57034173104ba2309c3557154f83",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/MQTT-DDoS-Connect_Flood_test.pcap.csv",
+      "size": 13321481,
+      "rows": 41916,
+      "bytes_read": 13321481,
+      "sha256": "a6d7d715905e4b63345d34b5e83a434a88fd5de784088bdc296498119c6569e0",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/MQTT-DDoS-Publish_Flood_test.pcap.csv",
+      "size": 2696493,
+      "rows": 8416,
+      "bytes_read": 2696493,
+      "sha256": "9645712b63b19885410b3cb2fc67a918e64fcf9992b9298d36378ad825576f07",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/MQTT-DoS-Connect_Flood_test.pcap.csv",
+      "size": 997652,
+      "rows": 3131,
+      "bytes_read": 997652,
+      "sha256": "2acebdca0c35133a7a6a706c65d161437c28e5e93048c8c406486149d7b85a69",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/MQTT-DoS-Publish_Flood_test.pcap.csv",
+      "size": 2705007,
+      "rows": 8505,
+      "bytes_read": 2705007,
+      "sha256": "2595ed7324500c75c69311695c2fea82c09efdb936b093912f79cd44fec1e2d3",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/MQTT-Malformed_Data_test.pcap.csv",
+      "size": 527805,
+      "rows": 1747,
+      "bytes_read": 527805,
+      "sha256": "c292f05e02333b77469dae546f0049d6d2cc1ac0cf9e1fa46f64937996da77d3",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/Recon-OS_Scan_test.pcap.csv",
+      "size": 1009792,
+      "rows": 3834,
+      "bytes_read": 1009792,
+      "sha256": "208a8183fed0fba6c79485aa22f7e69e96743e8575a486b74991d0aa3d2efd58",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/Recon-Ping_Sweep_test.pcap.csv",
+      "size": 53523,
+      "rows": 186,
+      "bytes_read": 53523,
+      "sha256": "16413cac109049d7a67723669b15b9bd07fe6f9300e9a2ae0ed98ee6acb294ee",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/Recon-Port_Scan_test.pcap.csv",
+      "size": 6047166,
+      "rows": 22622,
+      "bytes_read": 6047166,
+      "sha256": "d7b7d49d68fb6b1efe14ca5a5343d23c6e3ab00e86b0c64880ef99935f291b06",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/Recon-VulScan_test.pcap.csv",
+      "size": 307516,
+      "rows": 1034,
+      "bytes_read": 307516,
+      "sha256": "943d3f3265ab96b7c3d03b985d1d5dd9187dad8245586b65ca0f7a7a5b8096d7",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/TCP_IP-DDoS-ICMP1_test.pcap.csv",
+      "size": 37721104,
+      "rows": 154007,
+      "bytes_read": 37721104,
+      "sha256": "75ccd3caec60487df07910a21c7088adfd9273da564bdd4221ba1aaefb2ce484",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/TCP_IP-DDoS-ICMP2_test.pcap.csv",
+      "size": 47806710,
+      "rows": 195692,
+      "bytes_read": 47806710,
+      "sha256": "ec2864d8452d6eac6009497cff9f2247d1c06621e42109cb00667dc3bbb28797",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/TCP_IP-DDoS-SYN_test.pcap.csv",
+      "size": 46987034,
+      "rows": 172397,
+      "bytes_read": 46987034,
+      "sha256": "05054ebb39fa37d8e3f56c4792d039b80747855d2d54c5d8440c824690befc43",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/TCP_IP-DDoS-TCP_test.pcap.csv",
+      "size": 45012734,
+      "rows": 182598,
+      "bytes_read": 45012734,
+      "sha256": "15f7ca54cb9a404ad0486c134bbf270d6bb29df6b15a62359623a9fa4b73891a",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/TCP_IP-DDoS-UDP1_test.pcap.csv",
+      "size": 49493489,
+      "rows": 205654,
+      "bytes_read": 49493489,
+      "sha256": "95e54c484b3d2361a7c6ab763861377c40993ee8f049e04b23e9648e2346cc36",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/TCP_IP-DDoS-UDP2_test.pcap.csv",
+      "size": 37791909,
+      "rows": 156416,
+      "bytes_read": 37791909,
+      "sha256": "1f7ef4244aee882040f50c44598a7e23159980d1b94ae0d5e63b92df37850327",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/TCP_IP-DoS-ICMP_test.pcap.csv",
+      "size": 24343235,
+      "rows": 98432,
+      "bytes_read": 24343235,
+      "sha256": "3805ddb49945564802d7e2f32da159af911ef2bd7f8d5a7c7e77f17f2f85a7bc",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/TCP_IP-DoS-SYN_test.pcap.csv",
+      "size": 30134474,
+      "rows": 98595,
+      "bytes_read": 30134474,
+      "sha256": "5f1fc1849a75f2204dc3f87fc285a9d0b46170eeee4d1d02b3e281332ea53f47",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/TCP_IP-DoS-TCP_test.pcap.csv",
+      "size": 20603678,
+      "rows": 82096,
+      "bytes_read": 20603678,
+      "sha256": "289953c0ef58144c8aacf7f65a1854a4cec21f23b45f8ec629fec79ce6e4670e",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "test/TCP_IP-DoS-UDP_test.pcap.csv",
+      "size": 33254758,
+      "rows": 137553,
+      "bytes_read": 33254758,
+      "sha256": "edac57d8d5ee12c53b0c0b6042c4aa22283bdb97096202e2738a43e7f0c09bd3",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/ARP_Spoofing_train.pcap.csv",
+      "size": 4832294,
+      "rows": 16047,
+      "bytes_read": 4832294,
+      "sha256": "f0d68653cfe5873f280a0cd84323145d6112861819204b22e3d1e690d02df6ad",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/Benign_train.pcap.csv",
+      "size": 59453232,
+      "rows": 192732,
+      "bytes_read": 59453232,
+      "sha256": "5337565793ff0460270da0b848e2ca8eafbd529a9715ce33f8ba4578a772fc29",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/MQTT-DDoS-Connect_Flood_train.pcap.csv",
+      "size": 54960303,
+      "rows": 173036,
+      "bytes_read": 54960303,
+      "sha256": "0739bf1a52f7e6accaba1252e3a7393c476f87122c663bcec9788e5a2896eff6",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/MQTT-DDoS-Publish_Flood_train.pcap.csv",
+      "size": 8984035,
+      "rows": 27623,
+      "bytes_read": 8984035,
+      "sha256": "45f73cd42af9bd71e890ea77e52316ed1a3e90351e4041cff2da11bc7e178181",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/MQTT-DoS-Connect_Flood_train.pcap.csv",
+      "size": 4061179,
+      "rows": 12773,
+      "bytes_read": 4061179,
+      "sha256": "93093507c84ef2d71ae9b6fad4669d145e2601d981b6b430b0cd5bf1c6478a6f",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/MQTT-DoS-Publish_Flood_train.pcap.csv",
+      "size": 14098543,
+      "rows": 44376,
+      "bytes_read": 14098543,
+      "sha256": "f5cc6b18ddb55febb2f3132c8bb3e4471277bf2fb6f6a8f4604492ee19cc480c",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/MQTT-Malformed_Data_train.pcap.csv",
+      "size": 1529744,
+      "rows": 5130,
+      "bytes_read": 1529744,
+      "sha256": "292efe2f8b07203c53c65f7d5c5af05bcc4429cd06701a9a4fc4fc65ecf8e402",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/Recon-OS_Scan_train.pcap.csv",
+      "size": 4530527,
+      "rows": 16832,
+      "bytes_read": 4530527,
+      "sha256": "c8450cd6a2808243b66fe9308d49d9e3e1b88802c7debb6e8033cf5abb6f6ef3",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/Recon-Ping_Sweep_train.pcap.csv",
+      "size": 210439,
+      "rows": 740,
+      "bytes_read": 210439,
+      "sha256": "aa2fce831dc4c73c7d6138eca415bb2966870599d0ca7e91694ec4771b0c313f",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/Recon-Port_Scan_train.pcap.csv",
+      "size": 22583719,
+      "rows": 83981,
+      "bytes_read": 22583719,
+      "sha256": "7dc0785d3e69d4e1a083582dad0efc4c94c35bbc75e56ec0ddb9bd2f6a34e872",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/Recon-VulScan_train.pcap.csv",
+      "size": 633037,
+      "rows": 2173,
+      "bytes_read": 633037,
+      "sha256": "c4abeec187c4ac8167b69251fa9d3d4e8ca182ddb5fcfd918d0ef6cf34b73ddf",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-ICMP1_train.pcap.csv",
+      "size": 47582176,
+      "rows": 194938,
+      "bytes_read": 47582176,
+      "sha256": "421e6cf37dde9a8a17ab473cc7977647f298ef473261102beb484db264cbd5c0",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-ICMP2_train.pcap.csv",
+      "size": 47058156,
+      "rows": 194818,
+      "bytes_read": 47058156,
+      "sha256": "ae8b5ded976d6f49ff01babb66431ffb250f63695c349d86b4b3bc8a866c9ad4",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-ICMP3_train.pcap.csv",
+      "size": 49788511,
+      "rows": 189710,
+      "bytes_read": 49788511,
+      "sha256": "71bde2ecf6f5ab28a3c2eb5205cb6bfaca7338b1d17cf0a27ab8ef992ad38149",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-ICMP4_train.pcap.csv",
+      "size": 49170351,
+      "rows": 192741,
+      "bytes_read": 49170351,
+      "sha256": "e4a3074f251ee5c6df6650136b5199c5e738cc582c55595d0ff403c74a12f289",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-ICMP5_train.pcap.csv",
+      "size": 47362551,
+      "rows": 195032,
+      "bytes_read": 47362551,
+      "sha256": "92f2ba3e950de4a656343370737e3e5033918e0832f2f040391ddadba1ea7b28",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-ICMP6_train.pcap.csv",
+      "size": 46849829,
+      "rows": 190875,
+      "bytes_read": 46849829,
+      "sha256": "acf11dd59b947fd0c0cfb538832346a6c2c503241157f9e4204b4c7dbdc353ea",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-ICMP7_train.pcap.csv",
+      "size": 46041214,
+      "rows": 186022,
+      "bytes_read": 46041214,
+      "sha256": "c0d9f56186383d15d71c88eb38b25243795bb234fda99c14f0b103f7dd3579a1",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-ICMP8_train.pcap.csv",
+      "size": 47140385,
+      "rows": 193340,
+      "bytes_read": 47140385,
+      "sha256": "d542b4b84fcc0d4c9b88cc8e2101752d1d94d4e4cedbf3655cdcb3fc64cab085",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-SYN1_train.pcap.csv",
+      "size": 55239039,
+      "rows": 199390,
+      "bytes_read": 55239039,
+      "sha256": "6563e1d9b9dbddbe9172b6916bd22b624b32b489ba899a6a41c6ba3c73fdab75",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-SYN2_train.pcap.csv",
+      "size": 58160053,
+      "rows": 203669,
+      "bytes_read": 58160053,
+      "sha256": "58e602b0b9efff6d256a822dbf1698babaadc90f1a9002c3d6e59f89ccc4e669",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-SYN3_train.pcap.csv",
+      "size": 60629854,
+      "rows": 202023,
+      "bytes_read": 60629854,
+      "sha256": "7ba40eadca16c42d66dc180e48cc7c343e15ca518f01ee0a53dec39abb33e97e",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-SYN4_train.pcap.csv",
+      "size": 49280595,
+      "rows": 196880,
+      "bytes_read": 49280595,
+      "sha256": "c1c362bb07e3773797f95626fc62d88d590e7ef960be9a53cc4c8b8ba657c986",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-TCP1_train.pcap.csv",
+      "size": 52984807,
+      "rows": 202311,
+      "bytes_read": 52984807,
+      "sha256": "ce2eece139e36bcf3eac8da2ed8447652dc5b0fd3834392eedc94d9bfca66efb",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-TCP2_train.pcap.csv",
+      "size": 50810927,
+      "rows": 197081,
+      "bytes_read": 50810927,
+      "sha256": "b16359ecb30825d32c6eec4d966f8a0eccc735d609cf36e5754a69ae93a92f0c",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-TCP3_train.pcap.csv",
+      "size": 50396082,
+      "rows": 204075,
+      "bytes_read": 50396082,
+      "sha256": "1cf4238b3ddd9350f6e5f473f275ee599a97451ddcccd27cfb6f54d1db28e308",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-TCP4_train.pcap.csv",
+      "size": 50474327,
+      "rows": 200998,
+      "bytes_read": 50474327,
+      "sha256": "5695efe61f4e94a3c93184bd970495205f02425b15695f1808bd7c865ca12d0f",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-UDP1_train.pcap.csv",
+      "size": 49992412,
+      "rows": 206170,
+      "bytes_read": 49992412,
+      "sha256": "ecfdafd04396912abbb0c679431c12b225d2e60651a1f11573d9ed129c6eaf56",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-UDP2_train.pcap.csv",
+      "size": 49840191,
+      "rows": 207295,
+      "bytes_read": 49840191,
+      "sha256": "862223972addbd30ddfac516cd94b937d9ed465497dd7ff632e574fbdb2191c3",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-UDP3_train.pcap.csv",
+      "size": 52361076,
+      "rows": 206604,
+      "bytes_read": 52361076,
+      "sha256": "83b720d6b77379b1b91461e061c5f464c765c628d301ed597a4fe998638568f0",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-UDP4_train.pcap.csv",
+      "size": 52213834,
+      "rows": 206343,
+      "bytes_read": 52213834,
+      "sha256": "76f5a0e57181bf9b1d200f87b1ab69aec6eebf80a4f394d723b89c44b4d6efe7",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-UDP5_train.pcap.csv",
+      "size": 50835679,
+      "rows": 205507,
+      "bytes_read": 50835679,
+      "sha256": "1b316d70ae8cfd19c8f8292e1914adfebd39d732d32b7142909bb56d98db4977",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-UDP6_train.pcap.csv",
+      "size": 51628598,
+      "rows": 202247,
+      "bytes_read": 51628598,
+      "sha256": "230f99ef999649538ed013a1a6cfd99aefd1c30481f130f5af2d81bc045c925b",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-UDP7_train.pcap.csv",
+      "size": 48226198,
+      "rows": 197685,
+      "bytes_read": 48226198,
+      "sha256": "6d9f7c56a5edc30c9628eb87904ceb1e3ca576d319b1f117c21fcda148b5c303",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DDoS-UDP8_train.pcap.csv",
+      "size": 49377706,
+      "rows": 204105,
+      "bytes_read": 49377706,
+      "sha256": "80c51b47fcc14eef34b9a484e3e84d84b2a077492dcb393d81fd6d945a02d28d",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-ICMP1_train.pcap.csv",
+      "size": 28607700,
+      "rows": 104507,
+      "bytes_read": 28607700,
+      "sha256": "dfb859a6c2dfb84f05acd935b5aa36af5e38a122b6abf44c50409db2878869ff",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-ICMP2_train.pcap.csv",
+      "size": 25148932,
+      "rows": 96977,
+      "bytes_read": 25148932,
+      "sha256": "f6d20bc819226d5855b2de01cf98a1cf67fae6f1c982441099dc39ce64de584d",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-ICMP3_train.pcap.csv",
+      "size": 26865199,
+      "rows": 108686,
+      "bytes_read": 26865199,
+      "sha256": "ec5d9e7189f522b31e0f6affd51dd6bb857b3a7ff63688187a60f5ed1759ad7c",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-ICMP4_train.pcap.csv",
+      "size": 27096571,
+      "rows": 106122,
+      "bytes_read": 27096571,
+      "sha256": "b04253e20396d7ffc348c19acad4d57fc3359ad74091f8d5be0372e2d03bbf90",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-SYN1_train.pcap.csv",
+      "size": 34867407,
+      "rows": 111431,
+      "bytes_read": 34867407,
+      "sha256": "a3db508fa739a83c4966ed2e6e43431a7c0f009a7ae4901eaae2e67b504cff3e",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-SYN2_train.pcap.csv",
+      "size": 30477443,
+      "rows": 111647,
+      "bytes_read": 30477443,
+      "sha256": "105c18058ee979cd34ba2bf8a278b7547866e215d2b6849cb775097b5b7fa6b0",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-SYN3_train.pcap.csv",
+      "size": 30192899,
+      "rows": 108190,
+      "bytes_read": 30192899,
+      "sha256": "34010f5dd9fb730055cdbf3d3bb2967f7cde89495f0464e99a5a1b671231bba8",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-SYN4_train.pcap.csv",
+      "size": 29061042,
+      "rows": 110635,
+      "bytes_read": 29061042,
+      "sha256": "35b2ce8e2a0359779e5bf46e944bd007feb51edea5f6778a80d625b9c6c504af",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-TCP1_train.pcap.csv",
+      "size": 24184666,
+      "rows": 95407,
+      "bytes_read": 24184666,
+      "sha256": "ddaccc225dc04630df932269e330db1c8ca5de107bd32dc20562e45304fa9e1c",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-TCP2_train.pcap.csv",
+      "size": 25565585,
+      "rows": 95521,
+      "bytes_read": 25565585,
+      "sha256": "fdda01333df6e6a76f772ffb3702b7905f1591ed5391a873880fc7e14e024286",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-TCP3_train.pcap.csv",
+      "size": 24251850,
+      "rows": 95968,
+      "bytes_read": 24251850,
+      "sha256": "09575ce27ec0464bee31e3f40c6b0877601381fd7fc98698b988afdd31b99c71",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-TCP4_train.pcap.csv",
+      "size": 23566052,
+      "rows": 93488,
+      "bytes_read": 23566052,
+      "sha256": "1f90983d49207153eba59259808c659a307dcad03947496ac053a217ed4c5ac9",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-UDP1_train.pcap.csv",
+      "size": 35473752,
+      "rows": 137011,
+      "bytes_read": 35473752,
+      "sha256": "083d7310340e66f7256567ccb048c99c49ecdf4a7cfb10ec1fd26b419a3c7b68",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-UDP2_train.pcap.csv",
+      "size": 34324098,
+      "rows": 140492,
+      "bytes_read": 34324098,
+      "sha256": "68af8270f9a47a47086b534ff7f45abdc59c5ed1303b8263b21ff13ea7829c4b",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-UDP3_train.pcap.csv",
+      "size": 35570398,
+      "rows": 146146,
+      "bytes_read": 35570398,
+      "sha256": "394ffda61e15f69fbfbfc0f6fcd3f6a54c0661cde9068dc96f349f64551882b4",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "train/TCP_IP-DoS-UDP4_train.pcap.csv",
+      "size": 39940285,
+      "rows": 143301,
+      "bytes_read": 39940285,
+      "sha256": "69f2d5223a1ad1bdbd50cedd4133697bd097b3a2ce66d8b811e8be872cb7dba0",
+      "manifest_sha256_match": true
+    }
+  ],
+  "schema": {
+    "label_map": {
+      "ARP_Spoofing": "Spoofing",
+      "Benign": "BENIGN",
+      "MQTT-DDoS-Connect_Flood": "DDoS",
+      "MQTT-DDoS-Publish_Flood": "DDoS",
+      "MQTT-DoS-Connect_Flood": "DoS",
+      "MQTT-DoS-Publish_Flood": "DoS",
+      "MQTT-Malformed_Data": "MQTT-Malformed",
+      "Recon-OS_Scan": "Recon",
+      "Recon-Ping_Sweep": "Recon",
+      "Recon-Port_Scan": "Recon",
+      "Recon-VulScan": "Recon",
+      "TCP_IP-DDoS-ICMP": "DDoS",
+      "TCP_IP-DDoS-SYN": "DDoS",
+      "TCP_IP-DDoS-TCP": "DDoS",
+      "TCP_IP-DDoS-UDP": "DDoS",
+      "TCP_IP-DoS-ICMP": "DoS",
+      "TCP_IP-DoS-SYN": "DoS",
+      "TCP_IP-DoS-TCP": "DoS",
+      "TCP_IP-DoS-UDP": "DoS"
+    },
+    "removed_columns": {},
+    "feature_columns": [
+      "Header_Length",
+      "Protocol Type",
+      "Duration",
+      "Rate",
+      "Srate",
+      "Drate",
+      "fin_flag_number",
+      "syn_flag_number",
+      "rst_flag_number",
+      "psh_flag_number",
+      "ack_flag_number",
+      "ece_flag_number",
+      "cwr_flag_number",
+      "ack_count",
+      "syn_count",
+      "fin_count",
+      "rst_count",
+      "HTTP",
+      "HTTPS",
+      "DNS",
+      "Telnet",
+      "SMTP",
+      "SSH",
+      "IRC",
+      "TCP",
+      "UDP",
+      "DHCP",
+      "ARP",
+      "ICMP",
+      "IGMP",
+      "IPv",
+      "LLC",
+      "Tot sum",
+      "Min",
+      "Max",
+      "AVG",
+      "Std",
+      "Tot size",
+      "IAT",
+      "Number",
+      "Magnitue",
+      "Radius",
+      "Covariance",
+      "Variance",
+      "Weight"
+    ],
+    "unparseable_values_to_nan": {},
+    "inf_values_to_nan": {},
+    "float32_overflow_to_nan": {},
+    "timestamps_unparsed": 0,
+    "binary_label_disagreements": 0
+  },
+  "counts": {
+    "rows_read": 8775013,
+    "all_nan_rows_dropped": 0,
+    "exact_duplicates_removed": 3368126,
+    "rows_out": 5406887,
+    "attempted_rows": 0,
+    "attempted_rows_identical_to_a_benign_flow": 0,
+    "conflicting_label_feature_vectors": 0,
+    "conflict_rows": 0,
+    "conflicting_binary_feature_vectors": 0,
+    "binary_conflict_rows": 0,
+    "rows_in_near_duplicate_groups": 2959356,
+    "hash_note": "64-bit row hashes; expected collisions below 1 per 10^3 datasets of 10^8 rows"
+  },
+  "classes": {
+    "raw_in": {
+      "ARP_Spoofing": 17791,
+      "Benign": 230339,
+      "MQTT-DDoS-Connect_Flood": 214952,
+      "MQTT-DDoS-Publish_Flood": 36039,
+      "MQTT-DoS-Connect_Flood": 15904,
+      "MQTT-DoS-Publish_Flood": 52881,
+      "MQTT-Malformed_Data": 6877,
+      "Recon-OS_Scan": 20666,
+      "Recon-Ping_Sweep": 926,
+      "Recon-Port_Scan": 106603,
+      "Recon-VulScan": 3207,
+      "TCP_IP-DDoS-ICMP": 1887175,
+      "TCP_IP-DDoS-SYN": 974359,
+      "TCP_IP-DDoS-TCP": 987063,
+      "TCP_IP-DDoS-UDP": 1998026,
+      "TCP_IP-DoS-ICMP": 514724,
+      "TCP_IP-DoS-SYN": 540498,
+      "TCP_IP-DoS-TCP": 462480,
+      "TCP_IP-DoS-UDP": 704503
+    },
+    "family_in": {
+      "Spoofing": 17791,
+      "BENIGN": 230339,
+      "DDoS": 6097614,
+      "DoS": 2290990,
+      "MQTT-Malformed": 6877,
+      "Recon": 131402
+    },
+    "family_out": {
+      "Spoofing": 17754,
+      "BENIGN": 230339,
+      "DDoS": 3402462,
+      "DoS": 1635346,
+      "MQTT-Malformed": 6877,
+      "Recon": 114109
+    },
+    "duplicates_removed_by_family": {
+      "Recon": 17293,
+      "DDoS": 2695152,
+      "DoS": 655644,
+      "Spoofing": 37
+    }
+  },
+  "nan_counts_after_cleaning": {},
+  "multiclass_families": {
+    "BENIGN": {
+      "flows": 230339,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "DDoS": {
+      "flows": 3402462,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "DoS": {
+      "flows": 1635346,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "MQTT-Malformed": {
+      "flows": 6877,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "Recon": {
+      "flows": 114109,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "Spoofing": {
+      "flows": 17754,
+      "blocks": null,
+      "in_multiclass_task": true
+    }
+  },
+  "splits": {
+    "primary": {
+      "type": "official",
+      "spec": {
+        "type": "official",
+        "val_from_train": 0.15
+      },
+      "seed": 11,
+      "block_seconds": 300,
+      "rows_per_partition": {
+        "train": 3837425,
+        "test": 892268,
+        "val": 677194
+      },
+      "family_by_partition": {
+        "test": {
+          "BENIGN": 37607,
+          "DDoS": 529731,
+          "DoS": 297765,
+          "MQTT-Malformed": 1747,
+          "Recon": 23674,
+          "Spoofing": 1744
+        },
+        "train": {
+          "BENIGN": 163822,
+          "DDoS": 2441821,
+          "DoS": 1136944,
+          "MQTT-Malformed": 4360,
+          "Recon": 76870,
+          "Spoofing": 13608
+        },
+        "val": {
+          "BENIGN": 28910,
+          "DDoS": 430910,
+          "DoS": 200637,
+          "MQTT-Malformed": 770,
+          "Recon": 13565,
+          "Spoofing": 2402
+        }
+      },
+      "purged_rows": 0,
+      "diagnostics": {},
+      "integrity": {
+        "identifier_columns_in_features": 0,
+        "pairs": {
+          "train->val": {
+            "exact_feature_and_label_overlap": 0,
+            "same_features_other_label_share": 0.0,
+            "near_duplicate_share": 0.5294435567946556
+          },
+          "train->test": {
+            "exact_feature_and_label_overlap": 0,
+            "same_features_other_label_share": 0.0,
+            "near_duplicate_share": 0.5687484029462
+          },
+          "val->test": {
+            "exact_feature_and_label_overlap": 0,
+            "same_features_other_label_share": 0.0,
+            "near_duplicate_share": 0.47825204983256153
+          }
+        }
+      },
+      "file": "/content/drive/MyDrive/PhD-AI-Cyber/data/splits/ciciomt2024/primary.parquet",
+      "sha256": "1d363e34b12d6536ab0c16a7b9fbf03b2f7df702bd9faad1f9c4f45550699fbc"
+    }
+  },
+  "outputs": {
+    "dir": "/content/drive/MyDrive/PhD-AI-Cyber/data/processed/ciciomt2024/v1",
+    "parquet_sha256": {
+      "part-00000.parquet": "522f555b69466b3718b43c07a8f829e9c97135733809a902e6e32d0811210a33",
+      "part-00001.parquet": "16ceab6e2874970fe8399bc73aec34fb349e7b5c586a3cbba69ed727af50ce6b",
+      "part-00002.parquet": "1561895124952d4ea87eec3315e166906137d6527ed2ae721ac445e11f8fe71c",
+      "part-00003.parquet": "fc6ecfcd59ec1eee5a60df05ec44cd896bf0a3a5b9972c4f5e95a11172d4686f",
+      "part-00004.parquet": "0ff7a9def25cf3794f63e06498c8edbdce2b5cfc7ac2f6fea8a17e3b4cc257a2",
+      "part-00005.parquet": "8e43d32b0b0aee9968f137d2d3c0f47c5e17ab4730c9d7dbd8659ac8142244d9",
+      "part-00006.parquet": "5982d377c244dfa6fe9562fd3ac915bb8ddcb2c6864fb0063b76ef2a32727762",
+      "part-00007.parquet": "f50aceacbd4caf58a07556f12f707790e96c5dc0890112a3cd442904bbb1ab4b",
+      "part-00008.parquet": "9b5e10344059637f13e25013fd82254561e1661e8e8cbe15666d0df8f81c02a7",
+      "part-00009.parquet": "8c12b09209f82158a8aabd3ecc5125bd3b5aa47c15239bf8c23b085cfcfd2aa6",
+      "part-00010.parquet": "d5608e7e88e608a972e4888793000717c7d8a39ee0c91161f2c3f3e4984b05af",
+      "part-00011.parquet": "7042419e483830a443d57f28dac4d017f9d33e4a1f6cf67aed091d56addec2ea",
+      "part-00012.parquet": "391af463427c96c6443b84d27338304cdcf31144f8d2a5b9591239c7bafee275",
+      "part-00013.parquet": "6c118b0446782798227599b6cdd3b2a8c5cf7170d6574bb0d2e083343ff09432",
+      "part-00014.parquet": "4361ff2a212d4cde1afd809fef8da48d72ff5f77a914982a34c88abd9a9ef13a",
+      "part-00015.parquet": "e0f5ecab5b0204541040cc4bb2b27bee0554b65685578977d851161ca9563f6b",
+      "part-00016.parquet": "0f6da9816cde66c5109ecb104172faa25cf055755215755ddee4f71e98f12fdb",
+      "part-00017.parquet": "982e1f0527f874c99d8ae915b62f8d0455a0de78c7b7ace36e487eb4139c0581",
+      "part-00018.parquet": "908acb12915ce9d696cd0e460bbfd9da51e597b7f7ad3f860fa8e344ba76d3e6",
+      "part-00019.parquet": "5b53539e69c1f5d1cdc0789248f3e80933744214fa1d15fa04bf7d4f18362739",
+      "part-00020.parquet": "f76e89c2a52f57e3dc9e2bb5facbb8db64b968d52d36dac42ae63d141f6a73c4",
+      "part-00021.parquet": "ba571e70739e8070142145dfde14a4b3eb62b4c32f04c6816745d49ce2c27556",
+      "part-00022.parquet": "1e4ed191c4a3f568719a4d1e80143188e4e82bdb2d530506647d0ff32538a78b",
+      "part-00023.parquet": "7cbd1d46a26c5b2ba9e0b723fbfc933cec101f6deb009f177a5c4c4b8519b36d",
+      "part-00024.parquet": "85f1f29c27b1fdbc162735237ceb20748950389c73f12544cdb91d2e504ef781",
+      "part-00025.parquet": "3455b3ba9a1f0a9aadea5dc91965fc8ba009104d058f046c2351e02836a04b82",
+      "part-00026.parquet": "ed517d6a6800432835fdafa2be507ada8e26f71f58c8da9b9126f749f0c91bab",
+      "part-00027.parquet": "ff98273f5cea1c06636ea30dbfb4e9c308f98de9844a752c9bb0799e06e2d0a8",
+      "part-00028.parquet": "2079d197293401b6ddd6db156812f0e40c3d3b8d8de4fdebaeea552b9a4afdd3",
+      "part-00029.parquet": "10be383c638af002d16e25f558b75ea327c22a7819d33a49941c9cdaebe362cf",
+      "part-00030.parquet": "760fc412a47214aac5dbb9eff15a5929f972023fa875346ad340ae628b09d6d1",
+      "part-00031.parquet": "b1765fe267bce0843db36f46d7ae474483c5c3cbd0bed4f44d40654e0319abe6",
+      "part-00032.parquet": "e1987bb43d7901833ef16cb1f4ca5e07ba7b079ef0b76ac218deda49a0d137a2",
+      "part-00033.parquet": "eafbaac47576eff62ad5a28cec29b45d28afe92733f3625e124679ac73b76675",
+      "part-00034.parquet": "dd62df32fbc56d50c8867bf71a1f8bd4ecafa5518f438521591c19ff31d8b434",
+      "part-00035.parquet": "4de6b60b5ddee9fb52f1ea44e457898fef93f4ea033b303e15979df8be12a21e",
+      "part-00036.parquet": "8b06b5695ee7802eac254a772124101b417eea8550404ea74069a20ec644e69d",
+      "part-00037.parquet": "0ba57ec8ab4409dc0de9e7d24233ebfd7a80ce7dc287f96696dc9cf0a6c6cdfb",
+      "part-00038.parquet": "fb1372f6409ce3df5706a9bbf0fd2a5f2f4cc6a9091956f6b97d128632e24cbe",
+      "part-00039.parquet": "3d7182fed360b19acf8ea9d17480579009bf644f4c6899cddd3fb8871045348b",
+      "part-00040.parquet": "77c4a661c069e20e80421f77891abe2b6ac98b179b82fa316203b71fbb5c0d8f",
+      "part-00041.parquet": "52d6686786fe473cd19ff0d1744f97daf9b1e15f2a5c179646c9dba4aaa9d9d8",
+      "part-00042.parquet": "eadbf35750262b6d7089b80ede4fd8a4de0b42fc9e289b3799969edfac9d4fc7",
+      "part-00043.parquet": "4a5124cbe5408a79586f8537443683009371796d1c9d3a4ac0fcb904583eeea1",
+      "part-00044.parquet": "e733c0bce5cb1f1f3bd81229f8a22f4c3b0dcf7b5e4c37efa2d73ff61b4c859f",
+      "part-00045.parquet": "a0c586bc90f308021d361e5ae64486c9b5fd36be79e6a6928a452577b1ca1231",
+      "part-00046.parquet": "795d17b185f7645fec1e7036103f02e9be96189de49f07c703b3f1891b37d35f",
+      "part-00047.parquet": "68e09a601dc49d76f8ac5c5c3697186fac19ab81bac3267b3cdc9e7bcb10b416",
+      "part-00048.parquet": "98a40159b88d0d03be5da4eb996199de9f5ad18a5ffbd95361ae4e93d43b249f",
+      "part-00049.parquet": "91f764aac3fdc38e41dd84bab6df8c8e33c6f62e8a6633331c58eb68bf416f3b",
+      "part-00050.parquet": "cbf80a933abb165646bf2ebe4b3e97f2333b7a3370e2833c1b00d4a6903da6c6",
+      "part-00051.parquet": "ceff26773333760576beac98437c68afc4e50ba567d5eb85cfa708bb5ed5509f",
+      "part-00052.parquet": "f658c616b6e517379e21071a616d234a31696d66b4a8c38d3c01e71fbe3f85aa",
+      "part-00053.parquet": "62b01bd1c639fc7b4b54fd245e585a0711317e0d9a6a02f2b92c8ad174a483eb",
+      "part-00054.parquet": "75fa4c766a31fcd5b70d0642d94e00d7d6c45016679154fe6e9b5f99abb68e06",
+      "part-00055.parquet": "ee341a8225e000c939368e9f42a01529703cc0348b96907a95c8a13e9f4bc3dc",
+      "part-00056.parquet": "0a0e65efd2379c2cfea5b188c3bd6d14892938dd541836329a34df2c0268fb5d",
+      "part-00057.parquet": "369b5c27c3ebcd9534361c4b159730a08a61551a3e0af5388dd42d10ee3c51dd",
+      "part-00058.parquet": "d803016a6307153edb6737ef839eadf6d27f70d82e7246a5d5df65616459c7a8",
+      "part-00059.parquet": "785f760cb4a9efa7674aa840eba8daddb2ca89b1147d0cf578c883171720c512",
+      "part-00060.parquet": "296c716ec56d1fccc06fc0cf73ed413b762b76d239a00e7e967604e2766e80e6",
+      "part-00061.parquet": "79e69c203b0e55589128b43bb89e50f5ffd798ec2385ab33d561c3b1d74b1c4b",
+      "part-00062.parquet": "940760fa47520ed35a10ad58a492de74701e324b7ad3d22d976d5c318d3160cb",
+      "part-00063.parquet": "79df8c7bb0d1687032c27a7f89849cf5081ab1454192b386650ec4fe10996ac0",
+      "part-00064.parquet": "e2d7ab08286ecb1405233052c0f8c87b4efbd0acecfe379ca21dc4af4f8ae201",
+      "part-00065.parquet": "5e18c64f7899670c77350425e638805cfbbb27b207e836a69e1a42e714fe3954",
+      "part-00066.parquet": "dd34eb1954632c7f33d98f52d94567285ff88d6c926bcbd738994585758b93ea",
+      "part-00067.parquet": "650c2b9b42be92c9361ec1f1d986cdda86361aaffe3fe8d443775a81bb9cb831",
+      "part-00068.parquet": "5175b48761b70ff22e7d9848a33f52b367ab2abd249229736e6b6c7d88a858c0",
+      "part-00069.parquet": "2861c9cf74bcc32ab722a337eb6ac9454211f5489c902c174f2724b56ecd3843",
+      "part-00070.parquet": "7e137523730373a8176084d22b70588fc973248de6f6ccedd701145cae75b90f",
+      "part-00071.parquet": "a448b7e7fe595fadc1c3490ec59b66bb2e4d020d0e7878eeaaea7526082a0f32"
+    }
+  }
+}
