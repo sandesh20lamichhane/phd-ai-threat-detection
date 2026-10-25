@@ -53,7 +53,7 @@ def cross_overlap():
     src, _ = datasets.load("cicids2017_improved", partitions=("train",))
     if shared:
         tgt, _ = datasets.load("csecicids2018_improved", split="external", partitions=("external",),
-                               columns=None)
+                               columns=[*shared, "_key", "_y", "_label", "_conflict"])   # the largest dataset
         out["csecicids2018_improved"] = cross_dataset_overlap(row_hash(src[shared]), row_hash(tgt[shared]))
         del tgt
     tgt, _ = datasets.load("unsw_nb15", split="external", partitions=("external",))
