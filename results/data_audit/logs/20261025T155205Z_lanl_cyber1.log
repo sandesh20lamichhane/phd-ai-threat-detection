@@ -1,0 +1,4 @@
+command: scripts/preprocess.py --dataset lanl_cyber1
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/data_audit/logs/20261025T155205Z_lanl_cyber1.log
+[lanl auth] 99,188,362 rows, day 7
+[lanl auth] 197,737,565 rows, day 12
