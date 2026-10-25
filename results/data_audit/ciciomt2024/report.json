@@ -1,11 +1,11 @@
 {
   "dataset": "ciciomt2024",
   "role": "domain_target",
-  "protocol_version": "1.0",
+  "protocol_version": "1.1",
   "output_version": "v1",
   "run": {
-    "utc": "2026-10-25T14:41:01Z",
-    "git_commit": "9dc984cdcd52fa973ad97d18b803da180ee416e8-dirty",
+    "utc": "2026-10-25T16:16:25Z",
+    "git_commit": "8e2eb65ae4e43a85f321013b1511cdb188418fca",
     "python": "3.13.16",
     "packages": {
       "numpy": "2.1.3",
@@ -16,7 +16,7 @@
       "PyYAML": "6.0.3"
     },
     "config": "config/preprocessing.yaml",
-    "config_sha256": "e64c492f2a4c4e091646ce627f28ddca6b968674255f1021b2abc5d777f45510"
+    "config_sha256": "9d38728188a87b1c8778fa782bf292c1a9409031504c4ed569baa37471da13cb"
   },
   "max_rows": null,
   "inputs": [
@@ -770,14 +770,14 @@
       "type": "official",
       "spec": {
         "type": "official",
-        "val_from_train": 0.15
+        "val_mode": "file_order"
       },
       "seed": 11,
       "block_seconds": 300,
       "rows_per_partition": {
-        "train": 3837425,
+        "train": 3717920,
         "test": 892268,
-        "val": 677194
+        "val": 796699
       },
       "family_by_partition": {
         "test": {
@@ -789,46 +789,48 @@
           "Spoofing": 1744
         },
         "train": {
-          "BENIGN": 163822,
-          "DDoS": 2441821,
-          "DoS": 1136944,
-          "MQTT-Malformed": 4360,
-          "Recon": 76870,
-          "Spoofing": 13608
+          "BENIGN": 158720,
+          "DDoS": 2365778,
+          "DoS": 1101537,
+          "MQTT-Malformed": 4225,
+          "Recon": 74475,
+          "Spoofing": 13185
         },
         "val": {
-          "BENIGN": 28910,
-          "DDoS": 430910,
-          "DoS": 200637,
-          "MQTT-Malformed": 770,
-          "Recon": 13565,
-          "Spoofing": 2402
+          "BENIGN": 34012,
+          "DDoS": 506953,
+          "DoS": 236044,
+          "MQTT-Malformed": 905,
+          "Recon": 15960,
+          "Spoofing": 2825
         }
       },
       "purged_rows": 0,
-      "diagnostics": {},
+      "diagnostics": {
+        "bootstrap_groups": "runs of 1000 consecutive rows within a file"
+      },
       "integrity": {
         "identifier_columns_in_features": 0,
         "pairs": {
           "train->val": {
             "exact_feature_and_label_overlap": 0,
             "same_features_other_label_share": 0.0,
-            "near_duplicate_share": 0.5294435567946556
+            "near_duplicate_share": 0.5295977527271906
           },
           "train->test": {
             "exact_feature_and_label_overlap": 0,
             "same_features_other_label_share": 0.0,
-            "near_duplicate_share": 0.5687484029462
+            "near_duplicate_share": 0.5676231804794075
           },
           "val->test": {
             "exact_feature_and_label_overlap": 0,
             "same_features_other_label_share": 0.0,
-            "near_duplicate_share": 0.47825204983256153
+            "near_duplicate_share": 0.48344667745565234
           }
         }
       },
       "file": "/content/drive/MyDrive/PhD-AI-Cyber/data/splits/ciciomt2024/primary.parquet",
-      "sha256": "1d363e34b12d6536ab0c16a7b9fbf03b2f7df702bd9faad1f9c4f45550699fbc"
+      "sha256": "84792d516c3ce630b0fc3866bbd9909d4a97437ea52e322517747aa607c9554b"
     }
   },
   "outputs": {
