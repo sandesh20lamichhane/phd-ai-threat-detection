@@ -37,3 +37,12 @@ def test_leakage_guard():
         assert_no_leakage(df, df)
     with pytest.raises(AssertionError):
         assert_no_leakage(frame(), frame().iloc[:0])
+
+
+def test_headers_from_curl_keeps_session_only():
+    from src.acquire.fetch import headers_from_curl
+    host, h = headers_from_curl(
+        "curl 'https://cicresearch.ca/x/download.php?file=CSV%2FREADME.pdf' -H 'accept: */*' "
+        "-b 'PHPSESSID=abc' -H 'user-agent: Chrome'")
+    assert host == "cicresearch.ca"
+    assert h == {"Cookie": "PHPSESSID=abc", "User-Agent": "Chrome"}

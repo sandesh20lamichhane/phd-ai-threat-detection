@@ -32,6 +32,7 @@ import yaml
 REPO = Path(__file__).resolve().parents[2]
 UA = {"User-Agent": "Mozilla/5.0 (thesis dataset fetcher; academic research use)",
       "Accept-Encoding": "identity"}  # sizes must match Content-Length byte for byte
+SITE_HEADERS = {}  # host -> extra headers (e.g. a browser session cookie), from gated_urls.yaml "site_headers"
 CHUNK = 8 << 20
 GB = 1 << 30
 
@@ -63,9 +64,33 @@ def dir_bytes(path):
     return sum(p.stat().st_size for p in Path(path).rglob("*") if p.is_file())
 
 
+def headers_for(url):
+    h = dict(UA)
+    h.update(SITE_HEADERS.get(urlparse(url).hostname or "", {}))
+    h["Accept-Encoding"] = "identity"
+    return h
+
+
+def headers_from_curl(cmd):
+    """Headers worth keeping from a browser's 'Copy as cURL': cookie, user agent, referer."""
+    import shlex
+    words = shlex.split(cmd.replace("\\\n", " "))
+    keep, url = {}, next((w for w in words if w.startswith("http")), "")
+    for flag, val in zip(words, words[1:]):
+        if flag in ("-H", "--header") and ":" in val:
+            k, v = val.split(":", 1)
+            if k.strip().lower() in ("cookie", "user-agent", "referer"):
+                keep[k.strip().title()] = v.strip()
+        elif flag in ("-b", "--cookie"):
+            keep["Cookie"] = val
+        elif flag in ("-A", "--user-agent"):
+            keep["User-Agent"] = val
+    return urlparse(url).hostname, keep
+
+
 def remote_size(url):
     try:
-        r = requests.head(url, headers=UA, allow_redirects=True, timeout=60)
+        r = requests.head(url, headers=headers_for(url), allow_redirects=True, timeout=60)
         n = r.headers.get("Content-Length")
         return int(n) if r.ok and n else None
     except requests.RequestException:
@@ -106,7 +131,7 @@ def list_http_index(url, include=None, exclude=None, max_depth=6):
         if u in seen or depth > max_depth:
             return
         seen.add(u)
-        r = requests.get(u, headers=UA, timeout=120)
+        r = requests.get(u, headers=headers_for(u), timeout=120)
         r.raise_for_status()
         p = _Links()
         p.feed(r.text)
@@ -229,7 +254,7 @@ class Fetcher:
     def download(self, url, part, expected=None):
         """Stream url to `part`, resuming if a partial file exists. Returns final size."""
         have = part.stat().st_size if part.exists() else 0
-        headers = dict(UA)
+        headers = headers_for(url)
         if have:
             headers["Range"] = f"bytes={have}-"
         with requests.get(url, headers=headers, stream=True, timeout=300) as r:
@@ -237,6 +262,9 @@ class Fetcher:
                 have = 0
             elif have and r.status_code == 416:
                 return have
+            if r.status_code == 403:
+                raise IOError(f"403 Forbidden for {url}: the site wants your browser's sign-in; "
+                              "add its cookie with the 'site_headers' step in the notebook")
             r.raise_for_status()
             if "text/html" in r.headers.get("Content-Type", "") and not url_name(url).endswith((".html", ".htm")):
                 raise IOError(f"got a web page instead of a file for {url}; the link may need you to "
@@ -359,6 +387,9 @@ class Fetcher:
 
     def verify(self, ds):
         m = self.load_manifest(ds)
+        if not m["files"]:
+            print("  nothing downloaded yet")
+            return False
         bad = 0
         for rel, info in m["files"].items():
             p = self.raw / ds["id"] / rel
@@ -397,6 +428,7 @@ def main(argv=None):
     drive_root = Path(a.drive_root or Path(a.mydrive) / "PhD-AI-Cyber")
     gated_path = Path(a.gated or drive_root / "config" / "gated_urls.yaml")
     gated = (yaml.safe_load(gated_path.read_text()) or {}) if gated_path.exists() else {}
+    SITE_HEADERS.update(gated.get("site_headers") or {})
     cfg = yaml.safe_load(Path(a.config).read_text())
     f = Fetcher(drive_root, a.mydrive, a.tmp, gated, a.budget_gb)
 
