@@ -1,0 +1,3133 @@
+{
+  "dataset": "ciciot2023",
+  "role": "domain_target",
+  "protocol_version": "1.1",
+  "output_version": "v1",
+  "run": {
+    "utc": "2026-10-25T16:47:03Z",
+    "git_commit": "335eddf9605e276d13dd9f7a2b849d110f65b288",
+    "python": "3.13.16",
+    "packages": {
+      "numpy": "2.1.3",
+      "pandas": "2.2.3",
+      "pyarrow": "23.0.1",
+      "scikit-learn": "1.6.1",
+      "scipy": "1.16.3",
+      "PyYAML": "6.0.3"
+    },
+    "config": "config/preprocessing.yaml",
+    "config_sha256": "9d38728188a87b1c8778fa782bf292c1a9409031504c4ed569baa37471da13cb"
+  },
+  "max_rows": null,
+  "inputs": [
+    {
+      "file": "CSV/Backdoor_Malware/Backdoor_Malware.pcap.csv",
+      "size": 664577,
+      "rows": 3218,
+      "bytes_read": 664577,
+      "sha256": "b076424c816ecf99f40d466f95a8ea4336c5077d4afdc05220fa26d528f4a06f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Benign_Final/BenignTraffic1.pcap.csv",
+      "size": 61260813,
+      "rows": 295585,
+      "bytes_read": 61260813,
+      "sha256": "d185c67268fdde5d091c07361001926bdac49e5774824fd5920663721814070e",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Benign_Final/BenignTraffic2.pcap.csv",
+      "size": 64200745,
+      "rows": 310413,
+      "bytes_read": 64200745,
+      "sha256": "71540cd0e9c65d78560003641a00438f9216693af0b7e6cf2b2e44b7234db6ac",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Benign_Final/BenignTraffic3.pcap.csv",
+      "size": 26851364,
+      "rows": 129832,
+      "bytes_read": 26851364,
+      "sha256": "861063adfc622eed3e3d84b17a2a9e19f89800a56ef575dc26fc0bd7e05a5d8e",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Benign_Final/BenignTraffic.pcap.csv",
+      "size": 75100977,
+      "rows": 362361,
+      "bytes_read": 75100977,
+      "sha256": "f0ee40b64ac395ecf3ce7cff7580343718554985a68ec6f07d7276d8f31b9ee6",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/BrowserHijacking/BrowserHijacking.pcap.csv",
+      "size": 1207500,
+      "rows": 5859,
+      "bytes_read": 1207500,
+      "sha256": "cb8ae8b62bfbb9594ca54a042d80ebfa194526279c1e7c60b3fc9d587264e40b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/CommandInjection/CommandInjection.pcap.csv",
+      "size": 1107913,
+      "rows": 5409,
+      "bytes_read": 1107913,
+      "sha256": "8d2cacd92968707719bdc67fea854558e45f083fb315df6c52b637db18fd4aeb",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ACK_Fragmentation/DDoS-ACK_Fragmentation1.pcap.csv",
+      "size": 4944205,
+      "rows": 22416,
+      "bytes_read": 4944205,
+      "sha256": "4f98d902c998c30135fad1afef74743c4cfc5b6eec506c2e2303fe4d0148d8bf",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ACK_Fragmentation/DDoS-ACK_Fragmentation2.pcap.csv",
+      "size": 4976425,
+      "rows": 22550,
+      "bytes_read": 4976425,
+      "sha256": "ce4213d9dd28b243b01d415894c020352cd41bb5c841c5ac1177c2b089dea8bd",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ACK_Fragmentation/DDoS-ACK_Fragmentation3.pcap.csv",
+      "size": 5035034,
+      "rows": 22820,
+      "bytes_read": 5035034,
+      "sha256": "d3d8090be949de3b3c1dc7afe72281730439b94f37aca8953a6b3fd38b09dd35",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ACK_Fragmentation/DDoS-ACK_Fragmentation4.pcap.csv",
+      "size": 4946356,
+      "rows": 22483,
+      "bytes_read": 4946356,
+      "sha256": "763539448e1b6aa4e22aa5a79f6ccb8f03493e3ee43b700750374558f5fc1129",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ACK_Fragmentation/DDoS-ACK_Fragmentation5.pcap.csv",
+      "size": 4801947,
+      "rows": 21977,
+      "bytes_read": 4801947,
+      "sha256": "14deed9325342a5c0828d42d0c404623887bbd4fbd259194b1e88a301703e598",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ACK_Fragmentation/DDoS-ACK_Fragmentation6.pcap.csv",
+      "size": 4852412,
+      "rows": 22144,
+      "bytes_read": 4852412,
+      "sha256": "25087f2ca3b75e5dcf80844b1ce8039febc2af16bd86931300ff1b0567184968",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ACK_Fragmentation/DDoS-ACK_Fragmentation7.pcap.csv",
+      "size": 4898374,
+      "rows": 22253,
+      "bytes_read": 4898374,
+      "sha256": "045a21f9059f02ace4c9570922e2cefbd3945b7c628ec9b2d53b3484cb31abba",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ACK_Fragmentation/DDoS-ACK_Fragmentation8.pcap.csv",
+      "size": 4933846,
+      "rows": 22469,
+      "bytes_read": 4933846,
+      "sha256": "439692bdaf1d1552e5510e733d13ec8f37988c932a943ba9c4b7fc9f082dbf03",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ACK_Fragmentation/DDoS-ACK_Fragmentation9.pcap.csv",
+      "size": 5734938,
+      "rows": 25880,
+      "bytes_read": 5734938,
+      "sha256": "483282b72872e84b1955369a76d9eacc52c3a1757210c69c83b03283e44613dd",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ACK_Fragmentation/DDoS-ACK_Fragmentation10.pcap.csv",
+      "size": 5015945,
+      "rows": 22750,
+      "bytes_read": 5015945,
+      "sha256": "0b3152338a9987e4b5230d3b11f80b983c42e24defb0aca4b52326b4d314e989",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ACK_Fragmentation/DDoS-ACK_Fragmentation11.pcap.csv",
+      "size": 5008522,
+      "rows": 22761,
+      "bytes_read": 5008522,
+      "sha256": "a6be3ad9d16fab18b632047d4a10f30b48ed657fd1f2caccc37007e1f754549a",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ACK_Fragmentation/DDoS-ACK_Fragmentation12.pcap.csv",
+      "size": 2099587,
+      "rows": 9482,
+      "bytes_read": 2099587,
+      "sha256": "44c2df9ec2c0c2e89452f1a859e0710538750a287a215ae571488ce5b14091bd",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ACK_Fragmentation/DDoS-ACK_Fragmentation.pcap.csv",
+      "size": 5530254,
+      "rows": 25090,
+      "bytes_read": 5530254,
+      "sha256": "60ade5c90233e02d09012cef3a84a8da69d9e8d5cf4f544e4a09c8ba0647cecc",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-HTTP_Flood/DDoS-HTTP_Flood-.pcap.csv",
+      "size": 6449785,
+      "rows": 28790,
+      "bytes_read": 6449785,
+      "sha256": "124ac9cae65694761d755e9709d87f7375d8b85b8ee073860f050eebdab515ee",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood1.pcap.csv",
+      "size": 49499929,
+      "rows": 268903,
+      "bytes_read": 49499929,
+      "sha256": "27e9b7616175a48d9dabf534f6f340f0fd780f3d5ab98bba0caf042852fa448e",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood2.pcap.csv",
+      "size": 48959577,
+      "rows": 264070,
+      "bytes_read": 48959577,
+      "sha256": "a4b7124eb0bcbbb6df4d3488d81d4cb2849a1232b6c5ebd29200530247d778d7",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood3.pcap.csv",
+      "size": 48556977,
+      "rows": 261484,
+      "bytes_read": 48556977,
+      "sha256": "94ceee559415f7fe57b9ec89145a148244b5bf05681793b140046f7db507bd3a",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood4.pcap.csv",
+      "size": 49808959,
+      "rows": 267814,
+      "bytes_read": 49808959,
+      "sha256": "ae381314ef379c58c8128cf972197f83870cab24a367bcccae4c2e31e4a36dca",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood5.pcap.csv",
+      "size": 49339745,
+      "rows": 268142,
+      "bytes_read": 49339745,
+      "sha256": "984ba2afe9e1e592c068e40b0d95f1fce50b6bfabf7a23654ff6532b7aae937b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood6.pcap.csv",
+      "size": 49112212,
+      "rows": 268788,
+      "bytes_read": 49112212,
+      "sha256": "49bb3e6144e27745d5986c477be78c62253233fca4888873b2a0be713a0e5df2",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood7.pcap.csv",
+      "size": 48900510,
+      "rows": 268462,
+      "bytes_read": 48900510,
+      "sha256": "5fe1073441ed04de91df163f89fe49bebfbddbbe9e298e11cf724d990342d06b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood8.pcap.csv",
+      "size": 49495438,
+      "rows": 267907,
+      "bytes_read": 49495438,
+      "sha256": "ec3dc02a0551ce53d887b4f3f21364721fdf9a741241582a8353c84c99b15ca1",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood9.pcap.csv",
+      "size": 49409485,
+      "rows": 268154,
+      "bytes_read": 49409485,
+      "sha256": "2545554b6c8e95adc1fa5b270be5f5783d90d90e50e3bd0d80bb313ee6dc14cf",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood10.pcap.csv",
+      "size": 49550267,
+      "rows": 268527,
+      "bytes_read": 49550267,
+      "sha256": "f7a5b4c13a01aec1f09018466024821bfc3c7c1ffa96435a76172118f71d1f30",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood11.pcap.csv",
+      "size": 49550761,
+      "rows": 268373,
+      "bytes_read": 49550761,
+      "sha256": "39a6f6b48c6846fbc2a5109467484850352060634bec53c238873bd5cbbe6de5",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood12.pcap.csv",
+      "size": 49442023,
+      "rows": 268218,
+      "bytes_read": 49442023,
+      "sha256": "021b63df33abc3ecc05488764be9a7374d459274a92ab062254062b439eff8bd",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood13.pcap.csv",
+      "size": 49140896,
+      "rows": 266839,
+      "bytes_read": 49140896,
+      "sha256": "bb94c9f4d963c3693a36b822d5c2599f497e32cc9e5b12270a3f3366429b4030",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood14.pcap.csv",
+      "size": 49230229,
+      "rows": 266548,
+      "bytes_read": 49230229,
+      "sha256": "0b8c13f7c16c6399171f9af3761c5235cba0212ef23962810321aaf1af4a599d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood15.pcap.csv",
+      "size": 48726461,
+      "rows": 263840,
+      "bytes_read": 48726461,
+      "sha256": "53a935da714062f280233582a7cbc4049610fb4980b164b1296dfd7e9370ebb0",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood16.pcap.csv",
+      "size": 46172166,
+      "rows": 249338,
+      "bytes_read": 46172166,
+      "sha256": "ac67c45d92fac387360c66fe50c53887214d120b20ee4c5f9f82f17eb3519084",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood17.pcap.csv",
+      "size": 49070655,
+      "rows": 267895,
+      "bytes_read": 49070655,
+      "sha256": "0095ed0e497f199caadc467e324c1a0713e5edd8e1f0c3a5898f64490d6ee4af",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood18.pcap.csv",
+      "size": 49173006,
+      "rows": 269201,
+      "bytes_read": 49173006,
+      "sha256": "d0420e1be47080c50da8e4a0d2114950e331602bfa30aa31007ef488c34737e6",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood19.pcap.csv",
+      "size": 49463881,
+      "rows": 268311,
+      "bytes_read": 49463881,
+      "sha256": "7775ddcb3947df1cef84f463df704ac4da40e2ffc728624aeb56a6010a55dab2",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood20.pcap.csv",
+      "size": 48926723,
+      "rows": 265195,
+      "bytes_read": 48926723,
+      "sha256": "fbc88aae7bd836d18c4df10d57c94d5ca08a8885198fb0c107ae83524c7241e3",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood21.pcap.csv",
+      "size": 49445804,
+      "rows": 268530,
+      "bytes_read": 49445804,
+      "sha256": "9525bf4b37c6c859b85a582a60ab1b0b1df48deeaad731b20cf60496b9e782ee",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood22.pcap.csv",
+      "size": 48942961,
+      "rows": 266941,
+      "bytes_read": 48942961,
+      "sha256": "d99a8c35f2385c52bbd663c40418a09158519ca1e9ad25a1e99b4a7ead89c5dd",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood23.pcap.csv",
+      "size": 49153368,
+      "rows": 268450,
+      "bytes_read": 49153368,
+      "sha256": "06d4dd575f5a4b38db03756aa90aa77f39950a1e3d4825f70d456af14ccd5b4a",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood24.pcap.csv",
+      "size": 48897469,
+      "rows": 267505,
+      "bytes_read": 48897469,
+      "sha256": "af4988e3db097ab2e68071e16768e006459b814666eeda34bfed06380f3a73ec",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood25.pcap.csv",
+      "size": 49439635,
+      "rows": 266632,
+      "bytes_read": 49439635,
+      "sha256": "8ed10ff3d561ff3320c8d0ac15b5a1b3069b66a8fda53fc10af4a0ac689f013b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood26.pcap.csv",
+      "size": 49230142,
+      "rows": 268424,
+      "bytes_read": 49230142,
+      "sha256": "9a0e320124e0dcb9e30d06477062c5ab1aef238fc2873e40825c79957f88362b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Flood/DDoS-ICMP_Flood.pcap.csv",
+      "size": 49629237,
+      "rows": 268010,
+      "bytes_read": 49629237,
+      "sha256": "641a73fa306b129b6b5f5669b84e737bea15243bb3996c37d56248698a4d4cf4",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation1.pcap.csv",
+      "size": 4982951,
+      "rows": 22527,
+      "bytes_read": 4982951,
+      "sha256": "35d5513e8628776a4e9e1188c8d9d48c9e3e314975489453202b4ace96b095ea",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation2.pcap.csv",
+      "size": 4982201,
+      "rows": 22617,
+      "bytes_read": 4982201,
+      "sha256": "1776e7641b8b54d5e35f66fc35344b9bfb0bf6b86d81f7e67e825aef5c5808ba",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation3.pcap.csv",
+      "size": 5183591,
+      "rows": 23381,
+      "bytes_read": 5183591,
+      "sha256": "6d662e1bb2298ecef8ce5e6d6986c75bbb9f3829d9eb29ad2bba931ee47ef263",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation4.pcap.csv",
+      "size": 5233326,
+      "rows": 23567,
+      "bytes_read": 5233326,
+      "sha256": "2ff70f9867441c4cbf9749c98ff866c8a65cbf7b1187cf0fba0c96ccbdfdf33f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation5.pcap.csv",
+      "size": 4929636,
+      "rows": 22421,
+      "bytes_read": 4929636,
+      "sha256": "6f11fab1affbcaa115667e5dd9ded8ea71fbf03d79352b47f74c5e5adffc5715",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation6.pcap.csv",
+      "size": 4897727,
+      "rows": 22335,
+      "bytes_read": 4897727,
+      "sha256": "30c9dceb94c852b2be8a7a604847faf02556aa43b07de98ed373b722950b5fc4",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation7.pcap.csv",
+      "size": 4998932,
+      "rows": 22783,
+      "bytes_read": 4998932,
+      "sha256": "ab0dd9fc6795c250d19d43e259f903e9af6a8fe11c8d8005b34a1571683a21ea",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation8.pcap.csv",
+      "size": 4937216,
+      "rows": 22537,
+      "bytes_read": 4937216,
+      "sha256": "119abf8ad1a3c2d173c113920f4335d6cd7663f66200490ff2171078fd510939",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation9.pcap.csv",
+      "size": 5153022,
+      "rows": 23289,
+      "bytes_read": 5153022,
+      "sha256": "30395b571c0f1a1671bb9177c3508fd1ee72180aab2ac39fa8e85314b347486a",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation10.pcap.csv",
+      "size": 5018987,
+      "rows": 22742,
+      "bytes_read": 5018987,
+      "sha256": "184c299338f0ede9461796e536d4895756c2d9b21077feaacdab1e2448c86507",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation11.pcap.csv",
+      "size": 4955238,
+      "rows": 22529,
+      "bytes_read": 4955238,
+      "sha256": "f79c524942bfecbe78795d3009d3570d054ea0abf52c4eaa62d8f676370f922b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation12.pcap.csv",
+      "size": 5065621,
+      "rows": 22931,
+      "bytes_read": 5065621,
+      "sha256": "c7dd77ab651c0763cde5be5509305829766ae3046c89cfb70eefbee5657a1658",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation13.pcap.csv",
+      "size": 4969932,
+      "rows": 22574,
+      "bytes_read": 4969932,
+      "sha256": "0568882a5e4ca43604c29bf4b9308ec7b4952951107eac323875d5c4fe25bf63",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation14.pcap.csv",
+      "size": 4997768,
+      "rows": 22717,
+      "bytes_read": 4997768,
+      "sha256": "7fe3d452335348ddcf062d82085a77b28a9db869c0b3f81b50494aa9e19ff344",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation15.pcap.csv",
+      "size": 4858713,
+      "rows": 22276,
+      "bytes_read": 4858713,
+      "sha256": "faa6263f8890002e7ce46c52551ad7ace8cc5e41c2722cbb36a4bb82a25f7e6c",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation16.pcap.csv",
+      "size": 5077350,
+      "rows": 23046,
+      "bytes_read": 5077350,
+      "sha256": "3163502b07cc91a92ed37306cc1c2e2f3def5c56d89d87d0828d81d27cbda6de",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation17.pcap.csv",
+      "size": 5593541,
+      "rows": 25135,
+      "bytes_read": 5593541,
+      "sha256": "5687d7d4b585325a77a2254be17bca23ab3618e5f3a1fda52720ec340f3ef56d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation18.pcap.csv",
+      "size": 4940788,
+      "rows": 22521,
+      "bytes_read": 4940788,
+      "sha256": "f1b73df10979b6282b0dd3277bb3a788af83a3dd5adf59b52ee1e8c246f02a1d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation19.pcap.csv",
+      "size": 4362588,
+      "rows": 19866,
+      "bytes_read": 4362588,
+      "sha256": "e084d59d1102b9a4177d53e5ad2cdcb867e0c00cd7bb00327bc844f191180a60",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-ICMP_Fragmentation/DDoS-ICMP_Fragmentation.pcap.csv",
+      "size": 4576351,
+      "rows": 20696,
+      "bytes_read": 4576351,
+      "sha256": "d84d3608cdeae2ad8789e197ade49a199a9f86a9b32fbbfb1b41432fba27bc7c",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood1.pcap.csv",
+      "size": 50173173,
+      "rows": 269067,
+      "bytes_read": 50173173,
+      "sha256": "8c34f1ec5df13db4eae8d773adb4bdc93b69504a72e82d346ffdb59993a84fd7",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood2.pcap.csv",
+      "size": 50666840,
+      "rows": 268128,
+      "bytes_read": 50666840,
+      "sha256": "124b3639e6176d059fa3c4604c28966ca9e30b9328f01950e252f53a0aac6b45",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood3.pcap.csv",
+      "size": 50567791,
+      "rows": 268033,
+      "bytes_read": 50567791,
+      "sha256": "7ea050022fb6ae31cd0df5931c50073702d039745355c070f800836c50ba28c9",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood4.pcap.csv",
+      "size": 50498677,
+      "rows": 268329,
+      "bytes_read": 50498677,
+      "sha256": "b5b71cef02fa978b5dd0ffd70431189eae5fcc4b473ecfd3393712f07690c2ea",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood5.pcap.csv",
+      "size": 50544736,
+      "rows": 268533,
+      "bytes_read": 50544736,
+      "sha256": "956b09d8fc1d69d02d4b2ac4bad636064b9a4047d8b9f9280d8e9c935ccd5fb9",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood6.pcap.csv",
+      "size": 50555376,
+      "rows": 268242,
+      "bytes_read": 50555376,
+      "sha256": "4eac1dfad3381bdb9f82586c610d11d96c6e2182ab43ea9182a7ee07feaabac4",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood7.pcap.csv",
+      "size": 50450917,
+      "rows": 267701,
+      "bytes_read": 50450917,
+      "sha256": "5bdea5d8c40ffba5a2465c544926ee76be673934f716e98028441142d3e6ad1b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood8.pcap.csv",
+      "size": 50439194,
+      "rows": 268783,
+      "bytes_read": 50439194,
+      "sha256": "47a0500f5e1a3b2286b3b16eea46671ff479382c8271a8baa324e740a30e4382",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood9.pcap.csv",
+      "size": 49597219,
+      "rows": 265956,
+      "bytes_read": 49597219,
+      "sha256": "542fe441738a2d83aed220c7a0346ef6e1fb85ba830c75a02293af5c8c3be0b2",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood10.pcap.csv",
+      "size": 50122091,
+      "rows": 265553,
+      "bytes_read": 50122091,
+      "sha256": "a62d4175fca20d2e6bf0fcdef1ae45c7202a0f06c76039af0b9b2fc7c98b0117",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood11.pcap.csv",
+      "size": 50168393,
+      "rows": 267192,
+      "bytes_read": 50168393,
+      "sha256": "5a6b6c5df12fb4d19e04315a16b1a04b96bc8f3baa1e3b939adf685156dba180",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood12.pcap.csv",
+      "size": 50065205,
+      "rows": 266453,
+      "bytes_read": 50065205,
+      "sha256": "b8a74d16f72be8abc45c46a4889ab4e4ac601a46cb1bb14fe562b95d52ad4e5e",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood13.pcap.csv",
+      "size": 50212437,
+      "rows": 268539,
+      "bytes_read": 50212437,
+      "sha256": "fb2a60cbd4d51b0749e8d16230418342dc19a5d90de40ad268ce03dbf0d5dab8",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood14.pcap.csv",
+      "size": 50253946,
+      "rows": 267545,
+      "bytes_read": 50253946,
+      "sha256": "789cb3ad4620b63e2db26d5a524c1cb46799c145d1cd018313c8041d26197f28",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood15.pcap.csv",
+      "size": 14866707,
+      "rows": 78907,
+      "bytes_read": 14866707,
+      "sha256": "95230e930ef14091f97f2f43a198f2036d3d44f2b4f065db8ca007df486862ae",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-PSHACK_FLOOD/DDoS-PSHACK_Flood.pcap.csv",
+      "size": 50374556,
+      "rows": 267811,
+      "bytes_read": 50374556,
+      "sha256": "a4b40c47d42956ccb58d4fd1c59845cdd2a947a88b634770dff10d1d8d970b7f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood1.pcap.csv",
+      "size": 50257848,
+      "rows": 265364,
+      "bytes_read": 50257848,
+      "sha256": "85bcb978152d575670f998a2f86e5ebbe6dca1fd50e1bc3d924eef3d03637682",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood2.pcap.csv",
+      "size": 50519470,
+      "rows": 265781,
+      "bytes_read": 50519470,
+      "sha256": "84f31e36eaf1b3e3603c522388406b80ddfe02e460a0c34f8d65961217b7268d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood3.pcap.csv",
+      "size": 50543359,
+      "rows": 265518,
+      "bytes_read": 50543359,
+      "sha256": "3fc496c8e3f49f01a81f9860ef5d287caac81d9bb31e16591430b37f3f587e2f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood4.pcap.csv",
+      "size": 50870304,
+      "rows": 268357,
+      "bytes_read": 50870304,
+      "sha256": "a307139a33e641478ead47014fbe1fe803f9a1606cf649128acb57be7157ce92",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood5.pcap.csv",
+      "size": 50999323,
+      "rows": 268563,
+      "bytes_read": 50999323,
+      "sha256": "1dfccd8e252b8fddc118670a49811a360bca01f6f58424ffc22d14af5b9ea2a2",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood6.pcap.csv",
+      "size": 46125154,
+      "rows": 242421,
+      "bytes_read": 46125154,
+      "sha256": "2c651c7f0f4d95943be9779058c456196019441963edc02c0421cf1e1e1113fa",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood7.pcap.csv",
+      "size": 50532403,
+      "rows": 265297,
+      "bytes_read": 50532403,
+      "sha256": "ac7c162a3907d8348e2c1d0d05206303dd76a7831eb852cebac65e2b0726c912",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood8.pcap.csv",
+      "size": 50612474,
+      "rows": 268730,
+      "bytes_read": 50612474,
+      "sha256": "69a89fef5bce99fdcb9b1917b864315f3e78aea73268e459f36ce16710c0ac8f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood9.pcap.csv",
+      "size": 50632289,
+      "rows": 267317,
+      "bytes_read": 50632289,
+      "sha256": "c0ff852940e5944e26933043b74f4bb16ee556e5f117dcd0c44c059034cbc283",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood10.pcap.csv",
+      "size": 50812193,
+      "rows": 268564,
+      "bytes_read": 50812193,
+      "sha256": "ce2a4404e02e100b8a57c26dd81f347d39b069f46447134c8036f7399e793d1b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood11.pcap.csv",
+      "size": 50492558,
+      "rows": 265702,
+      "bytes_read": 50492558,
+      "sha256": "125a8488ec9cc4d2198ef7c55290193c7a0292372546c536996b8028496ef947",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood12.pcap.csv",
+      "size": 50536714,
+      "rows": 266782,
+      "bytes_read": 50536714,
+      "sha256": "2b2f3ae22fe822964469b7a2653a92d4aebd23575a69619104f27cef0002c810",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood13.pcap.csv",
+      "size": 50720180,
+      "rows": 268730,
+      "bytes_read": 50720180,
+      "sha256": "86685c3c1ced94b875bbac37d5472d928e28b17ba15bf8bba3ce0e50b9316140",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood14.pcap.csv",
+      "size": 50771519,
+      "rows": 268668,
+      "bytes_read": 50771519,
+      "sha256": "421d2877509df75e29a756b43963027d86820342285796e89f74d0043364463c",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood15.pcap.csv",
+      "size": 11732085,
+      "rows": 62551,
+      "bytes_read": 11732085,
+      "sha256": "607f3472e65d463fb11e6e7dd3498040ef98117bfde63a248da77e11c5f17192",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-RSTFINFLOOD/DDoS-RSTFINFlood.pcap.csv",
+      "size": 50843571,
+      "rows": 266934,
+      "bytes_read": 50843571,
+      "sha256": "760a2d50d3f2ac2e11e8aed6199d69fa2b58e4d5f67852a516131fb3d6bcf0b3",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SlowLoris/DDoS-SlowLoris.pcap.csv",
+      "size": 5224322,
+      "rows": 23426,
+      "bytes_read": 5224322,
+      "sha256": "398edc828cca5d70fb9d8bf6aa1e891fcc88921ff622443100d8059456ce3645",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood1.pcap.csv",
+      "size": 51023102,
+      "rows": 267197,
+      "bytes_read": 51023102,
+      "sha256": "0d9d9128bcd2d6a3976408a84f6a89dc38fc772399d9064a164d32cf613a043d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood2.pcap.csv",
+      "size": 50841893,
+      "rows": 268427,
+      "bytes_read": 50841893,
+      "sha256": "e8a2d9ca9d0c08b868ecd353aad57233780c13acd38b8af016318c7e7971e371",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood3.pcap.csv",
+      "size": 50687752,
+      "rows": 268354,
+      "bytes_read": 50687752,
+      "sha256": "9b9d3a5119e47331ac206fb4747bdcc8721398615640b1012c37c3cdbed07f57",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood4.pcap.csv",
+      "size": 38728063,
+      "rows": 191158,
+      "bytes_read": 38728063,
+      "sha256": "b054d51ddcd59f376e3645c716da84274911f879a4728b1918267403c7b6cd48",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood5.pcap.csv",
+      "size": 50530644,
+      "rows": 267275,
+      "bytes_read": 50530644,
+      "sha256": "465623592c3e8ccf86aabdcba30f57f565f6d309efec5cb0b88299021f1f610b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood6.pcap.csv",
+      "size": 50719359,
+      "rows": 267846,
+      "bytes_read": 50719359,
+      "sha256": "1bd8c3d02367c763e312d7f0fe73a5d9aed1a7551a09cc2ab075f2f0b6305ec3",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood7.pcap.csv",
+      "size": 50413362,
+      "rows": 265072,
+      "bytes_read": 50413362,
+      "sha256": "faf3341e4960c3a7577b902d1063e9da4b3eb4becbb19872d3b10b7b9b7fc2a3",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood8.pcap.csv",
+      "size": 50031206,
+      "rows": 260194,
+      "bytes_read": 50031206,
+      "sha256": "475c0cdfd283c830b3dadff1e9571ad9199981c0f00b4635d94d84dabfcfbee8",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood9.pcap.csv",
+      "size": 50601708,
+      "rows": 265530,
+      "bytes_read": 50601708,
+      "sha256": "ee9ef875cccec18afd461671d65444aa978cbf446000ed5ba19a98a577c8a46d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood10.pcap.csv",
+      "size": 50881658,
+      "rows": 267692,
+      "bytes_read": 50881658,
+      "sha256": "dfd6b7e2c146b4a427cdd1ea3e85b8a4a10a4499d1c144942398583f70bfcf41",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood11.pcap.csv",
+      "size": 50551155,
+      "rows": 266507,
+      "bytes_read": 50551155,
+      "sha256": "5b9a31b2a325d47c011d77c2a44c9267cce9fc5df412c8dbb9df5e6114677787",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood12.pcap.csv",
+      "size": 50926355,
+      "rows": 268242,
+      "bytes_read": 50926355,
+      "sha256": "bb721c5e71fddef59625d4ef557488a510fdfaa30264ee333e56220988ea9b78",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood13.pcap.csv",
+      "size": 50869969,
+      "rows": 268015,
+      "bytes_read": 50869969,
+      "sha256": "c3267155336daa8dc430ccdd30ad7d9e2cb7c01ad94cac21b43fd3152990ff8a",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood14.pcap.csv",
+      "size": 50380963,
+      "rows": 264392,
+      "bytes_read": 50380963,
+      "sha256": "03843b2d85d99fba2b577dd86ca39e26f2adddb30722aa0676f2e16ca900eb9d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood15.pcap.csv",
+      "size": 26009693,
+      "rows": 137254,
+      "bytes_read": 26009693,
+      "sha256": "9dfa52aa684202286dc352b24bd8f19e1082e6b460484ad958d3f51d4ec0f3e2",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SYN_Flood/DDoS-SYN_Flood.pcap.csv",
+      "size": 51108638,
+      "rows": 266024,
+      "bytes_read": 51108638,
+      "sha256": "d91942c579cc1a7632ee2d64ae87bab44bfb4eca02467f612763d7a40f3b9ff3",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood1.pcap.csv",
+      "size": 50266850,
+      "rows": 268318,
+      "bytes_read": 50266850,
+      "sha256": "ce41314355f5fafa2d7ba1e3c6b32087ce3f093916eab0f937e883df95bce05e",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood2.pcap.csv",
+      "size": 50276958,
+      "rows": 268216,
+      "bytes_read": 50276958,
+      "sha256": "eca39fe4477245e6708f8afa2fe858a3962634a70781d863dde3dd762ce9d43f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood3.pcap.csv",
+      "size": 50253134,
+      "rows": 268323,
+      "bytes_read": 50253134,
+      "sha256": "edf890eeafb90f031f6703f8577805c7a2989a3ebfc6a05e786540ffc2731ed5",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood4.pcap.csv",
+      "size": 50363699,
+      "rows": 268511,
+      "bytes_read": 50363699,
+      "sha256": "73f8658d0d4a06cf96d2d5f9c97afd59637f568dbb2bf9d01ba35acf7df943c7",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood5.pcap.csv",
+      "size": 49573207,
+      "rows": 265152,
+      "bytes_read": 49573207,
+      "sha256": "70156088f170fd3441dc99ad537490d79f8de47bdc1d5ff7257a9cdc69c730a9",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood6.pcap.csv",
+      "size": 49205678,
+      "rows": 262517,
+      "bytes_read": 49205678,
+      "sha256": "e94f87ad79dff4ae0dff4463cef7dbc144bb469f7ec8b794d8105ca62b88db4f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood7.pcap.csv",
+      "size": 50414449,
+      "rows": 267650,
+      "bytes_read": 50414449,
+      "sha256": "5026cd1bd57fc30c6883f0cd7d77b71f7720401a8987b338022bc5c44d766897",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood8.pcap.csv",
+      "size": 50410503,
+      "rows": 267851,
+      "bytes_read": 50410503,
+      "sha256": "1a9a3932d73bff073e98321a905e8a77833f87bf32a5d585fa67e0bc280feca5",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood9.pcap.csv",
+      "size": 49595474,
+      "rows": 264339,
+      "bytes_read": 49595474,
+      "sha256": "52457f73a924dd116773f3402637a3c7f7c4a0be7f5bf178d708ff581e33ffe4",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood10.pcap.csv",
+      "size": 49796886,
+      "rows": 265192,
+      "bytes_read": 49796886,
+      "sha256": "208b9a92e4b8913708dfd9dfda4002deed86484cd7891437677eaa6b326a83b5",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood11.pcap.csv",
+      "size": 50313881,
+      "rows": 268395,
+      "bytes_read": 50313881,
+      "sha256": "9121ce079a13864df93386f47b948977afaadeeb8228b7af60f21654b4958933",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood12.pcap.csv",
+      "size": 50266780,
+      "rows": 267995,
+      "bytes_read": 50266780,
+      "sha256": "2ea5495bd1d08e60193ddc10b002483ebdc5bab949b1b5bd96c7ee67371042ca",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood13.pcap.csv",
+      "size": 23850442,
+      "rows": 127048,
+      "bytes_read": 23850442,
+      "sha256": "6b3f62f61c99a32de6a1c7ed19cc67936b512e6268e604ec5f7c0a9cdf017687",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-SynonymousIP_Flood/DDoS-SynonymousIP_Flood.pcap.csv",
+      "size": 50046999,
+      "rows": 268626,
+      "bytes_read": 50046999,
+      "sha256": "93eed7f3c4c0d2210387ea0a847b271d5d96de51e717da0b6c22b8199a66c402",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood1.pcap.csv",
+      "size": 50150587,
+      "rows": 267364,
+      "bytes_read": 50150587,
+      "sha256": "f5f38a64efc8368d69d95aca0f80570fe44bee850f8ee47ac5d5d795ec0c81a2",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood2.pcap.csv",
+      "size": 49969827,
+      "rows": 268248,
+      "bytes_read": 49969827,
+      "sha256": "adf4d7bb3bd357a321dec39f2fb1bca92ed88bbd9aee5ee9fc92ae8935457742",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood3.pcap.csv",
+      "size": 50156811,
+      "rows": 267384,
+      "bytes_read": 50156811,
+      "sha256": "2fd2174524493081a6c51b4e696e07c81cbfa3b57edcbee3e1b6d99108937325",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood4.pcap.csv",
+      "size": 37236055,
+      "rows": 196253,
+      "bytes_read": 37236055,
+      "sha256": "5d9f82c1b61baa20942e6246e400d481c2b0a53db0a269277176bdae3339d664",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood5.pcap.csv",
+      "size": 40739425,
+      "rows": 215399,
+      "bytes_read": 40739425,
+      "sha256": "4197e550fd469b42629f2d6a3a35993933dcb018f4fa5f6675e5f5310991efba",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood6.pcap.csv",
+      "size": 49392507,
+      "rows": 262386,
+      "bytes_read": 49392507,
+      "sha256": "772b7fd50018fdf5bad20f915a33d0f0b517f00a0b3a24d382baaebd92f7b0cc",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood7.pcap.csv",
+      "size": 50308010,
+      "rows": 267755,
+      "bytes_read": 50308010,
+      "sha256": "e9d082910865a32530f1aebae83fbea56e1c0e8993715c2935e99196321aafdd",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood8.pcap.csv",
+      "size": 50166032,
+      "rows": 267999,
+      "bytes_read": 50166032,
+      "sha256": "e0e30380a138ec35bb3257c3efba1a3a9fa6ad10c79b6ac1691af504fc9fd8bf",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood9.pcap.csv",
+      "size": 49858930,
+      "rows": 264469,
+      "bytes_read": 49858930,
+      "sha256": "c556dcb7b1f30ada87ba232ee5de9f8c1d231ae60f9dc48f8500c63cc69b1c62",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood10.pcap.csv",
+      "size": 49634604,
+      "rows": 264404,
+      "bytes_read": 49634604,
+      "sha256": "e692a4c4846d1f9e11a3c682c3f5beb729f3e439583034a6ca0440a9936d89cf",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood11.pcap.csv",
+      "size": 48625905,
+      "rows": 260145,
+      "bytes_read": 48625905,
+      "sha256": "64173a9e74fb1aed6cf8a01980ed9e9b0e884f7256c2473aa932d288fcbc28b8",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood12.pcap.csv",
+      "size": 50205770,
+      "rows": 267983,
+      "bytes_read": 50205770,
+      "sha256": "a0eb137cf8e3cf00454a5382d5fcbc1847012d712a41a7c0e3d03e72221eb8a4",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood13.pcap.csv",
+      "size": 50190203,
+      "rows": 268365,
+      "bytes_read": 50190203,
+      "sha256": "16e34b1d6e4dc32488d8f28a67e1bb7575057bf1437529da91af514b18ce0c15",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood14.pcap.csv",
+      "size": 49762919,
+      "rows": 265920,
+      "bytes_read": 49762919,
+      "sha256": "199a61847e1a9bcfd7219c02c741b2bcc1c0866541c249560c6262f766c37c8b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood15.pcap.csv",
+      "size": 50166316,
+      "rows": 267289,
+      "bytes_read": 50166316,
+      "sha256": "9d7e6f4744f54df1bdb4113cdb24cd63cd12d823d96732379ba65d66ab3e7944",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood16.pcap.csv",
+      "size": 50291457,
+      "rows": 267718,
+      "bytes_read": 50291457,
+      "sha256": "24bde1d96b809f0cf7935b3d997a86113fa6529addbd567c0d556eb402f3248d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood17.pcap.csv",
+      "size": 17415966,
+      "rows": 92792,
+      "bytes_read": 17415966,
+      "sha256": "a7359e4696fa8f88400688adf4171e9d030060fe5a3fb129b7529ea990d8548f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-TCP_Flood/DDoS-TCP_Flood.pcap.csv",
+      "size": 49564789,
+      "rows": 265776,
+      "bytes_read": 49564789,
+      "sha256": "b3568dbcfb412e05fc9ff635a3983d7b7901c922ad0894bb3d25d4b6c012ea45",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood1.pcap.csv",
+      "size": 50050717,
+      "rows": 266848,
+      "bytes_read": 50050717,
+      "sha256": "ced53d2b2b8aa1ea359a37cabcf3ce295081ca81847f23e139fb64ccf1d4ba29",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood2.pcap.csv",
+      "size": 50157205,
+      "rows": 265667,
+      "bytes_read": 50157205,
+      "sha256": "32fdbd7f89d4d43738ab76915f1c726a3b908abf11752d0bff5cc96e00f0b73d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood3.pcap.csv",
+      "size": 50333116,
+      "rows": 267399,
+      "bytes_read": 50333116,
+      "sha256": "bf1fa798940f710f088abcd2131124f411835928fd5b302505acfcbb73b44481",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood4.pcap.csv",
+      "size": 49939911,
+      "rows": 266899,
+      "bytes_read": 49939911,
+      "sha256": "94b58897b195bb743c6842f7f9d7977e041ef19a5c5709d0d1036aaec3ce479f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood5.pcap.csv",
+      "size": 51930721,
+      "rows": 267530,
+      "bytes_read": 51930721,
+      "sha256": "5a823dc41bd94d1fc35b64d39846e0c8243b2ab935a746c2b0e0a189ff6e7069",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood6.pcap.csv",
+      "size": 51470254,
+      "rows": 265495,
+      "bytes_read": 51470254,
+      "sha256": "ca108d85779d2be4e24ab87824779b64c1a27090b78f1457f1b4b61304064a6f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood7.pcap.csv",
+      "size": 51907641,
+      "rows": 268374,
+      "bytes_read": 51907641,
+      "sha256": "9bf35e22b496942a95eca57284ce684ae0baf1c5ebb93a2b1f895d3c2c1e42c8",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood8.pcap.csv",
+      "size": 52049756,
+      "rows": 268068,
+      "bytes_read": 52049756,
+      "sha256": "5ef963accc84ac768261e26a0beb7440d357be05cfecbc889ab361c7b7c6ae75",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood9.pcap.csv",
+      "size": 50495757,
+      "rows": 265944,
+      "bytes_read": 50495757,
+      "sha256": "08d5ef948b75a6de50f5b3c52276feeb9f8e139eaefaeec0004830b810a4a140",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood10.pcap.csv",
+      "size": 49931523,
+      "rows": 261898,
+      "bytes_read": 49931523,
+      "sha256": "a7bec3972c91e662291dd39de3851fe99a00acc4544e4f0a6ea8eb66900ec295",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood11.pcap.csv",
+      "size": 50330292,
+      "rows": 266080,
+      "bytes_read": 50330292,
+      "sha256": "4e3e06735c922752c1251d58b725bdc073466d470d7931218d0fe05bbb24d025",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood12.pcap.csv",
+      "size": 50059443,
+      "rows": 265580,
+      "bytes_read": 50059443,
+      "sha256": "70aa2a644ddfc952db0c116bb522cb8cfe1143efd565a21675a275883fcb6c0d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood13.pcap.csv",
+      "size": 50174989,
+      "rows": 267714,
+      "bytes_read": 50174989,
+      "sha256": "e525b009674f96ef5da8f87137ee1f54dc9a7c150777b0a7bf41905e1e612008",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood14.pcap.csv",
+      "size": 50665381,
+      "rows": 268391,
+      "bytes_read": 50665381,
+      "sha256": "25eb043575c0ccbc0868895ec57c2e0da0445a49d3f858fc2c3b4c98b8e717d2",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood15.pcap.csv",
+      "size": 50126206,
+      "rows": 266491,
+      "bytes_read": 50126206,
+      "sha256": "7fda12b4bca7941dc4471a138b290ad75193e346eaae786b36a9e2c293f23f97",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood16.pcap.csv",
+      "size": 50246975,
+      "rows": 267262,
+      "bytes_read": 50246975,
+      "sha256": "36b8e5795bba7ab103ad25015abde2e88335ef889389b67f3add3b6b8c99b51e",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood17.pcap.csv",
+      "size": 50005983,
+      "rows": 266050,
+      "bytes_read": 50005983,
+      "sha256": "81b81202862797d8648dfbde3c8c66cfe7714c19ae0f7ab0ab60cb2768871097",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood18.pcap.csv",
+      "size": 50262306,
+      "rows": 266620,
+      "bytes_read": 50262306,
+      "sha256": "409cfd784095a56fd65bf55c93bc2f841ffa5cf4703e117745e841fffe01922d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood19.pcap.csv",
+      "size": 50157093,
+      "rows": 267985,
+      "bytes_read": 50157093,
+      "sha256": "41ecb9e5167357fab5acd4d218f300d3efadf7455d5753efb7550d9c673f167a",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood20.pcap.csv",
+      "size": 14617665,
+      "rows": 79331,
+      "bytes_read": 14617665,
+      "sha256": "3f641437c35916410475a49cc9e0f7f2213bd6a459cad0c86ef0d08f16457a57",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Flood/DDoS-UDP_Flood.pcap.csv",
+      "size": 50078606,
+      "rows": 266605,
+      "bytes_read": 50078606,
+      "sha256": "792f50c66708aed502d55eb5cc070567ee8d354c2728ab9922aa2c7ff53cabd3",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Fragmentation/DDoS-UDP_Fragmentation1.pcap.csv",
+      "size": 4940834,
+      "rows": 22541,
+      "bytes_read": 4940834,
+      "sha256": "f6b0464b9d35dd78fa944f39d813e506588599eaea7ec3fd810dbfa4573519d7",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Fragmentation/DDoS-UDP_Fragmentation2.pcap.csv",
+      "size": 4890806,
+      "rows": 22368,
+      "bytes_read": 4890806,
+      "sha256": "7dfed1930123c8ee492769131363bc2cddce24b9ef9a3b24336979e5bd9db87d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Fragmentation/DDoS-UDP_Fragmentation3.pcap.csv",
+      "size": 5115153,
+      "rows": 23167,
+      "bytes_read": 5115153,
+      "sha256": "e520a123a4b0081d88d552a61dafe703971798e5c1c017476586e9f47a3e1e92",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Fragmentation/DDoS-UDP_Fragmentation4.pcap.csv",
+      "size": 4987718,
+      "rows": 22715,
+      "bytes_read": 4987718,
+      "sha256": "5a73b288e9986841f4d9334bca624337ac6d76f08450389e79db2265102828a4",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Fragmentation/DDoS-UDP_Fragmentation5.pcap.csv",
+      "size": 5110522,
+      "rows": 23117,
+      "bytes_read": 5110522,
+      "sha256": "b551118f174f8565781f2a16549df7b1cfbf5fbdf57533e91b8d5a7a405da17d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Fragmentation/DDoS-UDP_Fragmentation6.pcap.csv",
+      "size": 4865869,
+      "rows": 22254,
+      "bytes_read": 4865869,
+      "sha256": "972b15e1448569e4dd555df78d4d3473b9e0acea7b00e4eeb30660ab69b96e97",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Fragmentation/DDoS-UDP_Fragmentation7.pcap.csv",
+      "size": 4980427,
+      "rows": 22669,
+      "bytes_read": 4980427,
+      "sha256": "b9f8436559b4b6e8c17f421806520faae39f99b77728de8b21dc39c41b5ee1b5",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Fragmentation/DDoS-UDP_Fragmentation8.pcap.csv",
+      "size": 4963244,
+      "rows": 22630,
+      "bytes_read": 4963244,
+      "sha256": "f5b09f1f3de4807cfa32257a80ad89b0994c618f5ec9046f1e7073869fc7af3e",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Fragmentation/DDoS-UDP_Fragmentation9.pcap.csv",
+      "size": 4825124,
+      "rows": 22121,
+      "bytes_read": 4825124,
+      "sha256": "791e3d47e06f483bf2ad83c6138ae4bb911e8f02086313377dd80fedb04b7303",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Fragmentation/DDoS-UDP_Fragmentation10.pcap.csv",
+      "size": 4897636,
+      "rows": 22361,
+      "bytes_read": 4897636,
+      "sha256": "1b8b2e19f836770d85c5c9b4516603246d30d9eb673ed7a26e457d05fa0339ce",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Fragmentation/DDoS-UDP_Fragmentation11.pcap.csv",
+      "size": 5027497,
+      "rows": 22908,
+      "bytes_read": 5027497,
+      "sha256": "858da552515c2fbcb1a6b1468bb161dc93fb470631e945105b067e7507c87843",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Fragmentation/DDoS-UDP_Fragmentation12.pcap.csv",
+      "size": 3422745,
+      "rows": 15532,
+      "bytes_read": 3422745,
+      "sha256": "dd4106e418d2ad772abbf129aeb57e42e36d34b1360ebed1789e6c9603528382",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DDoS-UDP_Fragmentation/DDoS-UDP_Fragmentation.pcap.csv",
+      "size": 4955669,
+      "rows": 22542,
+      "bytes_read": 4955669,
+      "sha256": "bc4347c4746e3f6b980e124e529629de23f5eb0be8939b521fadaf0ef34dbb80",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DictionaryBruteForce/DictionaryBruteForce.pcap.csv",
+      "size": 2704325,
+      "rows": 13064,
+      "bytes_read": 2704325,
+      "sha256": "1e632abf212e3fc4c552a60d941a4d89e1db081e10152b857f719bfe38012ab2",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DNS_Spoofing/DNS_Spoofing.pcap.csv",
+      "size": 36833637,
+      "rows": 178898,
+      "bytes_read": 36833637,
+      "sha256": "8658a5914d9fe79754c67547657950db1fc31e8677719b1449726072d3281cc0",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-HTTP_Flood/DoS-HTTP_Flood1.pcap.csv",
+      "size": 6883853,
+      "rows": 31175,
+      "bytes_read": 6883853,
+      "sha256": "377d3e9a291c023e82f20785a34650e89b2dba3726b710d4e980c0eaf048df25",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-HTTP_Flood/DoS-HTTP_Flood.pcap.csv",
+      "size": 9039877,
+      "rows": 40686,
+      "bytes_read": 9039877,
+      "sha256": "03a482b3045d47ffdc644b7debe843dd96ed8c8fd7af67fbf7a5debef38d86fd",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-SYN_Flood/DoS-SYN_Flood1.pcap.csv",
+      "size": 50601684,
+      "rows": 264126,
+      "bytes_read": 50601684,
+      "sha256": "292ec6f0548e99a31e7b00daec2f2fe3f8c2f6415a775e38ad4b2c2addd95b6c",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-SYN_Flood/DoS-SYN_Flood2.pcap.csv",
+      "size": 48877980,
+      "rows": 251970,
+      "bytes_read": 48877980,
+      "sha256": "d7bdd3eb025da451b16b234d1673b9a8473ae5691472b7f4972168fdee5a4258",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-SYN_Flood/DoS-SYN_Flood3.pcap.csv",
+      "size": 49424756,
+      "rows": 257402,
+      "bytes_read": 49424756,
+      "sha256": "c73eb82d1beb25b352a3239e75f33c26fd305cb8440fd16063d990b81621616c",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-SYN_Flood/DoS-SYN_Flood4.pcap.csv",
+      "size": 49736589,
+      "rows": 258219,
+      "bytes_read": 49736589,
+      "sha256": "1e852b0d92628484e87d1e552fc4465df94283449816d3eb3df526004df18d80",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-SYN_Flood/DoS-SYN_Flood5.pcap.csv",
+      "size": 50831938,
+      "rows": 265519,
+      "bytes_read": 50831938,
+      "sha256": "cfb38cce6c64b8578f11c38e2a1713ca4d7910b957fa194d96657f05faf9fd71",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-SYN_Flood/DoS-SYN_Flood6.pcap.csv",
+      "size": 50423128,
+      "rows": 262979,
+      "bytes_read": 50423128,
+      "sha256": "f5dbd9fb35274081b3e80c8756d6d2be67869a5208a58f93f2cee7befeb5c5d6",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-SYN_Flood/DoS-SYN_Flood7.pcap.csv",
+      "size": 39878075,
+      "rows": 205930,
+      "bytes_read": 39878075,
+      "sha256": "2babbc8d3a9789bf12fd296751cf80df5675d40f83add9555dd8f1245cb5a741",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-SYN_Flood/DoS-SYN_Flood.pcap.csv",
+      "size": 50831729,
+      "rows": 262691,
+      "bytes_read": 50831729,
+      "sha256": "0ed60033461a559118213251624749cbc3155f6edb0177e63e7755bd08558f76",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-TCP_Flood/DoS-TCP_Flood1.pcap.csv",
+      "size": 47424362,
+      "rows": 246026,
+      "bytes_read": 47424362,
+      "sha256": "3326af88d0efe10730f048f4bf4f67ee93bc32f59dc51e1a71c6c3e2a28002ec",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-TCP_Flood/DoS-TCP_Flood2.pcap.csv",
+      "size": 50081317,
+      "rows": 263675,
+      "bytes_read": 50081317,
+      "sha256": "bc2fe7563b0eb90c119df1dd67a9079957f7cc45b1f6c2bd5c5b0b433e97c937",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-TCP_Flood/DoS-TCP_Flood3.pcap.csv",
+      "size": 50617348,
+      "rows": 266238,
+      "bytes_read": 50617348,
+      "sha256": "9e04499b0f5b2782332ab7d5621c1f32c929a94738bf680aeac17f289d53840b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-TCP_Flood/DoS-TCP_Flood4.pcap.csv",
+      "size": 50279393,
+      "rows": 265480,
+      "bytes_read": 50279393,
+      "sha256": "e1faad8f2a09cf724f5cda37522ad515d2e0b20c0bde743c37399f68bdb263f0",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-TCP_Flood/DoS-TCP_Flood5.pcap.csv",
+      "size": 50147553,
+      "rows": 266316,
+      "bytes_read": 50147553,
+      "sha256": "d52c38d781233bca53b31bb5aeb92cf482a61e8c114fba92d02b0e8d7013a444",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-TCP_Flood/DoS-TCP_Flood6.pcap.csv",
+      "size": 49340641,
+      "rows": 261903,
+      "bytes_read": 49340641,
+      "sha256": "c755183c22e2e092895edfd175afbafaa7dd26b322eb08b0c40ab65af447ca0f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-TCP_Flood/DoS-TCP_Flood7.pcap.csv",
+      "size": 49816215,
+      "rows": 265329,
+      "bytes_read": 49816215,
+      "sha256": "d31a91ff1d4622961af5b2dfb81392983e9f303d67be72a893a17c09689d4ff4",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-TCP_Flood/DoS-TCP_Flood8.pcap.csv",
+      "size": 48951443,
+      "rows": 259664,
+      "bytes_read": 48951443,
+      "sha256": "a08c181639953612db1e20366979c82dc2ea87bd901fa21fa32a91f5a320d88e",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-TCP_Flood/DoS-TCP_Flood9.pcap.csv",
+      "size": 44070211,
+      "rows": 233647,
+      "bytes_read": 44070211,
+      "sha256": "650065537d9b1b68d791e33e24b8ccbd4dae18a2f97e6f0a14011d597dc66d53",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-TCP_Flood/DoS-TCP_Flood10.pcap.csv",
+      "size": 15663327,
+      "rows": 83023,
+      "bytes_read": 15663327,
+      "sha256": "e49d6fab8b43ed55d9c77d000a55ca784e1cd5849e27bef5fd69b3a086d69c19",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-TCP_Flood/DoS-TCP_Flood.pcap.csv",
+      "size": 48955460,
+      "rows": 260129,
+      "bytes_read": 48955460,
+      "sha256": "507c85bcec74b34cfaebeaec2beb60380612a815b0cfd7a2d0e5989550cb863a",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood1.pcap.csv",
+      "size": 27576686,
+      "rows": 141854,
+      "bytes_read": 27576686,
+      "sha256": "f381e0b140869ff0baf089f79d711c10541f7da021b6e6b5f821115c6f09957b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood2.pcap.csv",
+      "size": 20474692,
+      "rows": 102879,
+      "bytes_read": 20474692,
+      "sha256": "c6abcdfb90e49bfb4e3b0bc05a5138eac897cdc21a40ef2a4c793da02fd33d73",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood3.pcap.csv",
+      "size": 21532413,
+      "rows": 108557,
+      "bytes_read": 21532413,
+      "sha256": "4a123bda51ba1a919d67b27916392859dc9a2a6d5fdf65a6c08ad1db78145c50",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood4.pcap.csv",
+      "size": 26190903,
+      "rows": 131975,
+      "bytes_read": 26190903,
+      "sha256": "bf0f311f9e0388c96e11e1faf7451c92ea0d7fe6cdc3f7700bf093853e63ddbb",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood5.pcap.csv",
+      "size": 22634035,
+      "rows": 114208,
+      "bytes_read": 22634035,
+      "sha256": "21b7a9cb58c0906f2945050385eae4ac64e296a897b9a28263c051b15c2cc8dc",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood6.pcap.csv",
+      "size": 23871639,
+      "rows": 117839,
+      "bytes_read": 23871639,
+      "sha256": "dbcd7d91e4ef43be17e65fb724ab3f7e852e82f7338148e73fdde1db3e979509",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood7.pcap.csv",
+      "size": 35696059,
+      "rows": 175920,
+      "bytes_read": 35696059,
+      "sha256": "a7a073e44053713b18938cfad4a8bf762be774a1f5331dad1c0e7bba7e8628bd",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood8.pcap.csv",
+      "size": 32624109,
+      "rows": 160835,
+      "bytes_read": 32624109,
+      "sha256": "8e24fee423564aa9622c12f6380570cb2c14331d3fcd703d9dfca102b3e7f7e1",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood9.pcap.csv",
+      "size": 25251429,
+      "rows": 125552,
+      "bytes_read": 25251429,
+      "sha256": "eefba41ed734d8829e07a32e7189d77a11427f47b1b9653f94b1263cfbd42638",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood10.pcap.csv",
+      "size": 51347895,
+      "rows": 262163,
+      "bytes_read": 51347895,
+      "sha256": "5af03f40295365fdcb6a02c939d2f17e09f267efabbfefedb9e5ac6f17933670",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood11.pcap.csv",
+      "size": 50201726,
+      "rows": 253306,
+      "bytes_read": 50201726,
+      "sha256": "3a4de6e39c7f12d572fa35ee8d957cdce01a58919e9907a774efe11bfd679e5a",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood12.pcap.csv",
+      "size": 48098197,
+      "rows": 247718,
+      "bytes_read": 48098197,
+      "sha256": "f4afbfcbc7368dd88ea7ae8fb68b806af23969fc1c5008d528bd5c7f9f9b4141",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood13.pcap.csv",
+      "size": 51656437,
+      "rows": 261752,
+      "bytes_read": 51656437,
+      "sha256": "762458701a4ed7569ca6c6c06db3c2e773e2b18604f7b3600d86efa7b8405e95",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood14.pcap.csv",
+      "size": 49019219,
+      "rows": 255526,
+      "bytes_read": 49019219,
+      "sha256": "07f7101c8bb766a94dd5ebba707a4d3e05ad94f4af4b7346477f75a0f5ab0b75",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood15.pcap.csv",
+      "size": 52351131,
+      "rows": 265157,
+      "bytes_read": 52351131,
+      "sha256": "e6d4e8d075883109b8fa2642bdf270138d47639217a5dbbdbcd7a6147f216c0b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood16.pcap.csv",
+      "size": 34512977,
+      "rows": 180914,
+      "bytes_read": 34512977,
+      "sha256": "696978ba5f4dcee0aba24cfdc09d069ff2269c7970d831dd585cc5b185df20e0",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/DoS-UDP_Flood/DoS-UDP_Flood.pcap.csv",
+      "size": 32359559,
+      "rows": 166838,
+      "bytes_read": 32359559,
+      "sha256": "745639a035a53c31c13886fd31dc02f56ae2fad5ee971f5b04e66674e9421857",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood1.pcap.csv",
+      "size": 6899287,
+      "rows": 34113,
+      "bytes_read": 6899287,
+      "sha256": "405809c151dc8a5a8305282739e8e4e2c4ec23890a2fc38c2cecce6a1851c3c3",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood2.pcap.csv",
+      "size": 6808690,
+      "rows": 34054,
+      "bytes_read": 6808690,
+      "sha256": "d9cc4655b67be619ce5e2e5e1a13b7b46e4401020cfdff75253f74d495ed49b3",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood3.pcap.csv",
+      "size": 6804724,
+      "rows": 34066,
+      "bytes_read": 6804724,
+      "sha256": "08dcd5f8dc4c309d468764812aff4d5cf2a524bbe82c66d91a3faac0b4a92cb3",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood4.pcap.csv",
+      "size": 6851691,
+      "rows": 34025,
+      "bytes_read": 6851691,
+      "sha256": "2224ce05097560b9a63d34f6e6a7b0c10d20b9c2a8c395e0bf22d50abb9ed976",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood5.pcap.csv",
+      "size": 6817261,
+      "rows": 34016,
+      "bytes_read": 6817261,
+      "sha256": "7c6d03666667be32475c2ede603c6cb73f217241ae137011e577787674b575c0",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood6.pcap.csv",
+      "size": 6888069,
+      "rows": 34146,
+      "bytes_read": 6888069,
+      "sha256": "21464f497f88a56f7c19ee776d3e615878b3d78e3f7a7a98eb22808448744f97",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood7.pcap.csv",
+      "size": 6889051,
+      "rows": 34186,
+      "bytes_read": 6889051,
+      "sha256": "e7a1f790df1bf983c994d573aee49e4ca5cd6171b1d8c20a86e1a8b6bbe16d74",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood8.pcap.csv",
+      "size": 6865224,
+      "rows": 34067,
+      "bytes_read": 6865224,
+      "sha256": "d57e93aa777e84cc99d53364193efd87838ba4c234f319e9daf49dfc205fab11",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood9.pcap.csv",
+      "size": 7251251,
+      "rows": 34680,
+      "bytes_read": 7251251,
+      "sha256": "97305051129f8d305bc34ca28496449e6292417f3cd073c8bc81ba4dbbdc7ff3",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood10.pcap.csv",
+      "size": 7106174,
+      "rows": 34499,
+      "bytes_read": 7106174,
+      "sha256": "fec350b6d18385ad1f6ba1e348bf96ece09335b987015d4295c73a43161b8452",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood11.pcap.csv",
+      "size": 7097244,
+      "rows": 34551,
+      "bytes_read": 7097244,
+      "sha256": "8580a08553b634f4e5daee235764a4ad2bb4ee3cf99cc1fc5fc8458b9f19f4f3",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood12.pcap.csv",
+      "size": 7039185,
+      "rows": 34240,
+      "bytes_read": 7039185,
+      "sha256": "b66283025f08ba24e3b0a4a30a0dbc2e541a17eb025d0ab3d94625171bf20fee",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood13.pcap.csv",
+      "size": 7138032,
+      "rows": 34451,
+      "bytes_read": 7138032,
+      "sha256": "53209553614dac348b1c03c965e3a19dd92a54fa95227708819f499feb3974f9",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood14.pcap.csv",
+      "size": 6772502,
+      "rows": 34058,
+      "bytes_read": 6772502,
+      "sha256": "bdc2f06bd89c18abd1085b99ae66c80117a8982ba34f601f4895accb59ade1ac",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood15.pcap.csv",
+      "size": 6899264,
+      "rows": 34137,
+      "bytes_read": 6899264,
+      "sha256": "301d79f3a9ede60a8c83b73ae8f8ca6985a96e287d8e6a33d2817ce0b570cf8d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood16.pcap.csv",
+      "size": 6861619,
+      "rows": 34081,
+      "bytes_read": 6861619,
+      "sha256": "d6251dd284e73ffc5719da43a3dcc5310462b907e87cdf369362fba12057803a",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood17.pcap.csv",
+      "size": 6796981,
+      "rows": 34054,
+      "bytes_read": 6796981,
+      "sha256": "0b8c6cb813f405f23f69112c6701b450be3dcfd6d5a9841a06683acf572d2b71",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood18.pcap.csv",
+      "size": 6801605,
+      "rows": 34101,
+      "bytes_read": 6801605,
+      "sha256": "5eab3b8b74c3399041d5353e267cb4f69bc205949ce3cd77cdca50a326d5b4c3",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood19.pcap.csv",
+      "size": 6909182,
+      "rows": 34136,
+      "bytes_read": 6909182,
+      "sha256": "a55e277945861a608214738712e6893e73cab204cac216e41626a691b8907b34",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood20.pcap.csv",
+      "size": 6953239,
+      "rows": 34235,
+      "bytes_read": 6953239,
+      "sha256": "848d546b133acc680df311ee11aa967f0cc3ddd88d08b0099bc22f13e4d84887",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood21.pcap.csv",
+      "size": 7086127,
+      "rows": 34752,
+      "bytes_read": 7086127,
+      "sha256": "590f3a551483e37f713d48260345a6d143a64da6d84984150e96b38592d9b31f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood22.pcap.csv",
+      "size": 6991213,
+      "rows": 34247,
+      "bytes_read": 6991213,
+      "sha256": "1918b93cc9e7b629e02489694989ed8dda6a71cbc8969f6e0fed116fbb920488",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood23.pcap.csv",
+      "size": 6952155,
+      "rows": 34493,
+      "bytes_read": 6952155,
+      "sha256": "f10755b879359e9d8042e720e392f765f2847b09f3a598fcf7210fdca02c4ff9",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood24.pcap.csv",
+      "size": 6753823,
+      "rows": 34071,
+      "bytes_read": 6753823,
+      "sha256": "a747b94cc9bf656c683c318e4532e1749d5cb91e77b219b7f924cc375f625a31",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood25.pcap.csv",
+      "size": 6800333,
+      "rows": 34080,
+      "bytes_read": 6800333,
+      "sha256": "52c14231dee4d7235dda552d58db9297eb69f32e29d8e0174600381a1fd96856",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood26.pcap.csv",
+      "size": 7018295,
+      "rows": 34518,
+      "bytes_read": 7018295,
+      "sha256": "a3c1e019a7bea68474305131ca7fa8c2cae2d2aa7ea10de1e54ae57a1611442e",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood27.pcap.csv",
+      "size": 6942289,
+      "rows": 34201,
+      "bytes_read": 6942289,
+      "sha256": "1964b5379e020f4ea4e3332773990628ddd89a7ba53034e42f36a813f61ee609",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood28.pcap.csv",
+      "size": 6916207,
+      "rows": 33979,
+      "bytes_read": 6916207,
+      "sha256": "f8246495bceabbdce84f26a4162023324aa0f987be6ff3425370b3e218c0cf0d",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greeth_flood/Mirai-greeth_flood.pcap.csv",
+      "size": 6743677,
+      "rows": 33597,
+      "bytes_read": 6743677,
+      "sha256": "d8b068a4f2002bdf438423cf950ac84bdb643836872d6f1a4046bfc3dde42eb6",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood1.pcap.csv",
+      "size": 7176408,
+      "rows": 35128,
+      "bytes_read": 7176408,
+      "sha256": "34b203d7d460df2a6fcfaeea691800eb97eb115eb7a8c9af3b3a00ca6910345c",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood2.pcap.csv",
+      "size": 6985338,
+      "rows": 34846,
+      "bytes_read": 6985338,
+      "sha256": "931b1dceb92437faa271331ab89e2d0981bfd678de40e1225453ca0f2dee0e1b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood3.pcap.csv",
+      "size": 7183446,
+      "rows": 35168,
+      "bytes_read": 7183446,
+      "sha256": "a3318b300599a758b121fd6cefbbf85c991158e5d16d21235afdaddf73710887",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood4.pcap.csv",
+      "size": 7392607,
+      "rows": 35784,
+      "bytes_read": 7392607,
+      "sha256": "c5be92afec15b7a06ab07ac735b3aabdcdb8ed14101a5196d28579d02d3635b5",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood5.pcap.csv",
+      "size": 7312382,
+      "rows": 35456,
+      "bytes_read": 7312382,
+      "sha256": "0b38dd31aa921367e9ca02b9aad49e53fd182c94a13280e572c0a16d4d2bb39b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood6.pcap.csv",
+      "size": 7539798,
+      "rows": 36052,
+      "bytes_read": 7539798,
+      "sha256": "0f3857a7853cf3bfbb354aa3fffd534eab23f971bf14108e61e1369b01a24a4c",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood7.pcap.csv",
+      "size": 7369571,
+      "rows": 35462,
+      "bytes_read": 7369571,
+      "sha256": "f9ee3e11236613907f56d1cbeaf2ce5e3498dedad29a042f44c938f4a422d998",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood8.pcap.csv",
+      "size": 7430602,
+      "rows": 35755,
+      "bytes_read": 7430602,
+      "sha256": "a0a0843b544b28668869ccf52ac9252bfd702d689bb894e350e14d20620e3f71",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood9.pcap.csv",
+      "size": 7131083,
+      "rows": 35044,
+      "bytes_read": 7131083,
+      "sha256": "c6d6cec46ab4f07645de3686dd0b5546f09404e932a0095ca2288ad38e81298b",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood10.pcap.csv",
+      "size": 7135338,
+      "rows": 35292,
+      "bytes_read": 7135338,
+      "sha256": "2007ee3719c26a6f18d9d006eb373cc668abbd1b681d4db2d09c1b00f98a1bcd",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood11.pcap.csv",
+      "size": 7012998,
+      "rows": 35019,
+      "bytes_read": 7012998,
+      "sha256": "c8f282a23f17af52d8d9b792aa14a437a9418cc113ba3915490dac594a859ff2",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood12.pcap.csv",
+      "size": 7134535,
+      "rows": 35339,
+      "bytes_read": 7134535,
+      "sha256": "6cef19108f71897eb2b2d6243c50c5c66fa16c9150b7a476969bcb6cea446603",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood13.pcap.csv",
+      "size": 7122045,
+      "rows": 35251,
+      "bytes_read": 7122045,
+      "sha256": "a2c9d138e5f7bb8b29a942e64dcf06309093d5c16aa8bb6b96dd01ee43ca35aa",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood14.pcap.csv",
+      "size": 7213409,
+      "rows": 35098,
+      "bytes_read": 7213409,
+      "sha256": "94cea99ba9af2a9faae0c2df4306c46dfbcffc7069e2f9c72085e5b840e370dd",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood15.pcap.csv",
+      "size": 7138745,
+      "rows": 35105,
+      "bytes_read": 7138745,
+      "sha256": "7d248e3fc773a34233ec681f1495099887cb27a7a09a3b27b8d25d35fefbe3a2",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood16.pcap.csv",
+      "size": 6908251,
+      "rows": 34920,
+      "bytes_read": 6908251,
+      "sha256": "3be08e803ab8c108c92cf17975596b60ddd35bf22ee32b1f7b22c87110506dc6",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood17.pcap.csv",
+      "size": 7416420,
+      "rows": 35948,
+      "bytes_read": 7416420,
+      "sha256": "6de9cb8a466dddd99e52050eb466b7e2f2cc4141211a8f9d18738fb8f5e2f1a4",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood18.pcap.csv",
+      "size": 7045526,
+      "rows": 33982,
+      "bytes_read": 7045526,
+      "sha256": "316b37b4cbbe3ee95bf77b72c34a1e505f5cd7f34486ff316993323b8acfc954",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood19.pcap.csv",
+      "size": 7154894,
+      "rows": 34844,
+      "bytes_read": 7154894,
+      "sha256": "9c1670485449657e936415f3ec6ace513457a9d63dbbbe199add153ce0bbf4db",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood20.pcap.csv",
+      "size": 7186283,
+      "rows": 35089,
+      "bytes_read": 7186283,
+      "sha256": "7a1407d4b2c501277aed65280723e09a82c206d247e22b4171bc7cf5097d9c96",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood21.pcap.csv",
+      "size": 2422081,
+      "rows": 11991,
+      "bytes_read": 2422081,
+      "sha256": "216ec2f982fddd039d8a1d2e26fcb9bb03e6e00bf7ddccbeb1c198d880729aab",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-greip_flood/Mirai-greip_flood.pcap.csv",
+      "size": 7247302,
+      "rows": 35073,
+      "bytes_read": 7247302,
+      "sha256": "cac28e335a6dd277d274841313216c4f3bf6a57b34671c4d47f11507c4dd73af",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain1.pcap.csv",
+      "size": 7393619,
+      "rows": 36431,
+      "bytes_read": 7393619,
+      "sha256": "7264d1b906d5586afac156a18ce2a2f46c1982da891d4b0d62a26f73373307f0",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain2.pcap.csv",
+      "size": 7284688,
+      "rows": 36214,
+      "bytes_read": 7284688,
+      "sha256": "eb43e40eb81018fef67baf9007d72beddac8402d42695ceda2f88b87df5acbbf",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain3.pcap.csv",
+      "size": 7450169,
+      "rows": 36699,
+      "bytes_read": 7450169,
+      "sha256": "fb93e002f7f891a4e68d063af28dd9366ebb58cc85b4476c1702e40753e930c2",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain4.pcap.csv",
+      "size": 7247149,
+      "rows": 36315,
+      "bytes_read": 7247149,
+      "sha256": "f24e9127af5152fe32d0e9583dddff2e1b6247bd18ffb45a00459044814a8377",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain5.pcap.csv",
+      "size": 7421005,
+      "rows": 36503,
+      "bytes_read": 7421005,
+      "sha256": "67473d9a998651219d1824c878ba83f94f50fde2a979481a3a0421a1da1506f5",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain6.pcap.csv",
+      "size": 7383877,
+      "rows": 36503,
+      "bytes_read": 7383877,
+      "sha256": "498090b89c71992052b7e950cb47255e21a2bb0dbc44af7fb519531ed66b9caa",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain7.pcap.csv",
+      "size": 7466803,
+      "rows": 36573,
+      "bytes_read": 7466803,
+      "sha256": "617821ce329f0a9ca41ca42b0cef800733ad7f93cfe5222c6442c018b8687100",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain8.pcap.csv",
+      "size": 7490189,
+      "rows": 36679,
+      "bytes_read": 7490189,
+      "sha256": "b857cdf66ea3e32d5d91bbebbee6a95cd9d30eed5f209187b6e5df313ac490cf",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain9.pcap.csv",
+      "size": 7602368,
+      "rows": 36987,
+      "bytes_read": 7602368,
+      "sha256": "c5dd5abfe5346beb19c613c0448d8f255af851ab26cb8e5a4184c463add1ca8f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain10.pcap.csv",
+      "size": 7389468,
+      "rows": 36603,
+      "bytes_read": 7389468,
+      "sha256": "c06920077156e0a1c889d06ee5ce33b475f86ccb6c2a881a80e28952633212f1",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain11.pcap.csv",
+      "size": 7135480,
+      "rows": 36272,
+      "bytes_read": 7135480,
+      "sha256": "543bbacb236d3bb473380a35deba833c32cb1cf295d19790dfed4af4ffa26c1c",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain12.pcap.csv",
+      "size": 7164413,
+      "rows": 36270,
+      "bytes_read": 7164413,
+      "sha256": "57fa62998fac9befee39eeaea58abd5f7ab3c19f674115578c10f77eaa135521",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain13.pcap.csv",
+      "size": 7281461,
+      "rows": 36408,
+      "bytes_read": 7281461,
+      "sha256": "8df035cb3b3c0c68e79b73a6c7694f396818f915a58d15331d4f7f225d8bbe53",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain14.pcap.csv",
+      "size": 7290682,
+      "rows": 36346,
+      "bytes_read": 7290682,
+      "sha256": "db9b228cdf8f987fa4f6f29a42cbed6cd916440a2b33bbd71d29c6795c845a33",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain15.pcap.csv",
+      "size": 7232466,
+      "rows": 36329,
+      "bytes_read": 7232466,
+      "sha256": "53fab31aff1ff0542f7c2827f15fb35b752c131004d572590a59fed0ba977624",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain16.pcap.csv",
+      "size": 7246882,
+      "rows": 36333,
+      "bytes_read": 7246882,
+      "sha256": "234f93d1cbef31fac2f1479df2387e919f477861977d7973612783cc180abbed",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain17.pcap.csv",
+      "size": 7320218,
+      "rows": 36443,
+      "bytes_read": 7320218,
+      "sha256": "a7ed1f8b914019accc9ce91d6f6e8e9707324db0de403759fa579c1d72ee6b25",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain18.pcap.csv",
+      "size": 7235592,
+      "rows": 36410,
+      "bytes_read": 7235592,
+      "sha256": "4021deb5b4dff3ab9e922e7a044b5fc439b51ef68939e649d4352a45e96122f6",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain19.pcap.csv",
+      "size": 7280257,
+      "rows": 36515,
+      "bytes_read": 7280257,
+      "sha256": "6450b17f9e99e40cdcdc263f3fa97888ae29d8fa38f1c160939c94a3d33c2878",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain20.pcap.csv",
+      "size": 7316309,
+      "rows": 36305,
+      "bytes_read": 7316309,
+      "sha256": "9a0572a21655d572e07feeb8bee82e02d8f7e4ecf8ec7c9259e03ce29b992951",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain21.pcap.csv",
+      "size": 7357220,
+      "rows": 36469,
+      "bytes_read": 7357220,
+      "sha256": "8c6de138671f9c789df1bdd0aebe669357e483f7073bc8f3103dc466193819b1",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain22.pcap.csv",
+      "size": 7433323,
+      "rows": 36611,
+      "bytes_read": 7433323,
+      "sha256": "4a533a2436e1fb9a43179d803ecfc738ba6b2e24ac4ab3746ce1b97b9ec6172f",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain23.pcap.csv",
+      "size": 7326904,
+      "rows": 36785,
+      "bytes_read": 7326904,
+      "sha256": "8de72ae12b7adfcce368663314786da1d4dd60176b851ce44517ff0e0c8d1e89",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain24.pcap.csv",
+      "size": 2976645,
+      "rows": 15090,
+      "bytes_read": 2976645,
+      "sha256": "33d7383c3e8785f7f4e949078498ac4776cc16187ee56ca8e4107b3e58d87f20",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Mirai-udpplain/Mirai-udpplain.pcap.csv",
+      "size": 7371385,
+      "rows": 36481,
+      "bytes_read": 7371385,
+      "sha256": "f423e8c2558b453b1e1f8e5aeb1a8479c61be78ecc7cc32a767f0e833fde1676",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/MITM-ArpSpoofing/MITM-ArpSpoofing1.pcap.csv",
+      "size": 12312129,
+      "rows": 59854,
+      "bytes_read": 12312129,
+      "sha256": "6d2c6d15b157e9349d638bd9baf54bca243af49f755eee916a295d55f8dad955",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/MITM-ArpSpoofing/MITM-ArpSpoofing.pcap.csv",
+      "size": 50593720,
+      "rows": 247706,
+      "bytes_read": 50593720,
+      "sha256": "2637276fe7afe49833082c0a7342ca107bc4c190141ce383b7322e2f3fc37894",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Recon-HostDiscovery/Recon-HostDiscovery.pcap.csv",
+      "size": 26360058,
+      "rows": 134378,
+      "bytes_read": 26360058,
+      "sha256": "50f8cc3832dcc171b05472b5f768485817796cb7c9bcffdc4747d95b06359990",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Recon-OSScan/Recon-OSScan.pcap.csv",
+      "size": 19880307,
+      "rows": 98259,
+      "bytes_read": 19880307,
+      "sha256": "830b0bf24e542cfff04db1c42338df9bcc3b862f0fcdda8ea192f4fbb064c37c",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Recon-PingSweep/Recon-PingSweep.pcap.csv",
+      "size": 466700,
+      "rows": 2262,
+      "bytes_read": 466700,
+      "sha256": "e786539fdf48b954d76128facd82f064e82b9d11855fabee56ead7b8ae827f81",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Recon-PortScan/Recon-PortScan.pcap.csv",
+      "size": 16412654,
+      "rows": 82284,
+      "bytes_read": 16412654,
+      "sha256": "7416087ada9515c67b17a59a7e386008b1710b9d2ea4d450e4b4cffafb13cf53",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/SqlInjection/SqlInjection.pcap.csv",
+      "size": 1087316,
+      "rows": 5245,
+      "bytes_read": 1087316,
+      "sha256": "c0b3231d7650203b6808281b2cce5cd445ead8d6e232d6811c0e7a82736f2850",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/Uploading_Attack/Uploading_Attack.pcap.csv",
+      "size": 260216,
+      "rows": 1252,
+      "bytes_read": 260216,
+      "sha256": "ea5334870cfe3c8aef246fad916fb7988508520e8510d47e6c0f7c8ed78e4f41",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/VulnerabilityScan/VulnerabilityScan.pcap.csv",
+      "size": 77235466,
+      "rows": 373351,
+      "bytes_read": 77235466,
+      "sha256": "1991dc6c1d0989101639cf537c4e335a0af6c13af64c6efcc6a4b8845b791f5a",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV/XSS/XSS.pcap.csv",
+      "size": 796883,
+      "rows": 3846,
+      "bytes_read": 796883,
+      "sha256": "696a998255347b2cdb595e2d539ebd5b5ceb2701fe03721cdbb3f4f360450dcb",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    }
+  ],
+  "schema": {
+    "label_map": {
+      "Backdoor_Malware": "Web",
+      "Benign_Final": "BENIGN",
+      "BrowserHijacking": "Web",
+      "CommandInjection": "Web",
+      "DDoS-ACK_Fragmentation": "DDoS",
+      "DDoS-HTTP_Flood": "DDoS",
+      "DDoS-ICMP_Flood": "DDoS",
+      "DDoS-ICMP_Fragmentation": "DDoS",
+      "DDoS-PSHACK_FLOOD": "DDoS",
+      "DDoS-RSTFINFLOOD": "DDoS",
+      "DDoS-SYN_Flood": "DDoS",
+      "DDoS-SlowLoris": "DDoS",
+      "DDoS-SynonymousIP_Flood": "DDoS",
+      "DDoS-TCP_Flood": "DDoS",
+      "DDoS-UDP_Flood": "DDoS",
+      "DDoS-UDP_Fragmentation": "DDoS",
+      "DNS_Spoofing": "Spoofing",
+      "DictionaryBruteForce": "BruteForce",
+      "DoS-HTTP_Flood": "DoS",
+      "DoS-SYN_Flood": "DoS",
+      "DoS-TCP_Flood": "DoS",
+      "DoS-UDP_Flood": "DoS",
+      "MITM-ArpSpoofing": "Spoofing",
+      "Mirai-greeth_flood": "Mirai",
+      "Mirai-greip_flood": "Mirai",
+      "Mirai-udpplain": "Mirai",
+      "Recon-HostDiscovery": "Recon",
+      "Recon-OSScan": "Recon",
+      "Recon-PingSweep": "Recon",
+      "Recon-PortScan": "Recon",
+      "SqlInjection": "Web",
+      "Uploading_Attack": "Web",
+      "VulnerabilityScan": "Recon",
+      "XSS": "Web"
+    },
+    "removed_columns": {},
+    "feature_columns": [
+      "Header_Length",
+      "Protocol Type",
+      "Time_To_Live",
+      "Rate",
+      "fin_flag_number",
+      "syn_flag_number",
+      "rst_flag_number",
+      "psh_flag_number",
+      "ack_flag_number",
+      "ece_flag_number",
+      "cwr_flag_number",
+      "ack_count",
+      "syn_count",
+      "fin_count",
+      "rst_count",
+      "HTTP",
+      "HTTPS",
+      "DNS",
+      "Telnet",
+      "SMTP",
+      "SSH",
+      "IRC",
+      "TCP",
+      "UDP",
+      "DHCP",
+      "ARP",
+      "ICMP",
+      "IGMP",
+      "IPv",
+      "LLC",
+      "Tot sum",
+      "Min",
+      "Max",
+      "AVG",
+      "Std",
+      "Tot size",
+      "IAT",
+      "Number",
+      "Variance"
+    ],
+    "unparseable_values_to_nan": {},
+    "inf_values_to_nan": {
+      "Rate": 1037
+    },
+    "float32_overflow_to_nan": {},
+    "timestamps_unparsed": 0,
+    "binary_label_disagreements": 0
+  },
+  "counts": {
+    "rows_read": 46776700,
+    "all_nan_rows_dropped": 0,
+    "exact_duplicates_removed": 25562813,
+    "rows_out": 21213887,
+    "attempted_rows": 0,
+    "attempted_rows_identical_to_a_benign_flow": 0,
+    "conflicting_label_feature_vectors": 524409,
+    "conflict_rows": 1049152,
+    "conflicting_binary_feature_vectors": 979,
+    "binary_conflict_rows": 2282,
+    "rows_in_near_duplicate_groups": 10655133,
+    "hash_note": "64-bit row hashes; expected collisions below 1 per 10^3 datasets of 10^8 rows"
+  },
+  "classes": {
+    "raw_in": {
+      "Backdoor_Malware": 3218,
+      "Benign_Final": 1098191,
+      "BrowserHijacking": 5859,
+      "CommandInjection": 5409,
+      "DDoS-ACK_Fragmentation": 285075,
+      "DDoS-HTTP_Flood": 28790,
+      "DDoS-ICMP_Flood": 7200501,
+      "DDoS-ICMP_Fragmentation": 452490,
+      "DDoS-PSHACK_FLOOD": 4094772,
+      "DDoS-RSTFINFLOOD": 4045279,
+      "DDoS-SlowLoris": 23426,
+      "DDoS-SYN_Flood": 4059179,
+      "DDoS-SynonymousIP_Flood": 3598133,
+      "DDoS-TCP_Flood": 4497649,
+      "DDoS-UDP_Flood": 5412231,
+      "DDoS-UDP_Fragmentation": 286925,
+      "DictionaryBruteForce": 13064,
+      "DNS_Spoofing": 178898,
+      "DoS-HTTP_Flood": 71861,
+      "DoS-SYN_Flood": 2028836,
+      "DoS-TCP_Flood": 2671430,
+      "DoS-UDP_Flood": 3072993,
+      "Mirai-greeth_flood": 991834,
+      "Mirai-greip_flood": 751646,
+      "Mirai-udpplain": 890574,
+      "MITM-ArpSpoofing": 307560,
+      "Recon-HostDiscovery": 134378,
+      "Recon-OSScan": 98259,
+      "Recon-PingSweep": 2262,
+      "Recon-PortScan": 82284,
+      "SqlInjection": 5245,
+      "Uploading_Attack": 1252,
+      "VulnerabilityScan": 373351,
+      "XSS": 3846
+    },
+    "family_in": {
+      "Web": 24829,
+      "BENIGN": 1098191,
+      "DDoS": 33984450,
+      "BruteForce": 13064,
+      "Spoofing": 486458,
+      "DoS": 7845120,
+      "Mirai": 2634054,
+      "Recon": 690534
+    },
+    "family_out": {
+      "Web": 24726,
+      "BENIGN": 1093865,
+      "DDoS": 12420895,
+      "BruteForce": 13062,
+      "Spoofing": 454504,
+      "DoS": 4069099,
+      "Mirai": 2454742,
+      "Recon": 682994
+    },
+    "duplicates_removed_by_family": {
+      "Web": 103,
+      "BENIGN": 4326,
+      "DDoS": 21563555,
+      "BruteForce": 2,
+      "Spoofing": 31954,
+      "DoS": 3776021,
+      "Mirai": 179312,
+      "Recon": 7540
+    }
+  },
+  "nan_counts_after_cleaning": {
+    "Rate": 594,
+    "Std": 414,
+    "Variance": 415,
+    "AVG": 2,
+    "Tot size": 3,
+    "IAT": 3,
+    "Number": 3,
+    "fin_flag_number": 1,
+    "syn_flag_number": 1,
+    "rst_flag_number": 1,
+    "psh_flag_number": 1,
+    "ack_flag_number": 1,
+    "ece_flag_number": 1,
+    "cwr_flag_number": 1,
+    "ack_count": 1,
+    "syn_count": 1,
+    "fin_count": 1,
+    "rst_count": 1,
+    "HTTP": 1,
+    "HTTPS": 1,
+    "DNS": 1,
+    "Telnet": 1,
+    "SMTP": 1,
+    "SSH": 1,
+    "IRC": 1,
+    "TCP": 1,
+    "UDP": 1,
+    "DHCP": 1,
+    "ARP": 1,
+    "ICMP": 1,
+    "IGMP": 1,
+    "IPv": 1,
+    "LLC": 1,
+    "Tot sum": 1,
+    "Min": 1,
+    "Max": 1
+  },
+  "multiclass_families": {
+    "BENIGN": {
+      "flows": 1093865,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "BruteForce": {
+      "flows": 13062,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "DDoS": {
+      "flows": 12420895,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "DoS": {
+      "flows": 4069099,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "Mirai": {
+      "flows": 2454742,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "Recon": {
+      "flows": 682994,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "Spoofing": {
+      "flows": 454504,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "Web": {
+      "flows": 24726,
+      "blocks": null,
+      "in_multiclass_task": true
+    }
+  },
+  "splits": {
+    "primary": {
+      "type": "file_order",
+      "spec": {
+        "type": "file_order"
+      },
+      "seed": 11,
+      "block_seconds": 300,
+      "rows_per_partition": {
+        "train": 14849714,
+        "val": 3182097,
+        "test": 3182076
+      },
+      "family_by_partition": {
+        "test": {
+          "BENIGN": 164079,
+          "BruteForce": 1959,
+          "DDoS": 1863129,
+          "DoS": 610363,
+          "Mirai": 368212,
+          "Recon": 102450,
+          "Spoofing": 68176,
+          "Web": 3708
+        },
+        "train": {
+          "BENIGN": 765705,
+          "BruteForce": 9143,
+          "DDoS": 8694621,
+          "DoS": 2848368,
+          "Mirai": 1718320,
+          "Recon": 478097,
+          "Spoofing": 318153,
+          "Web": 17307
+        },
+        "val": {
+          "BENIGN": 164081,
+          "BruteForce": 1960,
+          "DDoS": 1863145,
+          "DoS": 610368,
+          "Mirai": 368210,
+          "Recon": 102447,
+          "Spoofing": 68175,
+          "Web": 3711
+        }
+      },
+      "purged_rows": 0,
+      "diagnostics": {
+        "bootstrap_groups": "runs of 1000 consecutive rows within a file"
+      },
+      "integrity": {
+        "identifier_columns_in_features": 0,
+        "pairs": {
+          "train->val": {
+            "exact_feature_and_label_overlap": 0,
+            "same_features_other_label_share": 0.030687625172959844,
+            "near_duplicate_share": 0.46844549364774235
+          },
+          "train->test": {
+            "exact_feature_and_label_overlap": 0,
+            "same_features_other_label_share": 0.029756988833704787,
+            "near_duplicate_share": 0.4666488166844538
+          },
+          "val->test": {
+            "exact_feature_and_label_overlap": 0,
+            "same_features_other_label_share": 0.005598860618036779,
+            "near_duplicate_share": 0.352758702180589
+          }
+        },
+        "blocks_shared_between_partitions": 0
+      },
+      "file": "/content/drive/MyDrive/PhD-AI-Cyber/data/splits/ciciot2023/primary.parquet",
+      "sha256": "d32e25f2eb619d04335d4e3e938423eff8cf9d77f732bab6e727b45af150d760"
+    }
+  },
+  "outputs": {
+    "dir": "/content/drive/MyDrive/PhD-AI-Cyber/data/processed/ciciot2023/v1",
+    "parquet_sha256": {
+      "part-00000.parquet": "8c01f3383a6adee15165b3c252cd84d89036d7784d9e5bb99389bfd59567b642",
+      "part-00001.parquet": "66942855262be3140a98e332c1f2adc8e8dc555cabe7c0fa487ab6b3c346d42f",
+      "part-00002.parquet": "7eb5dbd4e6f3bbaa975c3d799c7401db6cf9b2635b2f9b75d882f959b44443ea",
+      "part-00003.parquet": "797c503c0a911a49f01f911e836cd7b279f7baa031e05a9050822baead7d7781",
+      "part-00004.parquet": "890897b6d06ee8c22729315c7b7b19d6b6a1eb81514ec2324106d7c215f2d920",
+      "part-00005.parquet": "f0bf0945bb9f24e94da08dbcfa4c3d7630c2f8f0170e94e1b85282de025ed821",
+      "part-00006.parquet": "a83678198b1c6fd44ab61e3f44b5f72ee8cb0e4eff9c198ce1c078f7e3b92c5c",
+      "part-00007.parquet": "3617323bc51aa07dc4051cdd84d31ded27bcec93ea09a679c004c5e2b8ab722a",
+      "part-00008.parquet": "7b9c72c66a89a116ff953e0ca219545e16e4300193d7004f9d1d6de8c39e6294",
+      "part-00009.parquet": "5c55c79333f437ddc6adfbaa708b70680c4706276acf29812634fbac6a82886f",
+      "part-00010.parquet": "b65da549009ccfacb6888e3e8ec89b0bc3fe9b7298426c7ecfd5ae31ebffc3f6",
+      "part-00011.parquet": "ca87aab30098e6ba011f9123de01eda4cbe5667565ad020cad031652015d5292",
+      "part-00012.parquet": "4970a93a7403f48080973d62c7609da84266f9f729ead693e56c8ac0813ac29c",
+      "part-00013.parquet": "f4cdb40aaf021a79538f29f15b1e3788d31ab549c81448513e8599af999f8224",
+      "part-00014.parquet": "9f8e72a3acfa1396c3d0e94975af09b900911843909dc4454d01bd5a09d0e577",
+      "part-00015.parquet": "65e4edfc5326d935b46a47c936f755b313bf4b2342c13d364e6773fa94fc993d",
+      "part-00016.parquet": "2901e0a25bd72e504c1ac2881a3649c1b7eb6c611c1f5134ed107af1006f9673",
+      "part-00017.parquet": "9b9d9e33da1d30389f807dbb843c357e90e1d70b3e482e1e224cf6614ccfa1a6",
+      "part-00018.parquet": "072302ea1e9b733b69ce8d1bc4c33656f1a3b3163338e2214a725cb724b58480",
+      "part-00019.parquet": "adfdfd809ce44d7474020677eceb89d069767d81a6af993139d70dcae794f8a8",
+      "part-00020.parquet": "b47cb7ae77a3f33194a6d2f8386852b423488962ea060b78f54bf69b5870aa8f",
+      "part-00021.parquet": "0616cf731f420d396ba2c0e2c353dca694b97c0ca1249db773e507282af36128",
+      "part-00022.parquet": "d4a611769f86443f8ec6423e0bdd5ce778148bdc2e4b2e97cf3ac8cc4260fc19",
+      "part-00023.parquet": "b7f87eeefafc505f657056272c487454680bc729999eddd9b1564f5de00d0fdd",
+      "part-00024.parquet": "55437da29e542ca2e172c6f6a62ed776d90ad4531d562367eca30b7711746ee8",
+      "part-00025.parquet": "fde9c693a6f851a4b4e8c3a0159f435a61655a6ec91e3973e659be8f8025032c",
+      "part-00026.parquet": "1fd7d006aaa619c218de02bddd4667b9cfa812b65fa44b722e212e2e30a50e80",
+      "part-00027.parquet": "dcd1d58115f7dffc2000137456ae8ed2485ffcf35e67465b9cffc34ba74d1ef2",
+      "part-00028.parquet": "2e5e4960d19efc1b00da02779a6ab5aa093f202aa8c78505393def9892e4dfdf",
+      "part-00029.parquet": "a2fba6cc97afd621ec15d679f1612f34f4b2357ea8980c49d57da3fa754024d0",
+      "part-00030.parquet": "cae18390c46a9affebaffa9c96c826d85ef9ebc070efce9fb2a5e95873565dc1",
+      "part-00031.parquet": "1b958442a48f18cb98e598f9534da4ec0ca06e80c37aafeb169d9139cf1c09b8",
+      "part-00032.parquet": "9844790e022f87975a860e482841925cbb99f70e5b5c02a7235e99f0e7d4cd87",
+      "part-00033.parquet": "963d2c056088b889ecc2a90d1b4165b5b2e8f7efd2dfc6b9f1350d8a232850ad",
+      "part-00034.parquet": "55b3dd5e29bc0bf087e535f46390632641378c9770fe9120f9f0bed7b463c2bb",
+      "part-00035.parquet": "b53b1244a54a42c341b1f7e1518d3f4d336cf7a1b301ba0053c84c38a176b04b",
+      "part-00036.parquet": "ef5681dedd2711a7b4a8d163d51409e095bf1c0cde333f84f994d11fe48c3099",
+      "part-00037.parquet": "0d18e05865e8a073411cf5c9998f6062e80f055026d1e4110a9e11e7e9fac9a6",
+      "part-00038.parquet": "d4e0ca3a1f03d9c4421947593395020326348aee7ae9f173352112e2d02a7aa6",
+      "part-00039.parquet": "dac9b29b4e0899dac349c3f48cb84555d6fc7247d1d17c01a8b02f4b1c7b057f",
+      "part-00040.parquet": "fd016cdf018b21c7e91e3748d28ae8a40fe44ffb73317d612c02d273dbad6125",
+      "part-00041.parquet": "735c09b9304799d29a0cdc3913118ad06deb8744509b1ad5591b7adbcd112501",
+      "part-00042.parquet": "900b45b5a41f6399ca0e614c1ee9899e128433935350a13806f0f8fb42972820",
+      "part-00043.parquet": "dd589cf3c74eb9eddf73d8bd528b41ed471dd32858ec6213c2cdd8208ab904da",
+      "part-00044.parquet": "3643a262fa28f12242a506ab121f53cdaebd23f745913a96abc75040fdcaee50",
+      "part-00045.parquet": "0294f8b52c03b9959bf7cece661a6a171444f59cd56f32588a952b02a5db4fb5",
+      "part-00046.parquet": "dcf6165edfe94b8133a7e54e9b98f4dba9228edd270210f455beb4705bc2c9ab",
+      "part-00047.parquet": "cc99e9273f846718de77dcaf7c6d393ef89ec5133f876a188f84593dea844a01",
+      "part-00048.parquet": "decf41fa59217c1b3057dbadd055d8623f03700ae550e03f39e6251377da43a3",
+      "part-00049.parquet": "a7f7029d169fadfc16768fc51c8ce73672b1f5b6887c36480ac41085f2f17af4",
+      "part-00050.parquet": "4012d05d44244e4ee40bb29b963e3a965ca17bf21a8e876e9b5e85df7c579da6",
+      "part-00051.parquet": "433f0d5f15cc4291ecb4d220bfc98f42b69d12542b643a11f409f539dd324588",
+      "part-00052.parquet": "ff2507b848bccbafe5e16e55ff8ff476f05cf8f185d5ff2a154e1fa459fc1ac2",
+      "part-00053.parquet": "be8dd9f3837af33486c047291ddd7bdef22a0af4d4916583ba0419c75abc3437",
+      "part-00054.parquet": "7fb31f0ea3c0ea10b34be4735f1094114c97a5cc82f682dbf2e101ffa4d47d91",
+      "part-00055.parquet": "fefd8ffcace7decb9162169ae4843ce76404474fde18408a3f680f31f0374766",
+      "part-00056.parquet": "e21ec1a736f7007d26fbc64c5afa07b392611ef513b8c53188ae38735182c3e6",
+      "part-00057.parquet": "4a3df2a313a4a822e4dac33211020f7d6913239f64fa8ad634241e843f1aff18",
+      "part-00058.parquet": "fd4d5d3a2d71a1deba200779b61add0ad21172e5404813a81532d1ba9cf491e8",
+      "part-00059.parquet": "70ced61a80bf6ae8c96e44934ad7cd3d9b4977c7953d92b3f5ceceea594da3f7",
+      "part-00060.parquet": "f0a0a040820c4610945319b7c4784c2136cab2979e4fb6cbd618e43f17c4cee8",
+      "part-00061.parquet": "a2d80c92eb0e053c520fdc7ff35f35654f179a8ab7b60431a6ae917879cba66d",
+      "part-00062.parquet": "08f9360505305d912d976999165cb4b9343a2a6cd7f0958ec332cb36058198da",
+      "part-00063.parquet": "7f11f2252773e47b0a1f4b7b5b0be1b8f4eff91d8c378ccd4f9cc9f974830d0d",
+      "part-00064.parquet": "79233fc1776f6d245aafba6192f83f0ca19030f94cd60808f65acad6135348d4",
+      "part-00065.parquet": "f6ca25e77c70eefe3a14c4197fb2d015edf688fd2bcd829376fd0948d14add91",
+      "part-00066.parquet": "36c4ce96942db408a2f2c27f17aac7cce0f2e9543e2443f9a027b14b76480e10",
+      "part-00067.parquet": "a16bb7b52fb1587c662aac52e319d948825f386cd12382f612669f7c64370aa7",
+      "part-00068.parquet": "0315c5e65d3042cc8287b00e932ca360d8b8845974cd65216a2b4ce93ec4f59d",
+      "part-00069.parquet": "2f41890981ce15f06a6f634dd5f110885f5f325a08e0134b64f0933bb01a22e9",
+      "part-00070.parquet": "e2ed97a33ce5c71848d4e33b3724eec268607818d31bd9e9757ab4343963ee18",
+      "part-00071.parquet": "c527f7b8afbe46ad1828852e74d8bf4f65e0cacfd4cba80fe980cf93b256be4e",
+      "part-00072.parquet": "c60877a88e2ec8659c9a5eefd3f508f72bb18ad64badb4f80ac6a592835948e4",
+      "part-00073.parquet": "1df9a15bd4e8466ad7a96057f034f0e2460396e8cfd72b118ef5bc4935ec241c",
+      "part-00074.parquet": "62e7fc13583501a13dd2bbc2d9c5ae26af3710b45b2d21ff875dcb04cf37c125",
+      "part-00075.parquet": "452e3ba5629d722529bea48ad30088e5c2c57cb1291d9aee722ab54bc60dda0c",
+      "part-00076.parquet": "e497c1824856dbe069e5b7ad45929f4cbc92d54e3fe0cff51762eef5ab2585cd",
+      "part-00077.parquet": "d6c849e88face5df9ad052b8588facf4ba34beb4215806a8b28b7508666214f4",
+      "part-00078.parquet": "2e91ebb642e6fb463b560da51ecffd82dd9a84c5e4395ed5108ba4575cda4ae7",
+      "part-00079.parquet": "3ca6242e76007f62f8bf7a5a6e41b2e10c26fa6edaa3d1e5ad621ea80c82d0e5",
+      "part-00080.parquet": "139d077328706bf1e885dedbc52ce0b75ec322193836a987f2e7e2cb53b23c01",
+      "part-00081.parquet": "11ddc84a1923a4ce845f37758356b80a6f6375a05f3a0af032cd372b9abfa091",
+      "part-00082.parquet": "7c7ac22b07d802653bb25f8eabc05b0f9828dbad73027c1157b0e90fbc856fe9",
+      "part-00083.parquet": "0a7e5085363b0f2ccbcb7ff96ddc998cd6ea080fcf123d98bd02f2a9728f1295",
+      "part-00084.parquet": "7dd1d452210222784e9c59ded679ff7a4ab279f8caf431d5d238bebc4c95b81e",
+      "part-00085.parquet": "6cc9cf4bba472c9b7c25eb1198a25d7a11293c8b9970316aa61e943a5131c54e",
+      "part-00086.parquet": "0b497f45172ca4cf32c1230678ca17f8d4944fe6d55b1b7849fe652f719579b0",
+      "part-00087.parquet": "9b138a4185d629aec2ac215cca793c64aa9ff363d5046abcf47fee3fcc0969cd",
+      "part-00088.parquet": "64ede9184d7f0406c6f2306d9238ec3550a4062572a56d393d0ff402b7c67874",
+      "part-00089.parquet": "daf0a1e4c5e311e906b68cdc54875097d25dbb03b9c103139f645bd6ef0f1628",
+      "part-00090.parquet": "c454e96e6423c85226b7992e673d07fd1f9f978b27dcb506a3942aaed80ec508",
+      "part-00091.parquet": "9662515628c53a681d4f933723e811ea9ca3d99f9df837d447754a2ad2f86c84",
+      "part-00092.parquet": "9aa42c277385fc213b1be4f67273d3a2b8829f1e4716b035a660a2e7c6162cdb",
+      "part-00093.parquet": "0d4d1226bb970dae312bae78e9641f250793c939d77f6658c537df4eadf08d3d",
+      "part-00094.parquet": "093e1522eb9f23289749415a4e141b785b386bf5e6e32e8b985a4f2b684f696c",
+      "part-00095.parquet": "c43dfe6fa2e51ad7f82bd3d4f2379cbced70db31d00c14181cdab6e7a977500b",
+      "part-00096.parquet": "7ddadb8ca4abcd017d1d796506552ea462730526a6043439613a28712e3b557c",
+      "part-00097.parquet": "3e373719663a422fc4482170eff4337b353929e23a2614d67ef1ae13fc8097e1",
+      "part-00098.parquet": "a6869d252c5e01395299a746f49b9df2756502904c3c78bd879af342c021b9cc",
+      "part-00099.parquet": "d4ae93990c8ef61faaecc09250935afa6090584fb288075f4678b3c775a7487b",
+      "part-00100.parquet": "8434f6b6903cc08eecb1bb22f50c3464bb97ca922f0546dea58d3b273919853c",
+      "part-00101.parquet": "f92b184ce55c5fd31d4c850a62d9ef70de439f173ebadd63cea032593f4f6925",
+      "part-00102.parquet": "743efab6dde1b3fb76b1116fe0740c4f473f51585dc62d166c96c44b2be27aff",
+      "part-00103.parquet": "1910b363a30a07494ecb13501414a88b0f702f008295f078f4b5f333359b2b1e",
+      "part-00104.parquet": "437be8cd617b1329ce5b682f0d1ddfaa9d5bf77386de2ff09c3f5f37c95821ee",
+      "part-00105.parquet": "1dfb5787ae2b4a28778351c9ddb0c8119143fd16567354715fcac8e4b8e28120",
+      "part-00106.parquet": "b834b2fcb44b87df1f9afb33f6e38762d6f2c3c7d0f03aeee35a28d3fddfaf2f",
+      "part-00107.parquet": "11ed509935ee92b517148737f71012a7f6e18d04ca360a4e0a366719032c1473",
+      "part-00108.parquet": "ff76a35cd5102f3c5a79f2d1a4c4803a932ce9790ce3a4c53af52ac6c2bd2e10",
+      "part-00109.parquet": "37f696c738f988eb77707cba0b48552975da93b7ad47729012d6e0a46d2da513",
+      "part-00110.parquet": "0cedfebac5dd980079783cc5370f85e49298c50f63c62dbd5eab99d8833d13e1",
+      "part-00111.parquet": "33072ba04290849c755ebc2656a5cb158e8fb7298992aefbd169033ca20d9a46",
+      "part-00112.parquet": "d6eef5bdb97eb61f47a2d28f4d735f308331681d82aac84b0fa8b46cd945c57b",
+      "part-00113.parquet": "b147743bb9c125e390457b73f40b74593ab76879203d8ffe27c7840f727bf8d3",
+      "part-00114.parquet": "4db79a0d95689f1af005ef424b6e15444e8a9242275aef577fbf5cc2fec2d171",
+      "part-00115.parquet": "098bcb3cf47dbc3620a4a326f366fcd2c1addb2dc1e9c6ae21b743c910d7caa3",
+      "part-00116.parquet": "f6fed13562eb3bd91016427bb45dc60bc7fb7487104d55e4a00975ec3a396bd2",
+      "part-00117.parquet": "baf0f21cd732094100d2d670c674857261fffcca378fcde433acb3f852ca2c98",
+      "part-00118.parquet": "dfebd892cbdbc37b8dae28e3ac20461f83f96f6010c6d01ede468fc1fd8cf357",
+      "part-00119.parquet": "e185e08a0a9cd3d4aad3cc16c58cb5a5ab32cdf964769f458e184f5ad0010537",
+      "part-00120.parquet": "63e14aaf9f44471a5b138174e719e4526cb082568fe4b92b9a82bfbe17875ef5",
+      "part-00121.parquet": "d56571374ff88a84782102f57e1f9d4a088293ab66ac2a091dd2288122be055d",
+      "part-00122.parquet": "57bd4d6455ab6ff414a0a630245070c5d19fb3b812bc413aabafebea1c20d495",
+      "part-00123.parquet": "2aabd6200d652e75118d53b936b7b4a30e3279f18cd264868c1498e7412129e7",
+      "part-00124.parquet": "62d605e0afed9924e1e13f13590bf85b7313dd7e78e2a3b1f442f94ffc1dac00",
+      "part-00125.parquet": "cef88d4afa242030391e0e411eac5c7e6a4254e2c28c77faf02b811c64b42445",
+      "part-00126.parquet": "613b52ac82e025123ee95246325ad91fe03e93435f330964e8f37adf85a85e6f",
+      "part-00127.parquet": "58b92d4dfa6622f35b6c41b7aa4d284e7d4c5f3f557bc051ceb6ce92b24dbae2",
+      "part-00128.parquet": "ec973f3bda0311ae78e774cb42ddeb8eed5f0795ecbfc342cee3719a9d889ff6",
+      "part-00129.parquet": "e7317034aa4b2194d476c5c400eac25965314b680a94129da7bd41c943e11806",
+      "part-00130.parquet": "f39939aee25903657ae68b9cba4ee17e397296438f76d1e713e651e74891ca10",
+      "part-00131.parquet": "946011bc0e425dcce37f740eae19628fa85c0b4ff794943d106e8a572a169767",
+      "part-00132.parquet": "a7c4d293507875439b09831ff7d33d64add09ebb82b99120dac3f0770d8f719b",
+      "part-00133.parquet": "5eb27dc6eed0364056664165c81a3886b1648c64291a34e05ad7253142dfa85b",
+      "part-00134.parquet": "57ed1d9b7fddfb5eb1a4fb8cd81b24c62eab419131a0779c2d116afeb28ae5f2",
+      "part-00135.parquet": "7c5b1229b61dbaf62a59b2747d611cae15a871125c7a5673b4b85df3a9bdeebb",
+      "part-00136.parquet": "fca10a165808bbec12ebabcff0de5e7c87d7b07580e65c4f27b4a0ee8b47553d",
+      "part-00137.parquet": "b48e9243d1e702b867cf3694f81aff58fbb1c0d135dfab35340a3894466dec88",
+      "part-00138.parquet": "2cf189c61373f8ab68aad8f21f9489347f1fd6d39944e304fdf2b28ee31f25ed",
+      "part-00139.parquet": "75272847dbec40e42cb0df9e101f3ed80e69cea2660436762c6eeb214c99c2ea",
+      "part-00140.parquet": "e740d4f8b765c09d76816fd28b2f9c8fcd2567b49f8cccba35ac25de298dd5de",
+      "part-00141.parquet": "2a2c30181e55332f80f6e92bdb71f07c19145dbc4389693259265d1e4fa053fb",
+      "part-00142.parquet": "863baca0148dc3727ec0525311fe52abea4e18d6156172a98cbc5a7a2c5a3211",
+      "part-00143.parquet": "aa0b5fcb145f101c27f4fc8cb1b1810f017c5618a003b68f36daf6302b80f917",
+      "part-00144.parquet": "9b1b03fe99bdd8c5a66881f14b2a81414a9420f5cb76c08ced9faf321a1b6793",
+      "part-00145.parquet": "8f108e3eb6b592ddf4e11c8a783541386c365e94e50369cf1dd0289d400b623b",
+      "part-00146.parquet": "1f47c3f350ee052c6fce8c8ce56d3fbd8bf197ddbdf7a89adb15b3464ffa8713",
+      "part-00147.parquet": "3896a14cb4a28bef17f84de0f56d6a58f60618e583c56791dcf5744d365ab4e5",
+      "part-00148.parquet": "12cc4044632b32c64d0299288a5d2529affe8d4ac95409836f7187c4867220ee",
+      "part-00149.parquet": "226d0336152adb54294f0cb189b4d0aeafa6450bf3ed4e54fc6928f4244dd6cd",
+      "part-00150.parquet": "bd8ac568b9ef52afef0947c8016f5a499aea884488536589e9dd4aef9c5833eb",
+      "part-00151.parquet": "ffe0768f7ee0681596802585ecd5a04fdce8064761a681f57c2e144def71a417",
+      "part-00152.parquet": "8e48d0deb19ca0947bae6876890875dd35cc013e309d4bad3a624c1a0374daf3",
+      "part-00153.parquet": "9500921bca4e24f9520c5381153e98951eaf9501b158d97e3946585269caa869",
+      "part-00154.parquet": "0e4229b609f3d9c68c232dece49b44f360c05016bbe7334b4827c95ac5b6b3a3",
+      "part-00155.parquet": "dba71fc9d03dc7f413a9441cf0fc9ccb09b0567a8590f4c8d3ddb1de15a55ac8",
+      "part-00156.parquet": "c813b5d7fc610e7b3f50dabcfc3f18a540532a137537eb9540a179ad88134d8c",
+      "part-00157.parquet": "396c08dfaf8508ddbe91b7e7c7df3e773260628f22bb348e42eb65120ae778ac",
+      "part-00158.parquet": "df05daaf3bec965410846d0585689c472101ad3c13fe0c4fc635b3d0a94254e5",
+      "part-00159.parquet": "de8d9c7d7d987073f71508256205748984df621ebc2c4de7155239304e697efa",
+      "part-00160.parquet": "4286ad4b351f07de95f00418db4ed01d9ae7f6a33f32e53db094c3a0e914dc98",
+      "part-00161.parquet": "7f2c72b2980c3b3167dbbb4296e98da73992825b43c97f75fe1a63f3cbc79431",
+      "part-00162.parquet": "2299be5060ed101ab0b4d6572867d6f0f03a8bad8b3f3f3b20e23de1295a9e15",
+      "part-00163.parquet": "8c77ea38c9d971f85d5e6e8cf6e5ed16e0160d609a83b0f76690c3e88d3c035d",
+      "part-00164.parquet": "6c64df4d8bdea9439cdf062e6273793c73cb8ebafbee31c29a314cf597eba120",
+      "part-00165.parquet": "a0d8d0a3f20080f3a563f5e6373555b1b84bb9af3fcc1fd01f2655e697b05ed6",
+      "part-00166.parquet": "0ff51be29084e9d26701bbad4859859d95196526f22909bac5c8704fbcb19c33",
+      "part-00167.parquet": "8d88188a4d0ae35006fe21923e5ec09ee4042907286d4cb6d8d22ddc0603b35d",
+      "part-00168.parquet": "238e2cc4d27074383448c47dd7aa82b64ef4e93e2c27fcea3cecad1d0d50fb54",
+      "part-00169.parquet": "aedb06e0fe3818cc8025f64c2ebdf4bf5ee47ac9a2df593323332afb49af2b23",
+      "part-00170.parquet": "21bd6b237932e3a325f329e27cb3c8966662eb587d998f74764f0239eb04c4e1",
+      "part-00171.parquet": "c6660ed7dd40ec62a0ece832edf8a87c9133cc425e0fa79306e1679721c63c08",
+      "part-00172.parquet": "3317d45583b92e1acaa6a97d912de7151f27632b1798d2ed480d8a1256916fcb",
+      "part-00173.parquet": "3d690027cd7bdd36a9de62e94a810f24f127b1992edbe4a856f1ec6661887949",
+      "part-00174.parquet": "df3dc090f6cd050e419f07268e4e777e7c79e0023666fcbd29b10377b2086c13",
+      "part-00175.parquet": "026558627d17dfe022a0192c184f2a70a28e109c554dc6ff74198dd95f158d42",
+      "part-00176.parquet": "7e3cb48282052c51666aea26582c1ef59c0f27339cba2b68f108533f4c650705",
+      "part-00177.parquet": "ba2a9cb788a3abfe4c980233436b9f9bc0b3f750fd2dbc7ac5eebd505cfb7f04",
+      "part-00178.parquet": "ff1359d38b10804cb040a73e4cab646e7d1ce32c203e0cad547e387f8067bef5",
+      "part-00179.parquet": "05c3a9d2e86697dc1253b6a18b7b52ea1d9668792abb6aeff249e9c492d6a011",
+      "part-00180.parquet": "9e4f50b7746d9e236c6f89f31a77e8cfac147eaf2c4a2b23bd5a78f708350bdd",
+      "part-00181.parquet": "9e2c059149ad4a7f116897fa107d04eadfa00007329ee52822f1a165be94026d",
+      "part-00182.parquet": "2bf11add987f1aeb0732b3bc63951f4f948435642e9f1dfe14c8a40fdcd78bc4",
+      "part-00183.parquet": "d93d2cf5c571a0e1bac748b391609675b443979007720437cdd070de26cbca93",
+      "part-00184.parquet": "6f94eb1a4fd1b035cf4205202d16a07f4b212e65d4af293fc7a52da3671423ca",
+      "part-00185.parquet": "c153321b63d82f36050a644cacb60e4cf370198219dd1ff5f07bd73679691981",
+      "part-00186.parquet": "a458ea4015181b83ef7f59ecc59191bc69939e7158e393be558e0fc2595a75fb",
+      "part-00187.parquet": "0ca03a6bebf81f3e8cfb49e90ab4d2c7cb2e76e1f88e78a862d52be38bed93b9",
+      "part-00188.parquet": "83ce79043e7bafa06ce6516afcb3aad7db7446403a69ad0939dad4d319b5ee01",
+      "part-00189.parquet": "d1f75876df1208e2ddad1ba618991b7dbf267c0a2707140ba0010535b543f134",
+      "part-00190.parquet": "b910ab150a07b83d0324f06ee7c2deaa7cd92d9a11c205bd934f48dfbe2d61fb",
+      "part-00191.parquet": "e17ae45b0a20ae0ce22f64698a2e215345b86be2e00253732744cbe08e1a613b",
+      "part-00192.parquet": "e3b549c641017b823d0db265acd1315fc40c35d630d4cf28cf2b94d90388f0bf",
+      "part-00193.parquet": "ebae1a4c6b5021e985de86078e7eb59938ecca51469931c976eb8717ccf3c048",
+      "part-00194.parquet": "4bfe3948fea4fd7fe307f24117d7ba5f9c6b25e3dedacc25444e0f12db4e98c9",
+      "part-00195.parquet": "ed2b09288d1fdd354b3e8b3e2e7040407824f7a64866dabf5ec4cce78a896ff7",
+      "part-00196.parquet": "3c93984abb289cab030717ce4eab58b157896dbcbce13590f044eb7eaaf9775c",
+      "part-00197.parquet": "db173d1668b6f2d8a73d2b68da9b17ecee273089bb8decfc398e127802a9eae2",
+      "part-00198.parquet": "709e3e84ec565f63fc1d63058e578682ca14da943eaeaf221c9df5b3b848b25f",
+      "part-00199.parquet": "facf1c22332371f100e423b4e3a027ff3b3c12ac898e8672dcc5427c7cb2c178",
+      "part-00200.parquet": "1d18bf04d727eec76cf906de36d6e95eb0550a5e55e3088d7418c7d44f74001b",
+      "part-00201.parquet": "ece24dc1e69c4b9dcea89b3419d6ac73017bc2b31bd059d3dd9df72e61d0b3e9",
+      "part-00202.parquet": "6cb8a76a754adb63b92a35386c8138c64a5a02ffdcadac0e7495897a1d9ac85d",
+      "part-00203.parquet": "13e5dc81f49ff311f378d59bbc075f36988a17a25d092e617292a0e8d38e3a4c",
+      "part-00204.parquet": "cf99548a8bf6aae314b9236316fd9606dc43d6284238d9c127e8c8506f74278b",
+      "part-00205.parquet": "b74b3cb3d96fe1c81a0ce6a0129cd2e6db161c29048d51bc16cda8199ae035c2",
+      "part-00206.parquet": "35367b93a5b34ec06f2d2f1f185d8225182cdbfcae0fa17394274b98bb782c7e",
+      "part-00207.parquet": "c854d14cd40e6fde71b68a0c7f4dcc83df7695a900b784e5144e5b92ad57d5a2",
+      "part-00208.parquet": "c766201d336058857262726c15f5deb382ddafd605a63d3c44c5c6b77bd8dd40",
+      "part-00209.parquet": "399604808675d3eebec3c32ed37d2cd3d7ffe47eac84486940418e9a341e7577",
+      "part-00210.parquet": "f5d808b47ecf90ad86a40f9476be03d9cf70e44e2f3cebfbb54a1e87e770be18",
+      "part-00211.parquet": "c56ea1513c5954077f03efb4fecc79241cecaa4d9d5ecd3e32b1c4db6a1d9423",
+      "part-00212.parquet": "b9e232a4976978460f7b66a7c7ec35a535c7cbc4120a3287543a5d73f17c313d",
+      "part-00213.parquet": "a3a6c46f747c856c6bf34e21ebd2bd8a8a6d6f94189b1ae8a3749b9db2e07717",
+      "part-00214.parquet": "68734cfb5ab2537b60284bba6c53236d01e3586b12eee9827d6d82840b295b37",
+      "part-00215.parquet": "151bd9d18cf349549921b16c4712bcee475d21a9f2d7756e7bc2e011cb2a7592",
+      "part-00216.parquet": "0781b6f3547aecb753814b6eab0e6d42164fe883934dd215ddc223ea2935471b",
+      "part-00217.parquet": "b62d243ffaec6744e3a56193e2f57733c3bc87b9d637d2d5a52c77eaea1d9c31",
+      "part-00218.parquet": "9d0f635b5a1ca53f0b54886ae65da1fb4e6fd45b1533dd9946168cfeb76dc070",
+      "part-00219.parquet": "010db8db88838948faa8d172b297bbd10e7123e17f79aae772ab0a54ae799648",
+      "part-00220.parquet": "f3c142da89dc9ec6108b7b0a6dc8765ade8fa481bb1901c841fd250e7ae718ff",
+      "part-00221.parquet": "e7e14ae09764b2764bfaecc3b18795d76b111d54121e7461470c5e917bff58e2",
+      "part-00222.parquet": "ceb1d4a4dba7b9651519caaa1c1517ac7fa4fefc9284208782ca61f292ec840b",
+      "part-00223.parquet": "1f7a59e86def8b0ca5cfd7e8a7ead709dbc9d8b6b354b0bd6507722919c0d899",
+      "part-00224.parquet": "d7210db4d327ce39446ff467be39248c4c2525ecf667026c94560c3f340977db",
+      "part-00225.parquet": "27f7bf7c8c89bf5f7f3c91829ecfc5f8ebef603f26d45a7837e90768f6a61325",
+      "part-00226.parquet": "50ee4a2c5e28ef49a090f3b3d0887a9b19897a98b27aeb0c132bcd1da3c74c16",
+      "part-00227.parquet": "9192e709aa755da5dd4da8ad082a4bb9ad684e0411adc5e13b2fdbbe603a5c66",
+      "part-00228.parquet": "6f66ffaae0236c61c4cc75b83820e216bd3e40edc63e0612b03cb53874b61180",
+      "part-00229.parquet": "ac416b85c8a3e06c77267b5e4b29cda0ea80a8d278f177d6e847e1d5330f9e07",
+      "part-00230.parquet": "f2e3c69d51bd69947ac8c288ea8065c6f4bdbf212c1cc50710d865c76e0c1068",
+      "part-00231.parquet": "d3f4c2c1cae8300581de9f6f739ad69bb06bc9db8a7e1378a422c93b7b3f0058",
+      "part-00232.parquet": "b19a9b3197f361fc591ed16284db07a25b694504b330e32d22be163a1d75a878",
+      "part-00233.parquet": "1ee9b7f910f827d5a27d4ebfdfb89c30fba80bf23e4230e485ebe134f284f648",
+      "part-00234.parquet": "3615d04238a0289f4b87c4049c18ac77e4c5cb8d46fc0297b766d7dfdfb6eee5",
+      "part-00235.parquet": "bb4741233c09d8a1f5799c3baa77ca4e01e249eaadb3f4cc2ddb236f313a0f89",
+      "part-00236.parquet": "423b92b554ea868ebf74a238fe9a3da926a5c8c02b906528ee688738e946b1b2",
+      "part-00237.parquet": "d39084e6b36ad7349a3e9de3acecc21629602fbf14711ef955ab2be92cbd6f53",
+      "part-00238.parquet": "bfd913b6b563807232584899809d8a298533dad4689f82f47dfa7e6ec2d09663",
+      "part-00239.parquet": "9b9589d6f0b6684c17b1fed659820d46d0fd44f710c10f94e725e8753e38a420",
+      "part-00240.parquet": "529f5431c6322b642af054d3c39b00520690405d9651c4434271db6ec1a49dec",
+      "part-00241.parquet": "a0a3be73b4b29a7437c04cbea5e8034aefda27441f2daf2d0356d4fced234fdf",
+      "part-00242.parquet": "1bd547d24b59eed10cfa5e1a65c9e721da2dbfe276f645ceab1d4e2116fd8ed9",
+      "part-00243.parquet": "abb8df79bee874afebf315555ebabf6d8051993a277a2598e28851ac0e466b31",
+      "part-00244.parquet": "3e2e1345e1078312a90499bf3147d01868cc7e17d429a598085c891099834b6b",
+      "part-00245.parquet": "c4cb3561f454e26ec73345870c22633fc4b0033bdc924794761b362290f7ec09",
+      "part-00246.parquet": "f2721b1a31a4e4b7074781275719bd8437cdc47268c5ec7a4a0ccb223b232236",
+      "part-00247.parquet": "f0f19407eb0dc256b0dca9d546565bccd62c3e96eed37bbbf7667cf3a4b3bacf",
+      "part-00248.parquet": "ac0e4388e6d89f3ac6fb4b4ff58fa04b95a6b75ea50927c0931e3bea4ef3cfeb",
+      "part-00249.parquet": "650d76cdb406a1f3c76a47b16aca25769523acbeb0a4f4c17b04673920c58f0f",
+      "part-00250.parquet": "cd441ea3f421794ee1ed00cc504cb10251a06cf025ec2b2d50a7d72c52fb1428",
+      "part-00251.parquet": "d01abf9c85381009d1881c8bee0edae939d71aa45f3ef07c31ae889841868cf3",
+      "part-00252.parquet": "4a882d2a9126b67a9c0c5ed20d7094769e48dc36e3237f6199c874ae06d86a18",
+      "part-00253.parquet": "26beda6031e0f58d011481b13f0b4bb0aa2aec005bbb2bbf8897889f7d60e014",
+      "part-00254.parquet": "74f928b2456ec91c3fe45f881fcc6a8e64d350fae496e6645c1575622c89c0c1",
+      "part-00255.parquet": "f085ada29470d32156d3ef1f7c02a1535892ea4c3cae56e4d526e53de5dd87f3",
+      "part-00256.parquet": "58e2063c04dd450e2cbae02e6087d1fd0be8bbea58b10d8033471aa4163df347",
+      "part-00257.parquet": "f820bee6ada9aaa40066a5762b09d69b621eb12ac045baa3a95f8d767403209e",
+      "part-00258.parquet": "dc423765da140c8242fc37236b94b9d211c3c536c402ed4c1173a649f1a03cf3",
+      "part-00259.parquet": "dae759d727eea0d10aedc62e23e37a6d57e7e60ed495f168c5c68b3ce790b4de",
+      "part-00260.parquet": "17f87c2b6e4b75cf15586cb9467bcc6a9f78951c083abcb7926ceee4f368ab7b",
+      "part-00261.parquet": "4484db4b5ad6e5de91bd7e160b154753ddd1549d369c20ae4adc49c8eee141e3",
+      "part-00262.parquet": "751ccd35f92714091cccadecd5b37f40c8d973f8fd0d740f7a975b7e1c2b8f00",
+      "part-00263.parquet": "49285721fda71e25d1cd0ae2aea1647c1ce49a71b3e893eaf75d7e652b8006da",
+      "part-00264.parquet": "baa0b49ea0748ff5340e72fef23c6ee8e0f1115277f34d890b133ae5d4e875f3",
+      "part-00265.parquet": "03fb2673f56188d90203517cf61951905f3cde1975a398affa91f39f316ceffe",
+      "part-00266.parquet": "ce2d7d222d3ba4f3ca203bac00126b1d52b245c09a24bb8796c55f5411912b3a",
+      "part-00267.parquet": "cf49ef4f557eef85466502354feb75822b67a4aea6503d49a35bc5fc9db01d1b",
+      "part-00268.parquet": "5bd40a1f55c46ac2c4e0316f863ee1da50d6d7855164436146d0c4373fe63fb2",
+      "part-00269.parquet": "e507d930a406193a7f215eb423084d5d36ad68ad34aab757b324108069d9e953",
+      "part-00270.parquet": "b65b90c854ace6b7adaac229966d6b70c140aa489984e6e8c8f013b6262638dd",
+      "part-00271.parquet": "68201c457082aa1595cf5ba3c2f79d428b8edbe104e5d86568d0ef2643c98c31",
+      "part-00272.parquet": "93c11a7bb7b0a3a5f399e9889136c6170012a201dfc42eee96edb91af76743af",
+      "part-00273.parquet": "1e449187e0dde7474aff322ad84a55cd86b980ae15d70e4dab0bfd4123edd313",
+      "part-00274.parquet": "c76d8ce3fb1b5df4e84d87af79e9fa4733ec86701921b0b1bf0a4d265577598f",
+      "part-00275.parquet": "1ddb25dbacd7c213c44867086e4c28f05a9d87fb64e74695af0579ce27aef464",
+      "part-00276.parquet": "685d2242804c8869236bbbeaecb2d71dad962e5ba9f1c65634dfc659fbe3a05c",
+      "part-00277.parquet": "8b6367e5e12a3820545b0310889ca03eeb13616a1950bb072fa44ef043750316",
+      "part-00278.parquet": "c8cd5b0090f27d7e29bc0b9f1625e7d4bdcf062df88f37198c8c0b4157c63b2a",
+      "part-00279.parquet": "4d37f54b8acc1c0a06a535d8c2ca1b194d75deb721480b0499335bc8ea8e5f71",
+      "part-00280.parquet": "da67a4f5349acaaaf86fa3db0f590c8f92f6e73af38f285ad42d8adf4a9f2b66",
+      "part-00281.parquet": "f9cd8e84d4a800ffb72e88d0fc0aab5a4de58c8eacbb69915f432cc259b42c09",
+      "part-00282.parquet": "e4554fff98126e71597e0fba74f45d948f4b455941a1486f56c6bfdf0ae9e6dd",
+      "part-00283.parquet": "6bce04ccf2232b7070881e994e9f42aae087d619eae6b29382a94f263a6086de",
+      "part-00284.parquet": "273ba9097454ed388df11f72280d3c8cd2892308f63ccf96b745b07bc2b4d8ec",
+      "part-00285.parquet": "a923d6010f5929290f07beb11165b4367de758bd60c8186c40456297ce9e061d",
+      "part-00286.parquet": "ec183fe69e87bd8ec92235215ef9c6f98b97d7588ec109af369b0fcd8e8a6bb6",
+      "part-00287.parquet": "6ec280ddfd6da3969343c79d36c8cb86357638d1f7c1c2ea0afc08d38a0ce367",
+      "part-00288.parquet": "418c73e4e32b6a1b611afec4617b15b96226aebee042e417d00858c9a31319ea",
+      "part-00289.parquet": "fab4042f178c9db52168118ca65eebdd46e75e8d13e219579a8aa5a81d8796bb",
+      "part-00290.parquet": "49dcb44e58677d4fff39cbfe8b615afa948b450aff3b67e22661be83b526cb1a",
+      "part-00291.parquet": "59a2b85863e5d9c3fe709e916c8856b2a7daf531a38e0faccd247891e27c7db5",
+      "part-00292.parquet": "308c14306f1bfc0ad332dfc3efed48266fc6cbcbd912fd97a1d4a7e09cb8461c",
+      "part-00293.parquet": "f3b9a951186c1583c01ea93f6c67805175029b5a5532fdf217821c973ac347b0",
+      "part-00294.parquet": "a1354a081b514502644a028b3c9d75efca0fbae63e90bcf310c3de8e6b9b22d5",
+      "part-00295.parquet": "176e21be60929cfee3d5475bf07cfd954dcc7df2922c6795a24c0f70db60980e",
+      "part-00296.parquet": "337413c9335f52ceb2bfc2815674b78941cc8adad91f0b7ec9168e0c70de659a",
+      "part-00297.parquet": "df13537df89aadb08e930857ea09810041df43560119f3be4dcc41848a1b76f8",
+      "part-00298.parquet": "aa28241b4db0f3c71958e8b99cf6c6e1979e0bfdfa8669277c2c3ef13a7029e1",
+      "part-00299.parquet": "ca6923529a3060d50e3d0dec739415e23579c62563d8c5ca2ccef87fe933aa68",
+      "part-00300.parquet": "e7b59e09c30fc43a51e995a93425463b796f5f1066a8656486b4eae588171aae",
+      "part-00301.parquet": "e1a5fd0e7be95a9da275c41dc807e590fa275a62090b19ee60cd504677f49131",
+      "part-00302.parquet": "5537ecb07dc3a8520d40ec78a6171e4c2821b8d06311ce2c12b0cf178b3f46b4",
+      "part-00303.parquet": "9914da196bcf33cdb25af18b512146750ec1a9bc318468c6875dcb2074d078f1",
+      "part-00304.parquet": "e8950d4873a44bc3e7ca8af39ada48e2406ed815827c55981d1559e6ce5c2e54",
+      "part-00305.parquet": "9d5519c3f9bc9ffa8530db1b7645c550bb0df65a89cd61167ea3ca637a10a4df",
+      "part-00306.parquet": "78e79ee3b1f1e2acce2b3688e0fc25bdf1a1a0223834b964ce26d28343064705",
+      "part-00307.parquet": "c74eb8d093a0242b1685692ad2d5648c5bc06ba0275f34164ff400b817ac968f",
+      "part-00308.parquet": "8a7e3b223c460826964276b8a3ad52e91417644b574cf48d49d0053192cada4f"
+    }
+  }
+}
