@@ -237,6 +237,7 @@ def preprocess_lanl(config_path=CONFIG_PATH, max_rows=None, sources=("auth", "pr
               "features": [c for c in hh.columns if c not in ("computer", "hour", "day")],
               "level3_split": split, "outputs": {"dir": str(out), "parquet_sha256": shas}}
     write_json(paths.SPLITS / "lanl_cyber1" / "level3_split.json", split)
+    write_json(paths.RESULTS / "data_audit" / "lanl_cyber1" / "level3_split.json", split)   # same record on GitHub
     write_json(paths.RESULTS / "data_audit" / "lanl_cyber1" / "report.json", report)
     (paths.DATA_CARDS / "lanl_cyber1.md").write_text(render_card(report))
     return report

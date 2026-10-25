@@ -1,5 +1,7 @@
 # Hypotheses (frozen 2026-10-25, protocol v1.0)
 
+**Author:** Sandesh Lamichhane, Assistant Professor, Yenepoya (Deemed to be University)
+
 X, Y and Z were set on 2026-10-25, before any Level 2, 3 or 4 run of this study. Any later change goes in
 [protocol_amendments.md](protocol_amendments.md) with a date and reason. Estimands, tests and decision rules are
 in [preregistration.md](preregistration.md); the prior use of these datasets by the author is disclosed in

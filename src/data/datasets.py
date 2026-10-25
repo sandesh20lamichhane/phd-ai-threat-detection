@@ -1,4 +1,6 @@
 """Load processed data with a frozen split for experiments. Metadata columns ("_" prefix) never reach models."""
+import json
+
 import numpy as np
 import pandas as pd
 
@@ -19,6 +21,12 @@ def load(ds_id, split="primary", partitions=("train", "val", "test"), columns=No
     sensitivity: subset of {"S2_ports", "S3_attempted_benign", "S4_drop_conflicts"} (preregistration §8).
     Primary analysis: Attempted rows (_y = -1) dropped, conflicts kept, ports excluded.
     """
+    rep = paths.RESULTS / "data_audit" / ds_id / "report.json"
+    if not rep.exists():
+        raise FileNotFoundError(f"no preprocessing report for {ds_id}; run scripts/preprocess.py --dataset {ds_id}")
+    if json.loads(rep.read_text()).get("max_rows"):
+        raise RuntimeError(f"{ds_id} was preprocessed as a pilot (--max-rows); re-run on the full data "
+                           "before any experiment (preregistration §10)")
     files = sorted((paths.PROCESSED / ds_id / version).glob("part-*.parquet"))
     if not files:
         raise FileNotFoundError(f"no processed data for {ds_id}; run scripts/preprocess.py --dataset {ds_id}")

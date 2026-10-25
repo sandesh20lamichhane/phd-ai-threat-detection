@@ -63,6 +63,34 @@ def cross_overlap():
     print(out)
 
 
+class Tee:
+    """Copy everything printed to a log file under results/data_audit/logs/ (pushed with the results)."""
+
+    def __init__(self, path, stream):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        self.f, self.stream = open(path, "a", buffering=1), stream
+
+    def write(self, s):
+        self.stream.write(s)
+        self.f.write(s)
+
+    def flush(self):
+        self.stream.flush()
+        self.f.flush()
+
+
+def start_log(args):
+    import datetime as dt
+    from src.utils import paths
+    what = "profile" if args.profile else "shared_features" if args.shared_features else \
+        "cross_overlap" if args.cross_overlap else "_".join(args.dataset or ["all"])
+    stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    log = paths.RESULTS / "data_audit" / "logs" / f"{stamp}_{what}.log"
+    sys.stdout = Tee(log, sys.stdout)
+    sys.stderr = Tee(log, sys.stderr)
+    print(f"command: {' '.join(sys.argv)}\nlog: {log}")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--dataset", nargs="+")
@@ -72,6 +100,7 @@ def main():
     ap.add_argument("--cross-overlap", action="store_true")
     ap.add_argument("--max-rows", type=int)
     a = ap.parse_args()
+    start_log(a)
     if a.profile:
         from src.data.profile import profile_all
         profile_all(only=a.dataset)

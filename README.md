@@ -1,5 +1,7 @@
 # AI-driven threat detection and automated response (Ph.D. code)
 
+Sandesh Lamichhane, Assistant Professor, Yenepoya (Deemed to be University).
+
 Code and results for the thesis *AI-Driven Cybersecurity: Predictive Threat Detection and Automated Response*.
 
 **Where things live**

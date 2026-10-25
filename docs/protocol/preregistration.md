@@ -1,5 +1,7 @@
 # Preregistered evaluation protocol (v1.0, frozen 2026-10-25)
 
+**Author:** Sandesh Lamichhane, Assistant Professor, Yenepoya (Deemed to be University)
+
 This document fixes, before any confirmatory run, what is estimated, how the data are prepared and split, which
 comparisons are confirmatory, and how each result is decided. The preprocessing it describes is implemented in
 `src/data/` and configured in [`config/preprocessing.yaml`](../../config/preprocessing.yaml); the SHA-256 of that
@@ -192,7 +194,22 @@ packet-count, duration and timing features (no byte counts, whose header account
    profiling step (`scripts/preprocess.py --profile`) checks them against the files in Drive, and any difference is
    logged as an amendment before preprocessing runs.
 
-## 10. Deviations
+## 10. No-shortcut rule
+
+Every confirmatory and sensitivity result uses the full processed datasets, all five seeds, B = 10 000 bootstrap
+replicates and the frozen splits. No subsampling, early stopping of the analysis, reduced seeds or partial data
+are allowed for a reported number. `scripts/preprocess.py --max-rows` exists only for smoke tests: its report is
+marked as a pilot, and `src/data/datasets.py` refuses to load pilot outputs for any experiment.
+
+## 11. Records
+
+Every report, data card, frozen feature list, split checksum and run log is written into the repository clone in
+Drive (`MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection`) and pushed to GitHub from there, so the two copies are
+identical. Data files themselves (raw, processed parquet, split membership) stay in Drive only, as agreed for raw
+data; their SHA-256 values are in the reports on GitHub, so anyone can verify that the Drive files are the ones
+the results were computed from.
+
+## 12. Deviations
 
 Any departure from this document is logged in [protocol_amendments.md](protocol_amendments.md) with date, reason
 and whether results had been seen. Exploratory analyses are labelled exploratory in the thesis and paper.

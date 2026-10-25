@@ -123,3 +123,12 @@ def test_ciciomt_labels_from_file_names_and_official_partitions(drive):
     assert lm["TCP_IP-DDoS-ICMP"] == "DDoS" and lm["MQTT-Malformed_Data"] == "MQTT-Malformed"
     sp = rep["splits"]["primary"]["family_by_partition"]
     assert sp["test"]["DDoS"] == 400 and sp["train"]["DDoS"] + sp["val"]["DDoS"] == 400
+
+
+def test_pilot_outputs_are_refused(drive):
+    from src.data import datasets
+    from src.data.pipeline import preprocess
+    write_cic(drive / "data" / "raw")
+    preprocess("cicids2017_improved", max_rows=3000, log=lambda *a: None)
+    with pytest.raises(RuntimeError):
+        datasets.load("cicids2017_improved")

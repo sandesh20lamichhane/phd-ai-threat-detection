@@ -1,5 +1,7 @@
 # Prior exposure to the datasets
 
+**Author:** Sandesh Lamichhane, Assistant Professor, Yenepoya (Deemed to be University)
+
 Reviewers should be able to tell which analyses are prospective. This file records what the author had already
 done with each dataset before the protocol was frozen on 2026-10-25.
 
