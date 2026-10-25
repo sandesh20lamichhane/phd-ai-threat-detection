@@ -529,10 +529,10 @@
     "gb_matched": 8.944,
     "first_files": [
       "CSV/Backdoor_Malware/Backdoor_Malware.pcap.csv",
-      "CSV/Benign_Final/BenignTraffic.pcap.csv",
       "CSV/Benign_Final/BenignTraffic1.pcap.csv",
       "CSV/Benign_Final/BenignTraffic2.pcap.csv",
-      "CSV/Benign_Final/BenignTraffic3.pcap.csv"
+      "CSV/Benign_Final/BenignTraffic3.pcap.csv",
+      "CSV/Benign_Final/BenignTraffic.pcap.csv"
     ],
     "tree": {
       "raw": {
@@ -774,13 +774,50 @@
     ],
     "files_with_different_columns": [],
     "rows_sampled": 198218,
+    "label_values_sampled": {
+      "DDoS-ICMP_Flood": 20000,
+      "Mirai-greeth_flood": 20000,
+      "Mirai-greip_flood": 20000,
+      "DDoS-ICMP_Fragmentation": 15000,
+      "DDoS-RSTFINFLOOD": 15000,
+      "DDoS-TCP_Flood": 15000,
+      "DDoS-UDP_Flood": 15000,
+      "DDoS-ACK_Fragmentation": 10000,
+      "DDoS-PSHACK_FLOOD": 10000,
+      "DDoS-SYN_Flood": 10000,
+      "DDoS-SynonymousIP_Flood": 10000,
+      "DDoS-UDP_Fragmentation": 10000,
+      "DoS-TCP_Flood": 10000,
+      "DoS-UDP_Flood": 10000,
+      "DoS-SYN_Flood": 5000,
+      "Backdoor_Malware": 3218
+    },
+    "label_map_sampled": {
+      "Backdoor_Malware": "Web",
+      "DDoS-ACK_Fragmentation": "DDoS",
+      "DDoS-ICMP_Flood": "DDoS",
+      "DDoS-ICMP_Fragmentation": "DDoS",
+      "DDoS-PSHACK_FLOOD": "DDoS",
+      "DDoS-RSTFINFLOOD": "DDoS",
+      "DDoS-SYN_Flood": "DDoS",
+      "DDoS-SynonymousIP_Flood": "DDoS",
+      "DDoS-TCP_Flood": "DDoS",
+      "DDoS-UDP_Flood": "DDoS",
+      "DDoS-UDP_Fragmentation": "DDoS",
+      "DoS-SYN_Flood": "DoS",
+      "DoS-TCP_Flood": "DoS",
+      "DoS-UDP_Flood": "DoS",
+      "Mirai-greeth_flood": "Mirai",
+      "Mirai-greip_flood": "Mirai"
+    },
     "identifier_columns_found": [],
     "configured_identifiers_absent": [],
     "drop_columns_absent": [],
     "categorical_absent": [],
     "non_numeric_columns": [],
     "checks": {
-      "label_column_present": false
+      "label_from_path_ok": true,
+      "all_sampled_labels_mapped": true
     }
   },
   "ciciomt2024": {
@@ -911,7 +948,7 @@
     "categorical_absent": [],
     "non_numeric_columns": [],
     "checks": {
-      "label_from_filename_ok": true,
+      "label_from_path_ok": true,
       "all_sampled_labels_mapped": true
     }
   },
@@ -920,10 +957,10 @@
     "gb_matched": 3.372,
     "first_files": [
       "Processed_datasets/Processed_Network_dataset/Network_dataset_1.csv",
-      "Processed_datasets/Processed_Network_dataset/Network_dataset_10.csv",
-      "Processed_datasets/Processed_Network_dataset/Network_dataset_11.csv",
-      "Processed_datasets/Processed_Network_dataset/Network_dataset_12.csv",
-      "Processed_datasets/Processed_Network_dataset/Network_dataset_13.csv"
+      "Processed_datasets/Processed_Network_dataset/Network_dataset_2.csv",
+      "Processed_datasets/Processed_Network_dataset/Network_dataset_3.csv",
+      "Processed_datasets/Processed_Network_dataset/Network_dataset_4.csv",
+      "Processed_datasets/Processed_Network_dataset/Network_dataset_5.csv"
     ],
     "tree": {
       "raw": {
@@ -1130,11 +1167,11 @@
     },
     "label_map_sampled": {
       "normal": "BENIGN",
+      "scanning": "Scanning",
       "dos": "DoS",
       "injection": "Injection",
       "ddos": "DDoS",
       "password": "Password",
-      "scanning": "Scanning",
       "xss": "XSS",
       "backdoor": "Backdoor"
     },
@@ -1154,7 +1191,9 @@
       "src_port",
       "ts"
     ],
-    "configured_identifiers_absent": [],
+    "configured_identifiers_absent": [
+      "uid"
+    ],
     "drop_columns_absent": [],
     "categorical_absent": [],
     "non_numeric_columns": [
@@ -1718,7 +1757,352 @@
     }
   },
   "edge_iiotset": {
-    "error": "KeyError: 'from_filename'"
+    "files_matched": 26,
+    "gb_matched": 9.037,
+    "first_files": [
+      "Backdoor_attack.csv",
+      "DDoS_HTTP_Flood_attack.csv",
+      "DDoS_ICMP_Flood_attack.csv",
+      "DDoS_TCP_SYN_Flood_attack.csv",
+      "DDoS_UDP_Flood_attack.csv"
+    ],
+    "tree": {
+      "raw": {
+        "./*.csv": {
+          "files": 26,
+          "gb": 9.037
+        },
+        "./*.json": {
+          "files": 1,
+          "gb": 0.0
+        }
+      },
+      "interim": {}
+    },
+    "columns": [
+      "frame.time",
+      "ip.src_host",
+      "ip.dst_host",
+      "arp.dst.proto_ipv4",
+      "arp.opcode",
+      "arp.hw.size",
+      "arp.src.proto_ipv4",
+      "icmp.checksum",
+      "icmp.seq_le",
+      "icmp.transmit_timestamp",
+      "icmp.unused",
+      "http.file_data",
+      "http.content_length",
+      "http.request.uri.query",
+      "http.request.method",
+      "http.referer",
+      "http.request.full_uri",
+      "http.request.version",
+      "http.response",
+      "http.tls_port",
+      "tcp.ack",
+      "tcp.ack_raw",
+      "tcp.checksum",
+      "tcp.connection.fin",
+      "tcp.connection.rst",
+      "tcp.connection.syn",
+      "tcp.connection.synack",
+      "tcp.dstport",
+      "tcp.flags",
+      "tcp.flags.ack",
+      "tcp.len",
+      "tcp.options",
+      "tcp.payload",
+      "tcp.seq",
+      "tcp.srcport",
+      "udp.port",
+      "udp.stream",
+      "udp.time_delta",
+      "dns.qry.name",
+      "dns.qry.name.len",
+      "dns.qry.qu",
+      "dns.qry.type",
+      "dns.retransmission",
+      "dns.retransmit_request",
+      "dns.retransmit_request_in",
+      "mqtt.conack.flags",
+      "mqtt.conflag.cleansess",
+      "mqtt.conflags",
+      "mqtt.hdrflags",
+      "mqtt.len",
+      "mqtt.msg_decoded_as",
+      "mqtt.msg",
+      "mqtt.msgtype",
+      "mqtt.proto_len",
+      "mqtt.protoname",
+      "mqtt.topic",
+      "mqtt.topic_len",
+      "mqtt.ver",
+      "mbtcp.len",
+      "mbtcp.trans_id",
+      "mbtcp.unit_id",
+      "Attack_label",
+      "Attack_type"
+    ],
+    "files_with_different_columns": [],
+    "rows_sampled": 122230,
+    "identifier_columns_found": [],
+    "configured_identifiers_absent": [],
+    "drop_columns_absent": [],
+    "categorical_absent": [],
+    "non_numeric_columns": [
+      {
+        "column": "frame.time",
+        "numeric_share": 0.022,
+        "examples": [
+          "192.168.0.128",
+          "192.168.0.101",
+          "192.168.0.1",
+          "192.168.7.62",
+          "192.168.7.55"
+        ]
+      },
+      {
+        "column": "ip.src_host",
+        "numeric_share": 0.035,
+        "examples": [
+          "192.168.0.128",
+          "192.168.0.170",
+          "192.168.0.101",
+          "192.168.7.55",
+          "192.168.7.62"
+        ]
+      },
+      {
+        "column": "ip.dst_host",
+        "numeric_share": 0.12,
+        "examples": [
+          "192.168.0.128",
+          "192.168.0.170",
+          "192.168.0.101",
+          "192.168.7.55",
+          "192.168.6.100"
+        ]
+      },
+      {
+        "column": "arp.dst.proto_ipv4",
+        "numeric_share": 0.989,
+        "examples": [
+          "192.168.0.128",
+          "192.168.0.147",
+          "192.168.0.170",
+          "192.168.0.1",
+          "192.168.0.101"
+        ]
+      },
+      {
+        "column": "arp.src.proto_ipv4",
+        "numeric_share": 0.989,
+        "examples": [
+          "192.168.0.1",
+          "192.168.0.128",
+          "192.168.0.170",
+          "192.168.0.101",
+          "192.168.4.1"
+        ]
+      },
+      {
+        "column": "icmp.checksum",
+        "numeric_share": 0.954,
+        "examples": [
+          "0x000017e4",
+          "0x000035e7",
+          "0x000069ea",
+          "0x00000fe4",
+          "0x0000d1e9"
+        ]
+      },
+      {
+        "column": "http.file_data",
+        "numeric_share": 0.967,
+        "examples": [
+          "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\\n<html><head>\\n<title>404 Not Found</title>\\n</head><body>\\n<h1>Not Found</h1>\\n<p>The requested URL was not found on this server.</p>\\n<hr>\\n<address>Apache/2.4.38 (Raspbian) Server at 192.168.0.128 Port 80</address>\\n</body></html>\\n",
+          "<!--#include virtual=\"/index.jsp\"-->",
+          "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\\n<html><head>\\n<title>405 Method Not Allowed</title>\\n</head><body>\\n<h1>Method Not Allowed</h1>\\n<p>The requested method TRACE is not allowed for this URL.</p>\\n<hr>\\n<address>Apache/2.4.38 (Raspbian) Server at 192.168.0.128 Port 80</address>\\n</body></html>\\n",
+          "username=admin&password=00&Login=Login",
+          "username=admin&password=0&Login=Login"
+        ]
+      },
+      {
+        "column": "http.request.method",
+        "numeric_share": 0.971,
+        "examples": [
+          "GET",
+          "POST",
+          "TRACE",
+          "OPTIONS",
+          "PUT"
+        ]
+      },
+      {
+        "column": "http.request.full_uri",
+        "numeric_share": 0.971,
+        "examples": [
+          "http://192.168.0.128/dvwa/vulnerabilities/",
+          "http://192.168.0.128/DVWA/login.php",
+          "http://192.168.0.128/DVWA/hackable/uploads/hack.php",
+          "http://192.168.0.128/DVWA/",
+          "http://192.168.0.128/DVWA"
+        ]
+      },
+      {
+        "column": "http.request.version",
+        "numeric_share": 0.971,
+        "examples": [
+          "HTTP/1.1",
+          "HTTP/1.0",
+          "0x0000511a",
+          "> HTTP/1.1",
+          "script>alert(1)/script><\\\" HTTP/1.1"
+        ]
+      },
+      {
+        "column": "tcp.ack_raw",
+        "numeric_share": 0.978,
+        "examples": [
+          "0x000067b1",
+          "0x000067bc",
+          "0x00005bf3",
+          "0x00002eb9",
+          "0x0000015c"
+        ]
+      },
+      {
+        "column": "tcp.checksum",
+        "numeric_share": 0.237,
+        "examples": [
+          "0x00003274",
+          "0x00004b65",
+          "0x0000003b",
+          "0x000054d2",
+          "0x0000c983"
+        ]
+      },
+      {
+        "column": "tcp.dstport",
+        "numeric_share": 0.978,
+        "examples": [
+          "0x00000010",
+          "0x00000018",
+          "0x00000011",
+          "0x00000012",
+          "0x00000002"
+        ]
+      },
+      {
+        "column": "tcp.flags",
+        "numeric_share": 0.237,
+        "examples": [
+          "0x00000010",
+          "0x00000018",
+          "0x00000002",
+          "0x00000004",
+          "0x00000011"
+        ]
+      },
+      {
+        "column": "tcp.options",
+        "numeric_share": 0.617,
+        "examples": [
+          "020405b40101040201030307",
+          "020405b40103030801010402",
+          "0101080a408406524a053073",
+          "0101080a40841c784a0546a6",
+          "0101080a1dd4f4bc0aa493c2"
+        ]
+      },
+      {
+        "column": "tcp.payload",
+        "numeric_share": 0.8,
+        "examples": [
+          "100c00044d5154540402003c0000",
+          "e000",
+          "474554202f647677612f76756c6e65726162696c69746965732f20485454502f312e310d0a486f73743a203139322e3136382e302e3132380d0a557365722d4167656e743a202d2d726576657273652d636865636b0d0a4163636570743a202a2f2a0d0a0d0a",
+          "3027001854656d70657261747572655f616e645f48756d696469747932342e37392037362e36320d0a",
+          "3017000c466c616d655f53656e736f724e6f20466972650d0a"
+        ]
+      },
+      {
+        "column": "dns.qry.name",
+        "numeric_share": 0.983,
+        "examples": [
+          "3.debian.pool.ntp.org",
+          "0.debian.pool.ntp.org",
+          "1.debian.pool.ntp.org",
+          "2.debian.pool.ntp.org"
+        ]
+      },
+      {
+        "column": "mqtt.conack.flags",
+        "numeric_share": 0.975,
+        "examples": [
+          "0x00000000"
+        ]
+      },
+      {
+        "column": "mqtt.conflags",
+        "numeric_share": 0.977,
+        "examples": [
+          "0x00000002"
+        ]
+      },
+      {
+        "column": "mqtt.hdrflags",
+        "numeric_share": 0.909,
+        "examples": [
+          "0x00000010",
+          "0x00000020",
+          "0x00000030",
+          "0x000000e0"
+        ]
+      },
+      {
+        "column": "mqtt.msg",
+        "numeric_share": 0.975,
+        "examples": [
+          "32342e37392037362e36320d0a",
+          "4e6f20466972650d0a",
+          "41444330206c6576656c206973203439360a",
+          "536f696c204d6f6973747572653a3938250d0a",
+          "32342e36382037362e34320d0a"
+        ]
+      },
+      {
+        "column": "mqtt.protoname",
+        "numeric_share": 0.975,
+        "examples": [
+          "MQTT"
+        ]
+      },
+      {
+        "column": "mqtt.topic",
+        "numeric_share": 0.975,
+        "examples": [
+          "Temperature_and_Humidity",
+          "IR_Receiver",
+          "Sound_Sensor",
+          "Distance",
+          "Flame_Sensor"
+        ]
+      },
+      {
+        "column": "Attack_type",
+        "numeric_share": 0.0,
+        "examples": [
+          "Normal",
+          "Ransomware",
+          "DDoS_ICMP",
+          "Backdoor",
+          "DDoS_TCP"
+        ]
+      }
+    ],
+    "checks": {}
   },
   "ids_adapt_processed_legacy": {
     "cicids2017.parquet": {
