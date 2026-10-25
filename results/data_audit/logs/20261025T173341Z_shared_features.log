@@ -1,0 +1,3 @@
+command: scripts/preprocess.py --shared-features
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/data_audit/logs/20261025T173341Z_shared_features.log
+shared CIC features: 82 (frozen); only in 2017: []; only in 2018: []
