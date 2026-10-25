@@ -24,7 +24,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import quote, unquote, urljoin, urlparse
+from urllib.parse import parse_qs, quote, unquote, urljoin, urlparse
 
 import requests
 import yaml
@@ -148,8 +148,17 @@ def list_s3(bucket, region, prefix, include=None, exclude=None):
         token = root.findtext("s3:NextContinuationToken", namespaces=ns)
 
 
+def url_name(u):
+    """File name for a URL; download.php?file=CSV%2FCSV.zip style links use the file parameter."""
+    q = parse_qs(urlparse(u).query)
+    for key in ("file", "filename", "f"):
+        if q.get(key):
+            return Path(q[key][0]).name
+    return unquote(Path(urlparse(u).path).name)
+
+
 def list_urls(urls):
-    return [(unquote(Path(urlparse(u).path).name), u, None) for u in urls]
+    return [(url_name(u), u, None) for u in urls]
 
 
 # ---------------------------------------------------------------- the fetcher
@@ -229,6 +238,9 @@ class Fetcher:
             elif have and r.status_code == 416:
                 return have
             r.raise_for_status()
+            if "text/html" in r.headers.get("Content-Type", "") and not url_name(url).endswith((".html", ".htm")):
+                raise IOError(f"got a web page instead of a file for {url}; the link may need you to "
+                              "be signed in, so open it in your browser and copy the link again")
             total = expected or (int(r.headers["Content-Length"]) + have if "Content-Length" in r.headers else None)
             done, last = have, -1
             with open(part, "ab" if have else "wb") as f:

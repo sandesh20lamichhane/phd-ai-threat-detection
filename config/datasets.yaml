@@ -90,13 +90,11 @@ datasets:
   - id: ciciot2023
     name: CIC-IoT2023 (CSV features)
     objectives: [1, 3]
-    approx_gb: 13           # ~2.7 GB zipped, ~13 GB of part CSVs
+    approx_gb: 13           # CSV.zip; kept zipped, extracted at preprocessing time
     enabled: true
     sources:
-      - type: http_index
-        url: gated:ciciot2023_csv_folder
-        include: '(?i)\.(csv|zip)$'
-        exclude: '(?i)pcap'
+      - type: urls          # CSV/CSV.zip and CSV/README.pdf from cicresearch.ca after the UNB form
+        urls: gated:ciciot2023_urls
     register: https://www.unb.ca/cic/datasets/iotdataset-2023.html
 
   - id: lanl_cyber1
@@ -118,6 +116,8 @@ datasets:
     approx_gb: null
     enabled: true
     sources:
+      - type: urls          # direct download links copied from the cicresearch.ca browse page
+        urls: gated:ciciomt2024_urls
       - type: http_index
         url: gated:ciciomt2024_folder
         include: '(?i)/csv/.*\.csv$'
