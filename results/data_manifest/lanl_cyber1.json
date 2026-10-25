@@ -1,0 +1,43 @@
+{
+  "dataset": "lanl_cyber1",
+  "files": {
+    "auth.txt.gz": {
+      "bytes": 7626505158,
+      "method": "urls",
+      "retrieved_utc": "2026-10-25T08:26:51Z",
+      "sha256": "9c6b0cc261b0edd19324f6fd1839743224938a7f644ed202ca70bd70a89bf672",
+      "source": "https://csr.lanl.gov/data-fence/1792938735/eEM0IJyYOwM8X2ydlID2loA6iyo=/cyber1/auth.txt.gz"
+    },
+    "dns.txt.gz": {
+      "bytes": 185104940,
+      "method": "urls",
+      "retrieved_utc": "2026-10-25T06:35:13Z",
+      "sha256": "3e1cb718baa6be7af7bd376324285be45d99ee2563d22bc4abf023572120cab9",
+      "source": "https://csr.lanl.gov/data-fence/1792938735/eEM0IJyYOwM8X2ydlID2loA6iyo=/cyber1/dns.txt.gz"
+    },
+    "flows.txt.gz": {
+      "bytes": 1083479090,
+      "method": "urls",
+      "retrieved_utc": "2026-10-25T06:46:41Z",
+      "sha256": "60e0cfeae74f820e7dad42a06291941bd329b547439f12705435927278082f98",
+      "source": "https://csr.lanl.gov/data-fence/1792938735/eEM0IJyYOwM8X2ydlID2loA6iyo=/cyber1/flows.txt.gz"
+    },
+    "proc.txt.gz": {
+      "bytes": 2358611874,
+      "method": "urls",
+      "retrieved_utc": "2026-10-25T07:10:49Z",
+      "sha256": "af82f47ebf3ffc6dc392a01f890caa6157a5c7581a2cf0b1821801347f293ae4",
+      "source": "https://csr.lanl.gov/data-fence/1792938735/eEM0IJyYOwM8X2ydlID2loA6iyo=/cyber1/proc.txt.gz"
+    },
+    "redteam.txt.gz": {
+      "bytes": 4846,
+      "method": "urls",
+      "retrieved_utc": "2026-10-25T06:33:21Z",
+      "sha256": "606635837c684ad11e464075ecf97bc5df325ff7d7f64614d2d8c8af18051669",
+      "source": "https://csr.lanl.gov/data-fence/1792938735/eEM0IJyYOwM8X2ydlID2loA6iyo=/cyber1/redteam.txt.gz"
+    }
+  },
+  "name": "LANL Comprehensive, Multi-Source Cyber-Security Events",
+  "total_bytes": 11253705908,
+  "updated_utc": "2026-10-25T08:28:27Z"
+}
