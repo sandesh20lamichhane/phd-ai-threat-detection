@@ -95,6 +95,10 @@ datasets:
     sources:
       - type: urls          # CSV/CSV.zip and CSV/README.pdf from cicresearch.ca after the UNB form
         urls: gated:ciciot2023_urls
+      - type: manual        # fallback: CSV.zip downloaded in the browser and dropped into Drive
+        instructions: >-
+          Download CSV/CSV.zip and CSV/README.pdf from the cicresearch.ca browse page and drag them
+          into this dataset's Drive folder.
     register: https://www.unb.ca/cic/datasets/iotdataset-2023.html
 
   - id: lanl_cyber1
