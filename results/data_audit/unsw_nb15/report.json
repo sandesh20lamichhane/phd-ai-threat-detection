@@ -1,0 +1,296 @@
+{
+  "dataset": "unsw_nb15",
+  "role": "external_target",
+  "protocol_version": "1.0",
+  "output_version": "v1",
+  "run": {
+    "utc": "2026-10-25T14:35:41Z",
+    "git_commit": "6ed13c0816c1d5ab9e7ad6d6483837a08344e1a4-dirty",
+    "python": "3.13.16",
+    "packages": {
+      "numpy": "2.1.3",
+      "pandas": "2.2.3",
+      "pyarrow": "23.0.1",
+      "scikit-learn": "1.6.1",
+      "scipy": "1.16.3",
+      "PyYAML": "6.0.3"
+    },
+    "config": "config/preprocessing.yaml",
+    "config_sha256": "e64c492f2a4c4e091646ce627f28ddca6b968674255f1021b2abc5d777f45510"
+  },
+  "max_rows": null,
+  "inputs": [
+    {
+      "file": "CSV Files/UNSW-NB15_1.csv",
+      "size": 168979718,
+      "rows": 700001,
+      "bytes_read": 168979718,
+      "sha256": "7d851bbeabd27894ce39c8e78835c73341fc946652fb7743b9eff193b55eb511",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV Files/UNSW-NB15_2.csv",
+      "size": 165221021,
+      "rows": 700001,
+      "bytes_read": 165221021,
+      "sha256": "6130ad02873cc6069ae695cf2844f2e8c2e9a9a1b7532dd82ab8f202757cacf8",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV Files/UNSW-NB15_3.csv",
+      "size": 154588103,
+      "rows": 700001,
+      "bytes_read": 154588103,
+      "sha256": "ae990a96c3dfcd425ce2801aadb1727a34d5e0ae6d8215dbcdae60dedfaef640",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    },
+    {
+      "file": "CSV Files/UNSW-NB15_4.csv",
+      "size": 97588754,
+      "rows": 440044,
+      "bytes_read": 97588754,
+      "sha256": "cdf563692d51d405541dd659ddcdad9fa01f001f05fe9fc4b67f00ca12fbc96a",
+      "manifest_note": "extracted from a zip in data/raw (zip checksummed in the manifest)"
+    }
+  ],
+  "schema": {
+    "label_map": {
+      "": "BENIGN",
+      "Analysis": "Analysis",
+      "Backdoor": "Backdoor",
+      "Backdoors": "Backdoor",
+      "DoS": "DoS",
+      "Exploits": "Exploits",
+      "Fuzzers": "Fuzzers",
+      "Generic": "Generic",
+      "Reconnaissance": "Reconnaissance",
+      "Shellcode": "Shellcode",
+      "Worms": "Worms"
+    },
+    "removed_columns": {
+      "srcip": "identifier (kept as metadata where configured)",
+      "sport": "identifier (kept as metadata where configured)",
+      "dstip": "identifier (kept as metadata where configured)",
+      "dsport": "identifier (kept as metadata where configured)",
+      "stcpb": "excluded by protocol (label-derived, free text or meaningless)",
+      "dtcpb": "excluded by protocol (label-derived, free text or meaningless)",
+      "Stime": "identifier (kept as metadata where configured)",
+      "Ltime": "identifier (kept as metadata where configured)",
+      "attack_cat": "label",
+      "Label": "label"
+    },
+    "feature_columns": [
+      "proto",
+      "state",
+      "dur",
+      "sbytes",
+      "dbytes",
+      "sttl",
+      "dttl",
+      "sloss",
+      "dloss",
+      "service",
+      "Sload",
+      "Dload",
+      "Spkts",
+      "Dpkts",
+      "swin",
+      "dwin",
+      "smeansz",
+      "dmeansz",
+      "trans_depth",
+      "res_bdy_len",
+      "Sjit",
+      "Djit",
+      "Sintpkt",
+      "Dintpkt",
+      "tcprtt",
+      "synack",
+      "ackdat",
+      "is_sm_ips_ports",
+      "ct_state_ttl",
+      "ct_flw_http_mthd",
+      "is_ftp_login",
+      "ct_ftp_cmd",
+      "ct_srv_src",
+      "ct_srv_dst",
+      "ct_dst_ltm",
+      "ct_src_ltm",
+      "ct_src_dport_ltm",
+      "ct_dst_sport_ltm",
+      "ct_dst_src_ltm"
+    ],
+    "unparseable_values_to_nan": {},
+    "inf_values_to_nan": {},
+    "float32_overflow_to_nan": {},
+    "timestamps_unparsed": 0,
+    "binary_label_disagreements": 0
+  },
+  "counts": {
+    "rows_read": 2540047,
+    "all_nan_rows_dropped": 0,
+    "exact_duplicates_removed": 512769,
+    "rows_out": 2027278,
+    "attempted_rows": 0,
+    "attempted_rows_identical_to_a_benign_flow": 0,
+    "conflicting_label_feature_vectors": 2579,
+    "conflict_rows": 13007,
+    "conflicting_binary_feature_vectors": 453,
+    "binary_conflict_rows": 907,
+    "rows_in_near_duplicate_groups": 20500,
+    "hash_note": "64-bit row hashes; expected collisions below 1 per 10^3 datasets of 10^8 rows"
+  },
+  "classes": {
+    "raw_in": {
+      "": 2218764,
+      "Exploits": 44525,
+      "Reconnaissance": 13987,
+      "DoS": 16353,
+      "Generic": 215481,
+      "Shellcode": 1511,
+      "Fuzzers": 24246,
+      "Worms": 174,
+      "Backdoors": 534,
+      "Analysis": 2677,
+      "Backdoor": 1795
+    },
+    "family_in": {
+      "BENIGN": 2218764,
+      "Exploits": 44525,
+      "Reconnaissance": 13987,
+      "DoS": 16353,
+      "Generic": 215481,
+      "Shellcode": 1511,
+      "Fuzzers": 24246,
+      "Worms": 174,
+      "Backdoor": 2329,
+      "Analysis": 2677
+    },
+    "family_out": {
+      "BENIGN": 1938854,
+      "Exploits": 27436,
+      "Reconnaissance": 10118,
+      "DoS": 5502,
+      "Generic": 18860,
+      "Shellcode": 1458,
+      "Fuzzers": 20965,
+      "Worms": 171,
+      "Backdoor": 1881,
+      "Analysis": 2033
+    },
+    "duplicates_removed_by_family": {
+      "BENIGN": 279910,
+      "Exploits": 17089,
+      "Reconnaissance": 3869,
+      "Fuzzers": 3281,
+      "DoS": 10851,
+      "Generic": 196621,
+      "Backdoor": 448,
+      "Analysis": 644,
+      "Shellcode": 53,
+      "Worms": 3
+    }
+  },
+  "nan_counts_after_cleaning": {
+    "service": 1159391,
+    "ct_flw_http_mthd": 908684,
+    "is_ftp_login": 989246,
+    "ct_ftp_cmd": 989246
+  },
+  "multiclass_families": {
+    "Analysis": {
+      "flows": 2033,
+      "blocks": 84,
+      "in_multiclass_task": true
+    },
+    "BENIGN": {
+      "flows": 1938854,
+      "blocks": 293,
+      "in_multiclass_task": true
+    },
+    "Backdoor": {
+      "flows": 1881,
+      "blocks": 156,
+      "in_multiclass_task": true
+    },
+    "DoS": {
+      "flows": 5502,
+      "blocks": 165,
+      "in_multiclass_task": true
+    },
+    "Exploits": {
+      "flows": 27436,
+      "blocks": 165,
+      "in_multiclass_task": true
+    },
+    "Fuzzers": {
+      "flows": 20965,
+      "blocks": 164,
+      "in_multiclass_task": true
+    },
+    "Generic": {
+      "flows": 18860,
+      "blocks": 165,
+      "in_multiclass_task": true
+    },
+    "Reconnaissance": {
+      "flows": 10118,
+      "blocks": 165,
+      "in_multiclass_task": true
+    },
+    "Shellcode": {
+      "flows": 1458,
+      "blocks": 163,
+      "in_multiclass_task": true
+    },
+    "Worms": {
+      "flows": 171,
+      "blocks": 110,
+      "in_multiclass_task": true
+    }
+  },
+  "splits": {
+    "external": {
+      "type": "external",
+      "spec": {
+        "type": "external"
+      },
+      "seed": 11,
+      "block_seconds": 300,
+      "rows_per_partition": {
+        "external": 2027278
+      },
+      "family_by_partition": {
+        "external": {
+          "Analysis": 2033,
+          "BENIGN": 1938854,
+          "Backdoor": 1881,
+          "DoS": 5502,
+          "Exploits": 27436,
+          "Fuzzers": 20965,
+          "Generic": 18860,
+          "Reconnaissance": 10118,
+          "Shellcode": 1458,
+          "Worms": 171
+        }
+      },
+      "purged_rows": 0,
+      "diagnostics": {},
+      "integrity": {
+        "identifier_columns_in_features": 0,
+        "pairs": {}
+      },
+      "file": "/content/drive/MyDrive/PhD-AI-Cyber/data/splits/unsw_nb15/external.parquet",
+      "sha256": "0c982664c7170bcd47986a0c5e9ff927703f679c6e9879eca9532bc8e49a1941"
+    }
+  },
+  "outputs": {
+    "dir": "/content/drive/MyDrive/PhD-AI-Cyber/data/processed/unsw_nb15/v1",
+    "parquet_sha256": {
+      "part-00000.parquet": "856386ceb6dcacf949be5c8794f047f1e2fefe7ec1b87855270e28de7692bc5b",
+      "part-00001.parquet": "72306fb8c8158f16a8766915d844278196ff53d6b05a95c605d30733e526e6e7",
+      "part-00002.parquet": "834ef0622856afb316722aa93f08d2c6f3f29d8621a8d88342eaf08e9acacece",
+      "part-00003.parquet": "30c058d55f3a014a776231b2f00f47f00ba20b72fb04b39be6c70b91ab3688cd"
+    }
+  }
+}

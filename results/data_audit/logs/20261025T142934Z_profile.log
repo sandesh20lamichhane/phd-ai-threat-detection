@@ -1,0 +1,12 @@
+command: scripts/preprocess.py --profile
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/data_audit/logs/20261025T142934Z_profile.log
+profiling cicids2017_improved
+profiling csecicids2018_improved
+profiling unsw_nb15
+profiling ciciot2023
+profiling ciciomt2024
+profiling ton_iot
+profiling nsl_kdd
+profiling lanl_cyber1
+profiling edge_iiotset
+profiling ids_adapt_processed_legacy

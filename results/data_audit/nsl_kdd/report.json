@@ -1,0 +1,311 @@
+{
+  "dataset": "nsl_kdd",
+  "role": "baseline",
+  "protocol_version": "1.0",
+  "output_version": "v1",
+  "run": {
+    "utc": "2026-10-25T14:35:46Z",
+    "git_commit": "6ed13c0816c1d5ab9e7ad6d6483837a08344e1a4-dirty",
+    "python": "3.13.16",
+    "packages": {
+      "numpy": "2.1.3",
+      "pandas": "2.2.3",
+      "pyarrow": "23.0.1",
+      "scikit-learn": "1.6.1",
+      "scipy": "1.16.3",
+      "PyYAML": "6.0.3"
+    },
+    "config": "config/preprocessing.yaml",
+    "config_sha256": "e64c492f2a4c4e091646ce627f28ddca6b968674255f1021b2abc5d777f45510"
+  },
+  "max_rows": null,
+  "inputs": [
+    {
+      "file": "KDDTest+.txt",
+      "size": 3441513,
+      "rows": 22544,
+      "bytes_read": 3441513,
+      "sha256": "fa46b0935342616aa83b7c2578db355b6a7aaabbc492248172c7a1e8b7ab8f84",
+      "manifest_sha256_match": true
+    },
+    {
+      "file": "KDDTrain+.txt",
+      "size": 19109424,
+      "rows": 125973,
+      "bytes_read": 19109424,
+      "sha256": "1b86d2f957b33082081bba410fe129b475efebcc13c9014c3f447c8271aadf95",
+      "manifest_sha256_match": true
+    }
+  ],
+  "schema": {
+    "label_map": {
+      "apache2": "DoS",
+      "back": "DoS",
+      "buffer_overflow": "U2R",
+      "ftp_write": "R2L",
+      "guess_passwd": "R2L",
+      "httptunnel": "U2R",
+      "imap": "R2L",
+      "ipsweep": "Probe",
+      "land": "DoS",
+      "loadmodule": "U2R",
+      "mailbomb": "DoS",
+      "mscan": "Probe",
+      "multihop": "R2L",
+      "named": "R2L",
+      "neptune": "DoS",
+      "nmap": "Probe",
+      "normal": "BENIGN",
+      "perl": "U2R",
+      "phf": "R2L",
+      "pod": "DoS",
+      "portsweep": "Probe",
+      "processtable": "DoS",
+      "ps": "U2R",
+      "rootkit": "U2R",
+      "saint": "Probe",
+      "satan": "Probe",
+      "sendmail": "R2L",
+      "smurf": "DoS",
+      "snmpgetattack": "R2L",
+      "snmpguess": "R2L",
+      "spy": "R2L",
+      "sqlattack": "U2R",
+      "teardrop": "DoS",
+      "udpstorm": "DoS",
+      "warezclient": "R2L",
+      "warezmaster": "R2L",
+      "worm": "R2L",
+      "xlock": "R2L",
+      "xsnoop": "R2L",
+      "xterm": "U2R"
+    },
+    "removed_columns": {
+      "attack": "label",
+      "difficulty": "excluded by protocol (label-derived, free text or meaningless)"
+    },
+    "feature_columns": [
+      "duration",
+      "protocol_type",
+      "service",
+      "flag",
+      "src_bytes",
+      "dst_bytes",
+      "land",
+      "wrong_fragment",
+      "urgent",
+      "hot",
+      "num_failed_logins",
+      "logged_in",
+      "num_compromised",
+      "root_shell",
+      "su_attempted",
+      "num_root",
+      "num_file_creations",
+      "num_shells",
+      "num_access_files",
+      "num_outbound_cmds",
+      "is_host_login",
+      "is_guest_login",
+      "count",
+      "srv_count",
+      "serror_rate",
+      "srv_serror_rate",
+      "rerror_rate",
+      "srv_rerror_rate",
+      "same_srv_rate",
+      "diff_srv_rate",
+      "srv_diff_host_rate",
+      "dst_host_count",
+      "dst_host_srv_count",
+      "dst_host_same_srv_rate",
+      "dst_host_diff_srv_rate",
+      "dst_host_same_src_port_rate",
+      "dst_host_srv_diff_host_rate",
+      "dst_host_serror_rate",
+      "dst_host_srv_serror_rate",
+      "dst_host_rerror_rate",
+      "dst_host_srv_rerror_rate"
+    ],
+    "unparseable_values_to_nan": {},
+    "inf_values_to_nan": {},
+    "float32_overflow_to_nan": {},
+    "timestamps_unparsed": 0,
+    "binary_label_disagreements": 0
+  },
+  "counts": {
+    "rows_read": 148517,
+    "all_nan_rows_dropped": 0,
+    "exact_duplicates_removed": 629,
+    "rows_out": 147888,
+    "attempted_rows": 0,
+    "attempted_rows_identical_to_a_benign_flow": 0,
+    "conflicting_label_feature_vectors": 98,
+    "conflict_rows": 196,
+    "conflicting_binary_feature_vectors": 98,
+    "binary_conflict_rows": 196,
+    "rows_in_near_duplicate_groups": 862,
+    "hash_note": "64-bit row hashes; expected collisions below 1 per 10^3 datasets of 10^8 rows"
+  },
+  "classes": {
+    "raw_in": {
+      "neptune": 45871,
+      "normal": 77054,
+      "saint": 319,
+      "mscan": 996,
+      "guess_passwd": 1284,
+      "smurf": 3311,
+      "apache2": 737,
+      "satan": 4368,
+      "buffer_overflow": 50,
+      "back": 1315,
+      "warezmaster": 964,
+      "snmpgetattack": 178,
+      "processtable": 685,
+      "pod": 242,
+      "httptunnel": 133,
+      "nmap": 1566,
+      "ps": 15,
+      "snmpguess": 331,
+      "ipsweep": 3740,
+      "mailbomb": 293,
+      "portsweep": 3088,
+      "multihop": 25,
+      "named": 17,
+      "sendmail": 14,
+      "loadmodule": 11,
+      "xterm": 13,
+      "worm": 2,
+      "teardrop": 904,
+      "rootkit": 23,
+      "xlock": 9,
+      "perl": 5,
+      "land": 25,
+      "xsnoop": 4,
+      "sqlattack": 2,
+      "ftp_write": 11,
+      "imap": 12,
+      "udpstorm": 2,
+      "phf": 6,
+      "warezclient": 890,
+      "spy": 2
+    },
+    "family_in": {
+      "DoS": 53385,
+      "BENIGN": 77054,
+      "Probe": 14077,
+      "R2L": 3749,
+      "U2R": 252
+    },
+    "family_out": {
+      "DoS": 52985,
+      "BENIGN": 76967,
+      "Probe": 13935,
+      "R2L": 3749,
+      "U2R": 252
+    },
+    "duplicates_removed_by_family": {
+      "Probe": 142,
+      "DoS": 400,
+      "BENIGN": 87
+    }
+  },
+  "nan_counts_after_cleaning": {},
+  "multiclass_families": {
+    "BENIGN": {
+      "flows": 76967,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "DoS": {
+      "flows": 52985,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "Probe": {
+      "flows": 13935,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "R2L": {
+      "flows": 3749,
+      "blocks": null,
+      "in_multiclass_task": true
+    },
+    "U2R": {
+      "flows": 252,
+      "blocks": null,
+      "in_multiclass_task": true
+    }
+  },
+  "splits": {
+    "primary": {
+      "type": "official",
+      "spec": {
+        "type": "official",
+        "val_from_train": 0.15
+      },
+      "seed": 11,
+      "block_seconds": 300,
+      "rows_per_partition": {
+        "train": 106545,
+        "test": 22541,
+        "val": 18802
+      },
+      "family_by_partition": {
+        "test": {
+          "BENIGN": 9711,
+          "DoS": 7458,
+          "Probe": 2418,
+          "R2L": 2754,
+          "U2R": 200
+        },
+        "train": {
+          "BENIGN": 57168,
+          "DoS": 38698,
+          "Probe": 9789,
+          "R2L": 846,
+          "U2R": 44
+        },
+        "val": {
+          "BENIGN": 10088,
+          "DoS": 6829,
+          "Probe": 1728,
+          "R2L": 149,
+          "U2R": 8
+        }
+      },
+      "purged_rows": 0,
+      "diagnostics": {},
+      "integrity": {
+        "identifier_columns_in_features": 0,
+        "pairs": {
+          "train->val": {
+            "exact_feature_and_label_overlap": 0,
+            "same_features_other_label_share": 0.0,
+            "near_duplicate_share": 0.005318583129454314
+          },
+          "train->test": {
+            "exact_feature_and_label_overlap": 0,
+            "same_features_other_label_share": 0.0016414533516702896,
+            "near_duplicate_share": 0.0017745441639678808
+          },
+          "val->test": {
+            "exact_feature_and_label_overlap": 0,
+            "same_features_other_label_share": 0.00017745441639678807,
+            "near_duplicate_share": 0.00017745441639678807
+          }
+        }
+      },
+      "file": "/content/drive/MyDrive/PhD-AI-Cyber/data/splits/nsl_kdd/primary.parquet",
+      "sha256": "c671dcb078124daa47a3003848902e354d42176f498dd0d17cf6676fbf23c047"
+    }
+  },
+  "outputs": {
+    "dir": "/content/drive/MyDrive/PhD-AI-Cyber/data/processed/nsl_kdd/v1",
+    "parquet_sha256": {
+      "part-00000.parquet": "e59762c9fcb8630c3a0319f0ea09c7853e508d762c4b251dcc51024c8a49eecd",
+      "part-00001.parquet": "44376e273bc2f0d6cff63b80b2f85505c244cb127ee59a705aeb2b880f378c35"
+    }
+  }
+}

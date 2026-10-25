@@ -1,0 +1,1958 @@
+{
+  "cicids2017_improved": {
+    "files_matched": 5,
+    "gb_matched": 1.152,
+    "first_files": [
+      "monday.csv",
+      "tuesday.csv",
+      "wednesday.csv",
+      "thursday.csv",
+      "friday.csv"
+    ],
+    "tree": {
+      "raw": {
+        "./*.csv": {
+          "files": 5,
+          "gb": 1.152
+        },
+        "./*.json": {
+          "files": 1,
+          "gb": 0.0
+        }
+      },
+      "interim": {}
+    },
+    "columns": [
+      "id",
+      "Flow ID",
+      "Src IP",
+      "Src Port",
+      "Dst IP",
+      "Dst Port",
+      "Protocol",
+      "Timestamp",
+      "Flow Duration",
+      "Total Fwd Packet",
+      "Total Bwd packets",
+      "Total Length of Fwd Packet",
+      "Total Length of Bwd Packet",
+      "Fwd Packet Length Max",
+      "Fwd Packet Length Min",
+      "Fwd Packet Length Mean",
+      "Fwd Packet Length Std",
+      "Bwd Packet Length Max",
+      "Bwd Packet Length Min",
+      "Bwd Packet Length Mean",
+      "Bwd Packet Length Std",
+      "Flow Bytes/s",
+      "Flow Packets/s",
+      "Flow IAT Mean",
+      "Flow IAT Std",
+      "Flow IAT Max",
+      "Flow IAT Min",
+      "Fwd IAT Total",
+      "Fwd IAT Mean",
+      "Fwd IAT Std",
+      "Fwd IAT Max",
+      "Fwd IAT Min",
+      "Bwd IAT Total",
+      "Bwd IAT Mean",
+      "Bwd IAT Std",
+      "Bwd IAT Max",
+      "Bwd IAT Min",
+      "Fwd PSH Flags",
+      "Bwd PSH Flags",
+      "Fwd URG Flags",
+      "Bwd URG Flags",
+      "Fwd RST Flags",
+      "Bwd RST Flags",
+      "Fwd Header Length",
+      "Bwd Header Length",
+      "Fwd Packets/s",
+      "Bwd Packets/s",
+      "Packet Length Min",
+      "Packet Length Max",
+      "Packet Length Mean",
+      "Packet Length Std",
+      "Packet Length Variance",
+      "FIN Flag Count",
+      "SYN Flag Count",
+      "RST Flag Count",
+      "PSH Flag Count",
+      "ACK Flag Count",
+      "URG Flag Count",
+      "CWR Flag Count",
+      "ECE Flag Count",
+      "Down/Up Ratio",
+      "Average Packet Size",
+      "Fwd Segment Size Avg",
+      "Bwd Segment Size Avg",
+      "Fwd Bytes/Bulk Avg",
+      "Fwd Packet/Bulk Avg",
+      "Fwd Bulk Rate Avg",
+      "Bwd Bytes/Bulk Avg",
+      "Bwd Packet/Bulk Avg",
+      "Bwd Bulk Rate Avg",
+      "Subflow Fwd Packets",
+      "Subflow Fwd Bytes",
+      "Subflow Bwd Packets",
+      "Subflow Bwd Bytes",
+      "FWD Init Win Bytes",
+      "Bwd Init Win Bytes",
+      "Fwd Act Data Pkts",
+      "Fwd Seg Size Min",
+      "Active Mean",
+      "Active Std",
+      "Active Max",
+      "Active Min",
+      "Idle Mean",
+      "Idle Std",
+      "Idle Max",
+      "Idle Min",
+      "ICMP Code",
+      "ICMP Type",
+      "Total TCP Flow Time",
+      "Label",
+      "Attempted Category"
+    ],
+    "files_with_different_columns": [],
+    "rows_sampled": 25000,
+    "label_values_sampled": {
+      "BENIGN": 24989,
+      "FTP-Patator": 10,
+      "FTP-Patator - Attempted": 1
+    },
+    "label_map_sampled": {
+      "BENIGN": "BENIGN",
+      "FTP-Patator - Attempted": "Attempted",
+      "FTP-Patator": "BruteForce"
+    },
+    "time_range_sampled": [
+      "2017-07-03 11:56:34.157426834",
+      "2017-07-07 12:41:59.047120810"
+    ],
+    "time_examples": [
+      "2017-07-03 11:56:34.157427",
+      "2017-07-03 11:56:55.428911",
+      "2017-07-03 11:57:21.057686"
+    ],
+    "identifier_columns_found": [
+      "Dst IP",
+      "Dst Port",
+      "Flow ID",
+      "Src IP",
+      "Src Port",
+      "Timestamp",
+      "id"
+    ],
+    "configured_identifiers_absent": [
+      "Source IP",
+      "Source Port",
+      "Destination IP",
+      "Destination Port"
+    ],
+    "drop_columns_absent": [],
+    "categorical_absent": [],
+    "non_numeric_columns": [],
+    "checks": {
+      "label_column_present": true,
+      "all_sampled_labels_mapped": true,
+      "time_column_present": true,
+      "time_parsed_share": 1.0,
+      "duration_column_present": true
+    }
+  },
+  "csecicids2018_improved": {
+    "files_matched": 10,
+    "gb_matched": 36.044,
+    "first_files": [
+      "CSECICIDS2018_improved.zip::Friday-02-03-2018.csv",
+      "CSECICIDS2018_improved.zip::Friday-16-02-2018.csv",
+      "CSECICIDS2018_improved.zip::Friday-23-02-2018.csv",
+      "CSECICIDS2018_improved.zip::Thursday-01-03-2018.csv",
+      "CSECICIDS2018_improved.zip::Thursday-15-02-2018.csv"
+    ],
+    "tree": {
+      "raw": {
+        "./*.json": {
+          "files": 1,
+          "gb": 0.0
+        },
+        "./*.zip": {
+          "files": 1,
+          "gb": 10.427
+        }
+      },
+      "zip_members": {
+        "CSECICIDS2018_improved.zip": {
+          ".": 10
+        }
+      },
+      "interim": {}
+    },
+    "columns": [
+      "id",
+      "Flow ID",
+      "Src IP",
+      "Src Port",
+      "Dst IP",
+      "Dst Port",
+      "Protocol",
+      "Timestamp",
+      "Flow Duration",
+      "Total Fwd Packet",
+      "Total Bwd packets",
+      "Total Length of Fwd Packet",
+      "Total Length of Bwd Packet",
+      "Fwd Packet Length Max",
+      "Fwd Packet Length Min",
+      "Fwd Packet Length Mean",
+      "Fwd Packet Length Std",
+      "Bwd Packet Length Max",
+      "Bwd Packet Length Min",
+      "Bwd Packet Length Mean",
+      "Bwd Packet Length Std",
+      "Flow Bytes/s",
+      "Flow Packets/s",
+      "Flow IAT Mean",
+      "Flow IAT Std",
+      "Flow IAT Max",
+      "Flow IAT Min",
+      "Fwd IAT Total",
+      "Fwd IAT Mean",
+      "Fwd IAT Std",
+      "Fwd IAT Max",
+      "Fwd IAT Min",
+      "Bwd IAT Total",
+      "Bwd IAT Mean",
+      "Bwd IAT Std",
+      "Bwd IAT Max",
+      "Bwd IAT Min",
+      "Fwd PSH Flags",
+      "Bwd PSH Flags",
+      "Fwd URG Flags",
+      "Bwd URG Flags",
+      "Fwd RST Flags",
+      "Bwd RST Flags",
+      "Fwd Header Length",
+      "Bwd Header Length",
+      "Fwd Packets/s",
+      "Bwd Packets/s",
+      "Packet Length Min",
+      "Packet Length Max",
+      "Packet Length Mean",
+      "Packet Length Std",
+      "Packet Length Variance",
+      "FIN Flag Count",
+      "SYN Flag Count",
+      "RST Flag Count",
+      "PSH Flag Count",
+      "ACK Flag Count",
+      "URG Flag Count",
+      "CWR Flag Count",
+      "ECE Flag Count",
+      "Down/Up Ratio",
+      "Average Packet Size",
+      "Fwd Segment Size Avg",
+      "Bwd Segment Size Avg",
+      "Fwd Bytes/Bulk Avg",
+      "Fwd Packet/Bulk Avg",
+      "Fwd Bulk Rate Avg",
+      "Bwd Bytes/Bulk Avg",
+      "Bwd Packet/Bulk Avg",
+      "Bwd Bulk Rate Avg",
+      "Subflow Fwd Packets",
+      "Subflow Fwd Bytes",
+      "Subflow Bwd Packets",
+      "Subflow Bwd Bytes",
+      "FWD Init Win Bytes",
+      "Bwd Init Win Bytes",
+      "Fwd Act Data Pkts",
+      "Fwd Seg Size Min",
+      "Active Mean",
+      "Active Std",
+      "Active Max",
+      "Active Min",
+      "Idle Mean",
+      "Idle Std",
+      "Idle Max",
+      "Idle Min",
+      "ICMP Code",
+      "ICMP Type",
+      "Total TCP Flow Time",
+      "Label",
+      "Attempted Category"
+    ],
+    "files_with_different_columns": [],
+    "rows_sampled": 50000,
+    "label_values_sampled": {
+      "BENIGN": 50000
+    },
+    "label_map_sampled": {
+      "BENIGN": "BENIGN"
+    },
+    "time_range_sampled": [
+      "2018-02-14 12:30:04.766346931",
+      "2018-03-02 21:30:03.983635902"
+    ],
+    "time_examples": [
+      "2018-03-02 12:47:05.189575",
+      "2018-03-02 12:47:03.395301",
+      "2018-03-02 12:47:45.823759"
+    ],
+    "identifier_columns_found": [
+      "Dst IP",
+      "Dst Port",
+      "Flow ID",
+      "Src IP",
+      "Src Port",
+      "Timestamp",
+      "id"
+    ],
+    "configured_identifiers_absent": [],
+    "drop_columns_absent": [],
+    "categorical_absent": [],
+    "non_numeric_columns": [],
+    "checks": {
+      "label_column_present": true,
+      "all_sampled_labels_mapped": true,
+      "time_column_present": true,
+      "time_parsed_share": 1.0,
+      "duration_column_present": true
+    }
+  },
+  "unsw_nb15": {
+    "files_matched": 4,
+    "gb_matched": 0.586,
+    "first_files": [
+      "CSV Files/UNSW-NB15_1.csv",
+      "CSV Files/UNSW-NB15_2.csv",
+      "CSV Files/UNSW-NB15_3.csv",
+      "CSV Files/UNSW-NB15_4.csv"
+    ],
+    "tree": {
+      "raw": {
+        "./*.json": {
+          "files": 1,
+          "gb": 0.0
+        },
+        "./*.zip": {
+          "files": 1,
+          "gb": 0.721
+        }
+      },
+      "zip_members": {
+        "UNSW-NB15_official_CSV.zip": {
+          "CSV Files": 8,
+          "CSV Files/Training and Testing Sets": 2
+        }
+      },
+      "interim": {
+        "CSV Files/*.csv": {
+          "files": 7,
+          "gb": 0.673
+        },
+        "CSV Files/*.pdf": {
+          "files": 1,
+          "gb": 0.0
+        },
+        "CSV Files/Training and Testing Sets/*.csv": {
+          "files": 2,
+          "gb": 0.048
+        }
+      }
+    },
+    "columns": [
+      "srcip",
+      "sport",
+      "dstip",
+      "dsport",
+      "proto",
+      "state",
+      "dur",
+      "sbytes",
+      "dbytes",
+      "sttl",
+      "dttl",
+      "sloss",
+      "dloss",
+      "service",
+      "Sload",
+      "Dload",
+      "Spkts",
+      "Dpkts",
+      "swin",
+      "dwin",
+      "stcpb",
+      "dtcpb",
+      "smeansz",
+      "dmeansz",
+      "trans_depth",
+      "res_bdy_len",
+      "Sjit",
+      "Djit",
+      "Stime",
+      "Ltime",
+      "Sintpkt",
+      "Dintpkt",
+      "tcprtt",
+      "synack",
+      "ackdat",
+      "is_sm_ips_ports",
+      "ct_state_ttl",
+      "ct_flw_http_mthd",
+      "is_ftp_login",
+      "ct_ftp_cmd",
+      "ct_srv_src",
+      "ct_srv_dst",
+      "ct_dst_ltm",
+      "ct_src_ltm",
+      "ct_src_dport_ltm",
+      "ct_dst_sport_ltm",
+      "ct_dst_src_ltm",
+      "attack_cat",
+      "Label"
+    ],
+    "files_with_different_columns": [],
+    "rows_sampled": 20000,
+    "label_values_sampled": {
+      "": 18508,
+      "Generic": 744,
+      "Exploits": 352,
+      "Fuzzers": 170,
+      "Reconnaissance": 135,
+      "DoS": 62,
+      "Shellcode": 19,
+      "Backdoor": 7,
+      "Worms": 2,
+      "Analysis": 1
+    },
+    "label_map_sampled": {
+      "": "BENIGN",
+      "Exploits": "Exploits",
+      "Reconnaissance": "Reconnaissance",
+      "DoS": "DoS",
+      "Generic": "Generic",
+      "Shellcode": "Shellcode",
+      "Fuzzers": "Fuzzers",
+      "Backdoor": "Backdoor",
+      "Worms": "Worms",
+      "Analysis": "Analysis"
+    },
+    "time_range_sampled": [
+      "2015-01-22 11:49:37",
+      "2015-02-18 09:03:35"
+    ],
+    "time_examples": [
+      "1421927414",
+      "1421927414",
+      "1421927414"
+    ],
+    "identifier_columns_found": [
+      "Ltime",
+      "Stime",
+      "dsport",
+      "dstip",
+      "sport",
+      "srcip"
+    ],
+    "configured_identifiers_absent": [],
+    "drop_columns_absent": [],
+    "categorical_absent": [],
+    "non_numeric_columns": [
+      {
+        "column": "proto",
+        "numeric_share": 0.0,
+        "examples": [
+          "tcp",
+          "udp",
+          "ospf",
+          "arp",
+          "sctp"
+        ]
+      },
+      {
+        "column": "state",
+        "numeric_share": 0.0,
+        "examples": [
+          "FIN",
+          "CON",
+          "INT",
+          "RST",
+          "REQ"
+        ]
+      },
+      {
+        "column": "service",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "dns",
+          "http",
+          "ftp-data",
+          "smtp"
+        ]
+      },
+      {
+        "column": "ct_flw_http_mthd",
+        "numeric_share": 0.545,
+        "examples": [
+          ""
+        ]
+      },
+      {
+        "column": "is_ftp_login",
+        "numeric_share": 0.51,
+        "examples": [
+          ""
+        ]
+      },
+      {
+        "column": "ct_ftp_cmd",
+        "numeric_share": 0.51,
+        "examples": [
+          " "
+        ]
+      }
+    ],
+    "checks": {
+      "label_column_present": true,
+      "all_sampled_labels_mapped": true,
+      "binary_column_present": true,
+      "time_column_present": true,
+      "time_parsed_share": 1.0,
+      "duration_column_present": true
+    }
+  },
+  "ciciot2023": {
+    "files_matched": 309,
+    "gb_matched": 8.944,
+    "first_files": [
+      "CSV/Backdoor_Malware/Backdoor_Malware.pcap.csv",
+      "CSV/Benign_Final/BenignTraffic.pcap.csv",
+      "CSV/Benign_Final/BenignTraffic1.pcap.csv",
+      "CSV/Benign_Final/BenignTraffic2.pcap.csv",
+      "CSV/Benign_Final/BenignTraffic3.pcap.csv"
+    ],
+    "tree": {
+      "raw": {
+        "./*.json": {
+          "files": 1,
+          "gb": 0.0
+        },
+        "./*.pdf": {
+          "files": 1,
+          "gb": 0.0
+        },
+        "./*.zip": {
+          "files": 1,
+          "gb": 1.43
+        }
+      },
+      "zip_members": {
+        "CSV.zip": {
+          "CSV": 1,
+          "CSV/Backdoor_Malware": 1,
+          "CSV/Benign_Final": 4,
+          "CSV/BrowserHijacking": 1,
+          "CSV/CommandInjection": 1,
+          "CSV/DDoS-ACK_Fragmentation": 13,
+          "CSV/DDoS-HTTP_Flood": 1,
+          "CSV/DDoS-ICMP_Flood": 27,
+          "CSV/DDoS-ICMP_Fragmentation": 20,
+          "CSV/DDoS-PSHACK_FLOOD": 16,
+          "CSV/DDoS-RSTFINFLOOD": 16,
+          "CSV/DDoS-SYN_Flood": 16,
+          "CSV/DDoS-SlowLoris": 1,
+          "CSV/DDoS-SynonymousIP_Flood": 14,
+          "CSV/DDoS-TCP_Flood": 18,
+          "CSV/DDoS-UDP_Flood": 21,
+          "CSV/DDoS-UDP_Fragmentation": 13,
+          "CSV/DNS_Spoofing": 1,
+          "CSV/DictionaryBruteForce": 1,
+          "CSV/DoS-HTTP_Flood": 2,
+          "CSV/DoS-SYN_Flood": 8,
+          "CSV/DoS-TCP_Flood": 11,
+          "CSV/DoS-UDP_Flood": 17,
+          "CSV/MITM-ArpSpoofing": 2,
+          "CSV/Mirai-greeth_flood": 29,
+          "CSV/Mirai-greip_flood": 22,
+          "CSV/Mirai-udpplain": 25,
+          "CSV/Recon-HostDiscovery": 1,
+          "CSV/Recon-OSScan": 1,
+          "CSV/Recon-PingSweep": 1,
+          "CSV/Recon-PortScan": 1,
+          "CSV/SqlInjection": 1,
+          "CSV/Uploading_Attack": 1,
+          "CSV/VulnerabilityScan": 1,
+          "CSV/XSS": 1
+        }
+      },
+      "interim": {
+        "CSV/*.pdf": {
+          "files": 1,
+          "gb": 0.0
+        },
+        "CSV/Backdoor_Malware/*.csv": {
+          "files": 1,
+          "gb": 0.001
+        },
+        "CSV/Benign_Final/*.csv": {
+          "files": 4,
+          "gb": 0.227
+        },
+        "CSV/BrowserHijacking/*.csv": {
+          "files": 1,
+          "gb": 0.001
+        },
+        "CSV/CommandInjection/*.csv": {
+          "files": 1,
+          "gb": 0.001
+        },
+        "CSV/DDoS-ACK_Fragmentation/*.csv": {
+          "files": 13,
+          "gb": 0.063
+        },
+        "CSV/DDoS-HTTP_Flood/*.csv": {
+          "files": 1,
+          "gb": 0.006
+        },
+        "CSV/DDoS-ICMP_Flood/*.csv": {
+          "files": 27,
+          "gb": 1.326
+        },
+        "CSV/DDoS-ICMP_Fragmentation/*.csv": {
+          "files": 20,
+          "gb": 0.1
+        },
+        "CSV/DDoS-PSHACK_FLOOD/*.csv": {
+          "files": 16,
+          "gb": 0.77
+        },
+        "CSV/DDoS-RSTFINFLOOD/*.csv": {
+          "files": 16,
+          "gb": 0.767
+        },
+        "CSV/DDoS-SYN_Flood/*.csv": {
+          "files": 16,
+          "gb": 0.774
+        },
+        "CSV/DDoS-SlowLoris/*.csv": {
+          "files": 1,
+          "gb": 0.005
+        },
+        "CSV/DDoS-SynonymousIP_Flood/*.csv": {
+          "files": 14,
+          "gb": 0.675
+        },
+        "CSV/DDoS-TCP_Flood/*.csv": {
+          "files": 18,
+          "gb": 0.844
+        },
+        "CSV/DDoS-UDP_Flood/*.csv": {
+          "files": 21,
+          "gb": 1.025
+        },
+        "CSV/DDoS-UDP_Fragmentation/*.csv": {
+          "files": 13,
+          "gb": 0.063
+        },
+        "CSV/DNS_Spoofing/*.csv": {
+          "files": 1,
+          "gb": 0.037
+        },
+        "CSV/DictionaryBruteForce/*.csv": {
+          "files": 1,
+          "gb": 0.003
+        },
+        "CSV/DoS-HTTP_Flood/*.csv": {
+          "files": 2,
+          "gb": 0.016
+        },
+        "CSV/DoS-SYN_Flood/*.csv": {
+          "files": 8,
+          "gb": 0.391
+        },
+        "CSV/DoS-TCP_Flood/*.csv": {
+          "files": 11,
+          "gb": 0.505
+        },
+        "CSV/DoS-UDP_Flood/*.csv": {
+          "files": 17,
+          "gb": 0.605
+        },
+        "CSV/MITM-ArpSpoofing/*.csv": {
+          "files": 2,
+          "gb": 0.063
+        },
+        "CSV/Mirai-greeth_flood/*.csv": {
+          "files": 29,
+          "gb": 0.201
+        },
+        "CSV/Mirai-greip_flood/*.csv": {
+          "files": 22,
+          "gb": 0.154
+        },
+        "CSV/Mirai-udpplain/*.csv": {
+          "files": 25,
+          "gb": 0.179
+        },
+        "CSV/Recon-HostDiscovery/*.csv": {
+          "files": 1,
+          "gb": 0.026
+        },
+        "CSV/Recon-OSScan/*.csv": {
+          "files": 1,
+          "gb": 0.02
+        },
+        "CSV/Recon-PingSweep/*.csv": {
+          "files": 1,
+          "gb": 0.0
+        },
+        "CSV/Recon-PortScan/*.csv": {
+          "files": 1,
+          "gb": 0.016
+        },
+        "CSV/SqlInjection/*.csv": {
+          "files": 1,
+          "gb": 0.001
+        },
+        "CSV/Uploading_Attack/*.csv": {
+          "files": 1,
+          "gb": 0.0
+        },
+        "CSV/VulnerabilityScan/*.csv": {
+          "files": 1,
+          "gb": 0.077
+        },
+        "CSV/XSS/*.csv": {
+          "files": 1,
+          "gb": 0.001
+        }
+      }
+    },
+    "columns": [
+      "Header_Length",
+      "Protocol Type",
+      "Time_To_Live",
+      "Rate",
+      "fin_flag_number",
+      "syn_flag_number",
+      "rst_flag_number",
+      "psh_flag_number",
+      "ack_flag_number",
+      "ece_flag_number",
+      "cwr_flag_number",
+      "ack_count",
+      "syn_count",
+      "fin_count",
+      "rst_count",
+      "HTTP",
+      "HTTPS",
+      "DNS",
+      "Telnet",
+      "SMTP",
+      "SSH",
+      "IRC",
+      "TCP",
+      "UDP",
+      "DHCP",
+      "ARP",
+      "ICMP",
+      "IGMP",
+      "IPv",
+      "LLC",
+      "Tot sum",
+      "Min",
+      "Max",
+      "AVG",
+      "Std",
+      "Tot size",
+      "IAT",
+      "Number",
+      "Variance"
+    ],
+    "files_with_different_columns": [],
+    "rows_sampled": 198218,
+    "identifier_columns_found": [],
+    "configured_identifiers_absent": [],
+    "drop_columns_absent": [],
+    "categorical_absent": [],
+    "non_numeric_columns": [],
+    "checks": {
+      "label_column_present": false
+    }
+  },
+  "ciciomt2024": {
+    "files_matched": 72,
+    "gb_matched": 2.277,
+    "first_files": [
+      "test/ARP_Spoofing_test.pcap.csv",
+      "test/Benign_test.pcap.csv",
+      "test/MQTT-DDoS-Connect_Flood_test.pcap.csv",
+      "test/MQTT-DDoS-Publish_Flood_test.pcap.csv",
+      "test/MQTT-DoS-Connect_Flood_test.pcap.csv"
+    ],
+    "tree": {
+      "raw": {
+        "./*.json": {
+          "files": 1,
+          "gb": 0.0
+        },
+        "./*.pdf": {
+          "files": 1,
+          "gb": 0.007
+        },
+        "test/*.csv": {
+          "files": 21,
+          "gb": 0.413
+        },
+        "train/*.csv": {
+          "files": 51,
+          "gb": 1.865
+        }
+      },
+      "interim": {}
+    },
+    "columns": [
+      "Header_Length",
+      "Protocol Type",
+      "Duration",
+      "Rate",
+      "Srate",
+      "Drate",
+      "fin_flag_number",
+      "syn_flag_number",
+      "rst_flag_number",
+      "psh_flag_number",
+      "ack_flag_number",
+      "ece_flag_number",
+      "cwr_flag_number",
+      "ack_count",
+      "syn_count",
+      "fin_count",
+      "rst_count",
+      "HTTP",
+      "HTTPS",
+      "DNS",
+      "Telnet",
+      "SMTP",
+      "SSH",
+      "IRC",
+      "TCP",
+      "UDP",
+      "DHCP",
+      "ARP",
+      "ICMP",
+      "IGMP",
+      "IPv",
+      "LLC",
+      "Tot sum",
+      "Min",
+      "Max",
+      "AVG",
+      "Std",
+      "Tot size",
+      "IAT",
+      "Number",
+      "Magnitue",
+      "Radius",
+      "Covariance",
+      "Variance",
+      "Weight"
+    ],
+    "files_with_different_columns": [],
+    "rows_sampled": 174589,
+    "label_values_sampled": {
+      "TCP_IP-DDoS-ICMP": 50000,
+      "Benign": 10000,
+      "MQTT-DDoS-Connect_Flood": 10000,
+      "MQTT-DDoS-Publish_Flood": 10000,
+      "MQTT-DoS-Publish_Flood": 10000,
+      "Recon-Port_Scan": 10000,
+      "TCP_IP-DDoS-UDP": 10000,
+      "Recon-OS_Scan": 8834,
+      "MQTT-DoS-Connect_Flood": 8131,
+      "MQTT-Malformed_Data": 6747,
+      "ARP_Spoofing": 6744,
+      "TCP_IP-DDoS-SYN": 5000,
+      "TCP_IP-DDoS-TCP": 5000,
+      "TCP_IP-DoS-ICMP": 5000,
+      "TCP_IP-DoS-SYN": 5000,
+      "TCP_IP-DoS-TCP": 5000,
+      "TCP_IP-DoS-UDP": 5000,
+      "Recon-VulScan": 3207,
+      "Recon-Ping_Sweep": 926
+    },
+    "label_map_sampled": {
+      "ARP_Spoofing": "Spoofing",
+      "Benign": "BENIGN",
+      "MQTT-DDoS-Connect_Flood": "DDoS",
+      "MQTT-DDoS-Publish_Flood": "DDoS",
+      "MQTT-DoS-Connect_Flood": "DoS",
+      "MQTT-DoS-Publish_Flood": "DoS",
+      "MQTT-Malformed_Data": "MQTT-Malformed",
+      "Recon-OS_Scan": "Recon",
+      "Recon-Ping_Sweep": "Recon",
+      "Recon-Port_Scan": "Recon",
+      "Recon-VulScan": "Recon",
+      "TCP_IP-DDoS-ICMP": "DDoS",
+      "TCP_IP-DDoS-SYN": "DDoS",
+      "TCP_IP-DDoS-TCP": "DDoS",
+      "TCP_IP-DDoS-UDP": "DDoS",
+      "TCP_IP-DoS-ICMP": "DoS",
+      "TCP_IP-DoS-SYN": "DoS",
+      "TCP_IP-DoS-TCP": "DoS",
+      "TCP_IP-DoS-UDP": "DoS"
+    },
+    "identifier_columns_found": [],
+    "configured_identifiers_absent": [],
+    "drop_columns_absent": [],
+    "categorical_absent": [],
+    "non_numeric_columns": [],
+    "checks": {
+      "label_from_filename_ok": true,
+      "all_sampled_labels_mapped": true
+    }
+  },
+  "ton_iot": {
+    "files_matched": 23,
+    "gb_matched": 3.372,
+    "first_files": [
+      "Processed_datasets/Processed_Network_dataset/Network_dataset_1.csv",
+      "Processed_datasets/Processed_Network_dataset/Network_dataset_10.csv",
+      "Processed_datasets/Processed_Network_dataset/Network_dataset_11.csv",
+      "Processed_datasets/Processed_Network_dataset/Network_dataset_12.csv",
+      "Processed_datasets/Processed_Network_dataset/Network_dataset_13.csv"
+    ],
+    "tree": {
+      "raw": {
+        "./*.json": {
+          "files": 1,
+          "gb": 0.0
+        },
+        "./*.zip": {
+          "files": 2,
+          "gb": 5.134
+        }
+      },
+      "zip_members": {
+        "ToN_IoT_Processed_datasets.zip": {
+          "Processed_datasets/Processed_IoT_dataset": 7,
+          "Processed_datasets/Processed_Linux_dataset": 6,
+          "Processed_datasets/Processed_Network_dataset": 23,
+          "Processed_datasets/Processed_Windows_dataset": 2
+        },
+        "ToN_IoT_TrainTest_GroundTruth_Descriptions.zip": {
+          ".": 1,
+          "Description_stats_datasets/Description_stats_IoT_dataset": 6,
+          "Description_stats_datasets/Description_stats_Linux_dataset": 9,
+          "Description_stats_datasets/Description_stats_Network_dataset": 7,
+          "Description_stats_datasets/Description_stats_Windows_dataset": 8,
+          "SecuityEvents_GroundTruth_datasets/SecurityEvents_IoT_datasets": 7,
+          "SecuityEvents_GroundTruth_datasets/SecurityEvents_Linux_datasets": 3,
+          "SecuityEvents_GroundTruth_datasets/SecurityEvents_Network_datasets": 18,
+          "SecuityEvents_GroundTruth_datasets/SecurityEvents_Windows_datasets": 2,
+          "Train_Test_datasets/Train_Test_IoT_dataset": 7,
+          "Train_Test_datasets/Train_Test_Linux_dataset": 3,
+          "Train_Test_datasets/Train_Test_Network_dataset": 1,
+          "Train_Test_datasets/Train_Test_Windows_dataset": 2
+        }
+      },
+      "interim": {
+        "./*.pdf": {
+          "files": 1,
+          "gb": 0.0
+        },
+        "Description_stats_datasets/Description_stats_IoT_dataset/*.docx": {
+          "files": 2,
+          "gb": 0.0
+        },
+        "Description_stats_datasets/Description_stats_IoT_dataset/*.pdf": {
+          "files": 2,
+          "gb": 0.0
+        },
+        "Description_stats_datasets/Description_stats_IoT_dataset/*.xlsx": {
+          "files": 2,
+          "gb": 0.0
+        },
+        "Description_stats_datasets/Description_stats_Linux_dataset/*.docx": {
+          "files": 4,
+          "gb": 0.0
+        },
+        "Description_stats_datasets/Description_stats_Linux_dataset/*.pdf": {
+          "files": 2,
+          "gb": 0.0
+        },
+        "Description_stats_datasets/Description_stats_Linux_dataset/*.vsdx": {
+          "files": 1,
+          "gb": 0.0
+        },
+        "Description_stats_datasets/Description_stats_Linux_dataset/*.xlsx": {
+          "files": 2,
+          "gb": 0.0
+        },
+        "Description_stats_datasets/Description_stats_Network_dataset/*.docx": {
+          "files": 2,
+          "gb": 0.0
+        },
+        "Description_stats_datasets/Description_stats_Network_dataset/*.pdf": {
+          "files": 3,
+          "gb": 0.001
+        },
+        "Description_stats_datasets/Description_stats_Network_dataset/*.xlsx": {
+          "files": 2,
+          "gb": 0.0
+        },
+        "Description_stats_datasets/Description_stats_Windows_dataset/*.docx": {
+          "files": 3,
+          "gb": 0.0
+        },
+        "Description_stats_datasets/Description_stats_Windows_dataset/*.pdf": {
+          "files": 3,
+          "gb": 0.001
+        },
+        "Description_stats_datasets/Description_stats_Windows_dataset/*.xlsx": {
+          "files": 2,
+          "gb": 0.0
+        },
+        "Processed_datasets/Processed_IoT_dataset/*.csv": {
+          "files": 7,
+          "gb": 0.175
+        },
+        "Processed_datasets/Processed_Linux_dataset/*.csv": {
+          "files": 6,
+          "gb": 0.332
+        },
+        "Processed_datasets/Processed_Network_dataset/*.csv": {
+          "files": 23,
+          "gb": 3.372
+        },
+        "Processed_datasets/Processed_Windows_dataset/*.csv": {
+          "files": 2,
+          "gb": 0.062
+        },
+        "SecuityEvents_GroundTruth_datasets/SecurityEvents_IoT_datasets/*.csv": {
+          "files": 7,
+          "gb": 0.017
+        },
+        "SecuityEvents_GroundTruth_datasets/SecurityEvents_Linux_datasets/*.csv": {
+          "files": 3,
+          "gb": 0.019
+        },
+        "SecuityEvents_GroundTruth_datasets/SecurityEvents_Network_datasets/*.csv": {
+          "files": 18,
+          "gb": 1.064
+        },
+        "SecuityEvents_GroundTruth_datasets/SecurityEvents_Windows_datasets/*.csv": {
+          "files": 2,
+          "gb": 0.0
+        },
+        "Train_Test_datasets/Train_Test_IoT_dataset/*.csv": {
+          "files": 7,
+          "gb": 0.013
+        },
+        "Train_Test_datasets/Train_Test_Linux_dataset/*.csv": {
+          "files": 3,
+          "gb": 0.011
+        },
+        "Train_Test_datasets/Train_Test_Network_dataset/*.csv": {
+          "files": 1,
+          "gb": 0.03
+        },
+        "Train_Test_datasets/Train_Test_Windows_dataset/*.csv": {
+          "files": 2,
+          "gb": 0.036
+        }
+      }
+    },
+    "columns": [
+      "ts",
+      "src_ip",
+      "src_port",
+      "dst_ip",
+      "dst_port",
+      "proto",
+      "service",
+      "duration",
+      "src_bytes",
+      "dst_bytes",
+      "conn_state",
+      "missed_bytes",
+      "src_pkts",
+      "src_ip_bytes",
+      "dst_pkts",
+      "dst_ip_bytes",
+      "dns_query",
+      "dns_qclass",
+      "dns_qtype",
+      "dns_rcode",
+      "dns_AA",
+      "dns_RD",
+      "dns_RA",
+      "dns_rejected",
+      "ssl_version",
+      "ssl_cipher",
+      "ssl_resumed",
+      "ssl_established",
+      "ssl_subject",
+      "ssl_issuer",
+      "http_trans_depth",
+      "http_method",
+      "http_uri",
+      "http_referrer",
+      "http_version",
+      "http_request_body_len",
+      "http_response_body_len",
+      "http_status_code",
+      "http_user_agent",
+      "http_orig_mime_types",
+      "http_resp_mime_types",
+      "weird_name",
+      "weird_addl",
+      "weird_notice",
+      "label",
+      "type"
+    ],
+    "files_with_different_columns": [
+      "Processed_datasets/Processed_Network_dataset/Network_dataset_6.csv"
+    ],
+    "rows_sampled": 115000,
+    "label_values_sampled": {
+      "scanning": 34726,
+      "ddos": 29974,
+      "dos": 14584,
+      "xss": 9876,
+      "password": 9807,
+      "normal": 6508,
+      "backdoor": 4801,
+      "injection": 4724
+    },
+    "label_map_sampled": {
+      "normal": "BENIGN",
+      "dos": "DoS",
+      "injection": "Injection",
+      "ddos": "DDoS",
+      "password": "Password",
+      "scanning": "Scanning",
+      "xss": "XSS",
+      "backdoor": "Backdoor"
+    },
+    "time_range_sampled": [
+      "2019-04-02 09:45:58",
+      "2019-04-28 21:17:31"
+    ],
+    "time_examples": [
+      "1554198358",
+      "1554198358",
+      "1554198359"
+    ],
+    "identifier_columns_found": [
+      "dst_ip",
+      "dst_port",
+      "src_ip",
+      "src_port",
+      "ts"
+    ],
+    "configured_identifiers_absent": [],
+    "drop_columns_absent": [],
+    "categorical_absent": [],
+    "non_numeric_columns": [
+      {
+        "column": "proto",
+        "numeric_share": 0.0,
+        "examples": [
+          "tcp",
+          "udp",
+          "icmp"
+        ]
+      },
+      {
+        "column": "service",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "http",
+          "dns",
+          "ssl",
+          "ftp"
+        ]
+      },
+      {
+        "column": "conn_state",
+        "numeric_share": 0.0,
+        "examples": [
+          "SF",
+          "REJ",
+          "S0",
+          "S1",
+          "S3"
+        ]
+      },
+      {
+        "column": "dns_query",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "www.mqtt-dashboard.com",
+          "testphp.vulnweb.com",
+          "https://192.168.1.184",
+          "https://192.168.1.184.hub"
+        ]
+      },
+      {
+        "column": "dns_AA",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "F",
+          "T"
+        ]
+      },
+      {
+        "column": "dns_RD",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "T",
+          "F"
+        ]
+      },
+      {
+        "column": "dns_RA",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "T",
+          "F"
+        ]
+      },
+      {
+        "column": "dns_rejected",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "F",
+          "T"
+        ]
+      },
+      {
+        "column": "ssl_version",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "TLSv10",
+          "TLSv12"
+        ]
+      },
+      {
+        "column": "ssl_cipher",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",
+          "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
+        ]
+      },
+      {
+        "column": "ssl_resumed",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "F"
+        ]
+      },
+      {
+        "column": "ssl_established",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "T",
+          "F"
+        ]
+      },
+      {
+        "column": "ssl_subject",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "CN=Mr Shepherd;OU=Security Shepherd Project;O=OWASP;L=Dublin;ST=Ireland;C=IE"
+        ]
+      },
+      {
+        "column": "ssl_issuer",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "CN=Mr Shepherd;OU=Security Shepherd Project;O=OWASP;L=Dublin;ST=Ireland;C=IE"
+        ]
+      },
+      {
+        "column": "http_trans_depth",
+        "numeric_share": 0.001,
+        "examples": [
+          "-"
+        ]
+      },
+      {
+        "column": "http_method",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "column": "http_uri",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "/",
+          "/dvwa/login.php",
+          "/?C=M;O=A",
+          "/webmail/"
+        ]
+      },
+      {
+        "column": "http_referrer",
+        "numeric_share": 0.0,
+        "examples": [
+          "-"
+        ]
+      },
+      {
+        "column": "http_version",
+        "numeric_share": 0.001,
+        "examples": [
+          "-"
+        ]
+      },
+      {
+        "column": "http_user_agent",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "Mozilla/5.0 (Hydra)",
+          "Mozilla/5.0 (Windows; U; Windows NT5.1; en; rv:1.7.10) Gecko/20050716 Firefox/1.0.5",
+          "Ruby",
+          "Mozilla/2.02E (Win95; U)"
+        ]
+      },
+      {
+        "column": "http_orig_mime_types",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "text/plain"
+        ]
+      },
+      {
+        "column": "http_resp_mime_types",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "text/html",
+          "text/plain",
+          "application/ocsp-response"
+        ]
+      },
+      {
+        "column": "weird_name",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "data_before_established",
+          "active_connection_reuse",
+          "bad_TCP_checksum",
+          "inappropriate_FIN"
+        ]
+      },
+      {
+        "column": "weird_addl",
+        "numeric_share": 0.0,
+        "examples": [
+          "-"
+        ]
+      },
+      {
+        "column": "weird_notice",
+        "numeric_share": 0.0,
+        "examples": [
+          "-",
+          "F"
+        ]
+      }
+    ],
+    "checks": {
+      "label_column_present": true,
+      "all_sampled_labels_mapped": true,
+      "binary_column_present": true,
+      "time_column_present": true,
+      "time_parsed_share": 1.0,
+      "duration_column_present": true
+    }
+  },
+  "nsl_kdd": {
+    "files_matched": 2,
+    "gb_matched": 0.023,
+    "first_files": [
+      "KDDTest+.txt",
+      "KDDTrain+.txt"
+    ],
+    "tree": {
+      "raw": {
+        "./*.json": {
+          "files": 1,
+          "gb": 0.0
+        },
+        "./*.txt": {
+          "files": 4,
+          "gb": 0.028
+        }
+      },
+      "interim": {}
+    },
+    "columns": [
+      "duration",
+      "protocol_type",
+      "service",
+      "flag",
+      "src_bytes",
+      "dst_bytes",
+      "land",
+      "wrong_fragment",
+      "urgent",
+      "hot",
+      "num_failed_logins",
+      "logged_in",
+      "num_compromised",
+      "root_shell",
+      "su_attempted",
+      "num_root",
+      "num_file_creations",
+      "num_shells",
+      "num_access_files",
+      "num_outbound_cmds",
+      "is_host_login",
+      "is_guest_login",
+      "count",
+      "srv_count",
+      "serror_rate",
+      "srv_serror_rate",
+      "rerror_rate",
+      "srv_rerror_rate",
+      "same_srv_rate",
+      "diff_srv_rate",
+      "srv_diff_host_rate",
+      "dst_host_count",
+      "dst_host_srv_count",
+      "dst_host_same_srv_rate",
+      "dst_host_diff_srv_rate",
+      "dst_host_same_src_port_rate",
+      "dst_host_srv_diff_host_rate",
+      "dst_host_serror_rate",
+      "dst_host_srv_serror_rate",
+      "dst_host_rerror_rate",
+      "dst_host_srv_rerror_rate",
+      "attack",
+      "difficulty"
+    ],
+    "files_with_different_columns": [],
+    "rows_sampled": 10000,
+    "label_values_sampled": {
+      "normal": 4795,
+      "neptune": 2686,
+      "satan": 285,
+      "guess_passwd": 276,
+      "smurf": 268,
+      "mscan": 230,
+      "warezmaster": 190,
+      "ipsweep": 172,
+      "portsweep": 164,
+      "processtable": 163,
+      "apache2": 159,
+      "back": 111,
+      "nmap": 85,
+      "snmpguess": 78,
+      "saint": 70,
+      "mailbomb": 67,
+      "teardrop": 46,
+      "warezclient": 39,
+      "snmpgetattack": 35,
+      "httptunnel": 28,
+      "pod": 18,
+      "buffer_overflow": 6,
+      "ps": 6,
+      "sendmail": 5,
+      "multihop": 3,
+      "xterm": 3,
+      "rootkit": 3,
+      "named": 2,
+      "loadmodule": 2,
+      "worm": 1,
+      "xlock": 1,
+      "perl": 1,
+      "land": 1,
+      "ftp_write": 1
+    },
+    "label_map_sampled": {
+      "neptune": "DoS",
+      "normal": "BENIGN",
+      "saint": "Probe",
+      "mscan": "Probe",
+      "guess_passwd": "R2L",
+      "smurf": "DoS",
+      "apache2": "DoS",
+      "satan": "Probe",
+      "buffer_overflow": "U2R",
+      "back": "DoS",
+      "warezmaster": "R2L",
+      "snmpgetattack": "R2L",
+      "processtable": "DoS",
+      "pod": "DoS",
+      "httptunnel": "U2R",
+      "nmap": "Probe",
+      "ps": "U2R",
+      "snmpguess": "R2L",
+      "ipsweep": "Probe",
+      "mailbomb": "DoS",
+      "portsweep": "Probe",
+      "multihop": "R2L",
+      "named": "R2L",
+      "sendmail": "R2L",
+      "loadmodule": "U2R",
+      "xterm": "U2R",
+      "worm": "R2L",
+      "teardrop": "DoS",
+      "rootkit": "U2R",
+      "xlock": "R2L",
+      "perl": "U2R",
+      "land": "DoS",
+      "warezclient": "R2L",
+      "ftp_write": "R2L"
+    },
+    "identifier_columns_found": [],
+    "configured_identifiers_absent": [],
+    "drop_columns_absent": [],
+    "categorical_absent": [],
+    "non_numeric_columns": [
+      {
+        "column": "protocol_type",
+        "numeric_share": 0.0,
+        "examples": [
+          "tcp",
+          "udp",
+          "icmp"
+        ]
+      },
+      {
+        "column": "service",
+        "numeric_share": 0.0,
+        "examples": [
+          "http",
+          "private",
+          "domain_u",
+          "smtp",
+          "telnet"
+        ]
+      },
+      {
+        "column": "flag",
+        "numeric_share": 0.0,
+        "examples": [
+          "SF",
+          "S0",
+          "REJ",
+          "RSTR",
+          "RSTO"
+        ]
+      }
+    ],
+    "checks": {
+      "label_column_present": true,
+      "all_sampled_labels_mapped": true
+    }
+  },
+  "lanl_cyber1": {
+    "files": {
+      "auth.txt.gz": 7.627,
+      "dns.txt.gz": 0.185,
+      "flows.txt.gz": 1.083,
+      "proc.txt.gz": 2.359,
+      "redteam.txt.gz": 0.0
+    },
+    "redteam": {
+      "events": 749,
+      "compromised_hosts": 301,
+      "accounts": 104,
+      "first_day": 2,
+      "last_day": 30,
+      "first_compromises_per_day": {
+        "2": 10,
+        "3": 4,
+        "6": 7,
+        "7": 2,
+        "8": 1,
+        "9": 170,
+        "13": 63,
+        "14": 27,
+        "15": 7,
+        "16": 7,
+        "22": 2,
+        "30": 1
+      },
+      "hosts_first_compromised_in_days_41_58": 0
+    },
+    "heads": {
+      "auth": [
+        [
+          "1",
+          "ANONYMOUS LOGON@C586",
+          "ANONYMOUS LOGON@C586",
+          "C1250",
+          "C586",
+          "NTLM",
+          "Network",
+          "LogOn",
+          "Success"
+        ],
+        [
+          "1",
+          "ANONYMOUS LOGON@C586",
+          "ANONYMOUS LOGON@C586",
+          "C586",
+          "C586",
+          "?",
+          "Network",
+          "LogOff",
+          "Success"
+        ],
+        [
+          "1",
+          "C101$@DOM1",
+          "C101$@DOM1",
+          "C988",
+          "C988",
+          "?",
+          "Network",
+          "LogOff",
+          "Success"
+        ]
+      ],
+      "proc": [
+        [
+          "1",
+          "C1$@DOM1",
+          "C1",
+          "P16",
+          "Start"
+        ],
+        [
+          "1",
+          "C1001$@DOM1",
+          "C1001",
+          "P4",
+          "Start"
+        ],
+        [
+          "1",
+          "C1002$@DOM1",
+          "C1002",
+          "P4",
+          "Start"
+        ]
+      ],
+      "flows": [
+        [
+          "1",
+          "0",
+          "C1065",
+          "389",
+          "C3799",
+          "N10451",
+          "6",
+          "10",
+          "5323"
+        ],
+        [
+          "1",
+          "0",
+          "C1423",
+          "N1136",
+          "C1707",
+          "N1",
+          "6",
+          "5",
+          "847"
+        ],
+        [
+          "1",
+          "0",
+          "C1423",
+          "N1142",
+          "C1707",
+          "N1",
+          "6",
+          "5",
+          "847"
+        ]
+      ],
+      "dns": [
+        [
+          "2",
+          "C4653",
+          "C5030"
+        ],
+        [
+          "2",
+          "C5782",
+          "C16712"
+        ],
+        [
+          "6",
+          "C1191",
+          "C419"
+        ]
+      ]
+    }
+  },
+  "edge_iiotset": {
+    "error": "KeyError: 'from_filename'"
+  },
+  "ids_adapt_processed_legacy": {
+    "cicids2017.parquet": {
+      "rows": 2099971,
+      "columns": [
+        "ACK Flag Count",
+        "Active Max",
+        "Active Mean",
+        "Active Min",
+        "Active Std",
+        "Average Packet Size",
+        "Bwd Bulk Rate Avg",
+        "Bwd Bytes/Bulk Avg",
+        "Bwd Header Length",
+        "Bwd IAT Max",
+        "Bwd IAT Mean",
+        "Bwd IAT Min",
+        "Bwd IAT Std",
+        "Bwd IAT Total",
+        "Bwd Init Win Bytes",
+        "Bwd PSH Flags",
+        "Bwd Packet Length Max",
+        "Bwd Packet Length Mean",
+        "Bwd Packet Length Min",
+        "Bwd Packet Length Std",
+        "Bwd Packet/Bulk Avg",
+        "Bwd Packets/s",
+        "Bwd RST Flags",
+        "Bwd Segment Size Avg",
+        "Bwd URG Flags",
+        "CWR Flag Count",
+        "Down/Up Ratio",
+        "Dst Port",
+        "ECE Flag Count",
+        "FIN Flag Count",
+        "FWD Init Win Bytes",
+        "Flow Bytes/s",
+        "Flow Duration",
+        "Flow IAT Max",
+        "Flow IAT Mean",
+        "Flow IAT Min",
+        "Flow IAT Std",
+        "Flow Packets/s",
+        "Fwd Act Data Pkts",
+        "Fwd Bulk Rate Avg",
+        "Fwd Bytes/Bulk Avg",
+        "Fwd Header Length",
+        "Fwd IAT Max",
+        "Fwd IAT Mean",
+        "Fwd IAT Min",
+        "Fwd IAT Std",
+        "Fwd IAT Total",
+        "Fwd PSH Flags",
+        "Fwd Packet Length Max",
+        "Fwd Packet Length Mean",
+        "Fwd Packet Length Min",
+        "Fwd Packet Length Std",
+        "Fwd Packet/Bulk Avg",
+        "Fwd Packets/s",
+        "Fwd RST Flags",
+        "Fwd Seg Size Min",
+        "Fwd Segment Size Avg",
+        "Fwd URG Flags",
+        "ICMP Code",
+        "ICMP Type",
+        "Idle Max",
+        "Idle Mean",
+        "Idle Min",
+        "Idle Std",
+        "PSH Flag Count",
+        "Packet Length Max",
+        "Packet Length Mean",
+        "Packet Length Min",
+        "Packet Length Std",
+        "Packet Length Variance",
+        "Protocol",
+        "RST Flag Count",
+        "SYN Flag Count",
+        "Subflow Bwd Bytes",
+        "Subflow Bwd Packets",
+        "Subflow Fwd Bytes",
+        "Subflow Fwd Packets",
+        "Total Bwd packets",
+        "Total Fwd Packet",
+        "Total Length of Bwd Packet",
+        "Total Length of Fwd Packet",
+        "Total TCP Flow Time",
+        "URG Flag Count",
+        "id",
+        "label",
+        "family",
+        "timestamp",
+        "attempted"
+      ]
+    },
+    "cse_cic_ids2018.parquet": {
+      "rows": 63195088,
+      "columns": [
+        "ACK Flag Count",
+        "Active Max",
+        "Active Mean",
+        "Active Min",
+        "Active Std",
+        "Average Packet Size",
+        "Bwd Bulk Rate Avg",
+        "Bwd Bytes/Bulk Avg",
+        "Bwd Header Length",
+        "Bwd IAT Max",
+        "Bwd IAT Mean",
+        "Bwd IAT Min",
+        "Bwd IAT Std",
+        "Bwd IAT Total",
+        "Bwd Init Win Bytes",
+        "Bwd PSH Flags",
+        "Bwd Packet Length Max",
+        "Bwd Packet Length Mean",
+        "Bwd Packet Length Min",
+        "Bwd Packet Length Std",
+        "Bwd Packet/Bulk Avg",
+        "Bwd Packets/s",
+        "Bwd RST Flags",
+        "Bwd Segment Size Avg",
+        "Bwd URG Flags",
+        "CWR Flag Count",
+        "Down/Up Ratio",
+        "Dst Port",
+        "ECE Flag Count",
+        "FIN Flag Count",
+        "FWD Init Win Bytes",
+        "Flow Bytes/s",
+        "Flow Duration",
+        "Flow IAT Max",
+        "Flow IAT Mean",
+        "Flow IAT Min",
+        "Flow IAT Std",
+        "Flow Packets/s",
+        "Fwd Act Data Pkts",
+        "Fwd Bulk Rate Avg",
+        "Fwd Bytes/Bulk Avg",
+        "Fwd Header Length",
+        "Fwd IAT Max",
+        "Fwd IAT Mean",
+        "Fwd IAT Min",
+        "Fwd IAT Std",
+        "Fwd IAT Total",
+        "Fwd PSH Flags",
+        "Fwd Packet Length Max",
+        "Fwd Packet Length Mean",
+        "Fwd Packet Length Min",
+        "Fwd Packet Length Std",
+        "Fwd Packet/Bulk Avg",
+        "Fwd Packets/s",
+        "Fwd RST Flags",
+        "Fwd Seg Size Min",
+        "Fwd Segment Size Avg",
+        "Fwd URG Flags",
+        "ICMP Code",
+        "ICMP Type",
+        "Idle Max",
+        "Idle Mean",
+        "Idle Min",
+        "Idle Std",
+        "PSH Flag Count",
+        "Packet Length Max",
+        "Packet Length Mean",
+        "Packet Length Min",
+        "Packet Length Std",
+        "Packet Length Variance",
+        "Protocol",
+        "RST Flag Count",
+        "SYN Flag Count",
+        "Subflow Bwd Bytes",
+        "Subflow Bwd Packets",
+        "Subflow Fwd Bytes",
+        "Subflow Fwd Packets",
+        "Total Bwd packets",
+        "Total Fwd Packet",
+        "Total Length of Bwd Packet",
+        "Total Length of Fwd Packet",
+        "Total TCP Flow Time",
+        "URG Flag Count",
+        "id",
+        "label",
+        "family",
+        "timestamp",
+        "attempted"
+      ]
+    },
+    "unsw_nb15.parquet": {
+      "rows": 2540047,
+      "columns": [
+        "dur",
+        "sbytes",
+        "dbytes",
+        "sttl",
+        "dttl",
+        "sloss",
+        "dloss",
+        "Sload",
+        "Dload",
+        "Spkts",
+        "Dpkts",
+        "swin",
+        "dwin",
+        "stcpb",
+        "dtcpb",
+        "smeansz",
+        "dmeansz",
+        "trans_depth",
+        "res_bdy_len",
+        "Sjit",
+        "Djit",
+        "Sintpkt",
+        "Dintpkt",
+        "tcprtt",
+        "synack",
+        "ackdat",
+        "is_sm_ips_ports",
+        "ct_state_ttl",
+        "ct_flw_http_mthd",
+        "is_ftp_login",
+        "ct_ftp_cmd",
+        "ct_srv_src",
+        "ct_srv_dst",
+        "ct_dst_ltm",
+        "ct_src_ ltm",
+        "ct_src_dport_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "family",
+        "label",
+        "attempted",
+        "timestamp"
+      ]
+    }
+  }
+}
