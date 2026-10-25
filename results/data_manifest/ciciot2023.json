@@ -1,0 +1,22 @@
+{
+  "dataset": "ciciot2023",
+  "files": {
+    "CSV.zip": {
+      "bytes": 1430268604,
+      "method": "manual",
+      "retrieved_utc": "2026-10-25T04:33:00Z",
+      "sha256": "e211e878d2f39226ea3a854683f91ae6175b628807ee96eeecb7a04a36a28dbd",
+      "source": "manual upload"
+    },
+    "README.pdf": {
+      "bytes": 82902,
+      "method": "manual",
+      "retrieved_utc": "2026-10-25T04:33:00Z",
+      "sha256": "01bdf30343455fb6d252ec415da19d5d8b1c3add16b09d63598be870fe2a057d",
+      "source": "manual upload"
+    }
+  },
+  "name": "CIC-IoT2023 (CSV features)",
+  "total_bytes": 1430351506,
+  "updated_utc": "2026-10-25T04:33:15Z"
+}
