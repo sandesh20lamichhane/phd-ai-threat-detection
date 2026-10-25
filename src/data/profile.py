@@ -76,15 +76,18 @@ def profile_table(ds_id, ds, rules):
         col = normalise_name(lab["column"])
         checks["label_column_present"] = col in sample
         raw = sample[col] if col in sample else pd.Series([], dtype=str)
-    else:
-        rx = re.compile(lab["from_filename"])
+    elif "from_filename" in lab or "from_path" in lab:
+        rx = re.compile(lab.get("from_filename") or lab["from_path"])
 
         def from_name(f):
-            m = rx.match(Path(f.split("::")[-1]).name)
+            inner = f.split("::")[-1]
+            m = rx.match(Path(inner).name) if "from_filename" in lab else rx.search(inner)
             return m.group("label") if m else None
         raw = sample["__file"].map(from_name)
-        checks["label_from_filename_ok"] = bool(raw.notna().all())
-    if len(raw):
+        checks["label_from_path_ok"] = bool(raw.notna().all())
+    else:
+        raw = pd.Series([], dtype=str)          # reference-only dataset: no label rules
+    if len(raw) and lab:
         try:
             fam, mapping = map_labels(raw, compile_rules(rules[lab["rules"]]))
             rep["label_values_sampled"] = dict(Counter(raw.fillna("").astype(str).str.strip()).most_common(60))

@@ -132,3 +132,41 @@ def test_pilot_outputs_are_refused(drive):
     preprocess("cicids2017_improved", max_rows=3000, log=lambda *a: None)
     with pytest.raises(RuntimeError):
         datasets.load("cicids2017_improved")
+
+
+def test_ciciot_labels_from_folders_and_file_order_split(drive):
+    from src.data.pipeline import preprocess
+    from tests.synthetic import write_ciciot_zip
+    write_ciciot_zip(drive / "data" / "raw")
+    rep = preprocess("ciciot2023", log=lambda *a: None)
+    assert set(rep["schema"]["label_map"]) == {"Benign_Final", "DDoS-ICMP_Flood", "Recon-PortScan", "XSS"}
+    sp = rep["splits"]["primary"]
+    assert sp["rows_per_partition"] == {"train": 1470, "val": 315, "test": 315}
+    assert sp["integrity"]["blocks_shared_between_partitions"] == 0
+    df = pd.read_parquet(drive / "data/splits/ciciot2023/primary.parquet")
+    assert df.groupby("_block")["partition"].nunique().max() == 1
+
+
+def test_ton_extra_uid_column_and_natural_order(drive):
+    from src.data.load import discover, load_config
+    from src.data.pipeline import preprocess
+    from tests.synthetic import write_ton
+    write_ton(drive / "data" / "interim")
+    names = [s.rel.split("/")[-1] for s in discover(load_config()["datasets"]["ton_iot"])]
+    assert names == ["Network_dataset_1.csv", "Network_dataset_2.csv", "Network_dataset_10.csv"]
+    rep = preprocess("ton_iot", log=lambda *a: None)
+    assert "uid" in rep["schema"]["removed_columns"] and "dns_query" not in rep["schema"]["feature_columns"]
+    assert set(rep["splits"]["primary"]["rows_per_partition"]) >= {"train", "val", "test"}
+
+
+def test_ciciomt_validation_is_the_end_of_each_train_file(drive):
+    from src.data.pipeline import preprocess
+    from tests.synthetic import write_ciciomt
+    write_ciciomt(drive / "data" / "raw")
+    preprocess("ciciomt2024", log=lambda *a: None)
+    df = pd.concat(pd.read_parquet(p) for p in sorted((drive / "data/processed/ciciomt2024/v1").glob("*.parquet")))
+    sp = pd.read_parquet(drive / "data/splits/ciciomt2024/primary.parquet")
+    df["partition"] = sp["partition"].to_numpy()
+    tr = df[df["_partition_official"] == "train"]
+    for _, g in tr.groupby("_file"):
+        assert g.loc[g.partition == 0, "_row"].max() < g.loc[g.partition == 1, "_row"].min()

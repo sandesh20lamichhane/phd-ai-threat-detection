@@ -80,3 +80,37 @@ def write_ciciomt(raw, seed=0):
         d.mkdir(parents=True)
         for name in ("Benign", "TCP_IP-DDoS-ICMP1", "TCP_IP-DDoS-ICMP2", "MQTT-Malformed_Data", "Recon-Port_Scan"):
             pd.DataFrame({c: rng.random(200) for c in cols}).to_csv(d / f"{name}_{part}.pcap.csv", index=False)
+
+
+def write_ciciot_zip(raw, seed=0):
+    """CIC-IoT2023 layout: CSV.zip with CSV/<label>/<capture>.pcap.csv and no label column."""
+    import zipfile
+    rng = np.random.default_rng(seed)
+    d = raw / "ciciot2023"
+    d.mkdir(parents=True)
+    with zipfile.ZipFile(d / "CSV.zip", "w") as z:
+        z.writestr("CSV/README.pdf", b"%PDF")
+        for label, n_files in (("Benign_Final", 2), ("DDoS-ICMP_Flood", 3), ("Recon-PortScan", 1), ("XSS", 1)):
+            for i in range(n_files):
+                df = pd.DataFrame({"Header_Length": rng.random(300), "Protocol Type": rng.integers(0, 17, 300),
+                                   "Time_To_Live": rng.random(300)})
+                z.writestr(f"CSV/{label}/{label}{i}.pcap.csv", df.to_csv(index=False))
+
+
+def write_ton(interim, seed=0):
+    rng = np.random.default_rng(seed)
+    d = interim / "ton_iot" / "Processed_datasets" / "Processed_Network_dataset"
+    d.mkdir(parents=True)
+    t0 = 1554198358
+    for i in (1, 2, 10):
+        n = 2000
+        df = pd.DataFrame({"ts": t0 + i * 20000 + np.sort(rng.integers(0, 20000, n)), "src_ip": "192.168.1.1",
+                           "src_port": rng.integers(1, 9, n), "dst_ip": "192.168.1.2", "dst_port": 80,
+                           "proto": rng.choice(["tcp", "udp"], n), "service": "-", "duration": rng.random(n),
+                           "src_bytes": rng.integers(0, 999, n), "conn_state": "SF", "dns_query": "x.com",
+                           "label": 0, "type": "normal"})
+        att = rng.random(n) < 0.3
+        df.loc[att, "type"], df.loc[att, "label"] = "scanning", 1
+        if i == 10:
+            df.insert(1, "uid", [f"C{k}" for k in range(n)])
+        df.to_csv(d / f"Network_dataset_{i}.csv", index=False)

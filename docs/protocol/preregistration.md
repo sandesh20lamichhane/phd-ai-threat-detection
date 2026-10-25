@@ -87,12 +87,12 @@ Applied identically to every dataset by `scripts/preprocess.py`:
 
 | Dataset | Split | Grouping unit for split and bootstrap |
 |---|---|---|
-| CICIDS2017 (primary) | within-day chronological block split: each day cut into 300 s blocks by flow start; each block gets its majority family; for each (day, family) the earliest 70 % of blocks → train, next 15 % → val, last 15 % → test; a family with fewer than 3 blocks on a day stays in train for that day | 300 s block |
+| CICIDS2017 (primary) | within-day chronological block split: each day cut into 300 s blocks by flow start; each block takes the raw attack label most frequent in it (benign if none); for each (day, label) the earliest 70 % of blocks → train, next 15 % → val, last 15 % → test; a label with fewer than 3 blocks on a day stays in train for that day | 300 s block |
 | CICIDS2017 (secondary S1) | by day: Mon–Wed train, Thu val, Fri test (unseen-attack analysis) | 300 s block |
 | CSE-CIC-IDS2018, UNSW-NB15 | none: whole dataset is the external test set | 300 s block |
 | LANL | chronological by day (§7) | host |
-| CICIoMT2024 | official train/test files; val = 15 % of train, stratified, seed 11 | file × 300 s block if timestamps exist, else none |
-| CIC-IoT2023 | stratified random 70/15/15, seed 11 (the CSVs carry no time or host fields) | none: limitation, reported |
+| CICIoMT2024 | official train/test captures; val = the last 15 % of rows (of 85 %) of each train capture, in file order | 1 000 consecutive rows within a file |
+| CIC-IoT2023 | per capture file, in file order: first 70 % → train, next 15 % → val, last 15 % → test (no time or host fields) | 1 000 consecutive rows within a file |
 | ToN_IoT network | same chronological block rule as CICIDS2017 | 300 s block |
 | NSL-KDD | official KDDTrain+ / KDDTest+ | none |
 

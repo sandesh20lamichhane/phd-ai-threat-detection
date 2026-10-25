@@ -179,10 +179,11 @@ def preprocess(ds_id, config_path=CONFIG_PATH, max_rows=None, keep_stage=False, 
     # ---- split -------------------------------------------------------------------------------------------
     K = {k: v[keep] for k, v in A.items()}
     famk, dayk = fam[keep], day_codes.decode(K["day"])
+    rawk = raw_codes.decode(K["raw"])
     splits_report = {}
     for name, spec in (ds.get("splits") or {}).items():
         splits_report[name] = make_split(ds, ds_id, name, spec, K, famk, dayk, std.feature_columns,
-                                         off_codes.decode(K["off"]))
+                                         off_codes.decode(K["off"]), rawk)
         log(f"[{ds_id}] split {name}: {splits_report[name]['rows_per_partition']}")
 
     # ---- report ------------------------------------------------------------------------------------------
@@ -225,28 +226,42 @@ def multiclass_eligible(K, famk, ds):
     return out
 
 
-def make_split(ds, ds_id, name, spec, K, famk, dayk, feature_columns, official):
+def make_split(ds, ds_id, name, spec, K, famk, dayk, feature_columns, official, rawk=None):
     bs, fr, seed = ds["block_seconds"], ds["split_fractions"], ds["split_seed"]
-    blk = S.blocks(K["ts"], bs)
+    has_time = np.isfinite(K["ts"]).any()
+    blk = S.blocks(K["ts"], bs) if has_time else S.file_row_blocks(K["file"], K["row"], ds["block_rows"])
     t = spec["type"]
     diag, purged = {}, 0
+    strata = rawk if (rawk is not None and ds.get("stratum", "raw_label") == "raw_label") else famk
     if t == "chronological_blocks":
-        part, diag = S.chronological_block_split(blk, dayk, famk, K["y"], fr, ds["min_blocks_per_stratum"])
+        part, diag = S.chronological_block_split(blk, dayk, strata, K["y"], fr, ds["min_blocks_per_stratum"])
         part, purged = S.purge(part, blk, dayk, K["ts"], K["dur"], bs)
     elif t == "by_day":
         part = S.by_day_split(dayk, spec["train"], spec["val"], spec["test"])
         part, purged = S.purge(part, blk, dayk, K["ts"], K["dur"], bs)
     elif t == "external":
         part = np.full(len(blk), S.EXTERNAL, dtype=np.int8)
+    elif t == "file_order":
+        part = S.file_order_split(K["file"], K["row"], fr)
     elif t == "stratified_random":
         part = S.stratified_random_split(famk, fr, seed)
     elif t == "official":
-        part = S.official_split(official, famk, spec.get("val_from_train", 0.15), seed)
+        part = np.where(np.asarray(official, dtype=object) == "test", S.TEST, S.TRAIN).astype(np.int8)
+        tr = part == S.TRAIN
+        if spec.get("val_mode") == "file_order":
+            sub = S.file_order_split(K["file"][tr], K["row"][tr], fr, which=("train", "val"))
+            part[np.flatnonzero(tr)] = sub
+        else:
+            part = S.official_split(official, famk, spec.get("val_from_train", 0.15), seed)
     else:
         raise ValueError(f"unknown split type {t}")
+    if not has_time:   # keep every row block inside one partition
+        blk = blk * 8 + (part.astype(np.int64) + 2)
+    diag["bootstrap_groups"] = (f"{bs} s time blocks" if has_time else
+                                f"runs of {ds['block_rows']} consecutive rows within a file")
     # "Attempted" rows (_y = -1) keep a partition so sensitivity S3 can use them; primary loaders drop them.
     integrity = split_integrity(part, K["fl"], K["f"], K["near"], blk, feature_columns,
-                                block_split=t in ("chronological_blocks", "by_day"))
+                                block_split=t in ("chronological_blocks", "by_day", "file_order"))
     tab = pd.crosstab(pd.Series(famk, name="family"), pd.Series(part, name="partition").map(S.PARTITION_NAMES))
     df = pd.DataFrame({"_key": K["key"], "_block": blk, "partition": part})
     path = paths.SPLITS / ds_id / f"{name}.parquet"

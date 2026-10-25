@@ -3,14 +3,16 @@
 # The SHA-256 of this file is written into every preprocessing report. Change it only through
 # docs/protocol/protocol_amendments.md and bump `version`.
 
-version: "1.0"
-frozen: 2026-10-25
+version: "1.1"
+frozen: 2026-10-25           # 1.1 (2026-10-25): schema fixes and split refinements, see protocol_amendments.md
 
 defaults:
   chunksize: 1000000          # rows per read; lower it if Colab runs out of memory
   float_dtype: float32
   near_duplicate_sig_figs: 3   # preregistration §4.7
   block_seconds: 300           # split and bootstrap unit, preregistration §5
+  block_rows: 1000             # bootstrap unit for datasets without time: consecutive rows within a file
+  stratum: raw_label           # block strata = raw attack label (every attack variant split in time), amendment 1.1
   split_fractions: {train: 0.70, val: 0.15, test: 0.15}
   min_blocks_per_stratum: 3    # fewer blocks than this on a day -> whole stratum stays in train
   multiclass_min_blocks: 3     # family enters the multiclass task only above these (preregistration §3)
@@ -136,12 +138,13 @@ datasets:
 
   ciciot2023:
     role: domain_target
-    files: {root: interim, include: '(?i)\.csv$', zip_fallback: CSV.zip}
-    label: {column: label, rules: ciciot}
+    # one folder per class: CSV/<label>/<capture>.pcap.csv; no label column in this release
+    files: {root: interim, include: '(?i)\.pcap\.csv$', zip_fallback: CSV.zip}
+    label: {from_path: '(?:^|/)CSV/(?P<label>[^/]+)/', rules: ciciot}
     binary_from: family
-    time: null                    # the CSVs carry no time or host fields
+    time: null                    # no time or host fields; rows follow capture order within each file
     splits:
-      primary: {type: stratified_random}
+      primary: {type: file_order}   # per file: first 70 % train, next 15 % val, last 15 % test
 
   ciciomt2024:
     role: domain_target
@@ -151,7 +154,7 @@ datasets:
     official_partition_from_path: {train: train, test: test}
     time: null
     splits:
-      primary: {type: official, val_from_train: 0.15}
+      primary: {type: official, val_mode: file_order}   # val = last 15 % (of 85 %) of each train file
 
   ton_iot:
     role: domain_target
@@ -162,7 +165,7 @@ datasets:
     duration: {column: duration, unit_seconds: 1.0}
     day_from: time
     keep_meta: {dst_port: _dst_port}
-    identifier_columns: [ts, src_ip, src_port, dst_ip, dst_port]
+    identifier_columns: [ts, src_ip, src_port, dst_ip, dst_port, uid]   # uid: Zeek connection id, only in some files
     # free text: identifier-like, excluded (preregistration §4.8)
     drop_columns: [dns_query, ssl_subject, ssl_issuer, http_uri, http_user_agent, http_orig_mime_types,
                    http_resp_mime_types, weird_name, weird_addl, http_referrer]

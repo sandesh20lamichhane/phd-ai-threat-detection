@@ -56,8 +56,10 @@ def _root_dirs(ds):
 
 
 def _sort_key(rel):
+    """Weekday files in weekday order, otherwise natural order (Network_dataset_2 before _10)."""
     stem = Path(rel).name.split(".")[0].lower()
-    return (WEEKDAYS.index(stem) if stem in WEEKDAYS else 99, rel.lower())
+    natural = [int(t) if t.isdigit() else t for t in re.split(r"(\d+)", rel.lower())]
+    return (WEEKDAYS.index(stem) if stem in WEEKDAYS else 99, natural)
 
 
 def discover(ds):
@@ -156,9 +158,11 @@ class Standardiser:
             raw = df[normalise_name(lab["column"])]
             label_cols.add(normalise_name(lab["column"]))
         else:
-            m = re.match(lab["from_filename"], Path(src.rel.split("::")[-1]).name)
+            inner = src.rel.split("::")[-1]
+            m = (re.match(lab["from_filename"], Path(inner).name) if "from_filename" in lab
+                 else re.search(lab["from_path"], inner))
             if not m:
-                raise ValueError(f"cannot read a label from file name {src.rel}")
+                raise ValueError(f"cannot read a label from the path {src.rel}")
             raw = pd.Series([m.group("label")] * len(df), index=df.index)
         family, mapping = map_labels(raw, self.rules)
         self.label_map.update(mapping)

@@ -65,6 +65,9 @@ def block_strata(block, family, y, benign="BENIGN"):
 def chronological_block_split(block, day, family, y, fractions, min_blocks=3):
     """Per (day, stratum): earliest blocks -> train, next -> val, last -> test (ADR-0004).
 
+    `family` is the label that defines the strata; the pipeline passes the raw attack label (e.g. DoS Hulk,
+    DoS GoldenEye), so every attack variant, not just every family, is split in time.
+
     Returns (partition per row, diagnostics). Rows without a block are EXCLUDED. A stratum with fewer than
     `min_blocks` blocks on a day stays in train for that day and is listed in the diagnostics.
     """
@@ -145,3 +148,30 @@ def official_split(official, labels, val_frac, seed):
     tr = np.flatnonzero(part == TRAIN)
     part[_stratified_pick(tr, np.asarray(labels, dtype=object), val_frac, seed)] = VAL
     return part
+
+
+def file_order_split(file, row, fractions, which=("train", "val", "test")):
+    """Within each source file, rows in file order: first share -> train, next -> val, last -> test.
+
+    For datasets without timestamps whose files are captures written in time order (CIC-IoT2023, CICIoMT2024).
+    `which` lists the partitions to fill, e.g. ("train", "val") to carve validation out of official train files.
+    """
+    file, row = np.asarray(file), np.asarray(row)
+    part = np.full(len(file), EXCLUDED, dtype=np.int8)
+    codes = {"train": TRAIN, "val": VAL, "test": TEST}
+    total = sum(fractions[w] for w in which)
+    for f in np.unique(file):
+        idx = np.flatnonzero(file == f)
+        idx = idx[np.argsort(row[idx], kind="stable")]
+        cuts = np.cumsum([fractions[w] / total for w in which])
+        bounds = np.round(cuts * len(idx)).astype(int)
+        start = 0
+        for w, end in zip(which, bounds):
+            part[idx[start:end]] = codes[w]
+            start = end
+    return part
+
+
+def file_row_blocks(file, row, block_rows):
+    """Bootstrap groups for datasets without time: consecutive runs of `block_rows` rows within a file."""
+    return np.asarray(file, dtype=np.int64) * 10**9 + np.asarray(row, dtype=np.int64) // block_rows
