@@ -47,6 +47,21 @@ python -m src.acquire.fetch --only ciciot2023 lanl_cyber1 # selected datasets
 python -m src.acquire.fetch --verify                      # re-check SHA-256 of everything in Drive
 ```
 
+## Preprocessing (protocol v1.0)
+
+The evaluation protocol is frozen in [`docs/protocol/preregistration.md`](docs/protocol/preregistration.md), with
+thresholds in [`docs/protocol/hypotheses.md`](docs/protocol/hypotheses.md). Run
+[`notebooks/01_profile_and_preprocess.ipynb`](notebooks/01_profile_and_preprocess.ipynb) in Colab, or:
+
+```bash
+python scripts/preprocess.py --profile                       # schema check, samples only
+python scripts/preprocess.py --dataset cicids2017_improved   # one dataset
+python scripts/preprocess.py --all                           # all processed datasets
+```
+
+Each dataset gets deduplicated, identifier-free parquet in `data/processed/<id>/v1/`, frozen splits in
+`data/splits/<id>/`, a report in `results/data_audit/<id>/` and a data card in `docs/data_cards/`.
+
 ## Layout
 
 | Path | Holds |

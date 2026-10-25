@@ -1,0 +1,209 @@
+# Preprocessing configuration, protocol v1.0 (frozen 2026-10-25).
+# Rules and rationale: docs/protocol/preregistration.md §3-5 and docs/protocol/data_quality_rules.md.
+# The SHA-256 of this file is written into every preprocessing report. Change it only through
+# docs/protocol/protocol_amendments.md and bump `version`.
+
+version: "1.0"
+frozen: 2026-10-25
+
+defaults:
+  chunksize: 1000000          # rows per read; lower it if Colab runs out of memory
+  float_dtype: float32
+  near_duplicate_sig_figs: 3   # preregistration §4.7
+  block_seconds: 300           # split and bootstrap unit, preregistration §5
+  split_fractions: {train: 0.70, val: 0.15, test: 0.15}
+  min_blocks_per_stratum: 3    # fewer blocks than this on a day -> whole stratum stays in train
+  multiclass_min_blocks: 3     # family enters the multiclass task only above these (preregistration §3)
+  multiclass_min_flows: 50
+  split_seed: 11
+  # Never features. Matched case-insensitively after whitespace normalisation, in addition to the
+  # generic identifier patterns in src/data/clean.py.
+  identifier_columns: []
+  missing_tokens: ["", "-", "NaN", "nan", "Infinity", "-Infinity", "inf", "-inf"]
+
+# Raw label string -> canonical family, first matching regex wins (case-insensitive).
+# "Attempted" is not a family: such rows get _y = -1 and are excluded from the primary analysis (ADR-0003).
+# A raw label that matches nothing stops the pipeline.
+label_rules:
+  cic:
+    - ['attempted', Attempted]
+    - ['^benign$', BENIGN]
+    - ['web ?attack|xss|sql ?inj|^sql', WebAttack]
+    - ['heartbleed', Heartbleed]
+    - ['infilt?e?ration', Infiltration]
+    - ['ddos|loic|hoic', DDoS]
+    - ['dos', DoS]
+    - ['patator|brute ?force', BruteForce]
+    - ['bot', Bot]
+    - ['port ?scan', PortScan]
+  unsw:
+    - ['^(normal)?$', BENIGN]
+    - ['^fuzzers?$', Fuzzers]
+    - ['^analysis$', Analysis]
+    - ['^backdoors?$', Backdoor]
+    - ['^dos$', DoS]
+    - ['^exploits?$', Exploits]
+    - ['^generic$', Generic]
+    - ['^reconnaissance$', Reconnaissance]
+    - ['^shellcode$', Shellcode]
+    - ['^worms?$', Worms]
+  ciciot:
+    - ['^benign', BENIGN]
+    - ['^ddos', DDoS]
+    - ['^dos', DoS]
+    - ['^mirai', Mirai]
+    - ['^recon|vulnerabilityscan|vulscan', Recon]
+    - ['spoof', Spoofing]
+    - ['bruteforce', BruteForce]
+    - ['sqlinjection|commandinjection|backdoor|upload|xss|browserhijack', Web]
+  ciciomt:
+    - ['^benign', BENIGN]
+    - ['arp_?spoof', Spoofing]
+    - ['^recon', Recon]
+    - ['malformed', MQTT-Malformed]
+    - ['ddos', DDoS]
+    - ['dos', DoS]
+  ton:
+    - ['^normal$', BENIGN]
+    - ['^scanning$', Scanning]
+    - ['^ddos$', DDoS]
+    - ['^dos$', DoS]
+    - ['^ransomware$', Ransomware]
+    - ['^backdoor$', Backdoor]
+    - ['^injection$', Injection]
+    - ['^xss$', XSS]
+    - ['^password$', Password]
+    - ['^mitm$', MITM]
+  nsl:
+    - ['^normal$', BENIGN]
+    - ['^(back|land|neptune|pod|smurf|teardrop|apache2|mailbomb|processtable|udpstorm)$', DoS]
+    - ['^(ipsweep|nmap|portsweep|satan|mscan|saint)$', Probe]
+    - ['^(ftp_write|guess_passwd|imap|multihop|phf|spy|warezclient|warezmaster|sendmail|named|snmpgetattack|snmpguess|xlock|xsnoop|worm)$', R2L]
+    - ['^(buffer_overflow|loadmodule|perl|rootkit|httptunnel|ps|sqlattack|xterm)$', U2R]
+
+datasets:
+  cicids2017_improved:
+    role: source
+    files: {root: raw, include: '(?i)^(monday|tuesday|wednesday|thursday|friday)\.csv$'}
+    label: {column: Label, rules: cic}
+    binary_from: family          # _y = 0 if family == BENIGN else 1
+    time: {column: Timestamp}
+    duration: {column: Flow Duration, unit_seconds: 1.0e-6}
+    day_from: filename           # monday.csv -> Monday
+    keep_meta: {Dst Port: _dst_port}
+    drop_columns: [Attempted Category]   # derived from the label: leakage if left in
+    identifier_columns: [id, Flow ID, Src IP, Src Port, Dst IP, Dst Port, Timestamp,
+                         Source IP, Source Port, Destination IP, Destination Port]
+    splits:
+      primary: {type: chronological_blocks}
+      s1_by_day: {type: by_day, train: [Monday, Tuesday, Wednesday], val: [Thursday], test: [Friday]}
+
+  csecicids2018_improved:
+    role: external_target
+    files: {root: interim, include: '(?i)\.csv$', zip_fallback: CSECICIDS2018_improved.zip}
+    label: {column: Label, rules: cic}
+    binary_from: family
+    time: {column: Timestamp}
+    duration: {column: Flow Duration, unit_seconds: 1.0e-6}
+    day_from: time
+    keep_meta: {Dst Port: _dst_port}
+    drop_columns: [Attempted Category]
+    identifier_columns: [id, Flow ID, Src IP, Src Port, Dst IP, Dst Port, Timestamp]
+    splits:
+      external: {type: external}
+
+  unsw_nb15:
+    role: external_target
+    files: {root: interim, include: '(?i)UNSW-NB15_[1-4]\.csv$', zip_fallback: UNSW-NB15_official_CSV.zip}
+    header: none
+    columns: [srcip, sport, dstip, dsport, proto, state, dur, sbytes, dbytes, sttl, dttl, sloss, dloss,
+              service, Sload, Dload, Spkts, Dpkts, swin, dwin, stcpb, dtcpb, smeansz, dmeansz, trans_depth,
+              res_bdy_len, Sjit, Djit, Stime, Ltime, Sintpkt, Dintpkt, tcprtt, synack, ackdat, is_sm_ips_ports,
+              ct_state_ttl, ct_flw_http_mthd, is_ftp_login, ct_ftp_cmd, ct_srv_src, ct_srv_dst, ct_dst_ltm,
+              ct_src_ltm, ct_src_dport_ltm, ct_dst_sport_ltm, ct_dst_src_ltm, attack_cat, Label]
+    label: {column: attack_cat, rules: unsw}
+    binary_from: {column: Label}           # official 0/1; disagreement with attack_cat is reported
+    time: {column: Stime, unit: s}
+    duration: {column: dur, unit_seconds: 1.0}
+    day_from: time
+    keep_meta: {dsport: _dst_port}
+    # stcpb/dtcpb are random TCP initial sequence numbers: no behavioural meaning, high shortcut risk.
+    drop_columns: [stcpb, dtcpb]
+    identifier_columns: [srcip, sport, dstip, dsport, Stime, Ltime]
+    categorical: [proto, state, service]
+    splits:
+      external: {type: external}
+
+  ciciot2023:
+    role: domain_target
+    files: {root: interim, include: '(?i)\.csv$', zip_fallback: CSV.zip}
+    label: {column: label, rules: ciciot}
+    binary_from: family
+    time: null                    # the CSVs carry no time or host fields
+    splits:
+      primary: {type: stratified_random}
+
+  ciciomt2024:
+    role: domain_target
+    files: {root: raw, include: '(?i)(train|test)/.*\.pcap\.csv$'}
+    label: {from_filename: '^(?P<label>.+?)\d*_(train|test)\.pcap\.csv$', rules: ciciomt}
+    binary_from: family
+    official_partition_from_path: {train: train, test: test}
+    time: null
+    splits:
+      primary: {type: official, val_from_train: 0.15}
+
+  ton_iot:
+    role: domain_target
+    files: {root: interim, include: '(?i)Network_dataset_\d+\.csv$', zip_fallback: ToN_IoT_Processed_datasets.zip}
+    label: {column: type, rules: ton}
+    binary_from: {column: label}
+    time: {column: ts, unit: s}
+    duration: {column: duration, unit_seconds: 1.0}
+    day_from: time
+    keep_meta: {dst_port: _dst_port}
+    identifier_columns: [ts, src_ip, src_port, dst_ip, dst_port]
+    # free text: identifier-like, excluded (preregistration §4.8)
+    drop_columns: [dns_query, ssl_subject, ssl_issuer, http_uri, http_user_agent, http_orig_mime_types,
+                   http_resp_mime_types, weird_name, weird_addl, http_referrer]
+    categorical: [proto, service, conn_state, dns_AA, dns_RD, dns_RA, dns_rejected, ssl_version, ssl_cipher,
+                  ssl_resumed, ssl_established, http_method, http_version, weird_notice, http_trans_depth]
+    splits:
+      primary: {type: chronological_blocks}
+
+  nsl_kdd:
+    role: baseline
+    files: {root: raw, include: '^KDD(Train|Test)\+\.txt$'}
+    header: none
+    columns: [duration, protocol_type, service, flag, src_bytes, dst_bytes, land, wrong_fragment, urgent, hot,
+              num_failed_logins, logged_in, num_compromised, root_shell, su_attempted, num_root,
+              num_file_creations, num_shells, num_access_files, num_outbound_cmds, is_host_login,
+              is_guest_login, count, srv_count, serror_rate, srv_serror_rate, rerror_rate, srv_rerror_rate,
+              same_srv_rate, diff_srv_rate, srv_diff_host_rate, dst_host_count, dst_host_srv_count,
+              dst_host_same_srv_rate, dst_host_diff_srv_rate, dst_host_same_src_port_rate,
+              dst_host_srv_diff_host_rate, dst_host_serror_rate, dst_host_srv_serror_rate,
+              dst_host_rerror_rate, dst_host_srv_rerror_rate, attack, difficulty]
+    label: {column: attack, rules: nsl}
+    binary_from: family
+    drop_columns: [difficulty]     # annotation of how many reference learners got it wrong: not a feature
+    categorical: [protocol_type, service, flag]
+    official_partition_from_path: {train: KDDTrain, test: KDDTest}
+    time: null
+    splits:
+      primary: {type: official, val_from_train: 0.15}
+
+  lanl_cyber1:
+    role: temporal
+    reader: lanl                    # host-hour aggregation, src/data/lanl.py
+    files: {root: raw}
+    hour_seconds: 3600
+    horizon_seconds: 86400          # early-alert window (preregistration §7)
+    split: {train_days: [1, 40], test_days: [41, 58], min_test_compromised_hosts: 30, train_frac_of_early: 0.8}
+
+  edge_iiotset:
+    role: reference_only            # ADR-0006: profiled, not preprocessed
+    files: {root: raw, include: '(?i)\.csv$'}
+
+  ids_adapt_processed_legacy:
+    role: reference_only            # ADR-0006: never used for a reported number
+    files: {root: raw, include: '(?i)\.parquet$'}

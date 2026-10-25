@@ -1,13 +1,14 @@
 name: L1_within_cicids2017
 data: cicids2017_improved
+task: binary                    # primary; multiclass family task = sensitivity S6
 split:
-  type: by_day
-  train_days: [Monday, Tuesday, Wednesday]
-  val_days: [Thursday]
-  test_days: [Friday]
-  cv_folds: 5
-preprocessing: {drop_identifiers: true, drop_duplicates: true, balance: none}  # balance only on train folds
+  type: chronological_blocks    # data/splits/cicids2017_improved/primary.parquet (ADR-0004)
+  file: primary
+  sensitivity: {S1_by_day: s1_by_day}
+preprocessing: {transform: frozen_on_train, attempted: exclude, conflicts: keep, ports: exclude, balance: none}
+threshold: maximise_macro_f1_on_val
 models: [random_forest, xgboost, mlp, cnn_lstm, proposed]
-metrics: [macro_f1, per_class_recall, pr_auc, fpr_at_tpr_0.95]
+metrics: [macro_f1, per_class_precision_recall_f1, balanced_accuracy, fpr, pr_auc, fpr_at_tpr_0.95]
 seeds: config/seeds.yaml
-stats: {two_models: wilcoxon, many_models: friedman_nemenyi}
+stats: {ci: block_bootstrap, B: 10000, decision: three_outcome, h1a_threshold: 0.95,
+        two_models: wilcoxon, many_models: friedman_nemenyi}

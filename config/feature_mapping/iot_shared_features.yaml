@@ -1,3 +1,7 @@
-# Shared features across CIC-IoT2023, CICIoMT2024 and ToN_IoT (Level 4)
+# Level 4 feature alignment: NOT FROZEN. See docs/protocol/preregistration.md §9 item 1.
+# CIC-IoT2023 and CICIoMT2024 share one packet-window extractor (their common columns are an exact match);
+# ToN_IoT network data come from Zeek; none of the three shares CICFlowMeter features with CICIDS2017.
+# The Level 4 design (canonical cross-extractor set vs retrain-in-domain) is fixed before the first Level 4 run.
+version: "draft"
 features: []
 label_map: {}

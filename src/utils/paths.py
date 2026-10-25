@@ -11,9 +11,9 @@ REPO = Path(__file__).resolve().parents[2]
 DRIVE = Path(os.environ.get("PHD_DRIVE_ROOT", "/content/drive/MyDrive/PhD-AI-Cyber"))
 
 RAW = DRIVE / "data" / "raw"
-INTERIM = DRIVE / "data" / "interim"          # cleaned, deduplicated, identifiers removed
-PROCESSED = DRIVE / "data" / "processed"      # model-ready features (parquet)
-SPLITS = DRIVE / "data" / "splits"            # saved row indices per experiment and seed
+INTERIM = DRIVE / "data" / "interim"          # files extracted from the raw zips, otherwise untouched
+PROCESSED = DRIVE / "data" / "processed"      # cleaned, deduplicated, identifier-free parquet (scripts/preprocess.py)
+SPLITS = DRIVE / "data" / "splits"            # frozen split membership per dataset (row key -> partition)
 EXTERNAL = DRIVE / "data" / "external"        # threat-intelligence corpus
 MODELS = DRIVE / "models"
 RUNS = DRIVE / "runs"
@@ -22,6 +22,7 @@ SIMULATIONS = DRIVE / "simulations"
 CONFIG = REPO / "config"
 RESULTS = REPO / "results"
 PAPER = REPO / "paper"
+DATA_CARDS = REPO / "docs" / "data_cards"
 
 
 def raw(dataset):

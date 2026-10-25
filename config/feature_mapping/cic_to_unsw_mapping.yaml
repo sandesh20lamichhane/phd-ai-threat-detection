@@ -1,4 +1,76 @@
-# Semantic mapping CICFlowMeter -> Argus/Bro features of UNSW-NB15 (Level 2, different tool).
-# Each entry: cic_name: {unsw: <name>, transform: identity|seconds_to_ms|..., note: ...}
-mapping: {}
-label_map: {}
+# Canonical features for CICIDS2017 (CICFlowMeter, corrected release) -> UNSW-NB15 (Argus + Bro), protocol v1.0.
+# Names are never matched directly: each canonical feature is computed from mapped primitives with the same
+# formula in both datasets (src/data/harmonise.py). Status: exact | approximate | unavailable.
+# Primary shared set = exact + approximate. Sensitivity S5 = the `timing_counts_only` subset.
+#
+# Units: CICFlowMeter durations and IATs are microseconds; Argus dur is seconds, Sintpkt/Dintpkt milliseconds.
+# Direction: both tools call the connection initiator "forward"/"source".
+version: "1.0"
+primitives:
+  duration_s:
+    cic: {column: [Flow Duration], scale: 1.0e-6}
+    unsw: {column: [dur], scale: 1.0}
+    status: approximate
+    note: flow start/end rules differ (CICFlowMeter timeouts and FIN handling vs Argus status records)
+  fwd_pkts:
+    cic: {column: [Total Fwd Packet, Total Fwd Packets]}
+    unsw: {column: [Spkts]}
+    status: exact
+  bwd_pkts:
+    cic: {column: [Total Bwd packets, Total Backward Packets, Total Bwd Packets]}
+    unsw: {column: [Dpkts]}
+    status: exact
+  fwd_bytes:
+    cic: {sum: [[Total Length of Fwd Packet, Total Length of Fwd Packets], [Fwd Header Length]]}
+    unsw: {column: [sbytes]}
+    status: approximate
+    note: Argus counts transaction bytes on the wire; CIC payload plus L3/L4 header length is the closest match
+  bwd_bytes:
+    cic: {sum: [[Total Length of Bwd Packet, Total Length of Bwd Packets], [Bwd Header Length]]}
+    unsw: {column: [dbytes]}
+    status: approximate
+    note: as fwd_bytes
+  fwd_iat_mean_ms:
+    cic: {column: [Fwd IAT Mean], scale: 1.0e-3}
+    unsw: {column: [Sintpkt]}
+    status: approximate
+    note: both are mean inter-packet time in the forward direction; edge handling for one-packet flows differs
+  bwd_iat_mean_ms:
+    cic: {column: [Bwd IAT Mean], scale: 1.0e-3}
+    unsw: {column: [Dintpkt]}
+    status: approximate
+  fwd_init_win:
+    cic: {column: [FWD Init Win Bytes, Init_Win_bytes_forward, Init Fwd Win Bytes]}
+    unsw: {column: [swin]}
+    status: approximate
+    note: CIC initial window of the first forward packet (-1 if none); Argus source TCP window advertisement
+  bwd_init_win:
+    cic: {column: [Bwd Init Win Bytes, Init_Win_bytes_backward, Init Bwd Win Bytes]}
+    unsw: {column: [dwin]}
+    status: approximate
+  protocol:
+    cic: {column: [Protocol]}
+    unsw: {column: [proto], map: iana}
+    status: exact
+    note: IANA protocol number; UNSW names mapped, names outside the table -> 255 (other)
+# Computed from primitives with one formula in both datasets
+derived:
+  fwd_bytes_per_s: {formula: fwd_bytes / max(duration_s, 1e-6), status: approximate}
+  bwd_bytes_per_s: {formula: bwd_bytes / max(duration_s, 1e-6), status: approximate}
+  fwd_pkts_per_s: {formula: fwd_pkts / max(duration_s, 1e-6), status: approximate}
+  bwd_pkts_per_s: {formula: bwd_pkts / max(duration_s, 1e-6), status: approximate}
+  fwd_mean_pkt_bytes: {formula: fwd_bytes / max(fwd_pkts, 1), status: approximate}
+  bwd_mean_pkt_bytes: {formula: bwd_bytes / max(bwd_pkts, 1), status: approximate}
+timing_counts_only: [duration_s, fwd_pkts, bwd_pkts, fwd_iat_mean_ms, bwd_iat_mean_ms, fwd_pkts_per_s,
+                     bwd_pkts_per_s, protocol]
+# Recorded so the paper can say what could not be aligned
+unavailable:
+  sttl/dttl: no TTL in CICFlowMeter output
+  sloss/dloss: no retransmission counts in CICFlowMeter output
+  tcprtt/synack/ackdat: no handshake timing in CICFlowMeter output
+  Sjit/Djit: Argus jitter estimator has no CIC counterpart (IAT std is a different statistic)
+  state/service: Argus state machine and Bro service detection have no CIC counterpart; service also leaks ports
+  trans_depth/res_bdy_len/ct_flw_http_mthd/is_ftp_login/ct_ftp_cmd: application-layer, no CIC counterpart
+  ct_* (connection-history counts): would need IPs and time, which are excluded identifiers
+  is_sm_ips_ports: computed from IPs and ports, excluded identifiers
+label_map: {binary: "0 = BENIGN, 1 = any attack; CIC 'Attempted' rows excluded (ADR-0003)"}

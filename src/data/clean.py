@@ -17,9 +17,13 @@ IDENTIFIER_PATTERNS = [
 ]
 
 
+def normalise_name(c):
+    return re.sub(r"\s+", " ", str(c)).strip()
+
+
 def normalise_columns(df):
     df = df.copy()
-    df.columns = [re.sub(r"\s+", " ", str(c)).strip() for c in df.columns]
+    df.columns = [normalise_name(c) for c in df.columns]
     return df
 
 
@@ -53,3 +57,31 @@ def clean(df, label_col="Label", extra_identifiers=(), keep=()):
     if label_col in df:
         report["label_counts"] = df[label_col].value_counts().to_dict()
     return df.reset_index(drop=True), report
+
+
+# ---- row hashing for the streaming pipeline (src/data/pipeline.py) ------------------------------------------
+_GOLDEN = np.uint64(0x9E3779B97F4A7C15)
+
+
+def row_hash(X):
+    """64-bit hash per row of a feature frame (NaN-aware, column-order dependent)."""
+    return pd.util.hash_pandas_object(X, index=False).to_numpy(dtype=np.uint64)
+
+
+def combine(h, values):
+    """Combine a row hash with a per-row value (e.g. the canonical label)."""
+    hv = pd.util.hash_array(np.asarray(values, dtype=object))
+    with np.errstate(over="ignore"):
+        return h ^ (hv * _GOLDEN)
+
+
+def round_sig(X, sig=3):
+    """Round every numeric column to `sig` significant figures (near-duplicate rule, preregistration §4.7)."""
+    out = X.copy()
+    for c in out.columns:
+        if pd.api.types.is_float_dtype(out[c]):
+            v = out[c].to_numpy(dtype="float64")
+            with np.errstate(divide="ignore", invalid="ignore"):
+                mag = np.where((v == 0) | ~np.isfinite(v), 1.0, 10.0 ** (np.floor(np.log10(np.abs(v))) - (sig - 1)))
+            out[c] = np.round(v / mag) * mag
+    return out

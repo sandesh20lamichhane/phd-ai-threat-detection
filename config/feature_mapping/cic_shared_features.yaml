@@ -1,4 +1,11 @@
-# CICFlowMeter features shared by CICIDS2017 and CSE-CIC-IDS2018 (Level 2, same tool).
-# Fill from the column audit in notebooks/11_feature_harmonisation.ipynb; publish with the thesis.
+# CICFlowMeter features shared by CICIDS2017 and CSE-CIC-IDS2018 (Level 2, same fixed extractor).
+# Rule (preregistration §8): every non-identifier feature column present in both processed datasets.
+# `features` is empty until the first full preprocessing run of both datasets; then
+# `python scripts/preprocess.py --shared-features` fills it once, and from then on the pipeline stops if the
+# computed intersection differs from this list.
+version: "1.0"
 features: []
-label_map: {}
+only_in_2017: []
+only_in_2018: []
+label_map: {binary: "0 = BENIGN, 1 = any attack; 'Attempted' rows excluded (ADR-0003)",
+            multiclass: "family taxonomy in config/preprocessing.yaml label_rules.cic (sensitivity S6)"}
