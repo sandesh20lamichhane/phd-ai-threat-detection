@@ -1,0 +1,12 @@
+command: scripts/preprocess.py --dataset cicids2017_improved
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/data_audit/logs/20261025T160935Z_cicids2017_improved.log
+[cicids2017_improved] 5 input files, 1.15 GB
+[cicids2017_improved] pass 1: 371,624 rows (monday.csv)
+[cicids2017_improved] pass 1: 693,702 rows (tuesday.csv)
+[cicids2017_improved] pass 1: 1,190,343 rows (wednesday.csv)
+[cicids2017_improved] pass 1: 1,552,419 rows (thursday.csv)
+[cicids2017_improved] pass 1: 2,099,976 rows (friday.csv)
+[cicids2017_improved] kept 1,714,956 of 2,099,976; duplicates 385,020; conflicts 226
+[cicids2017_improved] split primary: {'train': 1205524, 'val': 273563, 'test': 222243, 'purged': 13626}
+[cicids2017_improved] split s1_by_day: {'train': 1107646, 'test': 346530, 'val': 260780}
+[cicids2017_improved] report: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/data_audit/cicids2017_improved/report.json
