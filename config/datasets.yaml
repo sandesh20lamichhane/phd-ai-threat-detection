@@ -126,6 +126,10 @@ datasets:
         url: gated:ciciomt2024_folder
         include: '(?i)/csv/.*\.csv$'
         exclude: '(?i)pcap'
+      - type: manual        # cicresearch.ca refuses Colab (403), so files come via a browser download
+        instructions: >-
+          Download the WiFi_and_MQTT CSV zip(s) and the README from the cicresearch.ca browse page
+          and drag them into this dataset's Drive folder.
     register: https://www.unb.ca/cic/datasets/iomt-dataset-2024.html
 
   - id: nsl_kdd
