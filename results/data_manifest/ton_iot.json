@@ -1,0 +1,22 @@
+{
+  "dataset": "ton_iot",
+  "files": {
+    "ToN_IoT_Processed_datasets.zip": {
+      "bytes": 3941599190,
+      "method": "manual",
+      "retrieved_utc": "2026-10-25T12:22:33Z",
+      "sha256": "59edabada3be10786605cbe21f7a7206fff62e5cb8098c112e921bdad280d0be",
+      "source": "manual upload"
+    },
+    "ToN_IoT_TrainTest_GroundTruth_Descriptions.zip": {
+      "bytes": 1192716675,
+      "method": "manual",
+      "retrieved_utc": "2026-10-25T12:22:53Z",
+      "sha256": "0928711a7a8b94df265b95b19b348cdf012eed95ed02b2681efe90a7edf3f4fc",
+      "source": "manual upload"
+    }
+  },
+  "name": "ToN_IoT (processed network, Linux, Windows and IoT telemetry CSVs)",
+  "total_bytes": 5134315865,
+  "updated_utc": "2026-10-25T12:23:43Z"
+}
