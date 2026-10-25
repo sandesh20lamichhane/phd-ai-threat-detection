@@ -1,0 +1,38 @@
+command: scripts/preprocess.py --dataset ciciot2023
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/data_audit/logs/20261025T145451Z_ciciot2023.log
+[ciciot2023] 309 input files, 8.94 GB
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'label'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/scripts/preprocess.py", line 122, in <module>
+    main()
+    ~~~~^^
+  File "/content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/scripts/preprocess.py", line 118, in main
+    run(d, a.max_rows)
+    ~~~^^^^^^^^^^^^^^^
+  File "/content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/scripts/preprocess.py", line 27, in run
+    return preprocess(ds_id, max_rows=max_rows)
+  File "/content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/src/data/pipeline.py", line 89, in preprocess
+    for X, meta, src in read_chunks(ds, sources, std):
+                        ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/src/data/load.py", line 291, in read_chunks
+    X, meta = standardiser(chunk, src, file_idx, rows)
+              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/src/data/load.py", line 156, in __call__
+    raw = df[normalise_name(lab["column"])]
+          ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/usr/local/lib/python3.13/dist-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'label'
