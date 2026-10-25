@@ -1,15 +1,15 @@
 {
   "dataset": "unsw_nb15",
   "files": {
-    "unsw-nb15.zip": {
-      "bytes": 156257637,
-      "method": "kaggle",
-      "retrieved_utc": "2026-10-20T09:00:37Z",
-      "sha256": "d923de23e2378ff9e750f37d38fa60828eda33d8a1bd481a752f64930bc4cec6",
-      "source": "kaggle:mrwellsdavid/unsw-nb15"
+    "UNSW-NB15_official_CSV.zip": {
+      "bytes": 720676972,
+      "method": "manual",
+      "retrieved_utc": "2026-10-25T10:15:43Z",
+      "sha256": "ed3b21d83c44d2c11e0a40b336ffbecc3289f309404ac8c35a9c71b7b6f04222",
+      "source": "manual upload"
     }
   },
   "name": "UNSW-NB15 (CSV feature files)",
-  "total_bytes": 156257637,
-  "updated_utc": "2026-10-20T09:12:14Z"
+  "total_bytes": 720676972,
+  "updated_utc": "2026-10-25T10:15:53Z"
 }
