@@ -1,0 +1,19 @@
+command: scripts/preprocess.py --verify
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/data_audit/logs/20261026T060216Z_verify.log
+verifying cicids2017_improved
+  OK: rules identical to the current config (checked via git history of the config)
+verifying csecicids2018_improved
+  OK: rules identical to the current config (checked via git history of the config)
+verifying unsw_nb15
+  OK: rules identical to the current config (checked via report)
+verifying ciciomt2024
+  OK: rules identical to the current config (checked via git history of the config)
+verifying ton_iot
+  OK: rules identical to the current config (checked via git history of the config)
+verifying ciciot2023
+  OK: rules identical to the current config (checked via git history of the config)
+verifying lanl_cyber1
+  OK: rules identical to the current config (checked via git history of the config)
+verifying nsl_kdd
+  OK: rules identical to the current config (checked via report)
+all outputs verified

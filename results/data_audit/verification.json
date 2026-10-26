@@ -1,0 +1,93 @@
+{
+  "config_sha256": "9d38728188a87b1c8778fa782bf292c1a9409031504c4ed569baa37471da13cb",
+  "datasets": [
+    {
+      "dataset": "cicids2017_improved",
+      "ok": true,
+      "config": "current",
+      "config_detail": "rules identical to the current config (checked via git history of the config)",
+      "protocol_version": "1.1",
+      "code": "8db8263009cc1d1c5a6c66b8c95872057730dfdc",
+      "built_utc": "2026-10-25T16:11:50Z",
+      "files_checked": 7,
+      "problems": []
+    },
+    {
+      "dataset": "csecicids2018_improved",
+      "ok": true,
+      "config": "current",
+      "config_detail": "rules identical to the current config (checked via git history of the config)",
+      "protocol_version": "1.1",
+      "code": "3f57586efcc85c47821a43bd68385c05e396fdb4",
+      "built_utc": "2026-10-25T17:33:36Z",
+      "files_checked": 69,
+      "problems": []
+    },
+    {
+      "dataset": "unsw_nb15",
+      "ok": true,
+      "config": "current",
+      "config_detail": "rules identical to the current config (checked via report)",
+      "protocol_version": "1.1",
+      "code": "a73ef07acddd2e54041807053145857fc6e6c5d6",
+      "built_utc": "2026-10-26T05:35:23Z",
+      "files_checked": 5,
+      "problems": []
+    },
+    {
+      "dataset": "ciciomt2024",
+      "ok": true,
+      "config": "current",
+      "config_detail": "rules identical to the current config (checked via git history of the config)",
+      "protocol_version": "1.1",
+      "code": "8e2eb65ae4e43a85f321013b1511cdb188418fca",
+      "built_utc": "2026-10-25T16:16:25Z",
+      "files_checked": 73,
+      "problems": []
+    },
+    {
+      "dataset": "ton_iot",
+      "ok": true,
+      "config": "current",
+      "config_detail": "rules identical to the current config (checked via git history of the config)",
+      "protocol_version": "1.1",
+      "code": "d3e2ff7ff15cb40c5a963464762ff022ade30abf",
+      "built_utc": "2026-10-25T16:29:04Z",
+      "files_checked": 24,
+      "problems": []
+    },
+    {
+      "dataset": "ciciot2023",
+      "ok": true,
+      "config": "current",
+      "config_detail": "rules identical to the current config (checked via git history of the config)",
+      "protocol_version": "1.1",
+      "code": "335eddf9605e276d13dd9f7a2b849d110f65b288",
+      "built_utc": "2026-10-25T16:47:03Z",
+      "files_checked": 310,
+      "problems": []
+    },
+    {
+      "dataset": "lanl_cyber1",
+      "ok": true,
+      "config": "current",
+      "config_detail": "rules identical to the current config (checked via git history of the config)",
+      "protocol_version": "1.1",
+      "code": "a4786bce653645881b731e49bbcb3502647848a7",
+      "built_utc": "2026-10-25T18:23:17Z",
+      "files_checked": 2,
+      "problems": []
+    },
+    {
+      "dataset": "nsl_kdd",
+      "ok": true,
+      "config": "current",
+      "config_detail": "rules identical to the current config (checked via report)",
+      "protocol_version": "1.1",
+      "code": "4ae984399d4283227b016e94e87eccf708a4a39d",
+      "built_utc": "2026-10-26T05:35:38Z",
+      "files_checked": 3,
+      "problems": []
+    }
+  ]
+}
