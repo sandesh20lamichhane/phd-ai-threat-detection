@@ -7,7 +7,7 @@ from importlib import metadata
 from .io import sha256_file
 from .paths import REPO
 
-PACKAGES = ["numpy", "pandas", "pyarrow", "scikit-learn", "scipy", "PyYAML"]
+PACKAGES = ["numpy", "pandas", "pyarrow", "scikit-learn", "scipy", "PyYAML", "xgboost", "torch"]
 
 
 def git_commit():

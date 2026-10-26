@@ -1,0 +1,75 @@
+# Model development rules, amendment 1.4 (frozen 2026-10-26, before any model was trained).
+# Rationale: docs/protocol/preregistration.md §6a and docs/decisions/ADR-0007-sealed-test.md.
+# The SHA-256 of this file is written into every development record. Change it only through
+# docs/protocol/protocol_amendments.md and bump `version`.
+
+version: "1.4"
+frozen: 2026-10-26
+
+# Development sees only the source train and val partitions. Test partitions and external targets stay
+# sealed until results/models/freeze.json (proposed detector + every model file's SHA-256) is committed.
+development:
+  partitions: [train, val]
+  attempted: exclude          # primary analysis (ADR-0003)
+  conflicts: keep
+  ports: exclude
+  balance: none               # class imbalance handled only through the class_weight options in the grids
+  grid_seed: 11               # hyperparameters chosen with the first seed of config/seeds.yaml ...
+  selection_metric: val_macro_f1_at_val_threshold   # ... at its own val-optimal threshold
+  tie_break: first_in_grid    # within tie_margin macro-F1, the earlier (simpler) grid entry wins
+  tie_margin: 0.0005
+  threshold: maximise_macro_f1_on_val                # per seed, preregistration §5
+
+# The proposed detector (Sandesh's decision, 2026-10-26): the candidate family with the highest seed-mean val
+# macro-F1 in the `cic` feature space, chosen by `scripts/develop.py --freeze` before any test or target is
+# scored. Ties within 0.0005 go to the earlier candidate below. For H1c the same family, re-tuned on its own
+# grid in the `unsw_canonical` space, is the proposed detector. Every other candidate is a baseline.
+proposed:
+  rule: best_val_macro_f1
+  feature_space: cic
+  tie_margin: 0.0005
+
+# Feature spaces trained on CICIDS2017 (both from the frozen mappings in config/feature_mapping/)
+feature_spaces:
+  cic: {mapping: cic_shared_features.yaml, used_by: [H1a, H1b]}          # 82 shared CICFlowMeter features
+  unsw_canonical: {mapping: cic_to_unsw_mapping.yaml, used_by: [H1c]}    # canonical primitives + derived
+
+# Neural models see sign(x) * log1p(|x|) of the imputed features, standardised with train mean and std.
+# Tree and linear models see the imputed features (the linear model standardised, without the log).
+candidates:
+  logreg:
+    family: linear
+    fixed: {max_iter: 2000, solver: lbfgs}
+    grid:
+      C: [0.01, 0.1, 1.0, 10.0]
+      class_weight: [null, balanced]
+  random_forest:
+    family: tree
+    fixed: {n_estimators: 300, max_features: sqrt, n_jobs: -1}
+    grid:
+      max_depth: [null, 30]
+      min_samples_leaf: [1, 3]
+      class_weight: [null, balanced_subsample]
+  xgboost:
+    family: tree
+    fixed: {n_estimators: 2000, early_stopping_rounds: 50, tree_method: hist, subsample: 0.8,
+            colsample_bytree: 0.8, eval_metric: logloss, n_jobs: -1}
+    grid:
+      max_depth: [6, 10]
+      learning_rate: [0.1, 0.03]
+      scale_pos_weight: [1, balanced]          # balanced = benign / attack rows in train
+  mlp:
+    family: neural
+    fixed: {hidden: 3, epochs: 50, patience: 5, batch_size: 4096, lr: 0.001, weight_decay: 0.0001}
+    grid:
+      width: [128, 256]
+      dropout: [0.1, 0.3]
+      class_weight: [null, balanced]
+  cnn_lstm:
+    family: neural
+    # features read as a sequence: Conv1d(1->32, k3) -> Conv1d(32->64, k3) -> MaxPool(2) -> LSTM(64) -> Dense
+    fixed: {conv_channels: [32, 64], kernel: 3, lstm_units: 64, epochs: 50, patience: 5, batch_size: 4096,
+            lr: 0.001, weight_decay: 0.0001}
+    grid:
+      dropout: [0.1, 0.3]
+      class_weight: [null, balanced]

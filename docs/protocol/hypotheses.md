@@ -16,6 +16,9 @@ in [preregistration.md](preregistration.md); the prior use of these datasets by 
 | H3 | The RL response agent contains attacks faster than the rule-based playbook at equal or lower disruption cost. | (no margin) | difference in mean time to contain; non-inferiority of disruption cost (margin set before the first response run) |
 | H4 | Performance at Level 4 stays within **Z = 0.05** macro-F1 of Level 2 in each of healthcare (CICIoMT2024), IoT (CIC-IoT2023) and government/industrial (ToN_IoT) settings. | Z = 0.05 | Δ4 = F1(Level 2, CIC 2017 → 2018) − F1(Level 4 target) |
 
+"The proposed detector" is defined in [preregistration.md §6a](preregistration.md) (amendment 1.4, ADR-0007): the
+candidate with the highest validation macro-F1, chosen by a fixed rule before any test or target data is scored.
+
 ## Decision rules (three outcomes)
 
 Every threshold claim ends in one of three preregistered outcomes, read from the 95 % confidence interval of the

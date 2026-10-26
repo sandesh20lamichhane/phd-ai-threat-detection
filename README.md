@@ -69,6 +69,19 @@ python scripts/preprocess.py --verify                        # must pass before 
 Each dataset gets deduplicated, identifier-free parquet in `data/processed/<id>/v1/`, frozen splits in
 `data/splits/<id>/`, a report in `results/data_audit/<id>/` and a data card in `docs/data_cards/`.
 
+## Model development (amendment 1.4)
+
+Candidates, grids and the rule that picks the proposed detector are in [`config/models.yaml`](config/models.yaml)
+(ADR-0007). Development reads CICIDS2017 train and val only; test partitions and external targets stay sealed
+until the freeze. Run [`notebooks/04_level1_2_model_development.ipynb`](notebooks/04_level1_2_model_development.ipynb)
+on a GPU runtime, or:
+
+```bash
+python scripts/develop.py --space cic --candidate xgboost   # one candidate, resumable
+python scripts/develop.py --status                          # results/models/development/summary.md
+python scripts/develop.py --freeze                          # once, when all candidates are complete
+```
+
 ## Layout
 
 | Path | Holds |

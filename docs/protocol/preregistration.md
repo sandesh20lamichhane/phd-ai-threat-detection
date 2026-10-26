@@ -143,6 +143,36 @@ experiments). Unadjusted CIs are always shown; claims use the Holm-adjusted deci
 **Model comparisons** (proposed vs baselines) are secondary: Wilcoxon signed-rank across seeds × targets, or
 Friedman + Nemenyi for more than two models, Holm-adjusted within each table.
 
+## 6a. Model development and the proposed detector (amendment 1.4)
+
+**Candidates** (fixed in [`config/models.yaml`](../../config/models.yaml) before any model was trained):
+logistic regression, random forest, XGBoost, a multilayer perceptron and a CNN-LSTM, each with a small fixed
+hyperparameter grid. Inputs are median-imputed with statistics of the training rows; the linear model is
+standardised, neural models see sign(x)·log1p(|x|) standardised; no resampling (class imbalance only through the
+`class_weight` / `scale_pos_weight` options in the grids).
+
+**Two feature spaces**, both trained on CICIDS2017: `cic`, the 82 frozen shared CICFlowMeter features (H1a, H1b),
+and `unsw_canonical`, the canonical mapped features (H1c).
+
+**Procedure** (`scripts/develop.py`), per candidate and feature space: (1) every grid entry is trained with the
+grid seed (11) on train and scored on val at its val-optimal threshold; (2) the best entry, ties within 0.0005
+going to the earlier entry, is trained with all five seeds; (3) per seed, the decision threshold maximises
+macro-F1 on val. Early stopping (XGBoost, neural models) uses val. Development never reads test or target data.
+
+**Proposed detector** (the author's decision, ADR-0007): the candidate family with the highest seed-mean val
+macro-F1 in the `cic` space; for H1c the same family in the `unsw_canonical` space. All other candidates are
+baselines for the secondary model comparisons. `scripts/develop.py --freeze` applies the rule once and writes
+`results/models/freeze.json`, with the SHA-256 of every development record and model file.
+
+**Sealed test.** Test partitions and external targets are scored once, after the freeze record is committed, by
+code that checks it (`src/models/seal.py`). The prior-exposure record is completed before that scoring.
+
+**Sensitivity analyses** S1–S6 retrain the frozen recipe (family, selected hyperparameters, threshold rule) on
+their changed data; they do not re-tune. S7 scores the frozen models unchanged.
+
+**Level 3 (H2).** Development rules for the LANL predictive model are fixed in a separate amendment before any
+LANL model is trained.
+
 ## 7. Level 3 (LANL) operational definitions
 
 - Unit: host-hour feature vectors aggregated from auth, proc, flows and dns events (`src/data/lanl.py`); alerts

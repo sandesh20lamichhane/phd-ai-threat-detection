@@ -7,3 +7,6 @@ pyarrow>=14
 scipy>=1.11
 scikit-learn>=1.3
 pytest>=7
+# Model development (preinstalled in Colab; listed so versions are recorded)
+xgboost>=2.0
+torch>=2.1
