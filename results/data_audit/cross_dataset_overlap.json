@@ -3,22 +3,39 @@
     "target_rows": 45147292,
     "share_seen_in_source_train": 0.0001227537633929406,
     "near_duplicates": {
+      "s7_definition": "1.3",
+      "compared_with": "cicids2017_improved train + val",
+      "built_from": {
+        "cicids2017_improved": {
+          "dataset_config_sha256": null,
+          "outputs_digest": "2dc9d06812e74fbca6f569e4926c5a2c3faa079d59670fc04bb593526460150b"
+        },
+        "csecicids2018_improved": {
+          "dataset_config_sha256": null,
+          "outputs_digest": "9f330d50fbca49031c158e3dc387207314f363e0d98235ba609f35ce3fef0f65"
+        }
+      },
+      "features_sha256": "8045df45393cef3cce8195b28bc63c34f88c859303183132192edecf7f9b6ded",
       "sig3": {
         "rows": 45147292,
-        "unseen_rows": 45064056,
-        "unseen_share": 0.9981563456784961,
-        "unseen_benign_rows": 41603695,
+        "unseen_rows": 45057216,
+        "unseen_share": 0.9980048415749941,
+        "benign_rows": 41686863,
+        "benign_blocks": 1579,
+        "unseen_benign_rows": 41596858,
         "unseen_benign_blocks": 1579,
-        "unseen_attack_rows": 3460361,
+        "attack_rows": 3460429,
+        "attack_blocks": 300,
+        "unseen_attack_rows": 3460358,
         "unseen_attack_blocks": 300,
         "estimable": true,
         "unseen_by_family": {
-          "BENIGN": 41603695,
+          "BENIGN": 41596858,
           "DoS": 1834209,
           "DDoS": 1374148,
           "Bot": 142921,
           "BruteForce": 94197,
-          "Infiltration": 14603,
+          "Infiltration": 14600,
           "WebAttack": 283
         },
         "all_by_family": {
@@ -29,24 +46,29 @@
           "BruteForce": 94197,
           "Infiltration": 14671,
           "WebAttack": 283
-        }
+        },
+        "share_seen_in_source_train_only": 0.0018436543215039343
       },
       "sig2": {
         "rows": 45147292,
-        "unseen_rows": 44947544,
-        "unseen_share": 0.9955756371832889,
-        "unseen_benign_rows": 41487192,
+        "unseen_rows": 44935247,
+        "unseen_share": 0.9953032620428264,
+        "benign_rows": 41686863,
+        "benign_blocks": 1579,
+        "unseen_benign_rows": 41474899,
         "unseen_benign_blocks": 1578,
-        "unseen_attack_rows": 3460352,
+        "attack_rows": 3460429,
+        "attack_blocks": 300,
+        "unseen_attack_rows": 3460348,
         "unseen_attack_blocks": 300,
         "estimable": true,
         "unseen_by_family": {
-          "BENIGN": 41487192,
+          "BENIGN": 41474899,
           "DoS": 1834209,
           "DDoS": 1374148,
           "Bot": 142921,
           "BruteForce": 94197,
-          "Infiltration": 14594,
+          "Infiltration": 14590,
           "WebAttack": 283
         },
         "all_by_family": {
@@ -57,30 +79,49 @@
           "BruteForce": 94197,
           "Infiltration": 14671,
           "WebAttack": 283
-        }
+        },
+        "share_seen_in_source_train_only": 0.004424362816711133
       },
-      "sidecar_sha256": "c9fa2be37f3a29092f2ec54406ddaf6d3e6b9a47075316b370443c0b9e6e7062"
+      "reproduces_previous_sidecar": false,
+      "sidecar_sha256": "6e3dc022169e22c0fc67e07cb2edcac4eae107df464712b7ede3b1420bd4945e"
     }
   },
   "unsw_nb15": {
     "target_rows": 2027278,
     "share_seen_in_source_train": 6.4125393754581265e-06,
     "near_duplicates": {
+      "s7_definition": "1.3",
+      "compared_with": "cicids2017_improved train + val",
+      "built_from": {
+        "cicids2017_improved": {
+          "dataset_config_sha256": null,
+          "outputs_digest": "2dc9d06812e74fbca6f569e4926c5a2c3faa079d59670fc04bb593526460150b"
+        },
+        "unsw_nb15": {
+          "dataset_config_sha256": "f6e50063a2946d2b6c1e1a0c13c4ed0260331e6bc604bd02f436a395c1ddbdfe",
+          "outputs_digest": "2b4e41ade1f3f5d8543f575c130c8922ce54f3a16359e43ebfc7c971a571d520"
+        }
+      },
+      "features_sha256": "573014704470a7149bcb124c315010837cdfceda585e8a1dfd2dcd9756a4d6fe",
       "sig3": {
         "rows": 2027278,
-        "unseen_rows": 2027253,
-        "unseen_share": 0.9999876681935087,
+        "unseen_rows": 2027251,
+        "unseen_share": 0.9999866816489894,
+        "benign_rows": 1938854,
+        "benign_blocks": 293,
         "unseen_benign_rows": 1938851,
         "unseen_benign_blocks": 293,
-        "unseen_attack_rows": 88402,
+        "attack_rows": 88424,
+        "attack_blocks": 165,
+        "unseen_attack_rows": 88400,
         "unseen_attack_blocks": 165,
         "estimable": true,
         "unseen_by_family": {
           "BENIGN": 1938851,
           "Exploits": 27434,
           "Fuzzers": 20963,
-          "Generic": 18853,
-          "Reconnaissance": 10114,
+          "Generic": 18852,
+          "Reconnaissance": 10113,
           "DoS": 5500,
           "Analysis": 2033,
           "Backdoor": 1881,
@@ -98,23 +139,28 @@
           "Backdoor": 1881,
           "Shellcode": 1458,
           "Worms": 171
-        }
+        },
+        "share_seen_in_source_train_only": 1.2331806491265629e-05
       },
       "sig2": {
         "rows": 2027278,
-        "unseen_rows": 2027251,
-        "unseen_share": 0.9999866816489894,
+        "unseen_rows": 2027249,
+        "unseen_share": 0.9999856951044701,
+        "benign_rows": 1938854,
+        "benign_blocks": 293,
         "unseen_benign_rows": 1938851,
         "unseen_benign_blocks": 293,
-        "unseen_attack_rows": 88400,
+        "attack_rows": 88424,
+        "attack_blocks": 165,
+        "unseen_attack_rows": 88398,
         "unseen_attack_blocks": 165,
         "estimable": true,
         "unseen_by_family": {
           "BENIGN": 1938851,
           "Exploits": 27434,
           "Fuzzers": 20962,
-          "Generic": 18853,
-          "Reconnaissance": 10114,
+          "Generic": 18852,
+          "Reconnaissance": 10113,
           "DoS": 5500,
           "Analysis": 2033,
           "Backdoor": 1881,
@@ -132,10 +178,12 @@
           "Backdoor": 1881,
           "Shellcode": 1458,
           "Worms": 171
-        }
+        },
+        "share_seen_in_source_train_only": 1.3318351010566879e-05
       },
-      "sidecar_sha256": "5f3fdb960dfc7eca11f4284155000aeeb69d49bc0e534b1975be562ad5f2656b"
+      "reproduces_previous_sidecar": false,
+      "sidecar_sha256": "528a34546250bb646a6e3fb4f12fc014771b98b5ba3260929b5f20af3c8c9204"
     }
   },
-  "scope": "exact: share of target rows whose shared-feature vector equals a CICIDS2017 train row; near_duplicates: same after rounding to 3 (and 2) significant figures. Neither rules out semantically similar traffic."
+  "scope": "share_seen_in_source_train: target rows whose shared-feature vector equals a CICIDS2017 train row (descriptive). near_duplicates: the same after rounding to 3 and 2 significant figures; the S7 'seen' flags compare with CICIDS2017 train + val (amendment 1.3), the train-only share is given as share_seen_in_source_train_only. None of these rules out semantically similar traffic or shows that the datasets are independent."
 }

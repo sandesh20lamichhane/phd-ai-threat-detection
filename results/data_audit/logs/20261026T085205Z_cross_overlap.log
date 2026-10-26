@@ -1,0 +1,4 @@
+command: scripts/preprocess.py --cross-overlap
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/data_audit/logs/20261026T085205Z_cross_overlap.log
+csecicids2018_improved: exact vs train 0.012275%; near vs train + val (3 s.f.) 0.1995%, (2 s.f.) 0.4697%; S7 estimable True
+unsw_nb15: exact vs train 0.000641%; near vs train + val (3 s.f.) 0.0013%, (2 s.f.) 0.0014%; S7 estimable True
