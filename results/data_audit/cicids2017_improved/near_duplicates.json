@@ -1,0 +1,157 @@
+{
+  "dataset": "cicids2017_improved",
+  "split": "primary",
+  "check_against_report": {
+    "rows_in_near_duplicate_groups": {
+      "report": 149030,
+      "recomputed": 149030
+    },
+    "train->val": {
+      "report": 0.06563022046110037,
+      "recomputed": 0.06563022046110037
+    },
+    "train->test": {
+      "report": 0.07811719604217006,
+      "recomputed": 0.07811719604217006
+    },
+    "val->test": {
+      "report": 0.03572665955733139,
+      "recomputed": 0.03572665955733139
+    }
+  },
+  "subsets": {
+    "sig3": {
+      "val": {
+        "rows": 271789,
+        "unseen_rows": 254965,
+        "unseen_share": 0.9380990400641674,
+        "unseen_benign_rows": 182225,
+        "unseen_benign_blocks": 75,
+        "unseen_attack_rows": 72740,
+        "unseen_attack_blocks": 18,
+        "estimable": false,
+        "unseen_by_family": {
+          "BENIGN": 182225,
+          "DoS": 45842,
+          "DDoS": 23924,
+          "Infiltration": 1478,
+          "BruteForce": 1070,
+          "Bot": 207,
+          "PortScan": 206,
+          "WebAttack": 12,
+          "Heartbleed": 1
+        },
+        "all_by_family": {
+          "BENIGN": 198998,
+          "DoS": 45846,
+          "DDoS": 23924,
+          "Infiltration": 1523,
+          "BruteForce": 1070,
+          "PortScan": 208,
+          "Bot": 207,
+          "WebAttack": 12,
+          "Heartbleed": 1
+        }
+      },
+      "test": {
+        "rows": 221066,
+        "unseen_rows": 202472,
+        "unseen_share": 0.9158893724046212,
+        "unseen_benign_rows": 187591,
+        "unseen_benign_blocks": 75,
+        "unseen_attack_rows": 14881,
+        "unseen_attack_blocks": 17,
+        "estimable": false,
+        "unseen_by_family": {
+          "BENIGN": 187591,
+          "DoS": 7482,
+          "DDoS": 5911,
+          "Infiltration": 878,
+          "BruteForce": 418,
+          "PortScan": 145,
+          "Bot": 33,
+          "WebAttack": 12,
+          "Heartbleed": 2
+        },
+        "all_by_family": {
+          "BENIGN": 206156,
+          "DoS": 7483,
+          "DDoS": 5911,
+          "Infiltration": 902,
+          "BruteForce": 418,
+          "PortScan": 149,
+          "Bot": 33,
+          "WebAttack": 12,
+          "Heartbleed": 2
+        }
+      }
+    },
+    "sig2": {
+      "val": {
+        "rows": 271789,
+        "unseen_rows": 231986,
+        "unseen_share": 0.8535518361670267,
+        "unseen_benign_rows": 159517,
+        "unseen_benign_blocks": 75,
+        "unseen_attack_rows": 72469,
+        "unseen_attack_blocks": 18,
+        "estimable": false,
+        "unseen_by_family": {
+          "BENIGN": 159517,
+          "DoS": 45648,
+          "DDoS": 23909,
+          "Infiltration": 1432,
+          "BruteForce": 1062,
+          "Bot": 207,
+          "PortScan": 200,
+          "WebAttack": 10,
+          "Heartbleed": 1
+        },
+        "all_by_family": {
+          "BENIGN": 198998,
+          "DoS": 45846,
+          "DDoS": 23924,
+          "Infiltration": 1523,
+          "BruteForce": 1070,
+          "PortScan": 208,
+          "Bot": 207,
+          "WebAttack": 12,
+          "Heartbleed": 1
+        }
+      },
+      "test": {
+        "rows": 221066,
+        "unseen_rows": 178923,
+        "unseen_share": 0.8093646241393972,
+        "unseen_benign_rows": 164123,
+        "unseen_benign_blocks": 75,
+        "unseen_attack_rows": 14800,
+        "unseen_attack_blocks": 17,
+        "estimable": false,
+        "unseen_by_family": {
+          "BENIGN": 164123,
+          "DoS": 7456,
+          "DDoS": 5906,
+          "Infiltration": 844,
+          "BruteForce": 413,
+          "PortScan": 137,
+          "Bot": 33,
+          "WebAttack": 9,
+          "Heartbleed": 2
+        },
+        "all_by_family": {
+          "BENIGN": 206156,
+          "DoS": 7483,
+          "DDoS": 5911,
+          "Infiltration": 902,
+          "BruteForce": 418,
+          "PortScan": 149,
+          "Bot": 33,
+          "WebAttack": 12,
+          "Heartbleed": 2
+        }
+      }
+    }
+  },
+  "sidecar_sha256": "2e4bb79eb474106b900b0f14bf2763c5914f33b3cacd2e950122c0c5598701cb"
+}

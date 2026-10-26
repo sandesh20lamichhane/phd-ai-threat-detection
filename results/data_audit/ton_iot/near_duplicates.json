@@ -1,0 +1,164 @@
+{
+  "dataset": "ton_iot",
+  "split": "primary",
+  "check_against_report": {
+    "rows_in_near_duplicate_groups": {
+      "report": 4868293,
+      "recomputed": 4868293
+    },
+    "train->val": {
+      "report": 0.7634523044470587,
+      "recomputed": 0.7634523044470587
+    },
+    "train->test": {
+      "report": 0.718690490707006,
+      "recomputed": 0.718690490707006
+    },
+    "val->test": {
+      "report": 0.597492390217997,
+      "recomputed": 0.597492390217997
+    }
+  },
+  "subsets": {
+    "sig3": {
+      "val": {
+        "rows": 936754,
+        "unseen_rows": 221587,
+        "unseen_share": 0.23654769555294133,
+        "unseen_benign_rows": 14347,
+        "unseen_benign_blocks": 240,
+        "unseen_attack_rows": 207240,
+        "unseen_attack_blocks": 114,
+        "estimable": true,
+        "unseen_by_family": {
+          "XSS": 122309,
+          "DDoS": 30453,
+          "Scanning": 24357,
+          "Injection": 22397,
+          "BENIGN": 14347,
+          "Password": 6866,
+          "MITM": 418,
+          "DoS": 401,
+          "Backdoor": 32,
+          "Ransomware": 7
+        },
+        "all_by_family": {
+          "DDoS": 396569,
+          "XSS": 249934,
+          "Password": 114871,
+          "Scanning": 84202,
+          "Injection": 41877,
+          "BENIGN": 35866,
+          "DoS": 11273,
+          "Backdoor": 1669,
+          "MITM": 470,
+          "Ransomware": 23
+        }
+      },
+      "test": {
+        "rows": 877489,
+        "unseen_rows": 233162,
+        "unseen_share": 0.2657150118121139,
+        "unseen_benign_rows": 29289,
+        "unseen_benign_blocks": 235,
+        "unseen_attack_rows": 203873,
+        "unseen_attack_blocks": 108,
+        "estimable": true,
+        "unseen_by_family": {
+          "XSS": 109998,
+          "Injection": 38392,
+          "DDoS": 29912,
+          "BENIGN": 29289,
+          "Scanning": 19110,
+          "Password": 5769,
+          "DoS": 596,
+          "MITM": 57,
+          "Ransomware": 35,
+          "Backdoor": 4
+        },
+        "all_by_family": {
+          "DDoS": 355564,
+          "XSS": 229365,
+          "Password": 104879,
+          "Injection": 70244,
+          "BENIGN": 52432,
+          "Scanning": 52202,
+          "DoS": 11070,
+          "Backdoor": 1637,
+          "MITM": 57,
+          "Ransomware": 39
+        }
+      }
+    },
+    "sig2": {
+      "val": {
+        "rows": 936754,
+        "unseen_rows": 62059,
+        "unseen_share": 0.06624898319089109,
+        "unseen_benign_rows": 7028,
+        "unseen_benign_blocks": 226,
+        "unseen_attack_rows": 55031,
+        "unseen_attack_blocks": 108,
+        "estimable": true,
+        "unseen_by_family": {
+          "XSS": 26839,
+          "Scanning": 13362,
+          "BENIGN": 7028,
+          "Injection": 6539,
+          "DDoS": 6352,
+          "Password": 1434,
+          "MITM": 384,
+          "DoS": 96,
+          "Backdoor": 25
+        },
+        "all_by_family": {
+          "DDoS": 396569,
+          "XSS": 249934,
+          "Password": 114871,
+          "Scanning": 84202,
+          "Injection": 41877,
+          "BENIGN": 35866,
+          "DoS": 11273,
+          "Backdoor": 1669,
+          "MITM": 470,
+          "Ransomware": 23
+        }
+      },
+      "test": {
+        "rows": 877489,
+        "unseen_rows": 84287,
+        "unseen_share": 0.096054765358882,
+        "unseen_benign_rows": 18955,
+        "unseen_benign_blocks": 223,
+        "unseen_attack_rows": 65332,
+        "unseen_attack_blocks": 106,
+        "estimable": true,
+        "unseen_by_family": {
+          "XSS": 30441,
+          "BENIGN": 18955,
+          "Scanning": 13225,
+          "Injection": 10786,
+          "DDoS": 9389,
+          "Password": 1305,
+          "DoS": 100,
+          "MITM": 57,
+          "Ransomware": 27,
+          "Backdoor": 2
+        },
+        "all_by_family": {
+          "DDoS": 355564,
+          "XSS": 229365,
+          "Password": 104879,
+          "Injection": 70244,
+          "BENIGN": 52432,
+          "Scanning": 52202,
+          "DoS": 11070,
+          "Backdoor": 1637,
+          "MITM": 57,
+          "Ransomware": 39
+        }
+      }
+    }
+  },
+  "sidecar_sha256": "a8a713dec567f5aca8c644a6aa99f2a52ebc0cc409b2dc4cc60dbdb4638a22df"
+}

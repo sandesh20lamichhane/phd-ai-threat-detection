@@ -1,0 +1,133 @@
+{
+  "dataset": "ciciomt2024",
+  "split": "primary",
+  "check_against_report": {
+    "rows_in_near_duplicate_groups": {
+      "report": 2959356,
+      "recomputed": 2959356
+    },
+    "train->val": {
+      "report": 0.5295977527271906,
+      "recomputed": 0.5295977527271906
+    },
+    "train->test": {
+      "report": 0.5676231804794075,
+      "recomputed": 0.5676231804794075
+    },
+    "val->test": {
+      "report": 0.48344667745565234,
+      "recomputed": 0.48344667745565234
+    }
+  },
+  "subsets": {
+    "sig3": {
+      "val": {
+        "rows": 796699,
+        "unseen_rows": 374769,
+        "unseen_share": 0.47040224727280944,
+        "unseen_benign_rows": 33975,
+        "unseen_benign_blocks": 35,
+        "unseen_attack_rows": 340794,
+        "unseen_attack_blocks": 1298,
+        "estimable": true,
+        "unseen_by_family": {
+          "DDoS": 218775,
+          "DoS": 106108,
+          "BENIGN": 33975,
+          "Recon": 12181,
+          "Spoofing": 2825,
+          "MQTT-Malformed": 905
+        },
+        "all_by_family": {
+          "DDoS": 506953,
+          "DoS": 236044,
+          "BENIGN": 34012,
+          "Recon": 15960,
+          "Spoofing": 2825,
+          "MQTT-Malformed": 905
+        }
+      },
+      "test": {
+        "rows": 892268,
+        "unseen_rows": 379978,
+        "unseen_share": 0.42585635705864155,
+        "unseen_benign_rows": 37547,
+        "unseen_benign_blocks": 38,
+        "unseen_attack_rows": 342431,
+        "unseen_attack_blocks": 1587,
+        "estimable": true,
+        "unseen_by_family": {
+          "DDoS": 196345,
+          "DoS": 126123,
+          "BENIGN": 37547,
+          "Recon": 16473,
+          "MQTT-Malformed": 1746,
+          "Spoofing": 1744
+        },
+        "all_by_family": {
+          "DDoS": 529731,
+          "DoS": 297765,
+          "BENIGN": 37607,
+          "Recon": 23674,
+          "MQTT-Malformed": 1747,
+          "Spoofing": 1744
+        }
+      }
+    },
+    "sig2": {
+      "val": {
+        "rows": 796699,
+        "unseen_rows": 296169,
+        "unseen_share": 0.3717451634808127,
+        "unseen_benign_rows": 32177,
+        "unseen_benign_blocks": 35,
+        "unseen_attack_rows": 263992,
+        "unseen_attack_blocks": 1298,
+        "estimable": true,
+        "unseen_by_family": {
+          "DDoS": 167888,
+          "DoS": 84853,
+          "BENIGN": 32177,
+          "Recon": 7527,
+          "Spoofing": 2824,
+          "MQTT-Malformed": 900
+        },
+        "all_by_family": {
+          "DDoS": 506953,
+          "DoS": 236044,
+          "BENIGN": 34012,
+          "Recon": 15960,
+          "Spoofing": 2825,
+          "MQTT-Malformed": 905
+        }
+      },
+      "test": {
+        "rows": 892268,
+        "unseen_rows": 310897,
+        "unseen_share": 0.3484345510541676,
+        "unseen_benign_rows": 35766,
+        "unseen_benign_blocks": 38,
+        "unseen_attack_rows": 275131,
+        "unseen_attack_blocks": 1587,
+        "estimable": true,
+        "unseen_by_family": {
+          "DDoS": 152193,
+          "DoS": 110103,
+          "BENIGN": 35766,
+          "Recon": 9394,
+          "Spoofing": 1740,
+          "MQTT-Malformed": 1701
+        },
+        "all_by_family": {
+          "DDoS": 529731,
+          "DoS": 297765,
+          "BENIGN": 37607,
+          "Recon": 23674,
+          "MQTT-Malformed": 1747,
+          "Spoofing": 1744
+        }
+      }
+    }
+  },
+  "sidecar_sha256": "0036eb3e66edd4af07cccecb7a6b93e4f04c6659e341a1cecc4e84bd649c0fa0"
+}

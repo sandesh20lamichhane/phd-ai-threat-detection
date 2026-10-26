@@ -1,0 +1,149 @@
+{
+  "dataset": "ciciot2023",
+  "split": "primary",
+  "check_against_report": {
+    "rows_in_near_duplicate_groups": {
+      "report": 10655133,
+      "recomputed": 10655133
+    },
+    "train->val": {
+      "report": 0.46844549364774235,
+      "recomputed": 0.46844549364774235
+    },
+    "train->test": {
+      "report": 0.4666488166844538,
+      "recomputed": 0.4666488166844538
+    },
+    "val->test": {
+      "report": 0.352758702180589,
+      "recomputed": 0.352758702180589
+    }
+  },
+  "subsets": {
+    "sig3": {
+      "val": {
+        "rows": 3182097,
+        "unseen_rows": 1691458,
+        "unseen_share": 0.5315545063522576,
+        "unseen_benign_rows": 161053,
+        "unseen_benign_blocks": 169,
+        "unseen_attack_rows": 1530405,
+        "unseen_attack_blocks": 7291,
+        "estimable": true,
+        "unseen_by_family": {
+          "DDoS": 851851,
+          "DoS": 333171,
+          "Mirai": 171076,
+          "BENIGN": 161053,
+          "Recon": 101758,
+          "Spoofing": 66885,
+          "Web": 3708,
+          "BruteForce": 1956
+        },
+        "all_by_family": {
+          "DDoS": 1863145,
+          "DoS": 610368,
+          "Mirai": 368210,
+          "BENIGN": 164081,
+          "Recon": 102447,
+          "Spoofing": 68175,
+          "Web": 3711,
+          "BruteForce": 1960
+        }
+      },
+      "test": {
+        "rows": 3182076,
+        "unseen_rows": 1654295,
+        "unseen_share": 0.5198791606485829,
+        "unseen_benign_rows": 160565,
+        "unseen_benign_blocks": 169,
+        "unseen_attack_rows": 1493730,
+        "unseen_attack_blocks": 7352,
+        "estimable": true,
+        "unseen_by_family": {
+          "DDoS": 823904,
+          "DoS": 325269,
+          "Mirai": 170747,
+          "BENIGN": 160565,
+          "Recon": 101562,
+          "Spoofing": 66720,
+          "Web": 3572,
+          "BruteForce": 1956
+        },
+        "all_by_family": {
+          "DDoS": 1863129,
+          "DoS": 610363,
+          "Mirai": 368212,
+          "BENIGN": 164079,
+          "Recon": 102450,
+          "Spoofing": 68176,
+          "Web": 3708,
+          "BruteForce": 1959
+        }
+      }
+    },
+    "sig2": {
+      "val": {
+        "rows": 3182097,
+        "unseen_rows": 1110364,
+        "unseen_share": 0.3489409656588093,
+        "unseen_benign_rows": 141451,
+        "unseen_benign_blocks": 169,
+        "unseen_attack_rows": 968913,
+        "unseen_attack_blocks": 7285,
+        "estimable": true,
+        "unseen_by_family": {
+          "DDoS": 475604,
+          "DoS": 219646,
+          "BENIGN": 141451,
+          "Mirai": 113559,
+          "Recon": 94279,
+          "Spoofing": 60224,
+          "Web": 3684,
+          "BruteForce": 1917
+        },
+        "all_by_family": {
+          "DDoS": 1863145,
+          "DoS": 610368,
+          "Mirai": 368210,
+          "BENIGN": 164081,
+          "Recon": 102447,
+          "Spoofing": 68175,
+          "Web": 3711,
+          "BruteForce": 1960
+        }
+      },
+      "test": {
+        "rows": 3182076,
+        "unseen_rows": 1082946,
+        "unseen_share": 0.3403268809418757,
+        "unseen_benign_rows": 140337,
+        "unseen_benign_blocks": 169,
+        "unseen_attack_rows": 942609,
+        "unseen_attack_blocks": 7347,
+        "estimable": true,
+        "unseen_by_family": {
+          "DDoS": 458227,
+          "DoS": 212334,
+          "BENIGN": 140337,
+          "Mirai": 113254,
+          "Recon": 93750,
+          "Spoofing": 59737,
+          "Web": 3382,
+          "BruteForce": 1925
+        },
+        "all_by_family": {
+          "DDoS": 1863129,
+          "DoS": 610363,
+          "Mirai": 368212,
+          "BENIGN": 164079,
+          "Recon": 102450,
+          "Spoofing": 68176,
+          "Web": 3708,
+          "BruteForce": 1959
+        }
+      }
+    }
+  },
+  "sidecar_sha256": "cf0bf9716c98963f60c10d4b7aaa9fd2c9af381a0e9edbf9b77dadb713418565"
+}

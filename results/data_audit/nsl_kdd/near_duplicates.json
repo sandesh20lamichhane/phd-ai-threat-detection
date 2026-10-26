@@ -1,0 +1,125 @@
+{
+  "dataset": "nsl_kdd",
+  "split": "primary",
+  "check_against_report": {
+    "rows_in_near_duplicate_groups": {
+      "report": 862,
+      "recomputed": 862
+    },
+    "train->val": {
+      "report": 0.005318583129454314,
+      "recomputed": 0.005318583129454314
+    },
+    "train->test": {
+      "report": 0.0017745441639678808,
+      "recomputed": 0.0017745441639678808
+    },
+    "val->test": {
+      "report": 0.00017745441639678807,
+      "recomputed": 0.00017745441639678807
+    }
+  },
+  "subsets": {
+    "sig3": {
+      "val": {
+        "rows": 18802,
+        "unseen_rows": 18702,
+        "unseen_share": 0.9946814168705457,
+        "unseen_benign_rows": 10081,
+        "unseen_benign_blocks": 126,
+        "unseen_attack_rows": 8621,
+        "unseen_attack_blocks": 126,
+        "estimable": true,
+        "unseen_by_family": {
+          "BENIGN": 10081,
+          "DoS": 6829,
+          "Probe": 1635,
+          "R2L": 149,
+          "U2R": 8
+        },
+        "all_by_family": {
+          "BENIGN": 10088,
+          "DoS": 6829,
+          "Probe": 1728,
+          "R2L": 149,
+          "U2R": 8
+        }
+      },
+      "test": {
+        "rows": 22541,
+        "unseen_rows": 22497,
+        "unseen_share": 0.9980480014196353,
+        "unseen_benign_rows": 9690,
+        "unseen_benign_blocks": 23,
+        "unseen_attack_rows": 12807,
+        "unseen_attack_blocks": 23,
+        "estimable": false,
+        "unseen_by_family": {
+          "BENIGN": 9690,
+          "DoS": 7454,
+          "R2L": 2735,
+          "Probe": 2418,
+          "U2R": 200
+        },
+        "all_by_family": {
+          "BENIGN": 9711,
+          "DoS": 7458,
+          "R2L": 2754,
+          "Probe": 2418,
+          "U2R": 200
+        }
+      }
+    },
+    "sig2": {
+      "val": {
+        "rows": 18802,
+        "unseen_rows": 16920,
+        "unseen_share": 0.8999042655036699,
+        "unseen_benign_rows": 9562,
+        "unseen_benign_blocks": 126,
+        "unseen_attack_rows": 7358,
+        "unseen_attack_blocks": 126,
+        "estimable": true,
+        "unseen_by_family": {
+          "BENIGN": 9562,
+          "DoS": 5894,
+          "Probe": 1310,
+          "R2L": 146,
+          "U2R": 8
+        },
+        "all_by_family": {
+          "BENIGN": 10088,
+          "DoS": 6829,
+          "Probe": 1728,
+          "R2L": 149,
+          "U2R": 8
+        }
+      },
+      "test": {
+        "rows": 22541,
+        "unseen_rows": 20957,
+        "unseen_share": 0.929728051106872,
+        "unseen_benign_rows": 9340,
+        "unseen_benign_blocks": 23,
+        "unseen_attack_rows": 11617,
+        "unseen_attack_blocks": 23,
+        "estimable": false,
+        "unseen_by_family": {
+          "BENIGN": 9340,
+          "DoS": 6354,
+          "R2L": 2705,
+          "Probe": 2358,
+          "U2R": 200
+        },
+        "all_by_family": {
+          "BENIGN": 9711,
+          "DoS": 7458,
+          "R2L": 2754,
+          "Probe": 2418,
+          "U2R": 200
+        }
+      }
+    }
+  },
+  "sidecar_sha256": "74f021155fdb58ee677dc05710fc131c1c70a81bb3e3b00fb5be778fcb0c125a"
+}
