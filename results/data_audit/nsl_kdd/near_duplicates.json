@@ -1,6 +1,13 @@
 {
   "dataset": "nsl_kdd",
   "split": "primary",
+  "s7_definition": "1.3",
+  "built_from": {
+    "nsl_kdd": {
+      "dataset_config_sha256": "1ba629418367b82804d8f24d65031ce30d4d989c64bad0a453312086968dc859",
+      "outputs_digest": "84ef1ce42295ba7996be211fb5ecbfcb022a6727bd7aae7ffa07f24f19085f07"
+    }
+  },
   "check_against_report": {
     "rows_in_near_duplicate_groups": {
       "report": 862,
@@ -25,8 +32,12 @@
         "rows": 18802,
         "unseen_rows": 18702,
         "unseen_share": 0.9946814168705457,
+        "benign_rows": 10088,
+        "benign_blocks": 126,
         "unseen_benign_rows": 10081,
         "unseen_benign_blocks": 126,
+        "attack_rows": 8714,
+        "attack_blocks": 126,
         "unseen_attack_rows": 8621,
         "unseen_attack_blocks": 126,
         "estimable": true,
@@ -49,8 +60,12 @@
         "rows": 22541,
         "unseen_rows": 22497,
         "unseen_share": 0.9980480014196353,
+        "benign_rows": 9711,
+        "benign_blocks": 23,
         "unseen_benign_rows": 9690,
         "unseen_benign_blocks": 23,
+        "attack_rows": 12830,
+        "attack_blocks": 23,
         "unseen_attack_rows": 12807,
         "unseen_attack_blocks": 23,
         "estimable": false,
@@ -75,8 +90,12 @@
         "rows": 18802,
         "unseen_rows": 16920,
         "unseen_share": 0.8999042655036699,
+        "benign_rows": 10088,
+        "benign_blocks": 126,
         "unseen_benign_rows": 9562,
         "unseen_benign_blocks": 126,
+        "attack_rows": 8714,
+        "attack_blocks": 126,
         "unseen_attack_rows": 7358,
         "unseen_attack_blocks": 126,
         "estimable": true,
@@ -99,8 +118,12 @@
         "rows": 22541,
         "unseen_rows": 20957,
         "unseen_share": 0.929728051106872,
+        "benign_rows": 9711,
+        "benign_blocks": 23,
         "unseen_benign_rows": 9340,
         "unseen_benign_blocks": 23,
+        "attack_rows": 12830,
+        "attack_blocks": 23,
         "unseen_attack_rows": 11617,
         "unseen_attack_blocks": 23,
         "estimable": false,
@@ -121,5 +144,6 @@
       }
     }
   },
+  "reproduces_previous_sidecar": true,
   "sidecar_sha256": "74f021155fdb58ee677dc05710fc131c1c70a81bb3e3b00fb5be778fcb0c125a"
 }

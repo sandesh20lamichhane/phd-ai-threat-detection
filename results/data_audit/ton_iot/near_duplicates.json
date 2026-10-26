@@ -1,6 +1,13 @@
 {
   "dataset": "ton_iot",
   "split": "primary",
+  "s7_definition": "1.3",
+  "built_from": {
+    "ton_iot": {
+      "dataset_config_sha256": null,
+      "outputs_digest": "a44abeb2e852026424eb864f3235dbdfbdbba54d2b760baaf0e042928edce8f9"
+    }
+  },
   "check_against_report": {
     "rows_in_near_duplicate_groups": {
       "report": 4868293,
@@ -25,8 +32,12 @@
         "rows": 936754,
         "unseen_rows": 221587,
         "unseen_share": 0.23654769555294133,
+        "benign_rows": 35866,
+        "benign_blocks": 241,
         "unseen_benign_rows": 14347,
         "unseen_benign_blocks": 240,
+        "attack_rows": 900888,
+        "attack_blocks": 155,
         "unseen_attack_rows": 207240,
         "unseen_attack_blocks": 114,
         "estimable": true,
@@ -59,8 +70,12 @@
         "rows": 877489,
         "unseen_rows": 233162,
         "unseen_share": 0.2657150118121139,
+        "benign_rows": 52432,
+        "benign_blocks": 240,
         "unseen_benign_rows": 29289,
         "unseen_benign_blocks": 235,
+        "attack_rows": 825057,
+        "attack_blocks": 155,
         "unseen_attack_rows": 203873,
         "unseen_attack_blocks": 108,
         "estimable": true,
@@ -95,8 +110,12 @@
         "rows": 936754,
         "unseen_rows": 62059,
         "unseen_share": 0.06624898319089109,
+        "benign_rows": 35866,
+        "benign_blocks": 241,
         "unseen_benign_rows": 7028,
         "unseen_benign_blocks": 226,
+        "attack_rows": 900888,
+        "attack_blocks": 155,
         "unseen_attack_rows": 55031,
         "unseen_attack_blocks": 108,
         "estimable": true,
@@ -128,8 +147,12 @@
         "rows": 877489,
         "unseen_rows": 84287,
         "unseen_share": 0.096054765358882,
+        "benign_rows": 52432,
+        "benign_blocks": 240,
         "unseen_benign_rows": 18955,
         "unseen_benign_blocks": 223,
+        "attack_rows": 825057,
+        "attack_blocks": 155,
         "unseen_attack_rows": 65332,
         "unseen_attack_blocks": 106,
         "estimable": true,
@@ -160,5 +183,6 @@
       }
     }
   },
+  "reproduces_previous_sidecar": true,
   "sidecar_sha256": "a8a713dec567f5aca8c644a6aa99f2a52ebc0cc409b2dc4cc60dbdb4638a22df"
 }

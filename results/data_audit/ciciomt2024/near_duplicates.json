@@ -1,6 +1,13 @@
 {
   "dataset": "ciciomt2024",
   "split": "primary",
+  "s7_definition": "1.3",
+  "built_from": {
+    "ciciomt2024": {
+      "dataset_config_sha256": null,
+      "outputs_digest": "862aa8c195e89e2f1b1705022d2f78e4ea5ea0977f7a95e7fad17f9edb75415d"
+    }
+  },
   "check_against_report": {
     "rows_in_near_duplicate_groups": {
       "report": 2959356,
@@ -25,8 +32,12 @@
         "rows": 796699,
         "unseen_rows": 374769,
         "unseen_share": 0.47040224727280944,
+        "benign_rows": 34012,
+        "benign_blocks": 35,
         "unseen_benign_rows": 33975,
         "unseen_benign_blocks": 35,
+        "attack_rows": 762687,
+        "attack_blocks": 1298,
         "unseen_attack_rows": 340794,
         "unseen_attack_blocks": 1298,
         "estimable": true,
@@ -51,8 +62,12 @@
         "rows": 892268,
         "unseen_rows": 379978,
         "unseen_share": 0.42585635705864155,
+        "benign_rows": 37607,
+        "benign_blocks": 38,
         "unseen_benign_rows": 37547,
         "unseen_benign_blocks": 38,
+        "attack_rows": 854661,
+        "attack_blocks": 1587,
         "unseen_attack_rows": 342431,
         "unseen_attack_blocks": 1587,
         "estimable": true,
@@ -79,8 +94,12 @@
         "rows": 796699,
         "unseen_rows": 296169,
         "unseen_share": 0.3717451634808127,
+        "benign_rows": 34012,
+        "benign_blocks": 35,
         "unseen_benign_rows": 32177,
         "unseen_benign_blocks": 35,
+        "attack_rows": 762687,
+        "attack_blocks": 1298,
         "unseen_attack_rows": 263992,
         "unseen_attack_blocks": 1298,
         "estimable": true,
@@ -105,8 +124,12 @@
         "rows": 892268,
         "unseen_rows": 310897,
         "unseen_share": 0.3484345510541676,
+        "benign_rows": 37607,
+        "benign_blocks": 38,
         "unseen_benign_rows": 35766,
         "unseen_benign_blocks": 38,
+        "attack_rows": 854661,
+        "attack_blocks": 1587,
         "unseen_attack_rows": 275131,
         "unseen_attack_blocks": 1587,
         "estimable": true,
@@ -129,5 +152,6 @@
       }
     }
   },
+  "reproduces_previous_sidecar": true,
   "sidecar_sha256": "0036eb3e66edd4af07cccecb7a6b93e4f04c6659e341a1cecc4e84bd649c0fa0"
 }

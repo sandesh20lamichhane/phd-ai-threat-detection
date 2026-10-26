@@ -1,3 +1,8 @@
 {
-  "data_audit/cross_dataset_overlap.json": "7a99b106b1915f8fca3665304ab0c19afa4cf8f0115f7c0b746b81edb5d8abaf"
+  "data_audit/cicids2017_improved/near_duplicates.json": "7748e67d30ce981808a9c105e72d66af180f9cf08416278ce766c01483ee5a3f",
+  "data_audit/ciciomt2024/near_duplicates.json": "16168ba95a3c5c4793e708c791ee73917ebb2e047221d8d0a95ce8d03a1b8bbc",
+  "data_audit/ciciot2023/near_duplicates.json": "3caa140d43e3e028df37491442c50c8c519b8ca775d30606d9beabbfea96b2e7",
+  "data_audit/cross_dataset_overlap.json": "7a99b106b1915f8fca3665304ab0c19afa4cf8f0115f7c0b746b81edb5d8abaf",
+  "data_audit/nsl_kdd/near_duplicates.json": "cc83b509402ff01cb2d051bd2e92d2a87ac1d8d806684ee93a5a71a3a7b83646",
+  "data_audit/ton_iot/near_duplicates.json": "11e62f57ff98e49332b860f6816901b4ef448eacc86fd2e5cc1110a8a9ae12ca"
 }
