@@ -2,7 +2,8 @@
 
 | Type | Threat | Mitigation |
 |---|---|---|
-| Internal | Duplicate and near-duplicate flows across partitions inflate scores | exact dedup before split; block split with purging; near-duplicate cross-partition rate reported |
+| Internal | Duplicate and near-duplicate flows across partitions inflate scores | exact dedup before split; block split with purging; near-duplicate cross-partition rate reported; sensitivity S7 scores without near-duplicates of fitting/tuning data |
+| Internal | Outputs built under older rules or altered after the run | dataset config fingerprint checked at every load; `--verify` checks SHA-256 of all outputs |
 | Internal | Identifier shortcuts (IPs, ports, timestamps, flow ids) | removed from features; ports tested only as sensitivity S2 |
 | Internal | Preprocessing fitted on test or target data | all learned transforms fitted on source train only, hashed and frozen |
 | Internal | Label errors in CIC releases | corrected releases; raw label kept; "Attempted" handled by a fixed rule with sensitivity S3 |
@@ -14,4 +15,5 @@
 | Conclusion | Many comparisons | confirmatory family with Holm; secondary comparisons labelled as such |
 | Conclusion | Training variability not in the CI | 5 seeds; seed spread reported |
 | External | Lab benchmarks are not production networks | conclusions limited to the datasets used |
-| External | CIC-IoT2023 has no time or host fields, so only a random split is possible | stated as a limitation; not used as a source dataset |
+| External | CIC-IoT2023 has no time or host fields, so only a within-file order split is possible | stated as a limitation; not used as a source dataset |
+| Construct | Same column name does not guarantee same meaning across CIC releases | both corrected releases use the same fixed CICFlowMeter; shared list frozen; UNSW only through the documented mapping, S5 |

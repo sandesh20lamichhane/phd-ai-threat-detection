@@ -13,7 +13,7 @@ import pandas as pd
 from ..utils import paths
 from ..utils.io import sha256_file, write_json, write_parquet
 from ..utils.logging import run_info
-from .load import CONFIG_PATH, load_config
+from .load import CONFIG_PATH, dataset_fingerprint, load_config
 
 COLUMNS = {
     "auth": ["time", "src_user", "dst_user", "src_comp", "dst_comp", "auth_type", "logon_type", "orientation",
@@ -229,6 +229,7 @@ def preprocess_lanl(config_path=CONFIG_PATH, max_rows=None, sources=("auth", "pr
     first_per_day = comp.groupby("day").size().to_dict()
     report = {"dataset": "lanl_cyber1", "role": "temporal", "protocol_version": cfg["version"],
               "run": run_info(Path(config_path)), "max_rows": max_rows,
+              "dataset_config_sha256": dataset_fingerprint(cfg, "lanl_cyber1"),
               "inputs": {f.name: {"bytes": f.stat().st_size} for f in sorted(raw.glob("*.txt.gz"))},
               "rows_read": rows, "redteam_events": int(len(rt)), "compromised_hosts": int(len(comp)),
               "redteam_accounts": int(rt["user"].nunique()),

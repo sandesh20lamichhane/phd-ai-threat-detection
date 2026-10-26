@@ -4,6 +4,8 @@ Everything a model must never see (identifiers, time, labels, audit fields) goes
 columns all start with "_". The feature frame holds only model inputs. Rules come from config/preprocessing.yaml.
 """
 import io
+import hashlib
+import json
 import re
 import zipfile
 from dataclasses import dataclass, field
@@ -22,8 +24,8 @@ CONFIG_PATH = paths.CONFIG / "preprocessing.yaml"
 WEEKDAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
 
 
-def load_config(path=CONFIG_PATH):
-    cfg = yaml.safe_load(Path(path).read_text())
+def load_config(path=CONFIG_PATH, text=None):
+    cfg = yaml.safe_load(text if text is not None else Path(path).read_text())
     for ds_id, ds in cfg["datasets"].items():
         merged = dict(cfg["defaults"])
         merged.update(ds)
@@ -32,6 +34,18 @@ def load_config(path=CONFIG_PATH):
         merged["id"] = ds_id
         cfg["datasets"][ds_id] = merged
     return cfg
+
+
+def dataset_fingerprint(cfg, ds_id):
+    """SHA-256 of everything in the config that decides one dataset's outputs: its merged settings and label rules.
+
+    Reports carry it, and the loader refuses outputs whose fingerprint differs from the current config, so a
+    dataset built under older rules can never reach an experiment (amendment 1.2).
+    """
+    ds = cfg["datasets"][ds_id]
+    rules = cfg.get("label_rules", {}).get((ds.get("label") or {}).get("rules"))
+    blob = json.dumps({"dataset": ds, "label_rules": rules}, sort_keys=True, default=str)
+    return hashlib.sha256(blob.encode()).hexdigest()
 
 
 @dataclass

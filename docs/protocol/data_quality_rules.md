@@ -11,7 +11,10 @@ Applied to every dataset before training by `scripts/preprocess.py`, configured 
   destination port are kept as `_`-prefixed audit metadata.
 - ±inf → NaN; all-NaN rows dropped; no imputation before the split.
 - Exact duplicates (features + label) removed before splitting; conflicting-label duplicates kept one per label and
-  flagged; near-duplicates (equal at 3 significant figures) reported, not removed.
+  flagged (`_conflict` family, `_conflict_bin` benign vs attack); near-duplicates (equal at 3 significant figures)
+  reported, not removed, and tested by sensitivity S7.
+- Outputs are refused unless built under the current rules of their dataset, and verified by SHA-256
+  (`scripts/preprocess.py --verify`).
 - Split before balancing; any balancing on training folds only.
 - Every learned transform fitted on the source training partition only.
 - Harmonise features only through the documented mappings in `config/feature_mapping/`.

@@ -6,6 +6,8 @@
     python scripts/preprocess.py --all                          # every dataset that is preprocessed
     python scripts/preprocess.py --shared-features              # freeze/check the CIC 2017-2018 shared set
     python scripts/preprocess.py --cross-overlap                # source-train vs external-target overlap
+    python scripts/preprocess.py --near-duplicates              # S7 near-duplicate records (amendment 1.2)
+    python scripts/preprocess.py --verify                       # rules, pilot flag and checksums of all outputs
 """
 import argparse
 import sys
@@ -39,10 +41,9 @@ def shared_features():
 
 
 def cross_overlap():
-    import numpy as np
-    import pandas as pd
+    """Exact and near-duplicate overlap of each external target with CICIDS2017 train (amendment 1.2 adds near)."""
     import yaml
-    from src.data import datasets
+    from src.data import datasets, near
     from src.data.clean import row_hash
     from src.data.harmonise import MAPPING_DIR, to_canonical_unsw
     from src.data.leakage import cross_dataset_overlap
@@ -52,15 +53,40 @@ def cross_overlap():
     shared = yaml.safe_load((MAPPING_DIR / "cic_shared_features.yaml").read_text())["features"]
     src, _ = datasets.load("cicids2017_improved", partitions=("train",))
     if shared:
-        tgt, _ = datasets.load("csecicids2018_improved", split="external", partitions=("external",),
-                               columns=[*shared, "_key", "_y", "_label", "_conflict"])   # the largest dataset
+        tgt, meta = datasets.load("csecicids2018_improved", split="external", partitions=("external",),
+                                  columns=[*shared, "_key", "_y", "_label", "_conflict", "_conflict_bin"])
         out["csecicids2018_improved"] = cross_dataset_overlap(row_hash(src[shared]), row_hash(tgt[shared]))
-        del tgt
-    tgt, _ = datasets.load("unsw_nb15", split="external", partitions=("external",))
-    out["unsw_nb15"] = cross_dataset_overlap(row_hash(to_canonical_unsw(src, "cic")),
-                                             row_hash(to_canonical_unsw(tgt, "unsw")))
+        out["csecicids2018_improved"]["near_duplicates"] = near.external(
+            "csecicids2018_improved", src[shared], tgt[shared], meta, meta["_block"].to_numpy())
+        del tgt, meta
+    tgt, meta = datasets.load("unsw_nb15", split="external", partitions=("external",))
+    cs, ct = to_canonical_unsw(src, "cic"), to_canonical_unsw(tgt, "unsw")
+    out["unsw_nb15"] = cross_dataset_overlap(row_hash(cs), row_hash(ct))
+    out["unsw_nb15"]["near_duplicates"] = near.external("unsw_nb15", cs, ct, meta, meta["_block"].to_numpy())
+    out["scope"] = ("exact: share of target rows whose shared-feature vector equals a CICIDS2017 train row; "
+                    "near_duplicates: same after rounding to 3 (and 2) significant figures. Neither rules out "
+                    "semantically similar traffic.")
     write_json(paths.RESULTS / "data_audit" / "cross_dataset_overlap.json", out)
-    print(out)
+    for k in ("csecicids2018_improved", "unsw_nb15"):
+        if k in out:
+            n = out[k]["near_duplicates"]
+            print(f"{k}: exact {out[k]['share_seen_in_source_train']:.6%}; near (3 s.f.) "
+                  f"{1 - n['sig3']['unseen_share']:.4%}; near (2 s.f.) {1 - n['sig2']['unseen_share']:.4%}")
+
+
+def near_duplicates(ds_ids):
+    from src.data import near
+    for d in ds_ids or near.WITHIN:
+        near.build(d)
+
+
+def verify(ds_ids, checksums=True):
+    from src.data.verify import CONFIRMATORY, verify_all
+    rows = verify_all(ds_ids or CONFIRMATORY, checksums=checksums)
+    bad = [r["dataset"] for r in rows if not r["ok"]]
+    if bad:
+        raise SystemExit(f"verification failed for {bad}; see results/data_audit/verification.md")
+    print("all outputs verified")
 
 
 class Tee:
@@ -83,7 +109,8 @@ def start_log(args):
     import datetime as dt
     from src.utils import paths
     what = "profile" if args.profile else "shared_features" if args.shared_features else \
-        "cross_overlap" if args.cross_overlap else "_".join(args.dataset or ["all"])
+        "cross_overlap" if args.cross_overlap else "near_duplicates" if args.near_duplicates else \
+        "verify" if args.verify else "_".join(args.dataset or ["all"])
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     log = paths.RESULTS / "data_audit" / "logs" / f"{stamp}_{what}.log"
     sys.stdout = Tee(log, sys.stdout)
@@ -98,6 +125,9 @@ def main():
     ap.add_argument("--profile", action="store_true")
     ap.add_argument("--shared-features", action="store_true")
     ap.add_argument("--cross-overlap", action="store_true")
+    ap.add_argument("--near-duplicates", action="store_true")
+    ap.add_argument("--verify", action="store_true")
+    ap.add_argument("--no-checksums", action="store_true", help="with --verify: skip the SHA-256 of output files")
     ap.add_argument("--max-rows", type=int)
     a = ap.parse_args()
     start_log(a)
@@ -109,6 +139,10 @@ def main():
         return shared_features()
     if a.cross_overlap:
         return cross_overlap()
+    if a.near_duplicates:
+        return near_duplicates(a.dataset)
+    if a.verify:
+        return verify(a.dataset, checksums=not a.no_checksums)
     cfg = load_config()
     todo = PROCESSED_IN_ORDER if a.all else (a.dataset or [])
     unknown = [d for d in todo if d not in cfg["datasets"]]

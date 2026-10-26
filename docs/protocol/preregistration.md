@@ -76,10 +76,13 @@ Applied identically to every dataset by `scripts/preprocess.py`:
    keeping the first occurrence in file/time order. Counted per class.
 6. **Conflicting-label duplicates** (identical feature vector, different canonical labels) are kept, one row per
    label, and flagged `_conflict = 1`. Primary analysis keeps them, which is conservative: these are the flows no
-   flow-level model can classify, and dropping them would inflate test scores. Sensitivity S4 drops them.
+   flow-level model can classify, and dropping them would inflate test scores. Rows whose feature vector carries
+   both a benign and an attack label are also flagged `_conflict_bin = 1`. Sensitivity S4 drops the conflicts of
+   the task being scored: `_conflict_bin` for the binary task, `_conflict` for the multiclass task (amendment 1.2).
 7. **Near-duplicates** are defined once, here: two rows are near-duplicates if every feature is equal after
    rounding to 3 significant figures. They are not removed; their within-partition and cross-partition rates are
-   reported (§5).
+   reported (§5), and sensitivity S7 (§8.1) scores every model again without the evaluation rows that have one in
+   the data the model was fitted or tuned on.
 8. **Types**: numeric features stored as float32; low-cardinality categoricals as strings; free-text fields
    (URIs, user agents, DNS queries, certificate subjects) excluded as identifier-like.
 
@@ -104,8 +107,9 @@ with its SHA-256 recorded in the repo, before any model is trained.
 
 **Integrity checks** (`src/data/leakage.py`, must pass before results are reported): no identifier column in any
 feature matrix; zero exact feature+label overlap across partitions; partitions disjoint by row key and by block;
-near-duplicate cross-partition rate reported; exact feature overlap between CICIDS2017 train and each external
-target reported.
+near-duplicate cross-partition rate reported; exact and near-duplicate feature overlap between CICIDS2017 train
+and each external target reported. The cross-dataset check covers identical (or, at 3 and 2 significant figures,
+nearly identical) feature vectors only; it does not rule out semantically similar traffic and is reported that way.
 
 **Learned transformations** (imputer, scaler, encoder, feature selector, class balancing, decision threshold) are
 fitted on the source training partition only, saved with a hash, and applied unchanged to validation, test and
@@ -180,6 +184,47 @@ packet-count, duration and timing features (no byte counts, whose header account
 | S4 | conflicting-label duplicate groups removed |
 | S5 | CIC → UNSW with timing/count features only |
 | S6 | multiclass family task (Level 1 and CIC 2017 → 2018) |
+| S7 | evaluation without near-duplicates of fitting/tuning data (§8.1), at 3 and at 2 significant figures |
+
+S4 is task-specific (amendment 1.2): with the binary task it removes rows flagged `_conflict_bin` (identical
+features labelled both benign and attack); with the multiclass task (S6) it removes rows flagged `_conflict`
+(identical features with different attack families).
+
+### 8.1 Sensitivity S7: near-duplicate evaluation (amendment 1.2)
+
+*Why.* After exact deduplication and the block split, many test rows still have a near-duplicate (§4.7) in
+training: 7.8 % in CICIDS2017, 47 % in CIC-IoT2023, 57 % in CICIoMT2024 and 72 % in ToN_IoT (preprocessing
+reports). High scores could then come partly from recurring, nearly identical traffic rather than generalisation.
+
+*What changes.* Only the evaluation set. Models, training data, validation-based choices (including the decision
+threshold) and splits are those of the primary analysis. Evaluation rows are removed when their 3-significant-
+figure representation also occurs in data the model was fitted or tuned on:
+
+| Evaluated rows | compared with |
+|---|---|
+| test (within a dataset) | train ∪ val of the same dataset |
+| val (reported only, never used for a choice) | train |
+| external target (CSE-CIC-IDS2018, UNSW-NB15) | CICIDS2017 train, on the shared or canonical UNSW features |
+| Level 4 domain test sets | the training data of the model being scored, by the same rule |
+
+The same is repeated at 2 significant figures, a stricter definition, to show how much the result depends on
+the 3-figure choice. Rows are never reassigned between partitions: re-grouping near-duplicates across the
+chronological boundary would break the time order of the primary split and could merge unrelated flows that
+happen to round alike.
+
+*Computation.* `scripts/preprocess.py --near-duplicates` and `--cross-overlap` write, per dataset, a record of
+each row's near-duplicate hashes and whether it is "seen" (`data/splits/<dataset>/near*.parquet`, SHA-256 in
+`results/data_audit/<dataset>/near_duplicates.json` and `cross_dataset_overlap.json`). The 3-figure hashes are
+recomputed from the stored features and must reproduce the preprocessing report's counts exactly, or the step stops.
+
+*Reporting.* For each confirmatory claim (H1a–c, H4): the S7 estimate with its 95 % block-bootstrap CI and its
+three-outcome verdict beside the primary one; the share of evaluation rows removed; benign and attack rows and
+blocks left; rows per family before and after. An S7 estimate is "not estimable" when fewer than 100 rows or
+30 bootstrap blocks of either class remain, and is then reported as such, not replaced.
+
+*Interpretation.* S7 is a robustness check, not a new hypothesis: it is outside the Holm family and never changes
+the primary verdict. A claim is called robust to near-duplicates if its S7 verdict (3 figures) is the same as the
+primary one; if not, the paper's abstract and discussion say the claim depends on near-duplicate traffic.
 
 ## 9. Open items that must be closed before the runs they affect
 
@@ -200,6 +245,14 @@ Every confirmatory and sensitivity result uses the full processed datasets, all 
 replicates and the frozen splits. No subsampling, early stopping of the analysis, reduced seeds or partial data
 are allowed for a reported number. `scripts/preprocess.py --max-rows` exists only for smoke tests: its report is
 marked as a pilot, and `src/data/datasets.py` refuses to load pilot outputs for any experiment.
+
+## 10a. Output verification (amendment 1.2)
+
+Before any model run, `scripts/preprocess.py --verify` must pass for every dataset the run uses. It checks that
+the dataset's settings and label rules (a SHA-256 fingerprint of its merged configuration) are identical to those
+under which its outputs were built, that the outputs are not a pilot, and that every processed and split file
+matches the SHA-256 in its report. `src/data/datasets.py` repeats the rules check at every load and refuses
+outputs built under other rules. Results: `results/data_audit/verification.{json,md}`.
 
 ## 11. Records
 

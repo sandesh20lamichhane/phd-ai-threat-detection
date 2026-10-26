@@ -26,7 +26,7 @@ from . import split as S
 from .clean import combine, round_sig, row_hash
 from .labels import ATTEMPTED, BENIGN
 from .leakage import split_integrity
-from .load import CONFIG_PATH, Standardiser, discover, load_config, read_chunks
+from .load import CONFIG_PATH, Standardiser, dataset_fingerprint, discover, load_config, read_chunks
 
 OUTPUT_VERSION = "v1"
 
@@ -203,6 +203,7 @@ def preprocess(ds_id, config_path=CONFIG_PATH, max_rows=None, keep_stage=False, 
     fam_in_multiclass = multiclass_eligible(K, famk, ds)
     report = {"dataset": ds_id, "role": ds.get("role"), "protocol_version": cfg["version"],
               "output_version": OUTPUT_VERSION, "run": run_info(Path(config_path)),
+              "dataset_config_sha256": dataset_fingerprint(cfg, ds_id),
               "max_rows": max_rows, "inputs": inputs, "schema": std.report(), "counts": counts,
               "classes": classes, "nan_counts_after_cleaning": dict(nan_counts),
               "multiclass_families": fam_in_multiclass, "splits": splits_report,
