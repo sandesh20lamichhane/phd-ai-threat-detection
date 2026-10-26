@@ -1,0 +1,339 @@
+{
+  "candidate": "logreg",
+  "feature_space": "unsw_canonical",
+  "source": "cicids2017_improved",
+  "spec": {
+    "family": "linear",
+    "fixed": {
+      "max_iter": 2000,
+      "solver": "lbfgs"
+    },
+    "grid": {
+      "C": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "class_weight": [
+        null,
+        "balanced"
+      ]
+    }
+  },
+  "models_config_sha256": "e9f844ff5c6c9dfb332af5861ca657b12e5865ee8b9e02a9e6128ea536e25658",
+  "seeds": [
+    11,
+    23,
+    37,
+    51,
+    73
+  ],
+  "source_provenance": {
+    "dataset_config_sha256": null,
+    "outputs_digest": "2dc9d06812e74fbca6f569e4926c5a2c3faa079d59670fc04bb593526460150b"
+  },
+  "features": [
+    "duration_s",
+    "fwd_pkts",
+    "bwd_pkts",
+    "fwd_bytes",
+    "bwd_bytes",
+    "fwd_iat_mean_ms",
+    "bwd_iat_mean_ms",
+    "fwd_init_win",
+    "bwd_init_win",
+    "protocol",
+    "fwd_bytes_per_s",
+    "bwd_bytes_per_s",
+    "fwd_pkts_per_s",
+    "bwd_pkts_per_s",
+    "fwd_mean_pkt_bytes",
+    "bwd_mean_pkt_bytes"
+  ],
+  "rows": {
+    "train": {
+      "benign": 1006776,
+      "attack": 192640
+    },
+    "val": {
+      "benign": 198998,
+      "attack": 72791
+    }
+  },
+  "grid": [
+    {
+      "params": {
+        "C": 0.01,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.5916148003434906,
+      "val_macro_f1": 0.9768645006268899,
+      "info": {
+        "iterations": 38,
+        "train_seconds": 5.0
+      }
+    },
+    {
+      "params": {
+        "C": 0.01,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.8857684249276588,
+      "val_macro_f1": 0.9777583044940747,
+      "info": {
+        "iterations": 46,
+        "train_seconds": 5.8
+      }
+    },
+    {
+      "params": {
+        "C": 0.1,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.6902656435112199,
+      "val_macro_f1": 0.9794705145266382,
+      "info": {
+        "iterations": 57,
+        "train_seconds": 7.3
+      }
+    },
+    {
+      "params": {
+        "C": 0.1,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.8912933681756757,
+      "val_macro_f1": 0.9813404693711931,
+      "info": {
+        "iterations": 53,
+        "train_seconds": 7.3
+      }
+    },
+    {
+      "params": {
+        "C": 1.0,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.6172275387894545,
+      "val_macro_f1": 0.9840101437521385,
+      "info": {
+        "iterations": 64,
+        "train_seconds": 8.3
+      }
+    },
+    {
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.8554622879311562,
+      "val_macro_f1": 0.985172542899912,
+      "info": {
+        "iterations": 58,
+        "train_seconds": 7.7
+      }
+    },
+    {
+      "params": {
+        "C": 10.0,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.6503960275368159,
+      "val_macro_f1": 0.9848808119321443,
+      "info": {
+        "iterations": 66,
+        "train_seconds": 9.1
+      }
+    },
+    {
+      "params": {
+        "C": 10.0,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.8557970114392954,
+      "val_macro_f1": 0.9857952569537936,
+      "info": {
+        "iterations": 61,
+        "train_seconds": 8.2
+      }
+    }
+  ],
+  "final": {
+    "11": {
+      "threshold": 0.8557970114392954,
+      "val": {
+        "macro_f1": 0.9857952569537936,
+        "balanced_accuracy": 0.981464187308713,
+        "fpr": 0.0023970090151659816,
+        "pr_auc": 0.9861325580927068,
+        "fpr_at_tpr_0.95": 0.001216092624046473,
+        "per_class": {
+          "benign": {
+            "precision": 0.987445596756945,
+            "recall": 0.9976029909848341,
+            "f1": 0.9924983064320585
+          },
+          "attack": {
+            "precision": 0.9932573787176298,
+            "recall": 0.9653253836325919,
+            "f1": 0.9790922074755285
+          }
+        }
+      },
+      "info": {
+        "iterations": 61,
+        "train_seconds": 7.5
+      },
+      "model_file": "development/unsw_canonical/logreg/seed11.pkl",
+      "model_sha256": "c701b5868f018ed7ffc19190a6265642bf94e4dd0dab73d313f299eb015d1f95"
+    },
+    "23": {
+      "threshold": 0.8557970114392954,
+      "val": {
+        "macro_f1": 0.9857952569537936,
+        "balanced_accuracy": 0.981464187308713,
+        "fpr": 0.0023970090151659816,
+        "pr_auc": 0.9861325580927068,
+        "fpr_at_tpr_0.95": 0.001216092624046473,
+        "per_class": {
+          "benign": {
+            "precision": 0.987445596756945,
+            "recall": 0.9976029909848341,
+            "f1": 0.9924983064320585
+          },
+          "attack": {
+            "precision": 0.9932573787176298,
+            "recall": 0.9653253836325919,
+            "f1": 0.9790922074755285
+          }
+        }
+      },
+      "info": {
+        "iterations": 61,
+        "train_seconds": 8.4
+      },
+      "model_file": "development/unsw_canonical/logreg/seed23.pkl",
+      "model_sha256": "16cbff12f1b84c0963e968e7358748f0b53762703868a90031dab0619cdbd159"
+    },
+    "37": {
+      "threshold": 0.8557970114392954,
+      "val": {
+        "macro_f1": 0.9857952569537936,
+        "balanced_accuracy": 0.981464187308713,
+        "fpr": 0.0023970090151659816,
+        "pr_auc": 0.9861325580927068,
+        "fpr_at_tpr_0.95": 0.001216092624046473,
+        "per_class": {
+          "benign": {
+            "precision": 0.987445596756945,
+            "recall": 0.9976029909848341,
+            "f1": 0.9924983064320585
+          },
+          "attack": {
+            "precision": 0.9932573787176298,
+            "recall": 0.9653253836325919,
+            "f1": 0.9790922074755285
+          }
+        }
+      },
+      "info": {
+        "iterations": 61,
+        "train_seconds": 8.8
+      },
+      "model_file": "development/unsw_canonical/logreg/seed37.pkl",
+      "model_sha256": "77bae9daf099f5c10b7ed87d4d7a93a0747116673cc56aa852b7b73b0a949a36"
+    },
+    "51": {
+      "threshold": 0.8557970114392954,
+      "val": {
+        "macro_f1": 0.9857952569537936,
+        "balanced_accuracy": 0.981464187308713,
+        "fpr": 0.0023970090151659816,
+        "pr_auc": 0.9861325580927068,
+        "fpr_at_tpr_0.95": 0.001216092624046473,
+        "per_class": {
+          "benign": {
+            "precision": 0.987445596756945,
+            "recall": 0.9976029909848341,
+            "f1": 0.9924983064320585
+          },
+          "attack": {
+            "precision": 0.9932573787176298,
+            "recall": 0.9653253836325919,
+            "f1": 0.9790922074755285
+          }
+        }
+      },
+      "info": {
+        "iterations": 61,
+        "train_seconds": 8.4
+      },
+      "model_file": "development/unsw_canonical/logreg/seed51.pkl",
+      "model_sha256": "040fea51f1425e8c2cd37bca9851b4bd33794e818d09b4ffc6acb242a327b940"
+    },
+    "73": {
+      "threshold": 0.8557970114392954,
+      "val": {
+        "macro_f1": 0.9857952569537936,
+        "balanced_accuracy": 0.981464187308713,
+        "fpr": 0.0023970090151659816,
+        "pr_auc": 0.9861325580927068,
+        "fpr_at_tpr_0.95": 0.001216092624046473,
+        "per_class": {
+          "benign": {
+            "precision": 0.987445596756945,
+            "recall": 0.9976029909848341,
+            "f1": 0.9924983064320585
+          },
+          "attack": {
+            "precision": 0.9932573787176298,
+            "recall": 0.9653253836325919,
+            "f1": 0.9790922074755285
+          }
+        }
+      },
+      "info": {
+        "iterations": 61,
+        "train_seconds": 8.1
+      },
+      "model_file": "development/unsw_canonical/logreg/seed73.pkl",
+      "model_sha256": "5c7ab46e7a3ed2d2d6b4dbbc6fcef8bc9cbc66c23568b4974689b2f0f9881648"
+    }
+  },
+  "complete": true,
+  "runs": [
+    {
+      "utc": "2026-10-26T13:50:02Z",
+      "git_commit": "732f187cc8327c36044b584e0c3a48bd7802aef2",
+      "python": "3.13.16",
+      "packages": {
+        "numpy": "2.1.3",
+        "pandas": "2.2.3",
+        "pyarrow": "23.0.1",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.16.3",
+        "PyYAML": "6.0.3",
+        "xgboost": "3.4.1",
+        "torch": "2.11.0+cu130"
+      },
+      "config": "config/models.yaml",
+      "config_sha256": "e9f844ff5c6c9dfb332af5861ca657b12e5865ee8b9e02a9e6128ea536e25658"
+    }
+  ],
+  "selected_params": {
+    "C": 10.0,
+    "class_weight": "balanced"
+  },
+  "val_macro_f1_mean": 0.9857952569537936,
+  "val_macro_f1_std": 0.0,
+  "completed_utc": "2026-10-26T13:51:44Z"
+}
