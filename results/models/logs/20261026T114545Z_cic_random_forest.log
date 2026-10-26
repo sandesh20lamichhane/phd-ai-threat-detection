@@ -1,0 +1,10 @@
+command: scripts/develop.py --space cic --candidate random_forest
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/models/logs/20261026T114545Z_cic_random_forest.log
+[cic/random_forest] grid 1/8 {'max_depth': None, 'min_samples_leaf': 1, 'class_weight': None}: val macro-F1 0.9996 (282.8 s)
+[cic/random_forest] grid 2/8 {'max_depth': None, 'min_samples_leaf': 1, 'class_weight': 'balanced_subsample'}: val macro-F1 0.9997 (268.4 s)
+[cic/random_forest] grid 3/8 {'max_depth': None, 'min_samples_leaf': 3, 'class_weight': None}: val macro-F1 0.9996 (277.7 s)
+[cic/random_forest] grid 4/8 {'max_depth': None, 'min_samples_leaf': 3, 'class_weight': 'balanced_subsample'}: val macro-F1 0.9997 (262.2 s)
+[cic/random_forest] grid 5/8 {'max_depth': 30, 'min_samples_leaf': 1, 'class_weight': None}: val macro-F1 0.9996 (278.9 s)
+[cic/random_forest] grid 6/8 {'max_depth': 30, 'min_samples_leaf': 1, 'class_weight': 'balanced_subsample'}: val macro-F1 0.9997 (265.5 s)
+[cic/random_forest] grid 7/8 {'max_depth': 30, 'min_samples_leaf': 3, 'class_weight': None}: val macro-F1 0.9996 (276.9 s)
+[cic/random_forest] grid 8/8 {'max_depth': 30, 'min_samples_leaf': 3, 'class_weight': 'balanced_subsample'}: val macro-F1 0.9997 (261.2 s)
