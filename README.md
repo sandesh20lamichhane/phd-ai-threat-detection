@@ -82,6 +82,12 @@ python scripts/develop.py --status                          # results/models/dev
 python scripts/develop.py --freeze                          # once, when all candidates are complete
 ```
 
+Level 3 (LANL days 1–13, amendment 1.5) uses
+[`notebooks/05_level3_lanl_development.ipynb`](notebooks/05_level3_lanl_development.ipynb) and `--lanl`. The
+freeze of both, after the prior-exposure declaration, is
+[`notebooks/06_freeze_models.ipynb`](notebooks/06_freeze_models.ipynb); it writes `results/models/freeze.json`,
+`freeze_lanl.json` and `freeze_summary.md`.
+
 ## Layout
 
 | Path | Holds |
