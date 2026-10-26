@@ -1,10 +1,141 @@
 {
   "csecicids2018_improved": {
     "target_rows": 45147292,
-    "share_seen_in_source_train": 0.0001227537633929406
+    "share_seen_in_source_train": 0.0001227537633929406,
+    "near_duplicates": {
+      "sig3": {
+        "rows": 45147292,
+        "unseen_rows": 45064056,
+        "unseen_share": 0.9981563456784961,
+        "unseen_benign_rows": 41603695,
+        "unseen_benign_blocks": 1579,
+        "unseen_attack_rows": 3460361,
+        "unseen_attack_blocks": 300,
+        "estimable": true,
+        "unseen_by_family": {
+          "BENIGN": 41603695,
+          "DoS": 1834209,
+          "DDoS": 1374148,
+          "Bot": 142921,
+          "BruteForce": 94197,
+          "Infiltration": 14603,
+          "WebAttack": 283
+        },
+        "all_by_family": {
+          "BENIGN": 41686863,
+          "DoS": 1834209,
+          "DDoS": 1374148,
+          "Bot": 142921,
+          "BruteForce": 94197,
+          "Infiltration": 14671,
+          "WebAttack": 283
+        }
+      },
+      "sig2": {
+        "rows": 45147292,
+        "unseen_rows": 44947544,
+        "unseen_share": 0.9955756371832889,
+        "unseen_benign_rows": 41487192,
+        "unseen_benign_blocks": 1578,
+        "unseen_attack_rows": 3460352,
+        "unseen_attack_blocks": 300,
+        "estimable": true,
+        "unseen_by_family": {
+          "BENIGN": 41487192,
+          "DoS": 1834209,
+          "DDoS": 1374148,
+          "Bot": 142921,
+          "BruteForce": 94197,
+          "Infiltration": 14594,
+          "WebAttack": 283
+        },
+        "all_by_family": {
+          "BENIGN": 41686863,
+          "DoS": 1834209,
+          "DDoS": 1374148,
+          "Bot": 142921,
+          "BruteForce": 94197,
+          "Infiltration": 14671,
+          "WebAttack": 283
+        }
+      },
+      "sidecar_sha256": "c9fa2be37f3a29092f2ec54406ddaf6d3e6b9a47075316b370443c0b9e6e7062"
+    }
   },
   "unsw_nb15": {
     "target_rows": 2027278,
-    "share_seen_in_source_train": 6.4125393754581265e-06
-  }
+    "share_seen_in_source_train": 6.4125393754581265e-06,
+    "near_duplicates": {
+      "sig3": {
+        "rows": 2027278,
+        "unseen_rows": 2027253,
+        "unseen_share": 0.9999876681935087,
+        "unseen_benign_rows": 1938851,
+        "unseen_benign_blocks": 293,
+        "unseen_attack_rows": 88402,
+        "unseen_attack_blocks": 165,
+        "estimable": true,
+        "unseen_by_family": {
+          "BENIGN": 1938851,
+          "Exploits": 27434,
+          "Fuzzers": 20963,
+          "Generic": 18853,
+          "Reconnaissance": 10114,
+          "DoS": 5500,
+          "Analysis": 2033,
+          "Backdoor": 1881,
+          "Shellcode": 1453,
+          "Worms": 171
+        },
+        "all_by_family": {
+          "BENIGN": 1938854,
+          "Exploits": 27436,
+          "Fuzzers": 20965,
+          "Generic": 18860,
+          "Reconnaissance": 10118,
+          "DoS": 5502,
+          "Analysis": 2033,
+          "Backdoor": 1881,
+          "Shellcode": 1458,
+          "Worms": 171
+        }
+      },
+      "sig2": {
+        "rows": 2027278,
+        "unseen_rows": 2027251,
+        "unseen_share": 0.9999866816489894,
+        "unseen_benign_rows": 1938851,
+        "unseen_benign_blocks": 293,
+        "unseen_attack_rows": 88400,
+        "unseen_attack_blocks": 165,
+        "estimable": true,
+        "unseen_by_family": {
+          "BENIGN": 1938851,
+          "Exploits": 27434,
+          "Fuzzers": 20962,
+          "Generic": 18853,
+          "Reconnaissance": 10114,
+          "DoS": 5500,
+          "Analysis": 2033,
+          "Backdoor": 1881,
+          "Shellcode": 1452,
+          "Worms": 171
+        },
+        "all_by_family": {
+          "BENIGN": 1938854,
+          "Exploits": 27436,
+          "Fuzzers": 20965,
+          "Generic": 18860,
+          "Reconnaissance": 10118,
+          "DoS": 5502,
+          "Analysis": 2033,
+          "Backdoor": 1881,
+          "Shellcode": 1458,
+          "Worms": 171
+        }
+      },
+      "sidecar_sha256": "5f3fdb960dfc7eca11f4284155000aeeb69d49bc0e534b1975be562ad5f2656b"
+    }
+  },
+  "scope": "exact: share of target rows whose shared-feature vector equals a CICIDS2017 train row; near_duplicates: same after rounding to 3 (and 2) significant figures. Neither rules out semantically similar traffic."
 }
