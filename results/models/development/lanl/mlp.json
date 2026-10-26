@@ -1,0 +1,626 @@
+{
+  "candidate": "mlp",
+  "source": "lanl_cyber1",
+  "spec": {
+    "family": "neural",
+    "fixed": {
+      "hidden": 3,
+      "epochs": 50,
+      "patience": 5,
+      "batch_size": 4096,
+      "lr": 0.001,
+      "weight_decay": 0.0001
+    },
+    "grid": {
+      "width": [
+        128,
+        256
+      ],
+      "dropout": [
+        0.1,
+        0.3
+      ],
+      "class_weight": [
+        null,
+        "balanced"
+      ]
+    }
+  },
+  "models_config_sha256": "3546617d207a07d74b8bf519f76e14d649f6cd61ae9f8b298c11f06a6970f5b2",
+  "seeds": [
+    11,
+    23,
+    37,
+    51,
+    73
+  ],
+  "source_provenance": {
+    "dataset_config_sha256": null,
+    "outputs_digest": "01fdd3dbcae6360338359ac6990a80bff75bd677710be54a481e43536763a56c"
+  },
+  "split": {
+    "rule": "contingency (fewer than 30 compromised hosts in days 41-58)",
+    "train_days": [
+      1,
+      10
+    ],
+    "val_days": [
+      11,
+      13
+    ],
+    "test_days": [
+      14,
+      58
+    ],
+    "test_compromised_hosts": 44
+  },
+  "features": [
+    "auth_in",
+    "auth_in_fail",
+    "auth_in_distinct_src",
+    "auth_in_distinct_users",
+    "auth_out",
+    "auth_out_fail",
+    "auth_out_distinct_dst",
+    "logon_Network",
+    "logon_Interactive",
+    "logon_RemoteInteractive",
+    "logon_Batch",
+    "logon_Service",
+    "logon_Unlock",
+    "logon_NewCredentials",
+    "logon_CachedInteractive",
+    "authtype_NTLM",
+    "authtype_Kerberos",
+    "authtype_Negotiate",
+    "auth_in_new_src",
+    "auth_out_new_dst",
+    "proc_start",
+    "proc_distinct",
+    "proc_new",
+    "flows_out",
+    "bytes_out",
+    "pkts_out",
+    "flows_out_distinct_dst",
+    "flows_in",
+    "bytes_in",
+    "dns_queries",
+    "dns_distinct",
+    "auth_in_sum24h",
+    "auth_in_fail_sum24h",
+    "auth_in_distinct_src_sum24h",
+    "auth_in_distinct_users_sum24h",
+    "auth_out_sum24h",
+    "auth_out_fail_sum24h",
+    "auth_out_distinct_dst_sum24h",
+    "logon_Network_sum24h",
+    "logon_Interactive_sum24h",
+    "logon_RemoteInteractive_sum24h",
+    "logon_Batch_sum24h",
+    "logon_Service_sum24h",
+    "logon_Unlock_sum24h",
+    "logon_NewCredentials_sum24h",
+    "logon_CachedInteractive_sum24h",
+    "authtype_NTLM_sum24h",
+    "authtype_Kerberos_sum24h",
+    "authtype_Negotiate_sum24h",
+    "auth_in_new_src_sum24h",
+    "auth_out_new_dst_sum24h",
+    "proc_start_sum24h",
+    "proc_distinct_sum24h",
+    "proc_new_sum24h",
+    "flows_out_sum24h",
+    "bytes_out_sum24h",
+    "pkts_out_sum24h",
+    "flows_out_distinct_dst_sum24h",
+    "flows_in_sum24h",
+    "bytes_in_sum24h",
+    "dns_queries_sum24h",
+    "dns_distinct_sum24h",
+    "active_hours_24h"
+  ],
+  "rows": {
+    "train": {
+      "rows": 2400824,
+      "positives": 4595,
+      "compromised_hosts": 194
+    },
+    "val": {
+      "rows": 646882,
+      "positives": 1458,
+      "compromised_hosts": 63
+    }
+  },
+  "grid": [
+    {
+      "params": {
+        "width": 128,
+        "dropout": 0.1,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.034574437886476524,
+      "val": {
+        "early_alert_rate": 0.2698412698412698,
+        "hosts": 63,
+        "hosts_alerted": 17,
+        "median_lead_hours": 16.231944444444444,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.03414838802978927,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "epochs_run": 11,
+        "best_epoch": 6,
+        "val_loss": [
+          0.015161,
+          0.014425,
+          0.014216,
+          0.014116,
+          0.013994,
+          0.013756,
+          0.014463,
+          0.013919,
+          0.014959,
+          0.014672,
+          0.01481
+        ],
+        "device": "cuda",
+        "train_seconds": 33.1
+      }
+    },
+    {
+      "params": {
+        "width": 128,
+        "dropout": 0.1,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.9421567916870118,
+      "val": {
+        "early_alert_rate": 0.1746031746031746,
+        "hosts": 63,
+        "hosts_alerted": 11,
+        "median_lead_hours": 22.2525,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.025717024427377014,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "epochs_run": 6,
+        "best_epoch": 1,
+        "val_loss": [
+          1.185129,
+          1.424313,
+          1.496614,
+          1.833197,
+          2.302393,
+          2.195396
+        ],
+        "device": "cuda",
+        "train_seconds": 21.5
+      }
+    },
+    {
+      "params": {
+        "width": 128,
+        "dropout": 0.3,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.04275758937001229,
+      "val": {
+        "early_alert_rate": 0.2222222222222222,
+        "hosts": 63,
+        "hosts_alerted": 14,
+        "median_lead_hours": 10.827916666666667,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.031221373876415947,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "epochs_run": 8,
+        "best_epoch": 3,
+        "val_loss": [
+          0.015565,
+          0.014755,
+          0.014106,
+          0.014363,
+          0.014498,
+          0.014213,
+          0.014245,
+          0.014162
+        ],
+        "device": "cuda",
+        "train_seconds": 25.5
+      }
+    },
+    {
+      "params": {
+        "width": 128,
+        "dropout": 0.3,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.9251747727394105,
+      "val": {
+        "early_alert_rate": 0.15873015873015872,
+        "hosts": 63,
+        "hosts_alerted": 10,
+        "median_lead_hours": 22.05375,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.022765568944528677,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "epochs_run": 6,
+        "best_epoch": 1,
+        "val_loss": [
+          1.177707,
+          1.298063,
+          1.277608,
+          1.477409,
+          1.450348,
+          1.538807
+        ],
+        "device": "cuda",
+        "train_seconds": 21.4
+      }
+    },
+    {
+      "params": {
+        "width": 256,
+        "dropout": 0.1,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.032001946121454246,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 14.954444444444444,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.028565658925805704,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "epochs_run": 11,
+        "best_epoch": 6,
+        "val_loss": [
+          0.015132,
+          0.014568,
+          0.014478,
+          0.014122,
+          0.014393,
+          0.014097,
+          0.014706,
+          0.014342,
+          0.015519,
+          0.014359,
+          0.015314
+        ],
+        "device": "cuda",
+        "train_seconds": 31.9
+      }
+    },
+    {
+      "params": {
+        "width": 256,
+        "dropout": 0.1,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.9312434196472169,
+      "val": {
+        "early_alert_rate": 0.20634920634920634,
+        "hosts": 63,
+        "hosts_alerted": 13,
+        "median_lead_hours": 22.019444444444446,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.022886824511536938,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "epochs_run": 6,
+        "best_epoch": 1,
+        "val_loss": [
+          1.301164,
+          1.659719,
+          1.450747,
+          2.289293,
+          2.637493,
+          2.888962
+        ],
+        "device": "cuda",
+        "train_seconds": 21.5
+      }
+    },
+    {
+      "params": {
+        "width": 256,
+        "dropout": 0.3,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.033437728881835944,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 16.475555555555555,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.03164200572850848,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "epochs_run": 11,
+        "best_epoch": 6,
+        "val_loss": [
+          0.015557,
+          0.014623,
+          0.014444,
+          0.014294,
+          0.014471,
+          0.014079,
+          0.014647,
+          0.01411,
+          0.01501,
+          0.014616,
+          0.014623
+        ],
+        "device": "cuda",
+        "train_seconds": 32.2
+      }
+    },
+    {
+      "params": {
+        "width": 256,
+        "dropout": 0.3,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.9002060890197755,
+      "val": {
+        "early_alert_rate": 0.19047619047619047,
+        "hosts": 63,
+        "hosts_alerted": 12,
+        "median_lead_hours": 22.13597222222222,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.021925337635178448,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "epochs_run": 6,
+        "best_epoch": 1,
+        "val_loss": [
+          1.302897,
+          1.454289,
+          1.551579,
+          1.887884,
+          1.992103,
+          1.871438
+        ],
+        "device": "cuda",
+        "train_seconds": 21.8
+      }
+    }
+  ],
+  "final": {
+    "11": {
+      "threshold": 0.034574437886476524,
+      "val": {
+        "early_alert_rate": 0.2698412698412698,
+        "hosts": 63,
+        "hosts_alerted": 17,
+        "median_lead_hours": 16.231944444444444,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.03414838802978927,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "epochs_run": 11,
+        "best_epoch": 6,
+        "val_loss": [
+          0.015161,
+          0.014425,
+          0.014216,
+          0.014116,
+          0.013994,
+          0.013756,
+          0.014463,
+          0.013919,
+          0.014959,
+          0.014672,
+          0.01481
+        ],
+        "device": "cuda",
+        "train_seconds": 32.5
+      },
+      "model_file": "development/lanl/mlp/seed11.pkl",
+      "model_sha256": "4133c459b0157c6796da35969b7a8d06dd66c9cdbec2fe165810a29857d006d6"
+    },
+    "23": {
+      "threshold": 0.047371372580528266,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 15.383888888888889,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.033343899199974526,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "epochs_run": 11,
+        "best_epoch": 6,
+        "val_loss": [
+          0.014968,
+          0.014101,
+          0.013937,
+          0.014161,
+          0.014404,
+          0.013744,
+          0.013758,
+          0.014287,
+          0.014613,
+          0.014972,
+          0.014475
+        ],
+        "device": "cuda",
+        "train_seconds": 40.2
+      },
+      "model_file": "development/lanl/mlp/seed23.pkl",
+      "model_sha256": "fe7c1ddeda4b739b7571cd2a22aab76c5db3906055824b8144694d9f3c5a1a1b"
+    },
+    "37": {
+      "threshold": 0.0344977155327797,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 11.18,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.02604905822732128,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "epochs_run": 12,
+        "best_epoch": 7,
+        "val_loss": [
+          0.014347,
+          0.014545,
+          0.014405,
+          0.014345,
+          0.014301,
+          0.015412,
+          0.014266,
+          0.015175,
+          0.014301,
+          0.015267,
+          0.014447,
+          0.015308
+        ],
+        "device": "cuda",
+        "train_seconds": 39.6
+      },
+      "model_file": "development/lanl/mlp/seed37.pkl",
+      "model_sha256": "2e8db626cafab5611b9c8a6da1375597ecd8a203fa82d00109dd20da8922577e"
+    },
+    "51": {
+      "threshold": 0.038589194416999824,
+      "val": {
+        "early_alert_rate": 0.20634920634920634,
+        "hosts": 63,
+        "hosts_alerted": 13,
+        "median_lead_hours": 18.38388888888889,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.025551404121553038,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "epochs_run": 7,
+        "best_epoch": 2,
+        "val_loss": [
+          0.014599,
+          0.014159,
+          0.014185,
+          0.014276,
+          0.014444,
+          0.014722,
+          0.014795
+        ],
+        "device": "cuda",
+        "train_seconds": 27.3
+      },
+      "model_file": "development/lanl/mlp/seed51.pkl",
+      "model_sha256": "2c560fa6e10707977401ddcc4fc959aca6cf4a17926f75a1252bf36d4bbaef41"
+    },
+    "73": {
+      "threshold": 0.04664330929517747,
+      "val": {
+        "early_alert_rate": 0.20634920634920634,
+        "hosts": 63,
+        "hosts_alerted": 13,
+        "median_lead_hours": 18.38388888888889,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.03728993487581536,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "epochs_run": 9,
+        "best_epoch": 4,
+        "val_loss": [
+          0.014716,
+          0.014502,
+          0.014476,
+          0.013692,
+          0.013952,
+          0.014779,
+          0.014115,
+          0.013899,
+          0.014515
+        ],
+        "device": "cuda",
+        "train_seconds": 30.8
+      },
+      "model_file": "development/lanl/mlp/seed73.pkl",
+      "model_sha256": "037bf1e3ed5032cedbf5f16c8303c91b230097c68ea701af36b47e579495632c"
+    }
+  },
+  "complete": true,
+  "runs": [
+    {
+      "utc": "2026-10-26T17:45:58Z",
+      "git_commit": "a38211baaaec36b5b9d5f358b4ec4e33a6c9b808",
+      "python": "3.13.16",
+      "packages": {
+        "numpy": "2.1.3",
+        "pandas": "2.2.3",
+        "pyarrow": "23.0.1",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.16.3",
+        "PyYAML": "6.0.3",
+        "xgboost": "3.4.1",
+        "torch": "2.11.0+cu130"
+      },
+      "config": "config/models_lanl.yaml",
+      "config_sha256": "3546617d207a07d74b8bf519f76e14d649f6cd61ae9f8b298c11f06a6970f5b2"
+    }
+  ],
+  "selected_params": {
+    "width": 128,
+    "dropout": 0.1,
+    "class_weight": null
+  },
+  "val_early_alert_rate_mean": 0.23174603174603173,
+  "val_early_alert_rate_std": 0.026560635762986527,
+  "val_pr_auc_mean": 0.0312765368908907,
+  "completed_utc": "2026-10-26T17:52:52Z"
+}
