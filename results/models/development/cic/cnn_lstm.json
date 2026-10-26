@@ -1,0 +1,284 @@
+{
+  "candidate": "cnn_lstm",
+  "feature_space": "cic",
+  "source": "cicids2017_improved",
+  "spec": {
+    "family": "neural",
+    "fixed": {
+      "conv_channels": [
+        32,
+        64
+      ],
+      "kernel": 3,
+      "lstm_units": 64,
+      "epochs": 50,
+      "patience": 5,
+      "batch_size": 4096,
+      "lr": 0.001,
+      "weight_decay": 0.0001
+    },
+    "grid": {
+      "dropout": [
+        0.1,
+        0.3
+      ],
+      "class_weight": [
+        null,
+        "balanced"
+      ]
+    }
+  },
+  "models_config_sha256": "e9f844ff5c6c9dfb332af5861ca657b12e5865ee8b9e02a9e6128ea536e25658",
+  "seeds": [
+    11,
+    23,
+    37,
+    51,
+    73
+  ],
+  "source_provenance": {
+    "dataset_config_sha256": null,
+    "outputs_digest": "2dc9d06812e74fbca6f569e4926c5a2c3faa079d59670fc04bb593526460150b"
+  },
+  "features": [
+    "Protocol",
+    "Flow Duration",
+    "Total Fwd Packet",
+    "Total Bwd packets",
+    "Total Length of Fwd Packet",
+    "Total Length of Bwd Packet",
+    "Fwd Packet Length Max",
+    "Fwd Packet Length Min",
+    "Fwd Packet Length Mean",
+    "Fwd Packet Length Std",
+    "Bwd Packet Length Max",
+    "Bwd Packet Length Min",
+    "Bwd Packet Length Mean",
+    "Bwd Packet Length Std",
+    "Flow Bytes/s",
+    "Flow Packets/s",
+    "Flow IAT Mean",
+    "Flow IAT Std",
+    "Flow IAT Max",
+    "Flow IAT Min",
+    "Fwd IAT Total",
+    "Fwd IAT Mean",
+    "Fwd IAT Std",
+    "Fwd IAT Max",
+    "Fwd IAT Min",
+    "Bwd IAT Total",
+    "Bwd IAT Mean",
+    "Bwd IAT Std",
+    "Bwd IAT Max",
+    "Bwd IAT Min",
+    "Fwd PSH Flags",
+    "Bwd PSH Flags",
+    "Fwd URG Flags",
+    "Bwd URG Flags",
+    "Fwd RST Flags",
+    "Bwd RST Flags",
+    "Fwd Header Length",
+    "Bwd Header Length",
+    "Fwd Packets/s",
+    "Bwd Packets/s",
+    "Packet Length Min",
+    "Packet Length Max",
+    "Packet Length Mean",
+    "Packet Length Std",
+    "Packet Length Variance",
+    "FIN Flag Count",
+    "SYN Flag Count",
+    "RST Flag Count",
+    "PSH Flag Count",
+    "ACK Flag Count",
+    "URG Flag Count",
+    "CWR Flag Count",
+    "ECE Flag Count",
+    "Down/Up Ratio",
+    "Average Packet Size",
+    "Fwd Segment Size Avg",
+    "Bwd Segment Size Avg",
+    "Fwd Bytes/Bulk Avg",
+    "Fwd Packet/Bulk Avg",
+    "Fwd Bulk Rate Avg",
+    "Bwd Bytes/Bulk Avg",
+    "Bwd Packet/Bulk Avg",
+    "Bwd Bulk Rate Avg",
+    "Subflow Fwd Packets",
+    "Subflow Fwd Bytes",
+    "Subflow Bwd Packets",
+    "Subflow Bwd Bytes",
+    "FWD Init Win Bytes",
+    "Bwd Init Win Bytes",
+    "Fwd Act Data Pkts",
+    "Fwd Seg Size Min",
+    "Active Mean",
+    "Active Std",
+    "Active Max",
+    "Active Min",
+    "Idle Mean",
+    "Idle Std",
+    "Idle Max",
+    "Idle Min",
+    "ICMP Code",
+    "ICMP Type",
+    "Total TCP Flow Time"
+  ],
+  "rows": {
+    "train": {
+      "benign": 1006776,
+      "attack": 192640
+    },
+    "val": {
+      "benign": 198998,
+      "attack": 72791
+    }
+  },
+  "grid": [
+    {
+      "params": {
+        "dropout": 0.1,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.17113684117794037,
+      "val_macro_f1": 0.9993149723278686,
+      "info": {
+        "epochs_run": 37,
+        "best_epoch": 32,
+        "val_loss": [
+          0.019743,
+          0.012075,
+          0.008643,
+          0.010308,
+          0.007451,
+          0.006061,
+          0.048721,
+          0.013141,
+          0.008934,
+          0.008173,
+          0.005656,
+          0.006716,
+          0.004893,
+          0.006318,
+          0.005798,
+          0.010989,
+          0.005135,
+          0.004608,
+          0.00509,
+          0.004621,
+          0.004806,
+          0.004235,
+          0.005658,
+          0.003882,
+          0.005381,
+          0.004227,
+          0.003569,
+          0.00656,
+          0.003193,
+          0.003667,
+          0.004231,
+          0.003112,
+          0.003532,
+          0.014205,
+          0.004046,
+          0.00337,
+          0.003555
+        ],
+        "device": "cuda",
+        "train_seconds": 367.0
+      }
+    },
+    {
+      "params": {
+        "dropout": 0.1,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.3420141637325287,
+      "val_macro_f1": 0.9993290453139034,
+      "info": {
+        "epochs_run": 24,
+        "best_epoch": 19,
+        "val_loss": [
+          0.043716,
+          0.023977,
+          0.020549,
+          0.019147,
+          0.017678,
+          0.030701,
+          0.015248,
+          0.014159,
+          0.016243,
+          0.017355,
+          0.016675,
+          0.016793,
+          0.013723,
+          0.012322,
+          0.011813,
+          0.012026,
+          0.015704,
+          0.013045,
+          0.011153,
+          0.014215,
+          0.012664,
+          0.01179,
+          0.011719,
+          0.012767
+        ],
+        "device": "cuda",
+        "train_seconds": 240.5
+      }
+    },
+    {
+      "params": {
+        "dropout": 0.3,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.6902459263801575,
+      "val_macro_f1": 0.9985776319768713,
+      "info": {
+        "epochs_run": 12,
+        "best_epoch": 7,
+        "val_loss": [
+          0.018698,
+          0.052144,
+          0.009965,
+          0.006883,
+          0.006189,
+          0.006586,
+          0.005568,
+          0.005599,
+          0.019247,
+          0.008556,
+          0.007907,
+          0.005895
+        ],
+        "device": "cuda",
+        "train_seconds": 123.5
+      }
+    }
+  ],
+  "final": {},
+  "complete": false,
+  "runs": [
+    {
+      "utc": "2026-10-26T13:06:57Z",
+      "git_commit": "dbbdc006ba1e9dba9d30fae28945ce6f56096f9e",
+      "python": "3.13.16",
+      "packages": {
+        "numpy": "2.1.3",
+        "pandas": "2.2.3",
+        "pyarrow": "23.0.1",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.16.3",
+        "PyYAML": "6.0.3",
+        "xgboost": "3.4.1",
+        "torch": "2.11.0+cu130"
+      },
+      "config": "config/models.yaml",
+      "config_sha256": "e9f844ff5c6c9dfb332af5861ca657b12e5865ee8b9e02a9e6128ea536e25658"
+    }
+  ]
+}

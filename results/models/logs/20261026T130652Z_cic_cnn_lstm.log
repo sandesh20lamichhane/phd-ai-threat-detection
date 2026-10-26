@@ -1,0 +1,5 @@
+command: scripts/develop.py --space cic --candidate cnn_lstm
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/models/logs/20261026T130652Z_cic_cnn_lstm.log
+[cic/cnn_lstm] grid 1/4 {'dropout': 0.1, 'class_weight': None}: val macro-F1 0.9993 (367.0 s)
+[cic/cnn_lstm] grid 2/4 {'dropout': 0.1, 'class_weight': 'balanced'}: val macro-F1 0.9993 (240.5 s)
+[cic/cnn_lstm] grid 3/4 {'dropout': 0.3, 'class_weight': None}: val macro-F1 0.9986 (123.5 s)
