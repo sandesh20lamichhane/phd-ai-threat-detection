@@ -28,7 +28,7 @@ TINY = {  # same structure as config/models.yaml, tiny settings so the test runs
 
 
 @pytest.fixture
-def setup(drive, tmp_path, monkeypatch):
+def setup(drive, declared, tmp_path, monkeypatch):
     from src.data import harmonise
     from src.data.pipeline import preprocess
     from src.models import develop
@@ -87,6 +87,8 @@ def test_every_candidate_develops_resumes_and_freezes(setup):
     fr = seal.freeze(cfg_path=setup, log=lambda *a: None)
     ranking = fr["ranking_val_macro_f1"]
     assert ranking[fr["proposed"]] >= max(ranking.values()) - 0.0005
+    assert fr["proposed"] == fr["within_tie_margin"][0] and fr["prior_exposure_sha256"]
+    assert "| candidate | val macro-F1 mean |" in seal.write_summary().read_text()
     assert seal.require_frozen(require_git=False)["proposed"] == fr["proposed"]
     with pytest.raises(seal.Sealed):
         seal.freeze(cfg_path=setup, log=lambda *a: None)                    # only once
@@ -94,6 +96,35 @@ def test_every_candidate_develops_resumes_and_freezes(setup):
     f.write_bytes(f.read_bytes() + b"x")
     with pytest.raises(seal.Sealed, match="changed after the freeze"):
         seal.require_frozen(require_git=False)
+
+
+def test_tie_margin_picks_the_first_candidate_in_config_order(setup):
+    """The rule as preregistered, on the notebook 04 val means: within 0.0005 of the best, the earlier one wins."""
+    from src.models import develop, seal
+    from src.utils.io import sha256_file
+    means = {"logreg": 0.993723, "random_forest": 0.999620, "xgboost": 0.999754, "mlp": 0.999421, "cnn_lstm": 0.999234}
+    for space in TINY["feature_spaces"]:
+        for name, v in means.items():
+            final = {}
+            for s in develop.seeds():
+                f = paths.MODELS / "development" / space / name / f"seed{s}.pkl"
+                f.parent.mkdir(parents=True, exist_ok=True)
+                f.write_bytes(f"{space}/{name}/{s}".encode())
+                final[str(s)] = {"model_file": f.relative_to(paths.MODELS).as_posix(), "model_sha256": sha256_file(f)}
+            rp = develop.record_path(space, name)
+            rp.parent.mkdir(parents=True, exist_ok=True)
+            rp.write_text(json.dumps({"complete": True, "final": final, "models_config_sha256": sha256_file(setup),
+                                      "val_macro_f1_mean": v, "val_macro_f1_std": 0.0}))
+    fr = seal.freeze(cfg_path=setup, log=lambda *a: None)
+    assert fr["proposed"] == "random_forest" and fr["within_tie_margin"] == ["random_forest", "xgboost", "mlp"]
+    assert fr["best_val_macro_f1"] == 0.999754
+
+
+def test_freeze_refuses_until_prior_exposure_is_complete(setup, declared):
+    from src.models import seal
+    declared.write_text("| CICIDS2017 | ids-adapt | **Author to complete:** which splits |\n")
+    with pytest.raises(seal.Sealed, match="Author to complete"):
+        seal.freeze(cfg_path=setup, log=lambda *a: None)
 
 
 def test_freeze_refuses_incomplete_development(setup):

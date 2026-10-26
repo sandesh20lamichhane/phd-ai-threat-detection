@@ -47,7 +47,7 @@ def test_fa_threshold_keeps_budget():
 
 
 @pytest.fixture
-def lanl_setup(drive, tmp_path, monkeypatch):
+def lanl_setup(drive, declared, tmp_path, monkeypatch):
     from src.data import lanl
     make_lanl(drive / "data" / "raw")
     lanl.preprocess_lanl(log=lambda *a: None)
@@ -75,7 +75,9 @@ def test_lanl_development_reads_no_test_days_and_freezes(lanl_setup, monkeypatch
             assert v["val"]["fa_rate"] <= 0.01 + 1e-12
     assert set(seen) == {L.split()["val_days"][1]} and seen[0] < L.split()["test_days"][0]
     fr = seal.freeze_lanl(cfg_path=lanl_setup, log=lambda *a: None)
-    assert fr["proposed"] in ("logreg", "xgboost")
+    assert fr["proposed"] in ("logreg", "xgboost") and fr["prior_exposure_sha256"]
+    assert set(fr["val_hosts_alerted_per_seed"]) == {"logreg", "xgboost"}
+    assert "Predictive model of H2" in seal.write_summary().read_text()
     assert seal.require_frozen(require_git=False, track="lanl")["proposed"] == fr["proposed"]
     with pytest.raises(seal.Sealed):
         seal.freeze_lanl(cfg_path=lanl_setup, log=lambda *a: None)

@@ -139,7 +139,7 @@ def develop(space, name, cfg_path=MODELS_CONFIG, log=print):
         thr, mf = best_threshold(yv, p)
         rec["grid"].append({"params": params, "seed": gseed, "threshold": thr, "val_macro_f1": mf, "info": m.info})
         write_json(rp, rec)
-        log(f"[{space}/{name}] grid {len(rec['grid'])}/{len(grid)} {params}: val macro-F1 {mf:.4f} "
+        log(f"[{space}/{name}] grid {len(rec['grid'])}/{len(grid)} {params}: val macro-F1 {mf:.6f} "
             f"({m.info['train_seconds']} s)")
     order = {json.dumps(g, sort_keys=True): i for i, g in enumerate(grid)}
     scored = sorted(rec["grid"], key=lambda g: order[json.dumps(g["params"], sort_keys=True)])
@@ -160,13 +160,13 @@ def develop(space, name, cfg_path=MODELS_CONFIG, log=print):
         rec["final"][str(s)] = {"threshold": thr, "val": val_metrics(yv, p, thr), "info": m.info,
                                 "model_file": path.relative_to(paths.MODELS).as_posix(), "model_sha256": sha}
         write_json(rp, rec)
-        log(f"[{space}/{name}] seed {s}: val macro-F1 {rec['final'][str(s)]['val']['macro_f1']:.4f}")
+        log(f"[{space}/{name}] seed {s}: val macro-F1 {rec['final'][str(s)]['val']['macro_f1']:.6f}")
     v = [rec["final"][str(s)]["val"]["macro_f1"] for s in seeds()]
     rec["val_macro_f1_mean"], rec["val_macro_f1_std"] = float(np.mean(v)), float(np.std(v, ddof=1))
     rec["complete"] = True
     rec["completed_utc"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     write_json(rp, rec)
-    log(f"[{space}/{name}] done: val macro-F1 {rec['val_macro_f1_mean']:.4f} ± {rec['val_macro_f1_std']:.4f}")
+    log(f"[{space}/{name}] done: val macro-F1 {rec['val_macro_f1_mean']:.6f} ± {rec['val_macro_f1_std']:.6f}")
     return rec
 
 

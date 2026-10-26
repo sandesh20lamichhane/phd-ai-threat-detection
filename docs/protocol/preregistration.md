@@ -151,6 +151,12 @@ hyperparameter grid. Inputs are median-imputed with statistics of the training r
 standardised, neural models see sign(x)·log1p(|x|) standardised; no resampling (class imbalance only through the
 `class_weight` / `scale_pos_weight` options in the grids).
 
+The CNN-LSTM reads one flow's feature vector as a one-channel sequence in the fixed column order of the feature
+space (Conv1d → Conv1d → max-pool → LSTM over feature positions). That order carries no time, so the convolution
+and recurrence act over neighbouring features of a single flow, not over successive flows or packets. It is
+included as the deep baseline common in the IDS literature and is described in the paper as exactly this, not as
+a temporal model of traffic (clarification 1.5a; architecture unchanged).
+
 **Two feature spaces**, both trained on CICIDS2017: `cic`, the 82 frozen shared CICFlowMeter features (H1a, H1b),
 and `unsw_canonical`, the canonical mapped features (H1c).
 
@@ -163,9 +169,15 @@ macro-F1 on val. Early stopping (XGBoost, neural models) uses val. Development n
 macro-F1 in the `cic` space; for H1c the same family in the `unsw_canonical` space. All other candidates are
 baselines for the secondary model comparisons. `scripts/develop.py --freeze` applies the rule once and writes
 `results/models/freeze.json`, with the SHA-256 of every development record and model file.
+Development tables and freeze records report val macro-F1 to six decimals (the records keep full precision),
+together with the seed standard deviation, the gap to the best candidate and the candidates within the tie
+margin, so the application of the 0.0005 rule can be checked by a reader (clarification 1.5a).
 
 **Sealed test.** Test partitions and external targets are scored once, after the freeze record is committed, by
-code that checks it (`src/models/seal.py`). The prior-exposure record is completed before that scoring.
+code that checks it (`src/models/seal.py`). The prior-exposure record is completed before the freeze: the freeze
+refuses to run while any item in it is open and writes its SHA-256 into each freeze record, so the declaration
+is fixed before any test or target score exists (clarification 1.5a; before, it had to be complete before
+scoring).
 
 **Sensitivity analyses** S1–S6 retrain the frozen recipe (family, selected hyperparameters, threshold rule) on
 their changed data; they do not re-tune. S7 scores the frozen models unchanged.
@@ -303,7 +315,8 @@ primary one; if not, the paper's abstract and discussion say the claim depends o
    run the protocol must fix either a canonical cross-extractor feature set (as for UNSW-NB15) or a
    retrain-in-domain design with the frozen recipe, and say which Level 2 number Δ4 is measured against.
 2. **H3 non-inferiority margin for disruption cost**, before the first response run.
-3. **Prior-exposure details** in [prior_exposure.md](prior_exposure.md) that only the author can fill in.
+3. **Prior-exposure details** in [prior_exposure.md](prior_exposure.md) that only the author can fill in
+   (notebook 06, step 2; the freeze refuses to run until they are complete).
 4. **Schema confirmation.** Column and label lists in the config come from the dataset documentation; the
    profiling step (`scripts/preprocess.py --profile`) checks them against the files in Drive, and any difference is
    logged as an amendment before preprocessing runs.

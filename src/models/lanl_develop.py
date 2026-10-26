@@ -242,7 +242,8 @@ def summary_table(cfg_path=CONFIG):
         rows.append({"candidate": name, "complete": r.get("complete", False),
                      "grid_done": f"{len(r.get('grid', []))}/{len(_grid(spec))}", "seeds_done": len(r.get("final", {})),
                      "selected": r.get("selected_params"), "val_early_alert_rate_mean": r.get("val_early_alert_rate_mean"),
-                     "val_early_alert_rate_std": r.get("val_early_alert_rate_std"), "val_pr_auc_mean": r.get("val_pr_auc_mean")})
+                     "val_early_alert_rate_std": r.get("val_early_alert_rate_std"), "val_pr_auc_mean": r.get("val_pr_auc_mean"),
+                     "val_hosts_alerted": [(f["val"]["hosts_alerted"], f["val"]["hosts"]) for f in r.get("final", {}).values()]})
     return rows
 
 

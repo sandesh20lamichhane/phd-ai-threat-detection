@@ -216,7 +216,9 @@ def _cnn_lstm_class():
     import torch.nn as nn
 
     class _CNNLSTM(nn.Module):
-        """Features as a length-F sequence of one channel (a common IDS deep baseline)."""
+        """The feature vector read as a length-F sequence of one channel, in the fixed column order of the
+        feature space (a common IDS deep baseline). The order carries no time: convolution and recurrence run
+        over feature positions of one flow, not over successive flows."""
 
         def __init__(self, n_features, channels, kernel, units, dropout):
             super().__init__()

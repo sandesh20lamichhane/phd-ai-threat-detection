@@ -19,3 +19,9 @@ that gap:
 The alternative, a new architecture designed by the author, was considered and not chosen; the study's
 contribution is the leakage-resistant evaluation and the predictive and response components, not a new
 flow classifier.
+
+**Additions.** Amendment 1.5 applies the same two rules to Level 3 (`results/models/freeze_lanl.json`, selection by
+val early-alert rate). Clarification 1.5a (2026-10-26): the freeze also refuses to run until
+`docs/protocol/prior_exposure.md` is complete and records its SHA-256, and the author decided to freeze Level 3 as
+preregistered although its best val early-alert rate (0.349) is below Y = 0.50, without another development round.
+`results/models/freeze_summary.md` states both freezes in words, to six decimals.
