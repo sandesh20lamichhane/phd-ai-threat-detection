@@ -191,6 +191,31 @@ LANL model is trained.
   the compromise itself (lead time <= 0 by construction). H2's CI is a bootstrap over red-team accounts, since
   compromises by one account are not independent.
 
+### 7a. Level 3 model development (amendment 1.5)
+
+Rules in [`config/models_lanl.yaml`](../../config/models_lanl.yaml), fixed before any LANL model was trained.
+
+- **Periods** (contingency rule of §7): train days 1–10, val days 11–13, test days 14–58. Development reads days
+  1–13 only; the test period is sealed until the Level 3 freeze (ADR-0007).
+- **Features**: the 31 host-hour counts, plus per host the sum of each over the current and previous 23 hours and
+  the number of active hours among them (causal: only events before the alert time).
+- **Labels with censoring**: inside a period ending at E, a host's compromise time t is known only if t <= E.
+  A host-hour is positive if its alert time (end of the hour) is 0–24 h before the known t; the host's later rows
+  leave the population. A compromise after E leaves the host's rows negative in that period.
+- **False-alarm threshold**: per seed, the lowest score threshold at which at most 1 % of eligible val host-days
+  alert. Eligible host-days are host-days with at least one host-hour row that neither overlap the 24 h before a
+  known compromise nor come after it. This operationalises §7's "threshold fixed on the training period": the
+  pre-test period is used, on its held-out days, so the threshold is not set on rows the model was fitted on.
+- **Selection**: candidates logistic regression, random forest, XGBoost and MLP with the Level 1–2 grids (the
+  CNN-LSTM is not a candidate: host-hour counts have no order along the feature axis). Grid entries are scored by
+  the val early-alert rate (share of hosts first compromised in val with an alert in their 24 h window) at the
+  1 % threshold; ties by host-hour PR-AUC on val, then grid order. The selected entry is trained with five seeds.
+- **The predictive model of H2** is the candidate with the best seed-mean val early-alert rate (ties: val
+  PR-AUC, then candidate order), the same rule the author chose for H1 (ADR-0007), applied once by
+  `scripts/develop.py --lanl --freeze`.
+- **Test scoring** (after the freeze): every test-period host-hour is scored; the 24 h window of a host first
+  compromised early on day 14 may include day-13 hours, which the frozen model scores like any other hour.
+
 ## 8. Feature policy and alignment
 
 **CICIDS2017 → CSE-CIC-IDS2018.** Both corrected releases were produced with the same fixed CICFlowMeter. The
