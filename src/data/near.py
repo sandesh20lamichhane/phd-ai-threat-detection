@@ -5,12 +5,18 @@ and at 2 (a stricter check of that definition), and whether an evaluation row is
 occurs in data the model was fitted or tuned on:
 
     within a dataset   val rows vs train; test rows vs train + val
-    external targets   target rows vs CICIDS2017 train, on the shared (or canonical UNSW) features
+    external targets   target rows vs CICIDS2017 train + val, on the shared (or canonical UNSW) features
+                       (amendment 1.3: val sets the decision threshold, so it counts as tuning data)
 
 S7 then scores the unchanged model on the unseen evaluation rows only. Models, splits and training data do
 not change. The 3-figure hashes are recomputed from the stored features, so `build` first checks that they
 reproduce the counts in the preprocessing report exactly.
+
+Every record names the outputs it was built from and the SHA-256 of its sidecar; `check_sidecar` (run by the
+loader before any S7 filter and by `--verify`) refuses a sidecar that has changed or whose dataset was rebuilt
+since (amendment 1.3). The JSON records themselves are hashed in results/data_audit/auxiliary_manifest.json.
 """
+import hashlib
 import json
 
 import numpy as np
@@ -18,7 +24,7 @@ import pandas as pd
 import pyarrow.parquet as pq
 
 from ..utils import paths
-from ..utils.io import write_json, write_parquet
+from ..utils.io import sha256_file, write_json, write_parquet
 from .clean import round_sig, row_hash
 from .split import PARTITION_NAMES, TEST, TRAIN, VAL
 
@@ -26,6 +32,76 @@ SIG_FIGS = (3, 2)
 MIN_ROWS_PER_CLASS = 100        # below this, or below MIN_BLOCKS, an S7 estimate is reported as not estimable
 MIN_BLOCKS_PER_CLASS = 30
 WITHIN = ["cicids2017_improved", "ciciomt2024", "ton_iot", "ciciot2023", "nsl_kdd"]
+EXTERNAL = {"csecicids2018_improved": "cicids2017_improved", "unsw_nb15": "cicids2017_improved"}
+S7_DEFINITION = "1.3"           # amendment that last changed what counts as "seen"
+MANIFEST = "auxiliary_manifest.json"
+
+
+def _audit(*parts):
+    return paths.RESULTS.joinpath("data_audit", *parts)
+
+
+def record_path(ds_id, against=None):
+    return _audit("cross_dataset_overlap.json") if against else _audit(ds_id, "near_duplicates.json")
+
+
+def provenance(ds_id):
+    """Which processed outputs a record was built from: dataset rules and the SHA-256 of every output and split."""
+    rep = json.loads(_audit(ds_id, "report.json").read_text())
+    files = {"outputs": rep.get("outputs", {}).get("parquet_sha256", {}),
+             "splits": {k: v["sha256"] for k, v in (rep.get("splits") or {}).items()}}
+    return {"dataset_config_sha256": rep.get("dataset_config_sha256"),
+            "outputs_digest": hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()}
+
+
+def record_in_manifest(*files):
+    """Store the SHA-256 of JSON records written by this module, so --verify can tell if one was edited."""
+    path = _audit(MANIFEST)
+    man = json.loads(path.read_text()) if path.exists() else {}
+    for f in files:
+        man[f.relative_to(paths.RESULTS).as_posix()] = sha256_file(f)
+    write_json(path, dict(sorted(man.items())))
+
+
+def _record(ds_id, against=None):
+    rec = json.loads(record_path(ds_id, against).read_text())
+    return rec[ds_id]["near_duplicates"] if against else rec
+
+
+_checked = {}
+
+
+def check_sidecar(ds_id, against=None, use_cache=True):
+    """List of problems (empty when the sidecar can be used): definition, provenance and SHA-256."""
+    rp, sp = record_path(ds_id, against), sidecar_path(ds_id, against)
+    if not rp.exists() or not sp.exists():
+        return [f"missing {'record' if not rp.exists() else 'sidecar'} for {ds_id}; run "
+                f"{'--cross-overlap' if against else '--near-duplicates'}"]
+    stat = sp.stat()
+    key = (str(sp), stat.st_mtime_ns, stat.st_size)
+    if use_cache and _checked.get(key) == []:
+        return []
+    try:
+        rec = _record(ds_id, against)
+    except (KeyError, json.JSONDecodeError) as e:
+        return [f"record for {ds_id} unreadable: {e}"]
+    problems = []
+    if rec.get("s7_definition") != S7_DEFINITION:
+        problems.append(f"built under S7 definition {rec.get('s7_definition', '1.2')}, current is {S7_DEFINITION}")
+    built = rec.get("built_from", {})
+    for d in ([against, ds_id] if against else [ds_id]):
+        if built.get(d) != provenance(d):
+            problems.append(f"{d} outputs changed since this record was built")
+    if sha256_file(sp) != rec.get("sidecar_sha256"):
+        problems.append(f"sidecar {sp.name} differs from its recorded SHA-256")
+    _checked[key] = problems
+    return problems
+
+
+def require_sidecar(ds_id, against=None):
+    problems = check_sidecar(ds_id, against)
+    if problems:
+        raise RuntimeError(f"S7 record for {ds_id} cannot be used: {'; '.join(problems)}")
 
 
 def sidecar_path(ds_id, against=None):
@@ -58,6 +134,8 @@ def subset_summary(seen, y, fam, block, mask):
     out["unseen_share"] = out["unseen_rows"] / out["rows"] if out["rows"] else None
     est = True
     for cls, name in ((0, "benign"), (1, "attack")):
+        a = mask & (y == cls)           # whole evaluation set, for comparison with the primary analysis
+        out[f"{name}_rows"], out[f"{name}_blocks"] = int(a.sum()), int(len(np.unique(block[a])))
         k = keep & (y == cls)
         nb = int(len(np.unique(block[k])))
         out[f"unseen_{name}_rows"], out[f"unseen_{name}_blocks"] = int(k.sum()), nb
@@ -107,15 +185,18 @@ def build(ds_id, split="primary", log=print):
                                  "the stored features do not match the preprocessing run")
 
     side = pd.DataFrame({"_key": keys})
-    summary = {"dataset": ds_id, "split": split, "check_against_report": check, "subsets": {}}
+    summary = {"dataset": ds_id, "split": split, "s7_definition": S7_DEFINITION,
+               "built_from": {ds_id: provenance(ds_id)}, "check_against_report": check, "subsets": {}}
     for s in SIG_FIGS:
         seen = _seen_within(H[s], part)
         side[f"near_sig{s}"] = H[s]
         side[f"seen_sig{s}"] = seen
         summary["subsets"][f"sig{s}"] = {PARTITION_NAMES[p]: subset_summary(seen, y, fam, block, part == p)
                                          for p in (VAL, TEST) if (part == p).any()}
+    summary["reproduces_previous_sidecar"] = _same_as_previous(side, sidecar_path(ds_id))
     summary["sidecar_sha256"] = write_parquet(side, sidecar_path(ds_id))
-    write_json(paths.RESULTS / "data_audit" / ds_id / "near_duplicates.json", summary)
+    write_json(record_path(ds_id), summary)
+    record_in_manifest(record_path(ds_id))
     for s in SIG_FIGS:
         t = summary["subsets"][f"sig{s}"].get("test", {})
         log(f"[{ds_id}] S7 test subset at {s} s.f.: {t.get('unseen_rows', 0):,} of {t.get('rows', 0):,} rows unseen; "
@@ -123,15 +204,36 @@ def build(ds_id, split="primary", log=print):
     return summary
 
 
-def external(target, source_frame, target_frame, target_meta, block, against="cicids2017_improved"):
-    """Target rows seen in the source train (same features, same order); writes the sidecar, returns the summary."""
+def _same_as_previous(side, path):
+    """True / False if an earlier sidecar exists (same rows and values?), None if this is the first build."""
+    if not path.exists():
+        return None
+    try:
+        old = pd.read_parquet(path)
+    except Exception:                                   # unreadable earlier file: not a reproduction
+        return False
+    cols = [c for c in side.columns if c in old.columns]
+    return bool(len(cols) == len(side.columns) and old[cols].equals(side[cols]))
+
+
+def external(target, fit_frame, train_frame, target_frame, target_meta, block, against="cicids2017_improved"):
+    """S7 record for an external target (same features, same order in all three frames).
+
+    "seen" = the target row's near-duplicate representation occurs in fit_frame (source train + val, the data
+    the model is fitted and tuned on). The share seen in train alone is kept as a descriptive figure.
+    Writes the sidecar and returns the summary that goes into cross_dataset_overlap.json.
+    """
     side = pd.DataFrame({"_key": target_meta["_key"].to_numpy()})
     y, fam = target_meta["_y"].to_numpy(), target_meta["_label"].astype(str).to_numpy()
-    out = {}
-    hs, ht = _hashes(source_frame), _hashes(target_frame)
+    out = {"s7_definition": S7_DEFINITION, "compared_with": f"{against} train + val",
+           "built_from": {against: provenance(against), target: provenance(target)},
+           "features_sha256": hashlib.sha256(json.dumps(list(target_frame.columns)).encode()).hexdigest()}
+    hf, htr, ht = _hashes(fit_frame), _hashes(train_frame), _hashes(target_frame)
     for s in SIG_FIGS:
-        seen = np.isin(ht[s], np.unique(hs[s]))
+        seen = np.isin(ht[s], np.unique(hf[s]))
         side[f"seen_sig{s}"] = seen
         out[f"sig{s}"] = subset_summary(seen, y, fam, block, np.ones(len(y), bool))
+        out[f"sig{s}"]["share_seen_in_source_train_only"] = float(np.isin(ht[s], np.unique(htr[s])).mean())
+    out["reproduces_previous_sidecar"] = _same_as_previous(side, sidecar_path(target, against))
     out["sidecar_sha256"] = write_parquet(side, sidecar_path(target, against))
     return out

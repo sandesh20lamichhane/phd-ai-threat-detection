@@ -3,7 +3,8 @@
 | Type | Threat | Mitigation |
 |---|---|---|
 | Internal | Duplicate and near-duplicate flows across partitions inflate scores | exact dedup before split; block split with purging; near-duplicate cross-partition rate reported; sensitivity S7 scores without near-duplicates of fitting/tuning data |
-| Internal | Outputs built under older rules or altered after the run | dataset config fingerprint checked at every load; `--verify` checks SHA-256 of all outputs |
+| Internal | Outputs built under older rules or altered after the run | dataset config fingerprint checked at every load; `--verify` checks SHA-256 of all outputs and of every S7 sidecar and record |
+| Conclusion | CICIDS2017 test holds few attack-bearing 300 s blocks (17 after S7; whole-test count in `near_duplicates.json`), so its block-bootstrap CI rests on few clusters | reported beside H1a; S7 for H1a and the S7 Δ for H1b/H1c reported as not estimable under the fixed minimum |
 | Internal | Identifier shortcuts (IPs, ports, timestamps, flow ids) | removed from features; ports tested only as sensitivity S2 |
 | Internal | Preprocessing fitted on test or target data | all learned transforms fitted on source train only, hashed and frozen |
 | Internal | Label errors in CIC releases | corrected releases; raw label kept; "Attempted" handled by a fixed rule with sensitivity S3 |

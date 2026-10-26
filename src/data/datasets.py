@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 from ..utils import paths
-from .near import sidecar_path
+from .near import require_sidecar, sidecar_path
 from .split import PARTITION_NAMES
 from .verify import require_current
 
@@ -29,7 +29,8 @@ def load(ds_id, split="primary", partitions=("train", "val", "test"), columns=No
         (binary: benign vs attack, `_conflict_bin`; multiclass: attack family, `_conflict`).
     S7_unseen_eval[_sig2]: evaluation rows (val, test, external) whose near-duplicate representation at 3 (or 2)
         significant figures occurs in the data the model was fitted or tuned on are removed; train is unchanged.
-        near_against: for external targets, the source dataset (default cicids2017_improved).
+        near_against: for external targets, the source dataset (default cicids2017_improved), compared on its
+        train + val (amendment 1.3). The sidecar is checked against its recorded SHA-256 before use.
     """
     unknown = set(sensitivity) - SENSITIVITIES
     if unknown:
@@ -65,8 +66,9 @@ def load(ds_id, split="primary", partitions=("train", "val", "test"), columns=No
             raise ValueError("S7 is defined on the primary label set and is not combined with S3")
         sig = 2 if s7[0].endswith("sig2") else 3
         ext = split == "external"
-        side = pd.read_parquet(sidecar_path(ds_id, (near_against or "cicids2017_improved") if ext else None),
-                               columns=["_key", f"seen_sig{sig}"])
+        against = (near_against or "cicids2017_improved") if ext else None
+        require_sidecar(ds_id, against)     # recorded SHA-256, definition and provenance (amendment 1.3)
+        side = pd.read_parquet(sidecar_path(ds_id, against), columns=["_key", f"seen_sig{sig}"])
         seen = pd.Series(side[f"seen_sig{sig}"].to_numpy(), index=side["_key"].to_numpy())
         if not df["_key"].isin(seen.index).all():
             raise AssertionError("near-duplicate sidecar does not cover these rows; run --near-duplicates again")

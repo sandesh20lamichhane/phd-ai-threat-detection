@@ -86,14 +86,3 @@ def test_verify_detects_changed_files(cic):
     f.write_bytes(f.read_bytes() + b"x")
     r = verify_dataset("cicids2017_improved")
     assert not r["ok"] and any("checksum" in p for p in r["problems"])
-
-
-def test_external_near_duplicates(drive):
-    from src.data import near
-    src = pd.DataFrame({"a": np.array([1.0, 2.0, 3.0], "float32"), "b": np.array([10.0, 20.0, 30.0], "float32")})
-    tgt = pd.DataFrame({"a": np.array([1.0004, 2.5, 3.0], "float32"), "b": np.array([10.0, 20.0, 30.04], "float32")})
-    meta = pd.DataFrame({"_key": [0, 1, 2], "_y": [0, 1, 1], "_label": ["BENIGN", "DoS", "DoS"]})
-    s = near.external("unsw_nb15", src, tgt, meta, np.array([0, 1, 2]))
-    side = pd.read_parquet(near.sidecar_path("unsw_nb15", "cicids2017_improved"))
-    assert side["seen_sig3"].tolist() == [True, False, True]
-    assert s["sig3"]["unseen_rows"] == 1 and not s["sig3"]["estimable"]

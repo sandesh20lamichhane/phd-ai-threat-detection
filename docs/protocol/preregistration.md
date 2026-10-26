@@ -204,8 +204,10 @@ figure representation also occurs in data the model was fitted or tuned on:
 |---|---|
 | test (within a dataset) | train ∪ val of the same dataset |
 | val (reported only, never used for a choice) | train |
-| external target (CSE-CIC-IDS2018, UNSW-NB15) | CICIDS2017 train, on the shared or canonical UNSW features |
-| Level 4 domain test sets | the training data of the model being scored, by the same rule |
+| external target (CSE-CIC-IDS2018, UNSW-NB15) | CICIDS2017 train ∪ val, on the shared or canonical UNSW features (amendment 1.3; val sets the decision threshold) |
+| Level 4 domain test sets | train ∪ val of the model being scored (amendment 1.3) |
+
+The share of target rows seen in CICIDS2017 train alone, exact and near, is kept as a descriptive figure only.
 
 The same is repeated at 2 significant figures, a stricter definition, to show how much the result depends on
 the 3-figure choice. Rows are never reassigned between partitions: re-grouping near-duplicates across the
@@ -221,6 +223,18 @@ recomputed from the stored features and must reproduce the preprocessing report'
 three-outcome verdict beside the primary one; the share of evaluation rows removed; benign and attack rows and
 blocks left; rows per family before and after. An S7 estimate is "not estimable" when fewer than 100 rows or
 30 bootstrap blocks of either class remain, and is then reported as such, not replaced.
+
+*Claims that compare two evaluation sets* (H1b, H1c: Δ = source test − target; H4 as fixed in §9): the S7 Δ
+uses the S7 subsets of both sides, so it is estimable only if both are. When only the target side is estimable,
+its S7 macro-F1 and CI are reported descriptively beside the primary target macro-F1, with no robustness verdict
+(amendment 1.3). The minimum of 100 rows and 30 blocks per class is fixed and is not changed after the S7
+subsets were counted: CICIDS2017 (17 attack blocks left at 3 significant figures) and NSL-KDD (23 blocks per
+class) are reported as not estimable.
+
+*Integrity (amendment 1.3).* Every S7 record states the S7 definition it was built under, the processed outputs it
+was built from (dataset rules and output/split SHA-256) and the SHA-256 of its sidecar; the JSON records are
+hashed in `results/data_audit/auxiliary_manifest.json`. The loader refuses an S7 filter whose sidecar, record or
+provenance does not match, and `--verify` checks all of them, reported separately from the primary data.
 
 *Interpretation.* S7 is a robustness check, not a new hypothesis: it is outside the Holm family and never changes
 the primary verdict. A claim is called robust to near-duplicates if its S7 verdict (3 figures) is the same as the
@@ -252,7 +266,9 @@ Before any model run, `scripts/preprocess.py --verify` must pass for every datas
 the dataset's settings and label rules (a SHA-256 fingerprint of its merged configuration) are identical to those
 under which its outputs were built, that the outputs are not a pilot, and that every processed and split file
 matches the SHA-256 in its report. `src/data/datasets.py` repeats the rules check at every load and refuses
-outputs built under other rules. Results: `results/data_audit/verification.{json,md}`.
+outputs built under other rules. Since amendment 1.3 it also checks every S7 artifact (§8.1, *Integrity*) and
+reports primary data (processed and split files) and auxiliary sensitivity-analysis artifacts in separate
+tables. Results: `results/data_audit/verification.{json,md}`.
 
 ## 11. Records
 

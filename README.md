@@ -49,12 +49,13 @@ python -m src.acquire.fetch --only ciciot2023 lanl_cyber1 # selected datasets
 python -m src.acquire.fetch --verify                      # re-check SHA-256 of everything in Drive
 ```
 
-## Preprocessing (protocol 1.1, analysis amendment 1.2)
+## Preprocessing (protocol 1.1, analysis amendments 1.2 and 1.3)
 
 The evaluation protocol is frozen in [`docs/protocol/preregistration.md`](docs/protocol/preregistration.md), with
 thresholds in [`docs/protocol/hypotheses.md`](docs/protocol/hypotheses.md). Run
 [`notebooks/01_profile_and_preprocess.ipynb`](notebooks/01_profile_and_preprocess.ipynb), then
-[`notebooks/02_close_preprocessing.ipynb`](notebooks/02_close_preprocessing.ipynb) in Colab, or:
+[`notebooks/02_close_preprocessing.ipynb`](notebooks/02_close_preprocessing.ipynb) and
+[`notebooks/03_s7_corrections_and_verification.ipynb`](notebooks/03_s7_corrections_and_verification.ipynb) in Colab, or:
 
 ```bash
 python scripts/preprocess.py --profile                       # schema check, samples only

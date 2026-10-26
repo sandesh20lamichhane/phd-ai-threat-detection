@@ -41,7 +41,11 @@ def shared_features():
 
 
 def cross_overlap():
-    """Exact and near-duplicate overlap of each external target with CICIDS2017 train (amendment 1.2 adds near)."""
+    """Exact and near-duplicate overlap of each external target with CICIDS2017.
+
+    Descriptive: exact and near shares against CICIDS2017 train. S7 record: target rows near-duplicating
+    CICIDS2017 train + val, the data the model is fitted and tuned on (amendment 1.3).
+    """
     import yaml
     from src.data import datasets, near
     from src.data.clean import row_hash
@@ -51,27 +55,35 @@ def cross_overlap():
     from src.utils.io import write_json
     out = {}
     shared = yaml.safe_load((MAPPING_DIR / "cic_shared_features.yaml").read_text())["features"]
-    src, _ = datasets.load("cicids2017_improved", partitions=("train",))
+    src, smeta = datasets.load("cicids2017_improved", partitions=("train", "val"))
+    is_train = (smeta["_partition"] == "train").to_numpy()
     if shared:
         tgt, meta = datasets.load("csecicids2018_improved", split="external", partitions=("external",),
                                   columns=[*shared, "_key", "_y", "_label", "_conflict", "_conflict_bin"])
-        out["csecicids2018_improved"] = cross_dataset_overlap(row_hash(src[shared]), row_hash(tgt[shared]))
+        out["csecicids2018_improved"] = cross_dataset_overlap(row_hash(src.loc[is_train, shared]), row_hash(tgt[shared]))
         out["csecicids2018_improved"]["near_duplicates"] = near.external(
-            "csecicids2018_improved", src[shared], tgt[shared], meta, meta["_block"].to_numpy())
+            "csecicids2018_improved", src[shared], src.loc[is_train, shared], tgt[shared], meta,
+            meta["_block"].to_numpy())
         del tgt, meta
     tgt, meta = datasets.load("unsw_nb15", split="external", partitions=("external",))
     cs, ct = to_canonical_unsw(src, "cic"), to_canonical_unsw(tgt, "unsw")
-    out["unsw_nb15"] = cross_dataset_overlap(row_hash(cs), row_hash(ct))
-    out["unsw_nb15"]["near_duplicates"] = near.external("unsw_nb15", cs, ct, meta, meta["_block"].to_numpy())
-    out["scope"] = ("exact: share of target rows whose shared-feature vector equals a CICIDS2017 train row; "
-                    "near_duplicates: same after rounding to 3 (and 2) significant figures. Neither rules out "
-                    "semantically similar traffic.")
-    write_json(paths.RESULTS / "data_audit" / "cross_dataset_overlap.json", out)
+    out["unsw_nb15"] = cross_dataset_overlap(row_hash(cs[is_train]), row_hash(ct))
+    out["unsw_nb15"]["near_duplicates"] = near.external("unsw_nb15", cs, cs[is_train], ct, meta,
+                                                        meta["_block"].to_numpy())
+    out["scope"] = ("share_seen_in_source_train: target rows whose shared-feature vector equals a CICIDS2017 train "
+                    "row (descriptive). near_duplicates: the same after rounding to 3 and 2 significant figures; "
+                    "the S7 'seen' flags compare with CICIDS2017 train + val (amendment 1.3), the train-only share "
+                    "is given as share_seen_in_source_train_only. None of these rules out semantically similar "
+                    "traffic or shows that the datasets are independent.")
+    path = paths.RESULTS / "data_audit" / "cross_dataset_overlap.json"
+    write_json(path, out)
+    near.record_in_manifest(path)
     for k in ("csecicids2018_improved", "unsw_nb15"):
         if k in out:
             n = out[k]["near_duplicates"]
-            print(f"{k}: exact {out[k]['share_seen_in_source_train']:.6%}; near (3 s.f.) "
-                  f"{1 - n['sig3']['unseen_share']:.4%}; near (2 s.f.) {1 - n['sig2']['unseen_share']:.4%}")
+            print(f"{k}: exact vs train {out[k]['share_seen_in_source_train']:.6%}; near vs train + val "
+                  f"(3 s.f.) {1 - n['sig3']['unseen_share']:.4%}, (2 s.f.) {1 - n['sig2']['unseen_share']:.4%}; "
+                  f"S7 estimable {n['sig3']['estimable']}")
 
 
 def near_duplicates(ds_ids):
@@ -82,8 +94,8 @@ def near_duplicates(ds_ids):
 
 def verify(ds_ids, checksums=True):
     from src.data.verify import CONFIRMATORY, verify_all
-    rows = verify_all(ds_ids or CONFIRMATORY, checksums=checksums)
-    bad = [r["dataset"] for r in rows if not r["ok"]]
+    rows, aux = verify_all(ds_ids or CONFIRMATORY, checksums=checksums, auxiliary=not ds_ids)
+    bad = [r["dataset"] for r in rows if not r["ok"]] + [a["artifact"] for a in aux if not a["ok"]]
     if bad:
         raise SystemExit(f"verification failed for {bad}; see results/data_audit/verification.md")
     print("all outputs verified")
