@@ -1,0 +1,8 @@
+command: scripts/preprocess.py --dataset nsl_kdd
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/data_audit/logs/20261026T053530Z_nsl_kdd.log
+[nsl_kdd] 2 input files, 0.02 GB
+[nsl_kdd] pass 1: 22,544 rows (KDDTest+.txt)
+[nsl_kdd] pass 1: 148,517 rows (KDDTrain+.txt)
+[nsl_kdd] kept 147,888 of 148,517; duplicates 629; conflicts 196
+[nsl_kdd] split primary: {'train': 106545, 'test': 22541, 'val': 18802}
+[nsl_kdd] report: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/data_audit/nsl_kdd/report.json

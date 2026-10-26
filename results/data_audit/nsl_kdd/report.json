@@ -1,11 +1,11 @@
 {
   "dataset": "nsl_kdd",
   "role": "baseline",
-  "protocol_version": "1.0",
+  "protocol_version": "1.1",
   "output_version": "v1",
   "run": {
-    "utc": "2026-10-25T14:35:46Z",
-    "git_commit": "6ed13c0816c1d5ab9e7ad6d6483837a08344e1a4-dirty",
+    "utc": "2026-10-26T05:35:38Z",
+    "git_commit": "4ae984399d4283227b016e94e87eccf708a4a39d",
     "python": "3.13.16",
     "packages": {
       "numpy": "2.1.3",
@@ -16,8 +16,9 @@
       "PyYAML": "6.0.3"
     },
     "config": "config/preprocessing.yaml",
-    "config_sha256": "e64c492f2a4c4e091646ce627f28ddca6b968674255f1021b2abc5d777f45510"
+    "config_sha256": "9d38728188a87b1c8778fa782bf292c1a9409031504c4ed569baa37471da13cb"
   },
+  "dataset_config_sha256": "1ba629418367b82804d8f24d65031ce30d4d989c64bad0a453312086968dc859",
   "max_rows": null,
   "inputs": [
     {
@@ -276,7 +277,9 @@
         }
       },
       "purged_rows": 0,
-      "diagnostics": {},
+      "diagnostics": {
+        "bootstrap_groups": "runs of 1000 consecutive rows within a file"
+      },
       "integrity": {
         "identifier_columns_in_features": 0,
         "pairs": {
@@ -298,7 +301,7 @@
         }
       },
       "file": "/content/drive/MyDrive/PhD-AI-Cyber/data/splits/nsl_kdd/primary.parquet",
-      "sha256": "c671dcb078124daa47a3003848902e354d42176f498dd0d17cf6676fbf23c047"
+      "sha256": "41fea9a1edb2e6c6236cfeedee936d5f8013721dafd6ee9838af1e6faa89d646"
     }
   },
   "outputs": {
