@@ -1,0 +1,405 @@
+{
+  "candidate": "logreg",
+  "feature_space": "cic",
+  "source": "cicids2017_improved",
+  "spec": {
+    "family": "linear",
+    "fixed": {
+      "max_iter": 2000,
+      "solver": "lbfgs"
+    },
+    "grid": {
+      "C": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "class_weight": [
+        null,
+        "balanced"
+      ]
+    }
+  },
+  "models_config_sha256": "e9f844ff5c6c9dfb332af5861ca657b12e5865ee8b9e02a9e6128ea536e25658",
+  "seeds": [
+    11,
+    23,
+    37,
+    51,
+    73
+  ],
+  "source_provenance": {
+    "dataset_config_sha256": null,
+    "outputs_digest": "2dc9d06812e74fbca6f569e4926c5a2c3faa079d59670fc04bb593526460150b"
+  },
+  "features": [
+    "Protocol",
+    "Flow Duration",
+    "Total Fwd Packet",
+    "Total Bwd packets",
+    "Total Length of Fwd Packet",
+    "Total Length of Bwd Packet",
+    "Fwd Packet Length Max",
+    "Fwd Packet Length Min",
+    "Fwd Packet Length Mean",
+    "Fwd Packet Length Std",
+    "Bwd Packet Length Max",
+    "Bwd Packet Length Min",
+    "Bwd Packet Length Mean",
+    "Bwd Packet Length Std",
+    "Flow Bytes/s",
+    "Flow Packets/s",
+    "Flow IAT Mean",
+    "Flow IAT Std",
+    "Flow IAT Max",
+    "Flow IAT Min",
+    "Fwd IAT Total",
+    "Fwd IAT Mean",
+    "Fwd IAT Std",
+    "Fwd IAT Max",
+    "Fwd IAT Min",
+    "Bwd IAT Total",
+    "Bwd IAT Mean",
+    "Bwd IAT Std",
+    "Bwd IAT Max",
+    "Bwd IAT Min",
+    "Fwd PSH Flags",
+    "Bwd PSH Flags",
+    "Fwd URG Flags",
+    "Bwd URG Flags",
+    "Fwd RST Flags",
+    "Bwd RST Flags",
+    "Fwd Header Length",
+    "Bwd Header Length",
+    "Fwd Packets/s",
+    "Bwd Packets/s",
+    "Packet Length Min",
+    "Packet Length Max",
+    "Packet Length Mean",
+    "Packet Length Std",
+    "Packet Length Variance",
+    "FIN Flag Count",
+    "SYN Flag Count",
+    "RST Flag Count",
+    "PSH Flag Count",
+    "ACK Flag Count",
+    "URG Flag Count",
+    "CWR Flag Count",
+    "ECE Flag Count",
+    "Down/Up Ratio",
+    "Average Packet Size",
+    "Fwd Segment Size Avg",
+    "Bwd Segment Size Avg",
+    "Fwd Bytes/Bulk Avg",
+    "Fwd Packet/Bulk Avg",
+    "Fwd Bulk Rate Avg",
+    "Bwd Bytes/Bulk Avg",
+    "Bwd Packet/Bulk Avg",
+    "Bwd Bulk Rate Avg",
+    "Subflow Fwd Packets",
+    "Subflow Fwd Bytes",
+    "Subflow Bwd Packets",
+    "Subflow Bwd Bytes",
+    "FWD Init Win Bytes",
+    "Bwd Init Win Bytes",
+    "Fwd Act Data Pkts",
+    "Fwd Seg Size Min",
+    "Active Mean",
+    "Active Std",
+    "Active Max",
+    "Active Min",
+    "Idle Mean",
+    "Idle Std",
+    "Idle Max",
+    "Idle Min",
+    "ICMP Code",
+    "ICMP Type",
+    "Total TCP Flow Time"
+  ],
+  "rows": {
+    "train": {
+      "benign": 1006776,
+      "attack": 192640
+    },
+    "val": {
+      "benign": 198998,
+      "attack": 72791
+    }
+  },
+  "grid": [
+    {
+      "params": {
+        "C": 0.01,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.47177745397460413,
+      "val_macro_f1": 0.9910583779240378,
+      "info": {
+        "iterations": 81,
+        "train_seconds": 20.5
+      }
+    },
+    {
+      "params": {
+        "C": 0.01,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.8017139679296429,
+      "val_macro_f1": 0.9905025575123002,
+      "info": {
+        "iterations": 78,
+        "train_seconds": 20.2
+      }
+    },
+    {
+      "params": {
+        "C": 0.1,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.3083472155062263,
+      "val_macro_f1": 0.9916537301378865,
+      "info": {
+        "iterations": 146,
+        "train_seconds": 33.5
+      }
+    },
+    {
+      "params": {
+        "C": 0.1,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.6871529362080074,
+      "val_macro_f1": 0.9928899913770908,
+      "info": {
+        "iterations": 163,
+        "train_seconds": 38.0
+      }
+    },
+    {
+      "params": {
+        "C": 1.0,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.4435124862542042,
+      "val_macro_f1": 0.9937226362177873,
+      "info": {
+        "iterations": 226,
+        "train_seconds": 50.3
+      }
+    },
+    {
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.6615924188302958,
+      "val_macro_f1": 0.9932233711776572,
+      "info": {
+        "iterations": 310,
+        "train_seconds": 67.5
+      }
+    },
+    {
+      "params": {
+        "C": 10.0,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.4897617055364019,
+      "val_macro_f1": 0.9941068338486418,
+      "info": {
+        "iterations": 306,
+        "train_seconds": 66.3
+      }
+    },
+    {
+      "params": {
+        "C": 10.0,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.7734111486981023,
+      "val_macro_f1": 0.9933826576364145,
+      "info": {
+        "iterations": 427,
+        "train_seconds": 91.9
+      }
+    }
+  ],
+  "final": {
+    "11": {
+      "threshold": 0.4435124862542042,
+      "val": {
+        "macro_f1": 0.9937226362177873,
+        "balanced_accuracy": 0.9936366023978923,
+        "fpr": 0.0032613393099428134,
+        "pr_auc": 0.9973863418111488,
+        "fpr_at_tpr_0.95": 0.0021005236233529985,
+        "per_class": {
+          "benign": {
+            "precision": 0.9965383494609069,
+            "recall": 0.9967386606900572,
+            "f1": 0.9966384950105016
+          },
+          "attack": {
+            "precision": 0.9910791604239118,
+            "recall": 0.9905345441057274,
+            "f1": 0.9908067774250732
+          }
+        }
+      },
+      "info": {
+        "iterations": 226,
+        "train_seconds": 50.5
+      },
+      "model_file": "development/cic/logreg/seed11.pkl",
+      "model_sha256": "bbea0dd41019359fd57c85d990d91a2c78e4b39539b633629e57bd81435ac089"
+    },
+    "23": {
+      "threshold": 0.4435124862542042,
+      "val": {
+        "macro_f1": 0.9937226362177873,
+        "balanced_accuracy": 0.9936366023978923,
+        "fpr": 0.0032613393099428134,
+        "pr_auc": 0.9973863418111488,
+        "fpr_at_tpr_0.95": 0.0021005236233529985,
+        "per_class": {
+          "benign": {
+            "precision": 0.9965383494609069,
+            "recall": 0.9967386606900572,
+            "f1": 0.9966384950105016
+          },
+          "attack": {
+            "precision": 0.9910791604239118,
+            "recall": 0.9905345441057274,
+            "f1": 0.9908067774250732
+          }
+        }
+      },
+      "info": {
+        "iterations": 226,
+        "train_seconds": 50.3
+      },
+      "model_file": "development/cic/logreg/seed23.pkl",
+      "model_sha256": "d6955c853d64c21b5be53b383fa0fe0d37bbbac1e1e25493636f202721ca2b6e"
+    },
+    "37": {
+      "threshold": 0.4435124862542042,
+      "val": {
+        "macro_f1": 0.9937226362177873,
+        "balanced_accuracy": 0.9936366023978923,
+        "fpr": 0.0032613393099428134,
+        "pr_auc": 0.9973863418111488,
+        "fpr_at_tpr_0.95": 0.0021005236233529985,
+        "per_class": {
+          "benign": {
+            "precision": 0.9965383494609069,
+            "recall": 0.9967386606900572,
+            "f1": 0.9966384950105016
+          },
+          "attack": {
+            "precision": 0.9910791604239118,
+            "recall": 0.9905345441057274,
+            "f1": 0.9908067774250732
+          }
+        }
+      },
+      "info": {
+        "iterations": 226,
+        "train_seconds": 49.4
+      },
+      "model_file": "development/cic/logreg/seed37.pkl",
+      "model_sha256": "567677f93bd59b55342226e047deb26251f248cbbecfaf04042b593168314d1e"
+    },
+    "51": {
+      "threshold": 0.4435124862542042,
+      "val": {
+        "macro_f1": 0.9937226362177873,
+        "balanced_accuracy": 0.9936366023978923,
+        "fpr": 0.0032613393099428134,
+        "pr_auc": 0.9973863418111488,
+        "fpr_at_tpr_0.95": 0.0021005236233529985,
+        "per_class": {
+          "benign": {
+            "precision": 0.9965383494609069,
+            "recall": 0.9967386606900572,
+            "f1": 0.9966384950105016
+          },
+          "attack": {
+            "precision": 0.9910791604239118,
+            "recall": 0.9905345441057274,
+            "f1": 0.9908067774250732
+          }
+        }
+      },
+      "info": {
+        "iterations": 226,
+        "train_seconds": 49.8
+      },
+      "model_file": "development/cic/logreg/seed51.pkl",
+      "model_sha256": "73ba17b6d2552372c1609b1b8427958748062c4c20af888acf8899a441fea710"
+    },
+    "73": {
+      "threshold": 0.4435124862542042,
+      "val": {
+        "macro_f1": 0.9937226362177873,
+        "balanced_accuracy": 0.9936366023978923,
+        "fpr": 0.0032613393099428134,
+        "pr_auc": 0.9973863418111488,
+        "fpr_at_tpr_0.95": 0.0021005236233529985,
+        "per_class": {
+          "benign": {
+            "precision": 0.9965383494609069,
+            "recall": 0.9967386606900572,
+            "f1": 0.9966384950105016
+          },
+          "attack": {
+            "precision": 0.9910791604239118,
+            "recall": 0.9905345441057274,
+            "f1": 0.9908067774250732
+          }
+        }
+      },
+      "info": {
+        "iterations": 226,
+        "train_seconds": 49.7
+      },
+      "model_file": "development/cic/logreg/seed73.pkl",
+      "model_sha256": "2eb65e053d681848be6a5325c1f909c6a2c70daf1f6cad769426a06c7d1044c5"
+    }
+  },
+  "complete": true,
+  "runs": [
+    {
+      "utc": "2026-10-26T11:34:56Z",
+      "git_commit": "b1fd816c70a0b566ada43e079dd61e4b6846770c",
+      "python": "3.13.16",
+      "packages": {
+        "numpy": "2.1.3",
+        "pandas": "2.2.3",
+        "pyarrow": "23.0.1",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.16.3",
+        "PyYAML": "6.0.3",
+        "xgboost": "3.4.1",
+        "torch": "2.11.0+cu130"
+      },
+      "config": "config/models.yaml",
+      "config_sha256": "e9f844ff5c6c9dfb332af5861ca657b12e5865ee8b9e02a9e6128ea536e25658"
+    }
+  ],
+  "selected_params": {
+    "C": 1.0,
+    "class_weight": null
+  },
+  "val_macro_f1_mean": 0.9937226362177874,
+  "val_macro_f1_std": 1.2412670766236366e-16,
+  "completed_utc": "2026-10-26T11:45:40Z"
+}
