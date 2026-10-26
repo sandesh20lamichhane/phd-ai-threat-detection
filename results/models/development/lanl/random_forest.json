@@ -1,0 +1,443 @@
+{
+  "candidate": "random_forest",
+  "source": "lanl_cyber1",
+  "spec": {
+    "family": "tree",
+    "fixed": {
+      "n_estimators": 300,
+      "max_features": "sqrt",
+      "n_jobs": -1
+    },
+    "grid": {
+      "max_depth": [
+        null,
+        30
+      ],
+      "min_samples_leaf": [
+        1,
+        3
+      ],
+      "class_weight": [
+        null,
+        "balanced_subsample"
+      ]
+    }
+  },
+  "models_config_sha256": "3546617d207a07d74b8bf519f76e14d649f6cd61ae9f8b298c11f06a6970f5b2",
+  "seeds": [
+    11,
+    23,
+    37,
+    51,
+    73
+  ],
+  "source_provenance": {
+    "dataset_config_sha256": null,
+    "outputs_digest": "01fdd3dbcae6360338359ac6990a80bff75bd677710be54a481e43536763a56c"
+  },
+  "split": {
+    "rule": "contingency (fewer than 30 compromised hosts in days 41-58)",
+    "train_days": [
+      1,
+      10
+    ],
+    "val_days": [
+      11,
+      13
+    ],
+    "test_days": [
+      14,
+      58
+    ],
+    "test_compromised_hosts": 44
+  },
+  "features": [
+    "auth_in",
+    "auth_in_fail",
+    "auth_in_distinct_src",
+    "auth_in_distinct_users",
+    "auth_out",
+    "auth_out_fail",
+    "auth_out_distinct_dst",
+    "logon_Network",
+    "logon_Interactive",
+    "logon_RemoteInteractive",
+    "logon_Batch",
+    "logon_Service",
+    "logon_Unlock",
+    "logon_NewCredentials",
+    "logon_CachedInteractive",
+    "authtype_NTLM",
+    "authtype_Kerberos",
+    "authtype_Negotiate",
+    "auth_in_new_src",
+    "auth_out_new_dst",
+    "proc_start",
+    "proc_distinct",
+    "proc_new",
+    "flows_out",
+    "bytes_out",
+    "pkts_out",
+    "flows_out_distinct_dst",
+    "flows_in",
+    "bytes_in",
+    "dns_queries",
+    "dns_distinct",
+    "auth_in_sum24h",
+    "auth_in_fail_sum24h",
+    "auth_in_distinct_src_sum24h",
+    "auth_in_distinct_users_sum24h",
+    "auth_out_sum24h",
+    "auth_out_fail_sum24h",
+    "auth_out_distinct_dst_sum24h",
+    "logon_Network_sum24h",
+    "logon_Interactive_sum24h",
+    "logon_RemoteInteractive_sum24h",
+    "logon_Batch_sum24h",
+    "logon_Service_sum24h",
+    "logon_Unlock_sum24h",
+    "logon_NewCredentials_sum24h",
+    "logon_CachedInteractive_sum24h",
+    "authtype_NTLM_sum24h",
+    "authtype_Kerberos_sum24h",
+    "authtype_Negotiate_sum24h",
+    "auth_in_new_src_sum24h",
+    "auth_out_new_dst_sum24h",
+    "proc_start_sum24h",
+    "proc_distinct_sum24h",
+    "proc_new_sum24h",
+    "flows_out_sum24h",
+    "bytes_out_sum24h",
+    "pkts_out_sum24h",
+    "flows_out_distinct_dst_sum24h",
+    "flows_in_sum24h",
+    "bytes_in_sum24h",
+    "dns_queries_sum24h",
+    "dns_distinct_sum24h",
+    "active_hours_24h"
+  ],
+  "rows": {
+    "train": {
+      "rows": 2400824,
+      "positives": 4595,
+      "compromised_hosts": 194
+    },
+    "val": {
+      "rows": 646882,
+      "positives": 1458,
+      "compromised_hosts": 63
+    }
+  },
+  "grid": [
+    {
+      "params": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.060000000000000005,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 20.475555555555555,
+        "fa_rate": 0.00951923076923077,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.022419980095469402,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "train_seconds": 270.1
+      }
+    },
+    {
+      "params": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "class_weight": "balanced_subsample"
+      },
+      "seed": 11,
+      "threshold": 0.046666666666666676,
+      "val": {
+        "early_alert_rate": 0.20634920634920634,
+        "hosts": 63,
+        "hosts_alerted": 13,
+        "median_lead_hours": 19.2525,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.014837617224022482,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "train_seconds": 232.8
+      }
+    },
+    {
+      "params": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.050563492063492074,
+      "val": {
+        "early_alert_rate": 0.20634920634920634,
+        "hosts": 63,
+        "hosts_alerted": 13,
+        "median_lead_hours": 22.2525,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.02955293296439756,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "train_seconds": 262.1
+      }
+    },
+    {
+      "params": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "class_weight": "balanced_subsample"
+      },
+      "seed": 11,
+      "threshold": 0.10984416911132419,
+      "val": {
+        "early_alert_rate": 0.19047619047619047,
+        "hosts": 63,
+        "hosts_alerted": 12,
+        "median_lead_hours": 17.563472222222224,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.021448138200314434,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "train_seconds": 229.5
+      }
+    },
+    {
+      "params": {
+        "max_depth": 30,
+        "min_samples_leaf": 1,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.05269729035839075,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 21.019444444444446,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.027941008359080564,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "train_seconds": 264.2
+      }
+    },
+    {
+      "params": {
+        "max_depth": 30,
+        "min_samples_leaf": 1,
+        "class_weight": "balanced_subsample"
+      },
+      "seed": 11,
+      "threshold": 0.4081201722345196,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 19.11611111111111,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.024468042622546725,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "train_seconds": 229.9
+      }
+    },
+    {
+      "params": {
+        "max_depth": 30,
+        "min_samples_leaf": 3,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.046960722479641295,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 22.2525,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.02621335409447159,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "train_seconds": 252.5
+      }
+    },
+    {
+      "params": {
+        "max_depth": 30,
+        "min_samples_leaf": 3,
+        "class_weight": "balanced_subsample"
+      },
+      "seed": 11,
+      "threshold": 0.40179148417555943,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 19.11611111111111,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.02560228746813161,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "train_seconds": 226.4
+      }
+    }
+  ],
+  "final": {
+    "11": {
+      "threshold": 0.05269729035839075,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 21.019444444444446,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.027941008359080564,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "train_seconds": 257.6
+      },
+      "model_file": "development/lanl/random_forest/seed11.pkl",
+      "model_sha256": "b93c8516e198ac777f3c79e273522d1e619075dcfa12bffd8ced9805b6301ad0"
+    },
+    "23": {
+      "threshold": 0.05261003579366471,
+      "val": {
+        "early_alert_rate": 0.2222222222222222,
+        "hosts": 63,
+        "hosts_alerted": 14,
+        "median_lead_hours": 19.184305555555557,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.028150106691269598,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "train_seconds": 250.9
+      },
+      "model_file": "development/lanl/random_forest/seed23.pkl",
+      "model_sha256": "5f75e53105bb219f6c7630aab1431fc5299f6cfd409127719e8dbeb4e359b448"
+    },
+    "37": {
+      "threshold": 0.05426567715512489,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 15.475555555555555,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.02730650087451533,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "train_seconds": 248.3
+      },
+      "model_file": "development/lanl/random_forest/seed37.pkl",
+      "model_sha256": "9cf65be2f4d5682fc84a4a6e595f1a73bb4ea75643aac2c4833d0d23541ef6bb"
+    },
+    "51": {
+      "threshold": 0.05334753170727392,
+      "val": {
+        "early_alert_rate": 0.2222222222222222,
+        "hosts": 63,
+        "hosts_alerted": 14,
+        "median_lead_hours": 21.36402777777778,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.025030916031047963,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "train_seconds": 250.5
+      },
+      "model_file": "development/lanl/random_forest/seed51.pkl",
+      "model_sha256": "5266444acbfc02b27dea468356e035f32ae03a280ea8c90a1791ab888efc955c"
+    },
+    "73": {
+      "threshold": 0.05464408692228521,
+      "val": {
+        "early_alert_rate": 0.2222222222222222,
+        "hosts": 63,
+        "hosts_alerted": 14,
+        "median_lead_hours": 18.937916666666666,
+        "fa_rate": 0.01,
+        "eligible_host_days": 31200,
+        "pr_auc": 0.025953522716117533,
+        "positives": 1458,
+        "rows": 646882
+      },
+      "info": {
+        "train_seconds": 251.9
+      },
+      "model_file": "development/lanl/random_forest/seed73.pkl",
+      "model_sha256": "df3e86f5c62aa1cdb609e1cf00a093338318260b9142e68f405d1d8d3af452fe"
+    }
+  },
+  "complete": true,
+  "runs": [
+    {
+      "utc": "2026-10-26T16:40:02Z",
+      "git_commit": "54db19da979890eba8f2ed180ada53b95d005b28",
+      "python": "3.13.16",
+      "packages": {
+        "numpy": "2.1.3",
+        "pandas": "2.2.3",
+        "pyarrow": "23.0.1",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.16.3",
+        "PyYAML": "6.0.3",
+        "xgboost": "3.4.1",
+        "torch": "2.11.0+cu130"
+      },
+      "config": "config/models_lanl.yaml",
+      "config_sha256": "3546617d207a07d74b8bf519f76e14d649f6cd61ae9f8b298c11f06a6970f5b2"
+    }
+  ],
+  "selected_params": {
+    "max_depth": 30,
+    "min_samples_leaf": 1,
+    "class_weight": null
+  },
+  "val_early_alert_rate_mean": 0.22857142857142856,
+  "val_early_alert_rate_std": 0.008694008849288351,
+  "val_pr_auc_mean": 0.026876410934406198,
+  "completed_utc": "2026-10-26T17:34:28Z"
+}
