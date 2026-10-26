@@ -1,0 +1,10 @@
+command: scripts/preprocess.py --dataset unsw_nb15
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/data_audit/logs/20261026T053403Z_unsw_nb15.log
+[unsw_nb15] 4 input files, 0.59 GB
+[unsw_nb15] pass 1: 700,001 rows (CSV Files/UNSW-NB15_1.csv)
+[unsw_nb15] pass 1: 1,400,002 rows (CSV Files/UNSW-NB15_2.csv)
+[unsw_nb15] pass 1: 2,100,003 rows (CSV Files/UNSW-NB15_3.csv)
+[unsw_nb15] pass 1: 2,540,047 rows (CSV Files/UNSW-NB15_4.csv)
+[unsw_nb15] kept 2,027,278 of 2,540,047; duplicates 512,769; conflicts 13,007
+[unsw_nb15] split external: {'external': 2027278}
+[unsw_nb15] report: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/data_audit/unsw_nb15/report.json
