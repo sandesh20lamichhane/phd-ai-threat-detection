@@ -1,6 +1,7 @@
 {
   "config_sha256": "9d38728188a87b1c8778fa782bf292c1a9409031504c4ed569baa37471da13cb",
-  "datasets": [
+  "s7_definition": "1.3",
+  "primary_data": [
     {
       "dataset": "cicids2017_improved",
       "ok": true,
@@ -87,6 +88,64 @@
       "code": "4ae984399d4283227b016e94e87eccf708a4a39d",
       "built_utc": "2026-10-26T05:35:38Z",
       "files_checked": 3,
+      "problems": []
+    }
+  ],
+  "auxiliary_s7_artifacts": [
+    {
+      "artifact": "S7 cicids2017_improved",
+      "record": "data_audit/cicids2017_improved/near_duplicates.json",
+      "sidecar": "near.parquet",
+      "ok": true,
+      "s7_test_estimable_3sf": false,
+      "problems": []
+    },
+    {
+      "artifact": "S7 ciciomt2024",
+      "record": "data_audit/ciciomt2024/near_duplicates.json",
+      "sidecar": "near.parquet",
+      "ok": true,
+      "s7_test_estimable_3sf": true,
+      "problems": []
+    },
+    {
+      "artifact": "S7 ton_iot",
+      "record": "data_audit/ton_iot/near_duplicates.json",
+      "sidecar": "near.parquet",
+      "ok": true,
+      "s7_test_estimable_3sf": true,
+      "problems": []
+    },
+    {
+      "artifact": "S7 ciciot2023",
+      "record": "data_audit/ciciot2023/near_duplicates.json",
+      "sidecar": "near.parquet",
+      "ok": true,
+      "s7_test_estimable_3sf": true,
+      "problems": []
+    },
+    {
+      "artifact": "S7 nsl_kdd",
+      "record": "data_audit/nsl_kdd/near_duplicates.json",
+      "sidecar": "near.parquet",
+      "ok": true,
+      "s7_test_estimable_3sf": false,
+      "problems": []
+    },
+    {
+      "artifact": "S7 csecicids2018_improved vs cicids2017_improved",
+      "record": "data_audit/cross_dataset_overlap.json",
+      "sidecar": "near_vs_cicids2017_improved.parquet",
+      "ok": true,
+      "s7_test_estimable_3sf": true,
+      "problems": []
+    },
+    {
+      "artifact": "S7 unsw_nb15 vs cicids2017_improved",
+      "record": "data_audit/cross_dataset_overlap.json",
+      "sidecar": "near_vs_cicids2017_improved.parquet",
+      "ok": true,
+      "s7_test_estimable_3sf": true,
       "problems": []
     }
   ]
