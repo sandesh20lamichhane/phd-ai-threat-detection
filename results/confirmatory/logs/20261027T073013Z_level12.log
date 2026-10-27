@@ -1,0 +1,86 @@
+command: scripts/score.py --level12 --eval cicids2017_test
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/confirmatory/logs/20261027T073013Z_level12.log
+[cicids2017_test] cached part 1: 51,224 rows
+[cicids2017_test] cached part 2: 45,311 rows
+[cicids2017_test] cached part 3: 43,273 rows
+[cicids2017_test] cached part 4: 45,352 rows
+[cicids2017_test] cached part 5: 35,906 rows
+[cicids2017_test] 221,066 rows in 313 groups (block x label x seen)
+[cicids2017_test/cic/logreg] seed 11: 14,858 of 221,066 rows alerted (0.4 s)
+[cicids2017_test/cic/logreg] seed 23: 14,858 of 221,066 rows alerted (0.4 s)
+[cicids2017_test/cic/logreg] seed 37: 14,858 of 221,066 rows alerted (0.4 s)
+[cicids2017_test/cic/logreg] seed 51: 14,858 of 221,066 rows alerted (0.4 s)
+[cicids2017_test/cic/logreg] seed 73: 14,858 of 221,066 rows alerted (0.4 s)
+[cicids2017_test/cic/random_forest] seed 11: 14,856 of 221,066 rows alerted (0.9 s)
+[cicids2017_test/cic/random_forest] seed 23: 14,900 of 221,066 rows alerted (0.9 s)
+[cicids2017_test/cic/random_forest] seed 37: 14,947 of 221,066 rows alerted (0.9 s)
+[cicids2017_test/cic/random_forest] seed 51: 14,853 of 221,066 rows alerted (0.9 s)
+[cicids2017_test/cic/random_forest] seed 73: 14,932 of 221,066 rows alerted (0.9 s)
+[cicids2017_test/cic/xgboost] seed 11: 14,912 of 221,066 rows alerted (0.4 s)
+[cicids2017_test/cic/xgboost] seed 23: 14,936 of 221,066 rows alerted (0.4 s)
+[cicids2017_test/cic/xgboost] seed 37: 14,925 of 221,066 rows alerted (0.5 s)
+[cicids2017_test/cic/xgboost] seed 51: 14,890 of 221,066 rows alerted (0.4 s)
+[cicids2017_test/cic/xgboost] seed 73: 14,888 of 221,066 rows alerted (0.3 s)
+[cicids2017_test/cic/mlp] seed 11: 14,853 of 221,066 rows alerted (0.8 s)
+[cicids2017_test/cic/mlp] seed 23: 14,906 of 221,066 rows alerted (0.7 s)
+[cicids2017_test/cic/mlp] seed 37: 14,859 of 221,066 rows alerted (0.6 s)
+[cicids2017_test/cic/mlp] seed 51: 14,872 of 221,066 rows alerted (0.6 s)
+[cicids2017_test/cic/mlp] seed 73: 14,877 of 221,066 rows alerted (0.7 s)
+[cicids2017_test/cic/cnn_lstm] seed 11: 14,874 of 221,066 rows alerted (3.6 s)
+[cicids2017_test/cic/cnn_lstm] seed 23: 14,832 of 221,066 rows alerted (3.2 s)
+[cicids2017_test/cic/cnn_lstm] seed 37: 14,881 of 221,066 rows alerted (4.2 s)
+[cicids2017_test/cic/cnn_lstm] seed 51: 14,861 of 221,066 rows alerted (5.6 s)
+[cicids2017_test/cic/cnn_lstm] seed 73: 14,880 of 221,066 rows alerted (5.1 s)
+[cicids2017_test/unsw_canonical/logreg] seed 11: 14,202 of 221,066 rows alerted (0.1 s)
+[cicids2017_test/unsw_canonical/logreg] seed 23: 14,202 of 221,066 rows alerted (0.1 s)
+[cicids2017_test/unsw_canonical/logreg] seed 37: 14,202 of 221,066 rows alerted (0.1 s)
+[cicids2017_test/unsw_canonical/logreg] seed 51: 14,202 of 221,066 rows alerted (0.1 s)
+[cicids2017_test/unsw_canonical/logreg] seed 73: 14,202 of 221,066 rows alerted (0.1 s)
+[cicids2017_test/unsw_canonical/random_forest] seed 11: 14,876 of 221,066 rows alerted (0.7 s)
+[cicids2017_test/unsw_canonical/random_forest] seed 23: 14,877 of 221,066 rows alerted (0.7 s)
+[cicids2017_test/unsw_canonical/random_forest] seed 37: 14,910 of 221,066 rows alerted (0.7 s)
+[cicids2017_test/unsw_canonical/random_forest] seed 51: 14,871 of 221,066 rows alerted (0.7 s)
+[cicids2017_test/unsw_canonical/random_forest] seed 73: 14,902 of 221,066 rows alerted (0.7 s)
+[cicids2017_test/unsw_canonical/xgboost] seed 11: 14,907 of 221,066 rows alerted (0.2 s)
+[cicids2017_test/unsw_canonical/xgboost] seed 23: 14,913 of 221,066 rows alerted (0.2 s)
+[cicids2017_test/unsw_canonical/xgboost] seed 37: 14,906 of 221,066 rows alerted (0.3 s)
+[cicids2017_test/unsw_canonical/xgboost] seed 51: 14,900 of 221,066 rows alerted (0.3 s)
+[cicids2017_test/unsw_canonical/xgboost] seed 73: 14,943 of 221,066 rows alerted (0.2 s)
+[cicids2017_test/unsw_canonical/mlp] seed 11: 14,950 of 221,066 rows alerted (0.2 s)
+[cicids2017_test/unsw_canonical/mlp] seed 23: 14,998 of 221,066 rows alerted (0.2 s)
+[cicids2017_test/unsw_canonical/mlp] seed 37: 14,895 of 221,066 rows alerted (0.2 s)
+[cicids2017_test/unsw_canonical/mlp] seed 51: 14,960 of 221,066 rows alerted (0.2 s)
+[cicids2017_test/unsw_canonical/mlp] seed 73: 14,894 of 221,066 rows alerted (0.2 s)
+[cicids2017_test/unsw_canonical/cnn_lstm] seed 11: 15,000 of 221,066 rows alerted (0.7 s)
+[cicids2017_test/unsw_canonical/cnn_lstm] seed 23: 15,004 of 221,066 rows alerted (0.7 s)
+[cicids2017_test/unsw_canonical/cnn_lstm] seed 37: 14,933 of 221,066 rows alerted (0.7 s)
+[cicids2017_test/unsw_canonical/cnn_lstm] seed 51: 14,897 of 221,066 rows alerted (1.0 s)
+[cicids2017_test/unsw_canonical/cnn_lstm] seed 73: 14,957 of 221,066 rows alerted (0.8 s)
+| level | evaluation set | space | candidate | seeds scored |
+|---|---|---|---|---:|
+| 1-2 | cicids2017_test | cic | logreg | 5/5 |
+| 1-2 | cicids2017_test | cic | random_forest | 5/5 |
+| 1-2 | cicids2017_test | cic | xgboost | 5/5 |
+| 1-2 | cicids2017_test | cic | mlp | 5/5 |
+| 1-2 | cicids2017_test | cic | cnn_lstm | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | logreg | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | random_forest | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | xgboost | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | mlp | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | cnn_lstm | 5/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | logreg | 0/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | random_forest | 0/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | xgboost | 0/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | mlp | 0/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | cnn_lstm | 0/5 |
+| 1-2 | csecicids2018 | cic | logreg | 0/5 |
+| 1-2 | csecicids2018 | cic | random_forest | 0/5 |
+| 1-2 | csecicids2018 | cic | xgboost | 0/5 |
+| 1-2 | csecicids2018 | cic | mlp | 0/5 |
+| 1-2 | csecicids2018 | cic | cnn_lstm | 0/5 |
+| 3 | lanl_cyber1 days 14-58 | host-hour | logreg | 0/5 |
+| 3 | lanl_cyber1 days 14-58 | host-hour | random_forest | 0/5 |
+| 3 | lanl_cyber1 days 14-58 | host-hour | xgboost | 0/5 |
+| 3 | lanl_cyber1 days 14-58 | host-hour | mlp | 0/5 |
+
+confirmatory analysis: not run
