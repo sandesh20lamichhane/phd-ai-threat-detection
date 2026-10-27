@@ -17,7 +17,20 @@ Rule: highest seed-mean val macro-F1 in `cic`; candidates within 0.0005 of the b
 
 Frozen 2026-10-27T04:49:40Z; 50 model files and 10 development records hashed.
 
-## Level 3 (LANL days 1-13)
+## Level 3 (LANL days 1-13), rules 1.6
+
+Predictive model of H2: **logreg**. Rule: best seed-mean val early-alert rate at <= 1 % false-alarm host-days; ties by val PR-AUC, then config order.
+
+| candidate | val early-alert rate mean | hosts alerted per seed | val PR-AUC mean |
+|---|---:|---|---:|
+| logreg | 0.349206 | 22/63, 22/63, 22/63, 22/63, 22/63 | 0.046669 |
+| random_forest | 0.238095 | 16/63, 15/63, 15/63, 15/63, 14/63 | 0.043893 |
+| xgboost | 0.285714 | 18/63, 19/63, 17/63, 17/63, 19/63 | 0.063024 |
+| mlp | 0.228571 | 14/63, 15/63, 17/63, 13/63, 13/63 | 0.058911 |
+
+Frozen 2026-10-27T07:07:59Z; 20 model files hashed.
+
+## Level 3 under the superseded 1.5 rules (historical record, not used)
 
 Predictive model of H2: **logreg**. Rule: best seed-mean val early-alert rate at <= 1 % false-alarm host-days; ties by val PR-AUC, then config order.
 
@@ -29,3 +42,5 @@ Predictive model of H2: **logreg**. Rule: best seed-mean val early-alert rate at
 | mlp | 0.231746 | 17/63, 15/63, 15/63, 13/63, 13/63 | 0.031277 |
 
 Frozen 2026-10-27T04:50:14Z; 20 model files hashed.
+
+Superseded by amendment 1.6 (2026-10-27): its val labels counted host-hours whose 24 h outcome lay after the end of the period as negative. Kept unchanged so it can still be checked.
