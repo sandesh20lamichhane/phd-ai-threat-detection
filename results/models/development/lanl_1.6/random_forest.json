@@ -1,0 +1,224 @@
+{
+  "candidate": "random_forest",
+  "source": "lanl_cyber1",
+  "rules_version": "1.6",
+  "spec": {
+    "family": "tree",
+    "fixed": {
+      "n_estimators": 300,
+      "max_features": "sqrt",
+      "n_jobs": -1
+    },
+    "grid": {
+      "max_depth": [
+        null,
+        30
+      ],
+      "min_samples_leaf": [
+        1,
+        3
+      ],
+      "class_weight": [
+        null,
+        "balanced_subsample"
+      ]
+    }
+  },
+  "models_config_sha256": "6c5980010cceca2f111ec705ec7cc36b897cc29ab2cb509f29929dafa1df577f",
+  "seeds": [
+    11,
+    23,
+    37,
+    51,
+    73
+  ],
+  "source_provenance": {
+    "dataset_config_sha256": null,
+    "outputs_digest": "01fdd3dbcae6360338359ac6990a80bff75bd677710be54a481e43536763a56c"
+  },
+  "split": {
+    "rule": "contingency (fewer than 30 compromised hosts in days 41-58)",
+    "train_days": [
+      1,
+      10
+    ],
+    "val_days": [
+      11,
+      13
+    ],
+    "test_days": [
+      14,
+      58
+    ],
+    "test_compromised_hosts": 44
+  },
+  "features": [
+    "auth_in",
+    "auth_in_fail",
+    "auth_in_distinct_src",
+    "auth_in_distinct_users",
+    "auth_out",
+    "auth_out_fail",
+    "auth_out_distinct_dst",
+    "logon_Network",
+    "logon_Interactive",
+    "logon_RemoteInteractive",
+    "logon_Batch",
+    "logon_Service",
+    "logon_Unlock",
+    "logon_NewCredentials",
+    "logon_CachedInteractive",
+    "authtype_NTLM",
+    "authtype_Kerberos",
+    "authtype_Negotiate",
+    "auth_in_new_src",
+    "auth_out_new_dst",
+    "proc_start",
+    "proc_distinct",
+    "proc_new",
+    "flows_out",
+    "bytes_out",
+    "pkts_out",
+    "flows_out_distinct_dst",
+    "flows_in",
+    "bytes_in",
+    "dns_queries",
+    "dns_distinct",
+    "auth_in_sum24h",
+    "auth_in_fail_sum24h",
+    "auth_in_distinct_src_sum24h",
+    "auth_in_distinct_users_sum24h",
+    "auth_out_sum24h",
+    "auth_out_fail_sum24h",
+    "auth_out_distinct_dst_sum24h",
+    "logon_Network_sum24h",
+    "logon_Interactive_sum24h",
+    "logon_RemoteInteractive_sum24h",
+    "logon_Batch_sum24h",
+    "logon_Service_sum24h",
+    "logon_Unlock_sum24h",
+    "logon_NewCredentials_sum24h",
+    "logon_CachedInteractive_sum24h",
+    "authtype_NTLM_sum24h",
+    "authtype_Kerberos_sum24h",
+    "authtype_Negotiate_sum24h",
+    "auth_in_new_src_sum24h",
+    "auth_out_new_dst_sum24h",
+    "proc_start_sum24h",
+    "proc_distinct_sum24h",
+    "proc_new_sum24h",
+    "flows_out_sum24h",
+    "bytes_out_sum24h",
+    "pkts_out_sum24h",
+    "flows_out_distinct_dst_sum24h",
+    "flows_in_sum24h",
+    "bytes_in_sum24h",
+    "dns_queries_sum24h",
+    "dns_distinct_sum24h",
+    "active_hours_24h"
+  ],
+  "rows": {
+    "train": {
+      "rows": 2173118,
+      "positives": 4595,
+      "compromised_hosts": 194
+    },
+    "val": {
+      "rows": 406552,
+      "positives": 1458,
+      "compromised_hosts": 63
+    }
+  },
+  "grid": [
+    {
+      "params": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.06666666666666668,
+      "val": {
+        "early_alert_rate": 0.2222222222222222,
+        "hosts": 63,
+        "hosts_alerted": 14,
+        "median_lead_hours": 17.130416666666665,
+        "fa_rate": 0.008899196375600021,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.034931664518502076,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "train_seconds": 229.3
+      }
+    },
+    {
+      "params": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "class_weight": "balanced_subsample"
+      },
+      "seed": 11,
+      "threshold": 0.05666666666666667,
+      "val": {
+        "early_alert_rate": 0.1746031746031746,
+        "hosts": 63,
+        "hosts_alerted": 11,
+        "median_lead_hours": 8.220555555555556,
+        "fa_rate": 0.009600345180950326,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.021902236430313016,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "train_seconds": 207.5
+      }
+    },
+    {
+      "params": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.05500381976599016,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 18.475555555555555,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.04217274955871176,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "train_seconds": 229.2
+      }
+    }
+  ],
+  "final": {},
+  "complete": false,
+  "runs": [
+    {
+      "utc": "2026-10-27T06:04:31Z",
+      "git_commit": "6c6a345a14fac190ba687b0be819abf208362bc3",
+      "python": "3.13.16",
+      "packages": {
+        "numpy": "2.1.3",
+        "pandas": "2.2.3",
+        "pyarrow": "23.0.1",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.16.3",
+        "PyYAML": "6.0.3",
+        "xgboost": "3.4.1",
+        "torch": "2.11.0+cu130"
+      },
+      "config": "config/models_lanl_1.6.yaml",
+      "config_sha256": "6c5980010cceca2f111ec705ec7cc36b897cc29ab2cb509f29929dafa1df577f"
+    }
+  ]
+}

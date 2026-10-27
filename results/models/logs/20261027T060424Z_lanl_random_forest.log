@@ -1,0 +1,2 @@
+command: scripts/develop.py --lanl --candidate random_forest
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/models/logs/20261027T060424Z_lanl_random_forest.log
