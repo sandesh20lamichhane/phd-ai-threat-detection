@@ -1,0 +1,445 @@
+{
+  "candidate": "logreg",
+  "source": "lanl_cyber1",
+  "rules_version": "1.6",
+  "spec": {
+    "family": "linear",
+    "fixed": {
+      "max_iter": 2000,
+      "solver": "lbfgs"
+    },
+    "grid": {
+      "C": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "class_weight": [
+        null,
+        "balanced"
+      ]
+    }
+  },
+  "models_config_sha256": "6c5980010cceca2f111ec705ec7cc36b897cc29ab2cb509f29929dafa1df577f",
+  "seeds": [
+    11,
+    23,
+    37,
+    51,
+    73
+  ],
+  "source_provenance": {
+    "dataset_config_sha256": null,
+    "outputs_digest": "01fdd3dbcae6360338359ac6990a80bff75bd677710be54a481e43536763a56c"
+  },
+  "split": {
+    "rule": "contingency (fewer than 30 compromised hosts in days 41-58)",
+    "train_days": [
+      1,
+      10
+    ],
+    "val_days": [
+      11,
+      13
+    ],
+    "test_days": [
+      14,
+      58
+    ],
+    "test_compromised_hosts": 44
+  },
+  "features": [
+    "auth_in",
+    "auth_in_fail",
+    "auth_in_distinct_src",
+    "auth_in_distinct_users",
+    "auth_out",
+    "auth_out_fail",
+    "auth_out_distinct_dst",
+    "logon_Network",
+    "logon_Interactive",
+    "logon_RemoteInteractive",
+    "logon_Batch",
+    "logon_Service",
+    "logon_Unlock",
+    "logon_NewCredentials",
+    "logon_CachedInteractive",
+    "authtype_NTLM",
+    "authtype_Kerberos",
+    "authtype_Negotiate",
+    "auth_in_new_src",
+    "auth_out_new_dst",
+    "proc_start",
+    "proc_distinct",
+    "proc_new",
+    "flows_out",
+    "bytes_out",
+    "pkts_out",
+    "flows_out_distinct_dst",
+    "flows_in",
+    "bytes_in",
+    "dns_queries",
+    "dns_distinct",
+    "auth_in_sum24h",
+    "auth_in_fail_sum24h",
+    "auth_in_distinct_src_sum24h",
+    "auth_in_distinct_users_sum24h",
+    "auth_out_sum24h",
+    "auth_out_fail_sum24h",
+    "auth_out_distinct_dst_sum24h",
+    "logon_Network_sum24h",
+    "logon_Interactive_sum24h",
+    "logon_RemoteInteractive_sum24h",
+    "logon_Batch_sum24h",
+    "logon_Service_sum24h",
+    "logon_Unlock_sum24h",
+    "logon_NewCredentials_sum24h",
+    "logon_CachedInteractive_sum24h",
+    "authtype_NTLM_sum24h",
+    "authtype_Kerberos_sum24h",
+    "authtype_Negotiate_sum24h",
+    "auth_in_new_src_sum24h",
+    "auth_out_new_dst_sum24h",
+    "proc_start_sum24h",
+    "proc_distinct_sum24h",
+    "proc_new_sum24h",
+    "flows_out_sum24h",
+    "bytes_out_sum24h",
+    "pkts_out_sum24h",
+    "flows_out_distinct_dst_sum24h",
+    "flows_in_sum24h",
+    "bytes_in_sum24h",
+    "dns_queries_sum24h",
+    "dns_distinct_sum24h",
+    "active_hours_24h"
+  ],
+  "rows": {
+    "train": {
+      "rows": 2173118,
+      "positives": 4595,
+      "compromised_hosts": 194
+    },
+    "val": {
+      "rows": 406552,
+      "positives": 1458,
+      "compromised_hosts": 63
+    }
+  },
+  "grid": [
+    {
+      "params": {
+        "C": 0.01,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.007121448665390348,
+      "val": {
+        "early_alert_rate": 0.2222222222222222,
+        "hosts": 63,
+        "hosts_alerted": 14,
+        "median_lead_hours": 23.22277777777778,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.026892014223822775,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "iterations": 38,
+        "train_seconds": 18.1
+      }
+    },
+    {
+      "params": {
+        "C": 0.01,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.7986892778651418,
+      "val": {
+        "early_alert_rate": 0.3492063492063492,
+        "hosts": 63,
+        "hosts_alerted": 22,
+        "median_lead_hours": 23.35875,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.04666850542202129,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "iterations": 227,
+        "train_seconds": 81.1
+      }
+    },
+    {
+      "params": {
+        "C": 0.1,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.007408294879310344,
+      "val": {
+        "early_alert_rate": 0.2222222222222222,
+        "hosts": 63,
+        "hosts_alerted": 14,
+        "median_lead_hours": 23.294583333333332,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.028342266527828376,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "iterations": 39,
+        "train_seconds": 23.7
+      }
+    },
+    {
+      "params": {
+        "C": 0.1,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.7944071767317654,
+      "val": {
+        "early_alert_rate": 0.3492063492063492,
+        "hosts": 63,
+        "hosts_alerted": 22,
+        "median_lead_hours": 23.382916666666667,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.04534246751571159,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "iterations": 270,
+        "train_seconds": 97.0
+      }
+    },
+    {
+      "params": {
+        "C": 1.0,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.007475073872294934,
+      "val": {
+        "early_alert_rate": 0.2222222222222222,
+        "hosts": 63,
+        "hosts_alerted": 14,
+        "median_lead_hours": 23.22277777777778,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.024013101938297466,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "iterations": 56,
+        "train_seconds": 26.5
+      }
+    },
+    {
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.7952497035800463,
+      "val": {
+        "early_alert_rate": 0.3492063492063492,
+        "hosts": 63,
+        "hosts_alerted": 22,
+        "median_lead_hours": 23.382916666666667,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.04508011015244107,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "iterations": 248,
+        "train_seconds": 93.4
+      }
+    },
+    {
+      "params": {
+        "C": 10.0,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.007229651243768362,
+      "val": {
+        "early_alert_rate": 0.2222222222222222,
+        "hosts": 63,
+        "hosts_alerted": 14,
+        "median_lead_hours": 23.22277777777778,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.026477680580734318,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "iterations": 46,
+        "train_seconds": 24.3
+      }
+    },
+    {
+      "params": {
+        "C": 10.0,
+        "class_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.7951746197652964,
+      "val": {
+        "early_alert_rate": 0.3492063492063492,
+        "hosts": 63,
+        "hosts_alerted": 22,
+        "median_lead_hours": 23.382916666666667,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.044704923039670934,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "iterations": 273,
+        "train_seconds": 99.3
+      }
+    }
+  ],
+  "final": {
+    "11": {
+      "threshold": 0.7986892778651418,
+      "val": {
+        "early_alert_rate": 0.3492063492063492,
+        "hosts": 63,
+        "hosts_alerted": 22,
+        "median_lead_hours": 23.35875,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.04666850542202129,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "iterations": 227,
+        "train_seconds": 83.5
+      },
+      "model_file": "development/lanl_1.6/logreg/seed11.pkl",
+      "model_sha256": "696e4e3bcb876480fd208f6b1efa639c99b10546292551d2e535260900c3110a"
+    },
+    "23": {
+      "threshold": 0.7986892778651418,
+      "val": {
+        "early_alert_rate": 0.3492063492063492,
+        "hosts": 63,
+        "hosts_alerted": 22,
+        "median_lead_hours": 23.35875,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.04666850542202129,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "iterations": 227,
+        "train_seconds": 83.7
+      },
+      "model_file": "development/lanl_1.6/logreg/seed23.pkl",
+      "model_sha256": "b570580c734f0615b9d3693d774f02cb7c63f8c557668c4bd9910eb2601c35e0"
+    },
+    "37": {
+      "threshold": 0.7986892778651418,
+      "val": {
+        "early_alert_rate": 0.3492063492063492,
+        "hosts": 63,
+        "hosts_alerted": 22,
+        "median_lead_hours": 23.35875,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.04666850542202129,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "iterations": 227,
+        "train_seconds": 83.5
+      },
+      "model_file": "development/lanl_1.6/logreg/seed37.pkl",
+      "model_sha256": "219b8fb7b80c0aadf62c431aee76b04a3549f10c750126b2a6ad293bbb0ce540"
+    },
+    "51": {
+      "threshold": 0.7986892778651418,
+      "val": {
+        "early_alert_rate": 0.3492063492063492,
+        "hosts": 63,
+        "hosts_alerted": 22,
+        "median_lead_hours": 23.35875,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.04666850542202129,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "iterations": 227,
+        "train_seconds": 84.2
+      },
+      "model_file": "development/lanl_1.6/logreg/seed51.pkl",
+      "model_sha256": "b520aba477460f56bb6b5d89b776035bb9ee8ea636a12b21d7b3e8d9c66a8acd"
+    },
+    "73": {
+      "threshold": 0.7986892778651418,
+      "val": {
+        "early_alert_rate": 0.3492063492063492,
+        "hosts": 63,
+        "hosts_alerted": 22,
+        "median_lead_hours": 23.35875,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.04666850542202129,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "iterations": 227,
+        "train_seconds": 82.8
+      },
+      "model_file": "development/lanl_1.6/logreg/seed73.pkl",
+      "model_sha256": "114344b9cadbf68e65d7077bc63179f7bcd5060b248d26a1828a1bc8f0a3ab6f"
+    }
+  },
+  "complete": true,
+  "runs": [
+    {
+      "utc": "2026-10-27T05:49:31Z",
+      "git_commit": "b596088ada0d5c74a655cb849c147f1312ce3dad",
+      "python": "3.13.16",
+      "packages": {
+        "numpy": "2.1.3",
+        "pandas": "2.2.3",
+        "pyarrow": "23.0.1",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.16.3",
+        "PyYAML": "6.0.3",
+        "xgboost": "3.4.1",
+        "torch": "2.11.0+cu130"
+      },
+      "config": "config/models_lanl_1.6.yaml",
+      "config_sha256": "6c5980010cceca2f111ec705ec7cc36b897cc29ab2cb509f29929dafa1df577f"
+    }
+  ],
+  "selected_params": {
+    "C": 0.01,
+    "class_weight": "balanced"
+  },
+  "val_early_alert_rate_mean": 0.3492063492063492,
+  "val_early_alert_rate_std": 0.0,
+  "val_pr_auc_mean": 0.04666850542202129,
+  "completed_utc": "2026-10-27T06:04:20Z"
+}
