@@ -1,0 +1,243 @@
+{
+  "proposed": "logreg",
+  "rules_version": "1.6",
+  "freeze_sha256": "10a66ff46abeb2b78118d2de63c9a9dcdc379716bb9ba7363ecbaacd903c4884",
+  "random_baseline": {
+    "threshold": 0.9995391149886316,
+    "val_fa_rate": 0.009999999999999792,
+    "test_fa_rate": 0.009333353629830525,
+    "hosts": 44,
+    "window_host_hours": [
+      24,
+      24,
+      23,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      22,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      5,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      13,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24
+    ],
+    "expected_early_alert_rate": 0.010659705973518329,
+    "early_alert_rate_q025": 0.0,
+    "early_alert_rate_q975": 0.045454545454545456,
+    "budget": 0.01,
+    "freeze_sha256": "10a66ff46abeb2b78118d2de63c9a9dcdc379716bb9ba7363ecbaacd903c4884"
+  },
+  "candidates": {
+    "logreg": {
+      "early_alert_rate": 0.13636363636363635,
+      "ci_low": 0.045454545454545456,
+      "ci_high": 0.2564102564102564,
+      "accounts": 27,
+      "hosts": 44,
+      "hosts_alerted_per_seed": [
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "fa_rate_per_seed": [
+        0.014409124654113517,
+        0.014409124654113517,
+        0.014409124654113517,
+        0.014409124654113517,
+        0.014409124654113517
+      ],
+      "fa_rate": 0.014409124654113517,
+      "eligible_host_days": 503778,
+      "median_lead_hours": 22.656111111111112,
+      "pr_auc": 0.00026827217512723325,
+      "reactive_detection_rate": 0.06818181818181818,
+      "hosts_without_compromise_hour_row": 0,
+      "hosts_with_window_on_previous_day": 27,
+      "boundary_sensitivity_test_days_only": {
+        "early_alert_rate": 0.13636363636363635,
+        "ci_low": 0.045454545454545456,
+        "ci_high": 0.2564102564102564
+      }
+    },
+    "random_forest": {
+      "early_alert_rate": 0.19545454545454546,
+      "ci_low": 0.0851063829787234,
+      "ci_high": 0.3219579945799457,
+      "accounts": 27,
+      "hosts": 44,
+      "hosts_alerted_per_seed": [
+        8,
+        9,
+        8,
+        10,
+        8
+      ],
+      "fa_rate_per_seed": [
+        0.041335667694897354,
+        0.040704437271972975,
+        0.04169296793428852,
+        0.03995807677191144,
+        0.03904299115880407
+      ],
+      "fa_rate": 0.04054682816637488,
+      "eligible_host_days": 503778,
+      "median_lead_hours": 18.455833333333334,
+      "pr_auc": 0.000253673969953401,
+      "reactive_detection_rate": 0.12272727272727273,
+      "hosts_without_compromise_hour_row": 0,
+      "hosts_with_window_on_previous_day": 27,
+      "boundary_sensitivity_test_days_only": {
+        "early_alert_rate": 0.18181818181818182,
+        "ci_low": 0.07893796992481203,
+        "ci_high": 0.3041711956521738
+      }
+    },
+    "xgboost": {
+      "early_alert_rate": 0.22272727272727275,
+      "ci_low": 0.11428571428571428,
+      "ci_high": 0.34285714285714286,
+      "accounts": 27,
+      "hosts": 44,
+      "hosts_alerted_per_seed": [
+        11,
+        10,
+        10,
+        9,
+        9
+      ],
+      "fa_rate_per_seed": [
+        0.011713492848040208,
+        0.012436033332142332,
+        0.012354648277614346,
+        0.01178296789458849,
+        0.011753192874639226
+      ],
+      "fa_rate": 0.01200806704540492,
+      "eligible_host_days": 503778,
+      "median_lead_hours": 21.442777777777778,
+      "pr_auc": 0.0017861248725918283,
+      "reactive_detection_rate": 0.15454545454545454,
+      "hosts_without_compromise_hour_row": 0,
+      "hosts_with_window_on_previous_day": 27,
+      "boundary_sensitivity_test_days_only": {
+        "early_alert_rate": 0.22272727272727275,
+        "ci_low": 0.11428571428571428,
+        "ci_high": 0.34285714285714286
+      }
+    },
+    "mlp": {
+      "early_alert_rate": 0.2363636363636364,
+      "ci_low": 0.1368421052631579,
+      "ci_high": 0.35625,
+      "accounts": 27,
+      "hosts": 44,
+      "hosts_alerted_per_seed": [
+        9,
+        13,
+        11,
+        10,
+        9
+      ],
+      "fa_rate_per_seed": [
+        0.010750767203014025,
+        0.016918166335171445,
+        0.010395451964952817,
+        0.008829285915621564,
+        0.009454561334556095
+      ],
+      "fa_rate": 0.01126964655066319,
+      "eligible_host_days": 503778,
+      "median_lead_hours": 23.236944444444443,
+      "pr_auc": 0.0019675241344251715,
+      "reactive_detection_rate": 0.26363636363636367,
+      "hosts_without_compromise_hour_row": 0,
+      "hosts_with_window_on_previous_day": 27,
+      "boundary_sensitivity_test_days_only": {
+        "early_alert_rate": 0.22272727272727275,
+        "ci_low": 0.12173913043478261,
+        "ci_high": 0.3463495934959348
+      }
+    }
+  },
+  "claim": {
+    "estimate": 0.13636363636363635,
+    "ci_low": 0.045454545454545456,
+    "ci_high": 0.2564102564102564,
+    "B": 10000,
+    "bootstrap_seed": 20261025,
+    "margin": 0.5,
+    "claim": "at_least",
+    "p_support": 1.0,
+    "p_against": 9.999000099990002e-05,
+    "unadjusted_outcome": "not supported",
+    "above_random_baseline": false,
+    "realised_fa_rate": 0.014409124654113517,
+    "figures": {
+      "early_alert_rate": 0.13636363636363635,
+      "ci_low": 0.045454545454545456,
+      "ci_high": 0.2564102564102564,
+      "accounts": 27,
+      "hosts": 44,
+      "hosts_alerted_per_seed": [
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "fa_rate_per_seed": [
+        0.014409124654113517,
+        0.014409124654113517,
+        0.014409124654113517,
+        0.014409124654113517,
+        0.014409124654113517
+      ],
+      "fa_rate": 0.014409124654113517,
+      "eligible_host_days": 503778,
+      "median_lead_hours": 22.656111111111112,
+      "pr_auc": 0.00026827217512723325,
+      "reactive_detection_rate": 0.06818181818181818,
+      "hosts_without_compromise_hour_row": 0,
+      "hosts_with_window_on_previous_day": 27,
+      "boundary_sensitivity_test_days_only": {
+        "early_alert_rate": 0.13636363636363635,
+        "ci_low": 0.045454545454545456,
+        "ci_high": 0.2564102564102564
+      }
+    }
+  }
+}
