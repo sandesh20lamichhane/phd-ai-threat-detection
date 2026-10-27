@@ -198,6 +198,121 @@
       "info": {
         "train_seconds": 229.2
       }
+    },
+    {
+      "params": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "class_weight": "balanced_subsample"
+      },
+      "seed": 11,
+      "threshold": 0.12347405733751236,
+      "val": {
+        "early_alert_rate": 0.20634920634920634,
+        "hosts": 63,
+        "hosts_alerted": 13,
+        "median_lead_hours": 17.315,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.029930892867978565,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "train_seconds": 208.6
+      }
+    },
+    {
+      "params": {
+        "max_depth": 30,
+        "min_samples_leaf": 1,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.05879672694679823,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 18.475277777777777,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.04248739057968427,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "train_seconds": 223.5
+      }
+    },
+    {
+      "params": {
+        "max_depth": 30,
+        "min_samples_leaf": 1,
+        "class_weight": "balanced_subsample"
+      },
+      "seed": 11,
+      "threshold": 0.42306960679536215,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 18.315,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.037494062165793915,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "train_seconds": 207.7
+      }
+    },
+    {
+      "params": {
+        "max_depth": 30,
+        "min_samples_leaf": 3,
+        "class_weight": null
+      },
+      "seed": 11,
+      "threshold": 0.049813014918673286,
+      "val": {
+        "early_alert_rate": 0.25396825396825395,
+        "hosts": 63,
+        "hosts_alerted": 16,
+        "median_lead_hours": 20.363888888888887,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.0470872236238975,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "train_seconds": 224.1
+      }
+    },
+    {
+      "params": {
+        "max_depth": 30,
+        "min_samples_leaf": 3,
+        "class_weight": "balanced_subsample"
+      },
+      "seed": 11,
+      "threshold": 0.41225854488556357,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 19.11611111111111,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.03758946467300933,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "train_seconds": 202.1
+      }
     }
   ],
   "final": {},
