@@ -1,0 +1,166 @@
+{
+  "proposed": "logreg",
+  "rule": {
+    "rule": "best_val_early_alert_rate",
+    "tie_break": [
+      "val_pr_auc",
+      "config_order"
+    ]
+  },
+  "ranking_val_early_alert_rate_and_pr_auc": {
+    "logreg": [
+      0.3492063492063492,
+      0.03352704735939301
+    ],
+    "random_forest": [
+      0.22857142857142856,
+      0.026876410934406198
+    ],
+    "xgboost": [
+      0.2984126984126984,
+      0.04069145878942758
+    ],
+    "mlp": [
+      0.23174603174603173,
+      0.0312765368908907
+    ]
+  },
+  "val_hosts_alerted_per_seed": {
+    "logreg": {
+      "11": [
+        22,
+        63
+      ],
+      "23": [
+        22,
+        63
+      ],
+      "37": [
+        22,
+        63
+      ],
+      "51": [
+        22,
+        63
+      ],
+      "73": [
+        22,
+        63
+      ]
+    },
+    "random_forest": {
+      "11": [
+        15,
+        63
+      ],
+      "23": [
+        14,
+        63
+      ],
+      "37": [
+        15,
+        63
+      ],
+      "51": [
+        14,
+        63
+      ],
+      "73": [
+        14,
+        63
+      ]
+    },
+    "xgboost": {
+      "11": [
+        19,
+        63
+      ],
+      "23": [
+        19,
+        63
+      ],
+      "37": [
+        20,
+        63
+      ],
+      "51": [
+        18,
+        63
+      ],
+      "73": [
+        18,
+        63
+      ]
+    },
+    "mlp": {
+      "11": [
+        17,
+        63
+      ],
+      "23": [
+        15,
+        63
+      ],
+      "37": [
+        15,
+        63
+      ],
+      "51": [
+        13,
+        63
+      ],
+      "73": [
+        13,
+        63
+      ]
+    }
+  },
+  "models_config_sha256": "3546617d207a07d74b8bf519f76e14d649f6cd61ae9f8b298c11f06a6970f5b2",
+  "prior_exposure_sha256": "1a1b23c8191f59095df08fa5d85afe2cf189b687f658e26bf6602ca203d9a82d",
+  "development_records_sha256": {
+    "lanl/logreg": "4cdae5d95deb39ccd60194edc61d5caefaf6dee459392d3f37415ca067a99bc4",
+    "lanl/random_forest": "26d9a239dc6c9ecfdd42b90cc853cccdffe1477cc51ddfaa52357982fd3703fc",
+    "lanl/xgboost": "dd1dc014447f54703096665a653cd69ebb8c0fc221a15ec7bae8170f78faabf3",
+    "lanl/mlp": "6a784828ce1a58410cd622c8567d936782d5dc1e9cfc8dcbe192e09fe4cb2f6f"
+  },
+  "model_files_sha256": {
+    "development/lanl/logreg/seed11.pkl": "1173409bb8aee6c9b20c19a92afbfc89266c533a5335aa1230af253354178732",
+    "development/lanl/logreg/seed23.pkl": "180557b7f87c2f5c733acc2a09a37ca59a4d04e16ad2d481c2ea96fbbda9fd7d",
+    "development/lanl/logreg/seed37.pkl": "3e9bdc1ea4f15983a9a38543a544cc32d578ea3550be7104dfff7be71acec653",
+    "development/lanl/logreg/seed51.pkl": "e29ea210ff5c6849f267aa694c06d3cecd75653dff8d24d397b8cce97fa1708e",
+    "development/lanl/logreg/seed73.pkl": "80ef3ffc3e1f679a6b3258fc6da82c45cc23914b8cb9071445c48809a92150ab",
+    "development/lanl/random_forest/seed11.pkl": "b93c8516e198ac777f3c79e273522d1e619075dcfa12bffd8ced9805b6301ad0",
+    "development/lanl/random_forest/seed23.pkl": "5f75e53105bb219f6c7630aab1431fc5299f6cfd409127719e8dbeb4e359b448",
+    "development/lanl/random_forest/seed37.pkl": "9cf65be2f4d5682fc84a4a6e595f1a73bb4ea75643aac2c4833d0d23541ef6bb",
+    "development/lanl/random_forest/seed51.pkl": "5266444acbfc02b27dea468356e035f32ae03a280ea8c90a1791ab888efc955c",
+    "development/lanl/random_forest/seed73.pkl": "df3e86f5c62aa1cdb609e1cf00a093338318260b9142e68f405d1d8d3af452fe",
+    "development/lanl/xgboost/seed11.pkl": "758094f852c0e47bd45845fe38d0502c254b3c47de9ea841de1d3cf623aa4599",
+    "development/lanl/xgboost/seed23.pkl": "ed8b66567631bd2083e23540ce87936261081620988f6d238f207a2dac4ed7f7",
+    "development/lanl/xgboost/seed37.pkl": "ed978fa027f3a616b5fa131d7fc76e80dfdf9aedc361c882481d57711bf5a40c",
+    "development/lanl/xgboost/seed51.pkl": "bfd74afac3ababee6bb7648bab8701589fc8ee4fc41700a372404ad043bfdabd",
+    "development/lanl/xgboost/seed73.pkl": "0b512e09379331deac87bf2093720b5e631f18fa3752cd192a27a8a6449bb795",
+    "development/lanl/mlp/seed11.pkl": "4133c459b0157c6796da35969b7a8d06dd66c9cdbec2fe165810a29857d006d6",
+    "development/lanl/mlp/seed23.pkl": "fe7c1ddeda4b739b7571cd2a22aab76c5db3906055824b8144694d9f3c5a1a1b",
+    "development/lanl/mlp/seed37.pkl": "2e8db626cafab5611b9c8a6da1375597ecd8a203fa82d00109dd20da8922577e",
+    "development/lanl/mlp/seed51.pkl": "2c560fa6e10707977401ddcc4fc959aca6cf4a17926f75a1252bf36d4bbaef41",
+    "development/lanl/mlp/seed73.pkl": "037bf1e3ed5032cedbf5f16c8303c91b230097c68ea701af36b47e579495632c"
+  },
+  "frozen_utc": "2026-10-27T04:50:14Z",
+  "run": {
+    "utc": "2026-10-27T04:50:14Z",
+    "git_commit": "32fe749a4e648db41842ce06f481ce461bffa767",
+    "python": "3.13.16",
+    "packages": {
+      "numpy": "2.1.3",
+      "pandas": "2.2.3",
+      "pyarrow": "23.0.1",
+      "scikit-learn": "1.6.1",
+      "scipy": "1.16.3",
+      "PyYAML": "6.0.3",
+      "xgboost": "3.4.1",
+      "torch": "2.11.0+cpu"
+    },
+    "config": "config/models_lanl.yaml",
+    "config_sha256": "3546617d207a07d74b8bf519f76e14d649f6cd61ae9f8b298c11f06a6970f5b2"
+  }
+}

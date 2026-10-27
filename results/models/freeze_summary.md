@@ -16,3 +16,16 @@ Rule: highest seed-mean val macro-F1 in `cic`; candidates within 0.0005 of the b
 | cnn_lstm | 0.999234 | 0.000105 | no |
 
 Frozen 2026-10-27T04:49:40Z; 50 model files and 10 development records hashed.
+
+## Level 3 (LANL days 1-13)
+
+Predictive model of H2: **logreg**. Rule: best seed-mean val early-alert rate at <= 1 % false-alarm host-days; ties by val PR-AUC, then config order.
+
+| candidate | val early-alert rate mean | hosts alerted per seed | val PR-AUC mean |
+|---|---:|---|---:|
+| logreg | 0.349206 | 22/63, 22/63, 22/63, 22/63, 22/63 | 0.033527 |
+| random_forest | 0.228571 | 15/63, 14/63, 15/63, 14/63, 14/63 | 0.026876 |
+| xgboost | 0.298413 | 19/63, 19/63, 20/63, 18/63, 18/63 | 0.040691 |
+| mlp | 0.231746 | 17/63, 15/63, 15/63, 13/63, 13/63 | 0.031277 |
+
+Frozen 2026-10-27T04:50:14Z; 20 model files hashed.
