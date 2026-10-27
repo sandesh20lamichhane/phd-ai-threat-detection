@@ -426,4 +426,4 @@ the results were computed from.
 ## 12. Deviations
 
 Any departure from this document is logged in [protocol_amendments.md](protocol_amendments.md) with date, reason
-and whether results had been seen. Exploratory analyses are labelled exploratory in the thesis and paper.
+and whether results had been seen. Exploratory analyses are labelled exploratory in the thesis and paper. Their plans are written into [exploratory_analyses.md](exploratory_analyses.md) before they are run.

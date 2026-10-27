@@ -103,6 +103,18 @@ python scripts/score.py --lanl                      # LANL days 14-58
 python scripts/score.py --analyse                   # results/confirmatory/decisions.{json,md}
 ```
 
+## Exploratory analyses (outside the confirmatory family)
+
+Planned after the confirmatory results, in [`docs/protocol/exploratory_analyses.md`](docs/protocol/exploratory_analyses.md),
+before each is run. E1 (ranking versus operating point of the frozen proposed detector) reads the per-row scores of
+notebook 08, checks them against the confirmatory records and runs in
+[`notebooks/09_exploratory_operating_point.ipynb`](notebooks/09_exploratory_operating_point.ipynb):
+
+```bash
+python scripts/explore.py --status
+python scripts/explore.py --operating-point         # results/exploratory/operating_point/summary.md
+```
+
 ## Layout
 
 | Path | Holds |

@@ -59,6 +59,28 @@ def iter_parts(ds_id, split="primary", partitions=("test",), version="v1"):
         raise AssertionError("split file has more rows than the processed data; re-run preprocessing")
 
 
+def iter_meta(ds_id, split="primary", partitions=("test",), columns=("_key", "_y", "_label"), version="v1"):
+    """The metadata of the rows `iter_parts` yields, in the same order, one part at a time, without the features.
+
+    Same checks and filters as `iter_parts`; each frame has `columns` plus `_block` and `_partition`."""
+    files = _checked_files(ds_id, version)
+    sp = pd.read_parquet(paths.SPLITS / ds_id / f"{split}.parquet")
+    cols = list(dict.fromkeys(["_key", "_y", *columns]))
+    off = 0
+    for f in files:
+        df = pd.read_parquet(f, columns=cols)
+        s = sp.iloc[off:off + len(df)]
+        off += len(df)
+        if not np.array_equal(df["_key"].to_numpy(), s["_key"].to_numpy()):
+            raise AssertionError("processed data and split file are out of step; re-run preprocessing")
+        df["_block"] = s["_block"].to_numpy()
+        df["_partition"] = s["partition"].map(PARTITION_NAMES).to_numpy()
+        df = df[df["_partition"].isin(partitions) & (df["_y"] >= 0)]
+        yield df.reset_index(drop=True)
+    if off != len(sp):
+        raise AssertionError("split file has more rows than the processed data; re-run preprocessing")
+
+
 def load(ds_id, split="primary", partitions=("train", "val", "test"), columns=None, sensitivity=(),
          version="v1", task="binary", near_against=None):
     """Returns (X, meta) for the requested partitions.

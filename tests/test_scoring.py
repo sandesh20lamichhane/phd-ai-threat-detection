@@ -190,6 +190,10 @@ def test_scoring_end_to_end(world):
     with pytest.raises(AssertionError, match="second run gives different numbers"):
         C.analyse(log=QUIET)
 
+    # exploratory analysis E1 on the same per-row scores (tests/test_operating_point.py)
+    from tests.test_operating_point import e1_end_to_end
+    e1_end_to_end(fr)
+
 
 def _load_ids(eval_id, fr):
     from src.models import seal
