@@ -1,0 +1,461 @@
+{
+  "candidate": "xgboost",
+  "source": "lanl_cyber1",
+  "rules_version": "1.6",
+  "spec": {
+    "family": "tree",
+    "fixed": {
+      "n_estimators": 2000,
+      "early_stopping_rounds": 50,
+      "tree_method": "hist",
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "eval_metric": "logloss",
+      "n_jobs": -1
+    },
+    "grid": {
+      "max_depth": [
+        6,
+        10
+      ],
+      "learning_rate": [
+        0.1,
+        0.03
+      ],
+      "scale_pos_weight": [
+        1,
+        "balanced"
+      ]
+    }
+  },
+  "models_config_sha256": "6c5980010cceca2f111ec705ec7cc36b897cc29ab2cb509f29929dafa1df577f",
+  "seeds": [
+    11,
+    23,
+    37,
+    51,
+    73
+  ],
+  "source_provenance": {
+    "dataset_config_sha256": null,
+    "outputs_digest": "01fdd3dbcae6360338359ac6990a80bff75bd677710be54a481e43536763a56c"
+  },
+  "split": {
+    "rule": "contingency (fewer than 30 compromised hosts in days 41-58)",
+    "train_days": [
+      1,
+      10
+    ],
+    "val_days": [
+      11,
+      13
+    ],
+    "test_days": [
+      14,
+      58
+    ],
+    "test_compromised_hosts": 44
+  },
+  "features": [
+    "auth_in",
+    "auth_in_fail",
+    "auth_in_distinct_src",
+    "auth_in_distinct_users",
+    "auth_out",
+    "auth_out_fail",
+    "auth_out_distinct_dst",
+    "logon_Network",
+    "logon_Interactive",
+    "logon_RemoteInteractive",
+    "logon_Batch",
+    "logon_Service",
+    "logon_Unlock",
+    "logon_NewCredentials",
+    "logon_CachedInteractive",
+    "authtype_NTLM",
+    "authtype_Kerberos",
+    "authtype_Negotiate",
+    "auth_in_new_src",
+    "auth_out_new_dst",
+    "proc_start",
+    "proc_distinct",
+    "proc_new",
+    "flows_out",
+    "bytes_out",
+    "pkts_out",
+    "flows_out_distinct_dst",
+    "flows_in",
+    "bytes_in",
+    "dns_queries",
+    "dns_distinct",
+    "auth_in_sum24h",
+    "auth_in_fail_sum24h",
+    "auth_in_distinct_src_sum24h",
+    "auth_in_distinct_users_sum24h",
+    "auth_out_sum24h",
+    "auth_out_fail_sum24h",
+    "auth_out_distinct_dst_sum24h",
+    "logon_Network_sum24h",
+    "logon_Interactive_sum24h",
+    "logon_RemoteInteractive_sum24h",
+    "logon_Batch_sum24h",
+    "logon_Service_sum24h",
+    "logon_Unlock_sum24h",
+    "logon_NewCredentials_sum24h",
+    "logon_CachedInteractive_sum24h",
+    "authtype_NTLM_sum24h",
+    "authtype_Kerberos_sum24h",
+    "authtype_Negotiate_sum24h",
+    "auth_in_new_src_sum24h",
+    "auth_out_new_dst_sum24h",
+    "proc_start_sum24h",
+    "proc_distinct_sum24h",
+    "proc_new_sum24h",
+    "flows_out_sum24h",
+    "bytes_out_sum24h",
+    "pkts_out_sum24h",
+    "flows_out_distinct_dst_sum24h",
+    "flows_in_sum24h",
+    "bytes_in_sum24h",
+    "dns_queries_sum24h",
+    "dns_distinct_sum24h",
+    "active_hours_24h"
+  ],
+  "rows": {
+    "train": {
+      "rows": 2173118,
+      "positives": 4595,
+      "compromised_hosts": 194
+    },
+    "val": {
+      "rows": 406552,
+      "positives": 1458,
+      "compromised_hosts": 63
+    }
+  },
+  "grid": [
+    {
+      "params": {
+        "max_depth": 6,
+        "learning_rate": 0.1,
+        "scale_pos_weight": 1
+      },
+      "seed": 11,
+      "threshold": 0.040879122912883765,
+      "val": {
+        "early_alert_rate": 0.20634920634920634,
+        "hosts": 63,
+        "hosts_alerted": 13,
+        "median_lead_hours": 23.18,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.04755663806148518,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "best_iteration": 29,
+        "train_seconds": 12.9
+      }
+    },
+    {
+      "params": {
+        "max_depth": 6,
+        "learning_rate": 0.1,
+        "scale_pos_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.49728706479072576,
+      "val": {
+        "early_alert_rate": 0.15873015873015872,
+        "hosts": 63,
+        "hosts_alerted": 10,
+        "median_lead_hours": 10.153472222222222,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.019975629195634798,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "best_iteration": 642,
+        "train_seconds": 69.7
+      }
+    },
+    {
+      "params": {
+        "max_depth": 6,
+        "learning_rate": 0.03,
+        "scale_pos_weight": 1
+      },
+      "seed": 11,
+      "threshold": 0.03611106052994729,
+      "val": {
+        "early_alert_rate": 0.2857142857142857,
+        "hosts": 63,
+        "hosts_alerted": 18,
+        "median_lead_hours": 23.32125,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.065823922543467,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "best_iteration": 96,
+        "train_seconds": 19.3
+      }
+    },
+    {
+      "params": {
+        "max_depth": 6,
+        "learning_rate": 0.03,
+        "scale_pos_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.5393539667129518,
+      "val": {
+        "early_alert_rate": 0.20634920634920634,
+        "hosts": 63,
+        "hosts_alerted": 13,
+        "median_lead_hours": 17.315,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.021795062384461585,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "best_iteration": 1991,
+        "train_seconds": 212.4
+      }
+    },
+    {
+      "params": {
+        "max_depth": 10,
+        "learning_rate": 0.1,
+        "scale_pos_weight": 1
+      },
+      "seed": 11,
+      "threshold": 0.05157150700688363,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 12.37111111111111,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.03683196051704063,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "best_iteration": 16,
+        "train_seconds": 13.3
+      }
+    },
+    {
+      "params": {
+        "max_depth": 10,
+        "learning_rate": 0.1,
+        "scale_pos_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.4192695617675782,
+      "val": {
+        "early_alert_rate": 0.19047619047619047,
+        "hosts": 63,
+        "hosts_alerted": 12,
+        "median_lead_hours": 14.894305555555556,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.024752558281907252,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "best_iteration": 169,
+        "train_seconds": 35.4
+      }
+    },
+    {
+      "params": {
+        "max_depth": 10,
+        "learning_rate": 0.03,
+        "scale_pos_weight": 1
+      },
+      "seed": 11,
+      "threshold": 0.03587228432297707,
+      "val": {
+        "early_alert_rate": 0.2857142857142857,
+        "hosts": 63,
+        "hosts_alerted": 18,
+        "median_lead_hours": 20.56222222222222,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.052760259674702714,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "best_iteration": 65,
+        "train_seconds": 19.2
+      }
+    },
+    {
+      "params": {
+        "max_depth": 10,
+        "learning_rate": 0.03,
+        "scale_pos_weight": "balanced"
+      },
+      "seed": 11,
+      "threshold": 0.3551755249500275,
+      "val": {
+        "early_alert_rate": 0.23809523809523808,
+        "hosts": 63,
+        "hosts_alerted": 15,
+        "median_lead_hours": 17.811944444444446,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.02504661405744596,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "best_iteration": 580,
+        "train_seconds": 91.7
+      }
+    }
+  ],
+  "final": {
+    "11": {
+      "threshold": 0.03611106052994729,
+      "val": {
+        "early_alert_rate": 0.2857142857142857,
+        "hosts": 63,
+        "hosts_alerted": 18,
+        "median_lead_hours": 23.32125,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.065823922543467,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "best_iteration": 96,
+        "train_seconds": 19.5
+      },
+      "model_file": "development/lanl_1.6/xgboost/seed11.pkl",
+      "model_sha256": "aab4e5398b5f67b981d959e15bc1333446c99baa826c8e31770b7fa38485ba63"
+    },
+    "23": {
+      "threshold": 0.03487746044993401,
+      "val": {
+        "early_alert_rate": 0.30158730158730157,
+        "hosts": 63,
+        "hosts_alerted": 19,
+        "median_lead_hours": 23.019444444444446,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.059563691253910145,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "best_iteration": 96,
+        "train_seconds": 19.0
+      },
+      "model_file": "development/lanl_1.6/xgboost/seed23.pkl",
+      "model_sha256": "f149016b523a9fd4abc4ccb7b21a1f44a814f7d66cc7e718bdf04195186d69c5"
+    },
+    "37": {
+      "threshold": 0.037602260708808906,
+      "val": {
+        "early_alert_rate": 0.2698412698412698,
+        "hosts": 63,
+        "hosts_alerted": 17,
+        "median_lead_hours": 22.220555555555556,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.06228207197667176,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "best_iteration": 83,
+        "train_seconds": 17.7
+      },
+      "model_file": "development/lanl_1.6/xgboost/seed37.pkl",
+      "model_sha256": "9203603b8ad7dc8aacbdd97883d66e1ab82fb5e964404da4aae439e94ea11dfd"
+    },
+    "51": {
+      "threshold": 0.03640978410840035,
+      "val": {
+        "early_alert_rate": 0.2698412698412698,
+        "hosts": 63,
+        "hosts_alerted": 17,
+        "median_lead_hours": 23.019444444444446,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.06426915266554088,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "best_iteration": 88,
+        "train_seconds": 18.0
+      },
+      "model_file": "development/lanl_1.6/xgboost/seed51.pkl",
+      "model_sha256": "da40eb98262d79a0738e7631ebdb1c90cee9fff79353a9dfb35794a1d3bc02ab"
+    },
+    "73": {
+      "threshold": 0.03705181926488877,
+      "val": {
+        "early_alert_rate": 0.30158730158730157,
+        "hosts": 63,
+        "hosts_alerted": 19,
+        "median_lead_hours": 23.25111111111111,
+        "fa_rate": 0.00997788684536972,
+        "eligible_host_days": 18541,
+        "pr_auc": 0.0631812202202963,
+        "positives": 1458,
+        "rows": 406552
+      },
+      "info": {
+        "best_iteration": 95,
+        "train_seconds": 18.9
+      },
+      "model_file": "development/lanl_1.6/xgboost/seed73.pkl",
+      "model_sha256": "bb7525e7ee7074ca12af8ed887c965120db3909dc209686a3ef30678f2ebf997"
+    }
+  },
+  "complete": true,
+  "runs": [
+    {
+      "utc": "2026-10-27T06:52:41Z",
+      "git_commit": "a647a465ecb136f6b29e200b95b41388b8b992da",
+      "python": "3.13.16",
+      "packages": {
+        "numpy": "2.1.3",
+        "pandas": "2.2.3",
+        "pyarrow": "23.0.1",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.16.3",
+        "PyYAML": "6.0.3",
+        "xgboost": "3.4.1",
+        "torch": "2.11.0+cu130"
+      },
+      "config": "config/models_lanl_1.6.yaml",
+      "config_sha256": "6c5980010cceca2f111ec705ec7cc36b897cc29ab2cb509f29929dafa1df577f"
+    }
+  ],
+  "selected_params": {
+    "max_depth": 6,
+    "learning_rate": 0.03,
+    "scale_pos_weight": 1
+  },
+  "val_early_alert_rate_mean": 0.2857142857142857,
+  "val_early_alert_rate_std": 0.015873015873015872,
+  "val_pr_auc_mean": 0.06302401173197722,
+  "completed_utc": "2026-10-27T07:02:19Z"
+}
