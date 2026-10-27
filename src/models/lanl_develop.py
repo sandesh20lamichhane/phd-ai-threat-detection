@@ -1,11 +1,16 @@
-"""Level 3 (LANL, H2) model development on the train and val days only (amendment 1.5, preregistration §7a).
+"""Level 3 (LANL, H2) model development on the train and val days only (amendments 1.5 and 1.6, §7a).
 
 Unit: host-hour. Alert time of a host-hour = end of that hour; its features use only events before that time.
 For a period ending at E, a host's compromise time t is known only if t <= E (censoring):
     rows of a host after its known compromise (end of hour > t) leave the population;
-    a row is positive if 0 <= t - end of hour < 24 h.
+    a row is positive if 0 <= t - end of hour < 24 h;
+    amendment 1.6: a row of a host with no known compromise whose 24 h window runs past E is unresolved (its
+    outcome is not known inside the period) and leaves the population, instead of counting as negative.
 False alarms are counted on active host-days that neither overlap the 24 h before a known compromise nor come
 after it. The alert threshold is the lowest one keeping that share at or below 1 % on val.
+
+Records of the superseded 1.5 rules stay where they were written (results/models/development/lanl/, models in
+development/lanl/, freeze_lanl.json); the 1.6 ones go to the lanl_1.6 folders.
 """
 import itertools
 import json
@@ -25,25 +30,33 @@ from ..utils.logging import run_info
 from .candidates import Candidate, make
 from .develop import seeds
 
-CONFIG = paths.CONFIG / "models_lanl.yaml"
+CONFIG = paths.CONFIG / "models_lanl_1.6.yaml"
+CONFIG_1_5 = paths.CONFIG / "models_lanl.yaml"     # superseded by amendment 1.6; kept with its records and freeze
+VERSION = "1.6"
 DS = "lanl_cyber1"
 HOUR, DAY = 3600, 86400
 
 
-def load_config(path=CONFIG):
-    return yaml.safe_load(Path(path).read_text())
+def dev_key(version=None):
+    """Folder and freeze-record key of a rule version: 'lanl' for 1.5 (where it was written), else 'lanl_<v>'."""
+    v = str(version or VERSION)
+    return "lanl" if v == "1.5" else f"lanl_{v}"
+
+
+def load_config(path=None):
+    return yaml.safe_load(Path(path or CONFIG).read_text())
 
 
 def split():
     return json.loads((paths.RESULTS / "data_audit" / DS / "level3_split.json").read_text())
 
 
-def record_path(name):
-    return paths.RESULTS / "models" / "development" / "lanl" / f"{name}.json"
+def record_path(name, version=None):
+    return paths.RESULTS / "models" / "development" / dev_key(version) / f"{name}.json"
 
 
-def model_path(name, seed):
-    return paths.MODELS / "development" / "lanl" / name / f"seed{seed}.pkl"
+def model_path(name, seed, version=None):
+    return paths.MODELS / "development" / dev_key(version) / name / f"seed{seed}.pkl"
 
 
 def base_features():
@@ -61,23 +74,32 @@ def read_host_hours(last_day):
 
 
 def add_trailing(hh, feats, hours=24, active=True):
-    """Per host, sum of each count over the current and previous hours-1 hours (causal), plus active hours."""
+    """Per host, sum of each count over the current and previous hours-1 hours (causal), plus active hours.
+
+    One column at a time (float64 running sums, stored as float32), so the 58-day table of the test scoring fits
+    in memory; the numbers are identical to summing all columns at once.
+    """
     hh = hh.sort_values(["computer", "hour"], kind="stable").reset_index(drop=True)
     codes = pd.factorize(hh["computer"])[0].astype(np.int64)
     key = codes * (1 << 32) + hh["hour"].to_numpy(np.int64)
     start = np.searchsorted(key, key - (hours - 1), side="left")        # first row of the window, same host
-    V = hh[feats].to_numpy(np.float64)
-    cs = np.vstack([np.zeros((1, V.shape[1])), np.cumsum(V, axis=0)])
     idx = np.arange(len(hh))
-    win = cs[idx + 1] - cs[start]
-    out = pd.DataFrame(win.astype(np.float32), columns=[f"{c}_sum{hours}h" for c in feats])
+    for c in feats:
+        cs = np.concatenate([[0.0], np.cumsum(hh[c].to_numpy(np.float64))])
+        hh[f"{c}_sum{hours}h"] = (cs[idx + 1] - cs[start]).astype(np.float32)
     if active:
-        out[f"active_hours_{hours}h"] = (idx + 1 - start).astype(np.float32)
-    return pd.concat([hh, out], axis=1)
+        hh[f"active_hours_{hours}h"] = (idx + 1 - start).astype(np.float32)
+    return hh
 
 
-def period_frame(hh, comp, days, horizon=DAY):
-    """Rows of the period with label, eligibility and compromise bookkeeping (censored at the period end)."""
+def period_frame(hh, comp, days, horizon=DAY, unresolved="exclude"):
+    """Rows of the period with label, eligibility and compromise bookkeeping (censored at the period end).
+
+    unresolved: "exclude" (amendment 1.6) drops rows of hosts with no known compromise whose window
+    (alert time, alert time + horizon] runs past the period end; "negative" is the superseded 1.5 rule.
+    """
+    if unresolved not in ("exclude", "negative"):
+        raise ValueError(f"unresolved must be 'exclude' or 'negative', not {unresolved}")
     d0, d1 = days
     end_p = d1 * DAY
     tc = comp.set_index("comp")["compromise_time"].astype(float)
@@ -87,6 +109,8 @@ def period_frame(hh, comp, days, horizon=DAY):
     t = np.where(np.isnan(t), np.inf, t)
     alert_time = (f["hour"].to_numpy(np.int64) + 1) * HOUR
     keep = alert_time <= t                                             # drop rows after the known compromise
+    if unresolved == "exclude":
+        keep &= ~(np.isinf(t) & (alert_time + horizon > end_p))       # outcome not known inside the period
     f, t, alert_time = f[keep], t[keep], alert_time[keep]
     lead = t - alert_time
     f["_y"] = ((lead >= 0) & (lead < horizon)).astype(np.int64)
@@ -103,6 +127,8 @@ def fa_threshold(scores, frame, budget):
     el = frame["_eligible_day"].to_numpy()
     g = pd.DataFrame({"h": frame["computer"].to_numpy()[el], "d": frame["day"].to_numpy()[el], "s": scores[el]})
     day_max = np.sort(g.groupby(["h", "d"])["s"].max().to_numpy())[::-1]
+    if not len(day_max):
+        raise RuntimeError("no eligible host-day to set the false-alarm threshold on")
     k = int(np.floor(budget * len(day_max)))
     if k >= len(day_max):
         return -np.inf, len(day_max)
@@ -135,6 +161,10 @@ def evaluate(scores, frame, hosts, thr):
             "pr_auc": pr_auc(y, scores) if y.any() else None, "positives": int(y.sum()), "rows": int(len(y))}
 
 
+def unresolved_rule(cfg):
+    return cfg["label"].get("unresolved_horizon", "negative")       # absent in the 1.5 config
+
+
 def load_dev(cfg):
     sp = split()
     last = sp["val_days"][1]
@@ -145,7 +175,7 @@ def load_dev(cfg):
     cols = feats + [c for c in hh.columns if c.endswith(f"_sum{fc['trailing_hours']}h") or c.startswith("active_hours")]
     out = {}
     for p in ("train", "val"):
-        f, hosts = period_frame(hh, comp, sp[f"{p}_days"], cfg["label"]["horizon_seconds"])
+        f, hosts = period_frame(hh, comp, sp[f"{p}_days"], cfg["label"]["horizon_seconds"], unresolved_rule(cfg))
         out[p] = {"X": f[cols].to_numpy(np.float32), "frame": f[["computer", "hour", "day", "_y", "_t", "_eligible_day"]],
                   "hosts": hosts}
     return out, cols, sp
@@ -167,6 +197,10 @@ def _key(r):
 
 def develop(name, cfg_path=CONFIG, log=print):
     cfg = load_config(cfg_path)
+    if str(cfg["version"]) == "1.5":
+        raise RuntimeError("the 1.5 Level 3 rules were superseded by amendment 1.6; their records and freeze are "
+                           "kept unchanged and are not developed further")
+    version = str(cfg["version"])
     spec, budget = cfg["candidates"][name], float(cfg["false_alarm"]["budget"])
     if spec["family"] == "neural" and not os.environ.get("PHD_ALLOW_CPU_NEURAL"):
         import torch
@@ -174,14 +208,15 @@ def develop(name, cfg_path=CONFIG, log=print):
             raise RuntimeError(f"{name} needs a GPU runtime (Runtime -> Change runtime type -> T4 GPU)")
     data, cols, sp = load_dev(cfg)
     tr, va = data["train"], data["val"]
-    rp = record_path(name)
+    rp = record_path(name, version)
     rec = json.loads(rp.read_text()) if rp.exists() else None
     if rec and rec["models_config_sha256"] != sha256_file(cfg_path):
-        raise RuntimeError(f"{rp.name} was made under another config/models_lanl.yaml; it cannot be resumed")
+        raise RuntimeError(f"{rp.name} was made under another Level 3 config; it cannot be resumed")
     if rec and rec["source_provenance"] != near.provenance(DS):
         raise RuntimeError(f"{DS} outputs changed since {rp.name} was started")
     if rec is None:
-        rec = {"candidate": name, "source": DS, "spec": spec, "models_config_sha256": sha256_file(cfg_path),
+        rec = {"candidate": name, "source": DS, "rules_version": version, "spec": spec,
+               "models_config_sha256": sha256_file(cfg_path),
                "seeds": seeds(), "source_provenance": near.provenance(DS), "split": sp, "features": cols,
                "rows": {p: {"rows": int(len(d["frame"])), "positives": int(d["frame"]["_y"].sum()),
                             "compromised_hosts": int(len(d["hosts"]))} for p, d in data.items()},
@@ -214,7 +249,7 @@ def develop(name, cfg_path=CONFIG, log=print):
         m = make(name, spec, best["params"], sd).fit(tr["X"], yt, va["X"], yv)
         s = m.predict_proba(va["X"])
         thr, _ = fa_threshold(s, va["frame"], budget)
-        path = model_path(name, sd)
+        path = model_path(name, sd, version)
         sha = m.save(path)
         rec["final"][str(sd)] = {"threshold": thr, "val": evaluate(s, va["frame"], va["hosts"], thr), "info": m.info,
                                  "model_file": path.relative_to(paths.MODELS).as_posix(), "model_sha256": sha}
@@ -237,7 +272,7 @@ def summary_table(cfg_path=CONFIG):
     cfg = load_config(cfg_path)
     rows = []
     for name, spec in cfg["candidates"].items():
-        rp = record_path(name)
+        rp = record_path(name, cfg["version"])
         r = json.loads(rp.read_text()) if rp.exists() else {}
         rows.append({"candidate": name, "complete": r.get("complete", False),
                      "grid_done": f"{len(r.get('grid', []))}/{len(_grid(spec))}", "seeds_done": len(r.get("final", {})),
@@ -247,8 +282,8 @@ def summary_table(cfg_path=CONFIG):
     return rows
 
 
-def load_model(name, seed, expected_sha=None):
-    path = model_path(name, seed)
+def load_model(name, seed, expected_sha=None, version=None):
+    path = model_path(name, seed, version)
     if expected_sha is not None and sha256_file(path) != expected_sha:
         raise RuntimeError(f"{path} differs from its recorded SHA-256")
     return Candidate.load(path)

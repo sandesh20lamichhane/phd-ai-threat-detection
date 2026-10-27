@@ -18,7 +18,8 @@ from ..utils.io import sha256_file, write_json
 from ..utils.logging import run_info
 from .develop import MODELS_CONFIG, load_models_config, record_path, seeds
 
-FREEZE = {"l12": "freeze.json", "lanl": "freeze_lanl.json"}
+FREEZE = {"l12": "freeze.json", "lanl": "freeze_lanl_1.6.json",
+          "lanl_1.5": "freeze_lanl.json"}       # Level 3 under the superseded 1.5 rules, kept as the historical record
 PRIOR_EXPOSURE = paths.REPO / "docs" / "protocol" / "prior_exposure.md"
 INCOMPLETE = "Author to complete"
 
@@ -43,20 +44,24 @@ def freeze_lanl(cfg_path=None, log=print):
     """Level 3: the candidate with the best seed-mean val early-alert rate (ties: val PR-AUC, then config order)."""
     from . import lanl_develop as L
     cfg_path = cfg_path or L.CONFIG
+    cfg, cfg_sha = L.load_config(cfg_path), sha256_file(cfg_path)
+    version = str(cfg["version"])
+    if version != L.VERSION:
+        raise Sealed(f"Level 3 rules {version} are not the current ones ({L.VERSION})")
     fp = freeze_path("lanl")
     if fp.exists():
         raise Sealed(f"{fp} already exists: the freeze happens once. Changing it needs a logged amendment.")
-    cfg, cfg_sha = L.load_config(cfg_path), sha256_file(cfg_path)
     prior_sha = prior_exposure_sha256()
+    key = L.dev_key(version)
     recs, missing = {}, []
     for name in cfg["candidates"]:
-        rp = L.record_path(name)
+        rp = L.record_path(name, version)
         r = json.loads(rp.read_text()) if rp.exists() else None
         if not r or not r.get("complete") or len(r.get("final", {})) != len(seeds()):
-            missing.append(f"lanl/{name}")
+            missing.append(f"{key}/{name}")
             continue
         if r["models_config_sha256"] != cfg_sha:
-            raise Sealed(f"{rp} was made under another config/models_lanl.yaml")
+            raise Sealed(f"{rp} was made under another Level 3 config")
         recs[name] = r
     if missing:
         raise Sealed(f"development not complete for {missing}; finish them before the freeze")
@@ -71,9 +76,12 @@ def freeze_lanl(cfg_path=None, log=print):
             files[f["model_file"]] = f["model_sha256"]
     hosts = {n: {s: [f["val"]["hosts_alerted"], f["val"]["hosts"]] for s, f in r["final"].items()}
              for n, r in recs.items()}
-    out = {"proposed": proposed, "rule": cfg["proposed"], "ranking_val_early_alert_rate_and_pr_auc": ranking,
+    old = freeze_path("lanl_1.5")
+    out = {"proposed": proposed, "rules_version": version, "rule": cfg["proposed"],
+           "ranking_val_early_alert_rate_and_pr_auc": ranking,
            "val_hosts_alerted_per_seed": hosts, "models_config_sha256": cfg_sha, "prior_exposure_sha256": prior_sha,
-           "development_records_sha256": {f"lanl/{n}": sha256_file(L.record_path(n)) for n in recs},
+           "supersedes": {"file": old.name, "sha256": sha256_file(old)} if old.exists() else None,
+           "development_records_sha256": {f"{key}/{n}": sha256_file(L.record_path(n, version)) for n in recs},
            "model_files_sha256": files, "frozen_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
            "run": run_info(Path(cfg_path))}
     write_json(fp, out)
@@ -84,9 +92,9 @@ def freeze_lanl(cfg_path=None, log=print):
 
 def _record(key):
     space, name = key.split("/")
-    if space == "lanl":
+    if space.startswith("lanl"):
         from . import lanl_develop as L
-        return L.record_path(name)
+        return L.record_path(name, "1.5" if space == "lanl" else space[len("lanl_"):])
     return record_path(space, name)
 
 
@@ -158,10 +166,13 @@ def write_summary():
             lines.append(f"| {n} | {v:.6f} | {fr['val_macro_f1_std'][n]:.6f} | {'yes' if n in fr['within_tie_margin'] else 'no'} |")
         lines += ["", f"Frozen {fr['frozen_utc']}; {len(fr['model_files_sha256'])} model files and "
                   f"{len(fr['development_records_sha256'])} development records hashed.", ""]
-    fp = freeze_path("lanl")
-    if fp.exists():
+    for track, title in (("lanl", "Level 3 (LANL days 1-13), rules 1.6"),
+                         ("lanl_1.5", "Level 3 under the superseded 1.5 rules (historical record, not used)")):
+        fp = freeze_path(track)
+        if not fp.exists():
+            continue
         fr = json.loads(fp.read_text())
-        lines += ["## Level 3 (LANL days 1-13)", "", f"Predictive model of H2: **{fr['proposed']}**. Rule: best "
+        lines += [f"## {title}", "", f"Predictive model of H2: **{fr['proposed']}**. Rule: best "
                   "seed-mean val early-alert rate at <= 1 % false-alarm host-days; ties by val PR-AUC, then config order.",
                   "", "| candidate | val early-alert rate mean | hosts alerted per seed | val PR-AUC mean |",
                   "|---|---:|---|---:|"]
@@ -169,6 +180,9 @@ def write_summary():
             h = fr["val_hosts_alerted_per_seed"][n]
             lines.append(f"| {n} | {ear:.6f} | {', '.join(f'{a}/{b}' for a, b in h.values())} | {pa:.6f} |")
         lines += ["", f"Frozen {fr['frozen_utc']}; {len(fr['model_files_sha256'])} model files hashed.", ""]
+        if track == "lanl_1.5":
+            lines += ["Superseded by amendment 1.6 (2026-10-27): its val labels counted host-hours whose 24 h outcome "
+                      "lay after the end of the period as negative. Kept unchanged so it can still be checked.", ""]
     out = paths.RESULTS / "models" / "freeze_summary.md"
     out.write_text("\n".join(lines))
     return out

@@ -27,3 +27,25 @@ During this study, data profiling (row counts, label counts, schemas, timestamp 
 freeze is applied to the code; no model is trained until the splits are frozen and checksummed.
 
 **Declaration.** The three items above were completed by Sandesh Lamichhane on 2026-10-27 (UTC) in notebook 06, step 2, after model development on validation data and before the models were frozen; no test or target score existed. The SHA-256 of this file is recorded in `results/models/freeze.json` and `results/models/freeze_lanl.json`.
+
+**Addendum (amendment 1.6, 2026-10-27, before any test or target score).** The text above is the declaration as
+frozen in notebook 06 (commit 4a8a7c7; its SHA-256, 1a1b23c8…, is in `results/models/freeze.json` and
+`freeze_lanl.json`) and is not edited. It is completed here from the author's M.Sc. thesis (Sandesh Lamichhane,
+*Conditions of Validity, Evaluation Protocols, and Regime-Aware Adaptation for Explanation-Space Drift
+Localization in Intrusion Detection Systems*, M.Sc. in Computer Science, Yenepoya (Deemed to be University),
+June 2026):
+
+- **NSL-KDD.** The table says "none before this study". The thesis used NSL-KDD as a pipeline sanity check on
+  small data (loaders, detector interface, localization code), with no headline result. In this study NSL-KDD is
+  a historical baseline only and enters no hypothesis.
+- **CSE-CIC-IDS2018.** "Probably from the original uncorrected release" refers to the `ids-adapt` parquet. The
+  thesis used the improved (corrected-label) release, the one used here, within-dataset only.
+- **H1a.** Within-dataset CICIDS2017 results of random forests and XGBoost were known to the author (by-day recall
+  near 1.0 on the training regime in the thesis). H1a's threshold of 0.95 was therefore set knowing that tree
+  ensembles score highly inside CICIDS2017. H1a is confirmatory only for this study's within-day block split,
+  deduplication and frozen pipeline, which the thesis did not use, and the paper reports it in that light.
+- **H1b, H1c.** As declared above, the thesis computed no transfer result between CICIDS2017 and CSE-CIC-IDS2018
+  or UNSW-NB15 and used no CIC-to-UNSW feature mapping.
+
+The Level 3 freeze of amendment 1.6 (`results/models/freeze_lanl_1.6.json`) records the SHA-256 of this file with
+the addendum.

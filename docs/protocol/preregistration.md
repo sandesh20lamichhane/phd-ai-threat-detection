@@ -185,6 +185,70 @@ their changed data; they do not re-tune. S7 scores the frozen models unchanged.
 **Level 3 (H2).** Development rules for the LANL predictive model are fixed in a separate amendment before any
 LANL model is trained.
 
+## 6b. Confirmatory scoring and decisions (amendment 1.6)
+
+Fixed on 2026-10-27, before any test or target score exists, in `src/models/score.py`,
+`src/evaluation/confirmatory.py` and `scripts/score.py` (tested on synthetic data in `tests/test_scoring.py`).
+Everything in §6 applies; this section fixes the operational choices §6 leaves open.
+
+**What is scored, once.** Every frozen candidate (the proposed detector and the baselines), all five seeds, each at
+its own frozen val threshold: CICIDS2017 test in the `cic` and `unsw_canonical` spaces, CSE-CIC-IDS2018 in `cic`,
+UNSW-NB15 in `unsw_canonical`, and the LANL test period. Each scoring unit (evaluation set, space, candidate, seed)
+is written once to `results/confirmatory/` with the SHA-256 of the freeze record, the model file and the data it
+used; a rerun skips finished units. Per-row scores of the proposed detector are kept in Drive (`scores/`).
+Nothing is fitted: no recalibration, no threshold change, no feature selection on test or target data.
+
+**From rows to counts.** Evaluation rows are grouped by (300 s block, label family, binary label, seen at 3 s.f.,
+seen at 2 s.f.); a unit stores how many rows of each group were alerted. The group totals and the unseen totals
+must reproduce the S7 records exactly, or scoring stops. Per-seed confusion counts per block, macro-F1, the block
+bootstrap of §6 and the S7 subsets (§8.1) are all computed from these counts.
+
+**Neural candidates** are scored on a GPU with the same preprocessing; for each evaluation set the scores of the
+first 200 000 rows are also computed on the CPU (the development path) and the largest score difference and the
+number of decisions that differ are recorded. The other candidates use the development prediction code unchanged.
+
+**Tests and Holm.** Each claim gets two one-sided bootstrap p-values from the same replicates, (k + 1) / (B + 1)
+with k replicates on the wrong side: *p support* for the claim (H1a: macro-F1 >= 0.95; H1b, H1c: Δ < 0.05; H2:
+early-alert rate >= 0.50) and *p against* for its negation. Holm's step-down runs over the seven claims of the
+family separately for each direction, at 0.025. A claim is **supported** if its support test is rejected after
+Holm (for H2 also only if above the random baseline, below), **not supported** if its against test is rejected,
+and **inconclusive** otherwise. Until Level 4 exists the three H4 p-values enter as 1. Holm's rejections can only
+grow when a p-value falls, so a supported or not-supported decision made now stands once H4 is run; an
+inconclusive one is labelled provisional. The unadjusted 95 % CI outcome of hypotheses.md is shown beside every
+decision.
+
+**Reported beside each H1 claim** (seed means, from counts): per-class precision, recall and F1, balanced accuracy,
+FPR, the share of attack rows, recall per attack family; PR-AUC and FPR at 95 % detection rate as point estimates
+from the per-row scores; for H1b and H1c both sides of Δ and the share of bootstrap replicates above the
+descriptive 0.10 band.
+
+**Secondary model comparisons** (§6). One table per feature space, because the models differ between spaces:
+`cic` (CICIDS2017 test and CSE-CIC-IDS2018) and `unsw_canonical` (CICIDS2017 test and UNSW-NB15), 10 pairs each
+(5 seeds x 2 evaluation sets) of seed macro-F1. Wilcoxon signed-rank (zero differences split) of the proposed
+detector against each baseline, Holm over the baselines at 0.05 within the table; Friedman with Nemenyi over all
+candidates. These are labelled secondary and never enter a decision.
+
+**H2.** Estimand: the share of the test hosts (first compromised on days 14–58; 44 hosts) with at least one alert
+in the 24 h before t, seed mean, at the frozen val threshold. CI and p-values: bootstrap over red-team accounts
+(the account of the event that first compromised each host), B = 10 000, seed 20261025, percentile 95 %; each
+replicate draws accounts with replacement and takes the seed-mean share over the hosts of the drawn accounts.
+The false-alarm condition of H2 is met on val by construction (§7, §7a); the realised false-alarm rate on the
+eligible host-days of days 14–58 is reported beside the decision, not tested again.
+
+- *Random baseline*: i.i.d. uniform scores per host-hour, with the threshold set on val exactly as for the
+  models (a host-day with h rows alerts with probability 1 − t^h; t gives an expected val rate of 1 %). The
+  number of early-alerted test hosts is then a sum of independent Bernoulli(1 − t^w) (w = rows in the host's
+  window); its exact distribution gives the baseline's expected rate and 95 % range. H2 is "above the random
+  baseline" when its CI lower bound exceeds the upper end of that range.
+- *Reactive baseline*: each test host's row of the hour that contains t (alert at the end of that hour, so lead
+  time <= 0), scored at the frozen threshold; the share of hosts it detects is reported.
+- *Boundary sensitivity*: the early-alert rate counting only alerts on days 14–58 (§7a); reported, not decided.
+- Every Level 3 candidate is reported with the same figures; median lead time and host-hour PR-AUC are point
+  estimates.
+
+**Once.** `scripts/score.py --analyse` writes `results/confirmatory/decisions.{json,md}`, `level1_2.json` and
+`level3.json`. Running it again recomputes everything and stops, without writing, if any number differs.
+
 ## 7. Level 3 (LANL) operational definitions
 
 - Unit: host-hour feature vectors aggregated from auth, proc, flows and dns events (`src/data/lanl.py`); alerts
@@ -203,9 +267,12 @@ LANL model is trained.
   the compromise itself (lead time <= 0 by construction). H2's CI is a bootstrap over red-team accounts, since
   compromises by one account are not independent.
 
-### 7a. Level 3 model development (amendment 1.5)
+### 7a. Level 3 model development (amendments 1.5 and 1.6)
 
-Rules in [`config/models_lanl.yaml`](../../config/models_lanl.yaml), fixed before any LANL model was trained.
+Rules in [`config/models_lanl_1.6.yaml`](../../config/models_lanl_1.6.yaml). They are those of
+[`config/models_lanl.yaml`](../../config/models_lanl.yaml) (amendment 1.5, fixed before any LANL model was trained)
+with one change to the labels at the end of each period (amendment 1.6, below). The 1.5 file, its development
+records and its freeze (`results/models/freeze_lanl.json`) are kept unchanged as the historical record.
 
 - **Periods** (contingency rule of §7): train days 1–10, val days 11–13, test days 14–58. Development reads days
   1–13 only; the test period is sealed until the Level 3 freeze (ADR-0007).
@@ -213,10 +280,16 @@ Rules in [`config/models_lanl.yaml`](../../config/models_lanl.yaml), fixed befor
   the number of active hours among them (causal: only events before the alert time).
 - **Labels with censoring**: inside a period ending at E, a host's compromise time t is known only if t <= E.
   A host-hour is positive if its alert time (end of the hour) is 0–24 h before the known t; the host's later rows
-  leave the population. A compromise after E leaves the host's rows negative in that period.
+  leave the population. **Amendment 1.6:** a host-hour of a host with no known compromise is negative only if
+  its whole window (alert time, alert time + 24 h] ends by E; otherwise its outcome is unknown inside the period
+  and it leaves the population. (Under 1.5 such a row was negative even when the host was compromised just after
+  E.) The rule applies to train, val and test alike. With the frozen periods it removes the day-10 rows of hosts
+  not compromised by day 10 from training (no label changes: no host is first compromised on day 11) and the
+  day-13 rows of hosts not compromised by day 13 from val, among them the day-13 hours of the 27 hosts first
+  compromised on day 14, which 1.5 counted as val negatives and false-alarm host-days.
 - **False-alarm threshold**: per seed, the lowest score threshold at which at most 1 % of eligible val host-days
-  alert. Eligible host-days are host-days with at least one host-hour row that neither overlap the 24 h before a
-  known compromise nor come after it. This operationalises §7's "threshold fixed on the training period": the
+  alert. Eligible host-days are host-days with at least one host-hour row in the population (so, since 1.6, not
+  made only of unresolved rows) that neither overlap the 24 h before a known compromise nor come after it. This operationalises §7's "threshold fixed on the training period": the
   pre-test period is used, on its held-out days, so the threshold is not set on rows the model was fitted on.
 - **Selection**: candidates logistic regression, random forest, XGBoost and MLP with the Level 1–2 grids (the
   CNN-LSTM is not a candidate: host-hour counts have no order along the feature axis). Grid entries are scored by
@@ -226,7 +299,10 @@ Rules in [`config/models_lanl.yaml`](../../config/models_lanl.yaml), fixed befor
   PR-AUC, then candidate order), the same rule the author chose for H1 (ADR-0007), applied once by
   `scripts/develop.py --lanl --freeze`.
 - **Test scoring** (after the freeze): every test-period host-hour is scored; the 24 h window of a host first
-  compromised early on day 14 may include day-13 hours, which the frozen model scores like any other hour.
+  compromised early on day 14 may include day-13 hours, which the frozen model scores like any other hour. Under
+  1.6 those hours belong to no development set (they are unresolved in val), so neither the models nor their
+  thresholds were fitted on them. Declared before any test score (amendment 1.6), H2 is also reported counting only
+  alerts on test days (day 14 onward) as a boundary sensitivity; it is not a decision. Procedure: §6b.
 
 ## 8. Feature policy and alignment
 
@@ -315,8 +391,9 @@ primary one; if not, the paper's abstract and discussion say the claim depends o
    run the protocol must fix either a canonical cross-extractor feature set (as for UNSW-NB15) or a
    retrain-in-domain design with the frozen recipe, and say which Level 2 number Δ4 is measured against.
 2. **H3 non-inferiority margin for disruption cost**, before the first response run.
-3. **Prior-exposure details** in [prior_exposure.md](prior_exposure.md) that only the author can fill in
-   (notebook 06, step 2; the freeze refuses to run until they are complete).
+3. **Prior-exposure details** in [prior_exposure.md](prior_exposure.md) that only the author can fill in.
+   Closed: completed in notebook 06, step 2 (2026-10-27), before the freeze, with an addendum (amendment 1.6)
+   before any test score.
 4. **Schema confirmation.** Column and label lists in the config come from the dataset documentation; the
    profiling step (`scripts/preprocess.py --profile`) checks them against the files in Drive, and any difference is
    logged as an amendment before preprocessing runs.

@@ -1,0 +1,69 @@
+# Level 3 (LANL, H2) model development rules, amendment 1.6 (2026-10-27), replacing amendment 1.5.
+# Only the label rule at the end of each period changes (label.unresolved_horizon); candidates, grids, selection,
+# false-alarm budget and Y are those of 1.5. The 1.5 file (config/models_lanl.yaml), its development records and
+# its freeze (results/models/freeze_lanl.json) are kept unchanged as the historical record.
+# Rationale and what had been seen: docs/protocol/protocol_amendments.md, row 1.6; preregistration §7a.
+
+version: "1.6"
+frozen: 2026-10-27
+
+# Periods come from results/data_audit/lanl_cyber1/level3_split.json (contingency rule): train days 1-10,
+# val days 11-13, test days 14-58. Development reads days 1-13 only; the test period is sealed (ADR-0007).
+label:
+  horizon_seconds: 86400        # positive host-hour: its alert time (end of the hour) is 0-24 h before the
+                                # host's first compromise
+  censor_at_period_end: true    # a compromise after the end of a period is unknown inside that period
+  unresolved_horizon: exclude   # amendment 1.6: a host-hour of a host with no known compromise whose 24 h window
+                                # runs past the period end has no known outcome, so it leaves the population
+                                # (1.5 counted it as negative). Applies to train, val and test alike.
+false_alarm:
+  budget: 0.01                  # share of eligible host-days with at least one alert
+  unit: active_host_day         # host-days with at least one host-hour row; days overlapping the 24 h before a
+                                # compromise, and days after it, are not eligible (nor, since 1.6, unresolved
+                                # rows: with a 24 h horizon, the last day of a period for hosts not compromised)
+features:
+  base: report                  # the 31 host-hour counts listed in the LANL preprocessing report
+  trailing_hours: 24            # plus, per host, the sum of each count over the current and previous 23 hours
+  active_hours: true            # plus the number of active hours among those 24
+
+development:
+  grid_seed: 11
+  selection_metric: val_early_alert_rate_at_fa_budget   # hosts first compromised in val with an early alert
+  tie_break: [val_pr_auc, first_in_grid]                # host-hour average precision on val, then grid order
+  threshold: lowest_with_val_fa_at_most_budget          # per seed, on val host-days
+
+proposed:
+  rule: best_val_early_alert_rate      # same rule as Level 1-2 (the author's decision, ADR-0007)
+  tie_break: [val_pr_auc, config_order]
+
+# Same families and grids as config/models.yaml. The CNN-LSTM is not a candidate here: host-hour counts have no
+# order along the feature axis, and the temporal context is given by the trailing-window features instead.
+candidates:
+  logreg:
+    family: linear
+    fixed: {max_iter: 2000, solver: lbfgs}
+    grid:
+      C: [0.01, 0.1, 1.0, 10.0]
+      class_weight: [null, balanced]
+  random_forest:
+    family: tree
+    fixed: {n_estimators: 300, max_features: sqrt, n_jobs: -1}
+    grid:
+      max_depth: [null, 30]
+      min_samples_leaf: [1, 3]
+      class_weight: [null, balanced_subsample]
+  xgboost:
+    family: tree
+    fixed: {n_estimators: 2000, early_stopping_rounds: 50, tree_method: hist, subsample: 0.8,
+            colsample_bytree: 0.8, eval_metric: logloss, n_jobs: -1}
+    grid:
+      max_depth: [6, 10]
+      learning_rate: [0.1, 0.03]
+      scale_pos_weight: [1, balanced]
+  mlp:
+    family: neural
+    fixed: {hidden: 3, epochs: 50, patience: 5, batch_size: 4096, lr: 0.001, weight_decay: 0.0001}
+    grid:
+      width: [128, 256]
+      dropout: [0.1, 0.3]
+      class_weight: [null, balanced]

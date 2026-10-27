@@ -19,6 +19,46 @@ def feature_columns(df):
 SENSITIVITIES = {"S2_ports", "S3_attempted_benign", "S4_drop_conflicts", "S7_unseen_eval", "S7_unseen_eval_sig2"}
 
 
+def _checked_files(ds_id, version="v1"):
+    """Processed part files of a dataset built under the current rules, never a pilot (amendment 1.2, §10)."""
+    rep = paths.RESULTS / "data_audit" / ds_id / "report.json"
+    if not rep.exists():
+        raise FileNotFoundError(f"no preprocessing report for {ds_id}; run scripts/preprocess.py --dataset {ds_id}")
+    report = json.loads(rep.read_text())
+    require_current(ds_id, report)      # built under the current rules for this dataset (amendment 1.2)
+    if report.get("max_rows"):
+        raise RuntimeError(f"{ds_id} was preprocessed as a pilot (--max-rows); re-run on the full data "
+                           "before any experiment (preregistration §10)")
+    files = sorted((paths.PROCESSED / ds_id / version).glob("part-*.parquet"))
+    if not files:
+        raise FileNotFoundError(f"no processed data for {ds_id}; run scripts/preprocess.py --dataset {ds_id}")
+    return files
+
+
+def iter_parts(ds_id, split="primary", partitions=("test",), version="v1"):
+    """The rows `load` returns for the primary analysis, one processed part file at a time: (X, meta) per part.
+
+    Same checks and filters as `load` (current rules, no pilot, split file in step, Attempted rows dropped), so
+    a 45 M-row target is never held in memory at once. Sensitivity filters are applied by the caller.
+    """
+    files = _checked_files(ds_id, version)
+    sp = pd.read_parquet(paths.SPLITS / ds_id / f"{split}.parquet")
+    off = 0
+    for f in files:
+        df = pd.read_parquet(f)
+        s = sp.iloc[off:off + len(df)]
+        off += len(df)
+        if not np.array_equal(df["_key"].to_numpy(), s["_key"].to_numpy()):
+            raise AssertionError("processed data and split file are out of step; re-run preprocessing")
+        df["_block"] = s["_block"].to_numpy()
+        df["_partition"] = s["partition"].map(PARTITION_NAMES).to_numpy()
+        df = df[df["_partition"].isin(partitions) & (df["_y"] >= 0)]
+        meta = df[[c for c in df.columns if c.startswith(META_PREFIX)]]
+        yield df[feature_columns(df)].reset_index(drop=True), meta.reset_index(drop=True)
+    if off != len(sp):
+        raise AssertionError("split file has more rows than the processed data; re-run preprocessing")
+
+
 def load(ds_id, split="primary", partitions=("train", "val", "test"), columns=None, sensitivity=(),
          version="v1", task="binary", near_against=None):
     """Returns (X, meta) for the requested partitions.
@@ -37,17 +77,7 @@ def load(ds_id, split="primary", partitions=("train", "val", "test"), columns=No
         raise ValueError(f"unknown sensitivity {sorted(unknown)}")
     if task not in ("binary", "multiclass"):
         raise ValueError(f"task must be binary or multiclass, not {task}")
-    rep = paths.RESULTS / "data_audit" / ds_id / "report.json"
-    if not rep.exists():
-        raise FileNotFoundError(f"no preprocessing report for {ds_id}; run scripts/preprocess.py --dataset {ds_id}")
-    report = json.loads(rep.read_text())
-    require_current(ds_id, report)      # built under the current rules for this dataset (amendment 1.2)
-    if report.get("max_rows"):
-        raise RuntimeError(f"{ds_id} was preprocessed as a pilot (--max-rows); re-run on the full data "
-                           "before any experiment (preregistration §10)")
-    files = sorted((paths.PROCESSED / ds_id / version).glob("part-*.parquet"))
-    if not files:
-        raise FileNotFoundError(f"no processed data for {ds_id}; run scripts/preprocess.py --dataset {ds_id}")
+    files = _checked_files(ds_id, version)
     df = pd.concat((pd.read_parquet(f, columns=columns) for f in files), ignore_index=True)
     sp = pd.read_parquet(paths.SPLITS / ds_id / f"{split}.parquet")
     if not np.array_equal(df["_key"].to_numpy(), sp["_key"].to_numpy()):

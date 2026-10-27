@@ -16,6 +16,7 @@ PROCESSED = DRIVE / "data" / "processed"      # cleaned, deduplicated, identifie
 SPLITS = DRIVE / "data" / "splits"            # frozen split membership per dataset (row key -> partition)
 EXTERNAL = DRIVE / "data" / "external"        # threat-intelligence corpus
 MODELS = DRIVE / "models"
+SCORES = DRIVE / "scores"                     # per-row test and target scores of the frozen proposed models
 RUNS = DRIVE / "runs"
 SIMULATIONS = DRIVE / "simulations"
 

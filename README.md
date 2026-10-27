@@ -86,7 +86,22 @@ Level 3 (LANL days 1–13, amendment 1.5) uses
 [`notebooks/05_level3_lanl_development.ipynb`](notebooks/05_level3_lanl_development.ipynb) and `--lanl`. The
 freeze of both, after the prior-exposure declaration, is
 [`notebooks/06_freeze_models.ipynb`](notebooks/06_freeze_models.ipynb); it writes `results/models/freeze.json`,
-`freeze_lanl.json` and `freeze_summary.md`.
+`freeze_lanl.json` and `freeze_summary.md`. Amendment 1.6 corrected the Level 3 labels at period ends; Level 3 is
+developed and frozen again with [`notebooks/07_level3_rules_1_6.ipynb`](notebooks/07_level3_rules_1_6.ipynb)
+(`freeze_lanl_1.6.json`; the 1.5 freeze is kept as the historical record).
+
+## Confirmatory scoring (preregistration §6b)
+
+Once both freezes are committed, [`notebooks/08_confirmatory_scoring.ipynb`](notebooks/08_confirmatory_scoring.ipynb)
+scores every frozen model once on the sealed test partitions, the external targets and the LANL test period, and
+writes the decisions for H1a-H1c and H2:
+
+```bash
+python scripts/score.py --status                    # what is scored so far
+python scripts/score.py --level12                   # CICIDS2017 test, UNSW-NB15, CSE-CIC-IDS2018; resumable
+python scripts/score.py --lanl                      # LANL days 14-58
+python scripts/score.py --analyse                   # results/confirmatory/decisions.{json,md}
+```
 
 ## Layout
 

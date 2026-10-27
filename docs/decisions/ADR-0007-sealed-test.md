@@ -25,3 +25,11 @@ val early-alert rate). Clarification 1.5a (2026-10-26): the freeze also refuses 
 `docs/protocol/prior_exposure.md` is complete and records its SHA-256, and the author decided to freeze Level 3 as
 preregistered although its best val early-alert rate (0.349) is below Y = 0.50, without another development round.
 `results/models/freeze_summary.md` states both freezes in words, to six decimals.
+
+**Amendment 1.6 (2026-10-27).** The Level 3 labels at the end of a period were corrected and Level 3 is developed
+and frozen again: `results/models/freeze_lanl_1.6.json` (track `lanl`, the one H2 is scored with) with records in
+`results/models/development/lanl_1.6/`. The 1.5 freeze `freeze_lanl.json` (track `lanl_1.5`) and its records and
+models stay where they were written, unchanged, and `require_frozen(track="lanl_1.5")` still checks them; the 1.6
+freeze names it in `supersedes`. The scoring code (`src/models/score.py`) calls `require_frozen` for the level it
+scores, takes the candidates from the freeze record, loads only model files whose SHA-256 the record lists, and
+for Level 3 refuses a config other than the one frozen. Scoring and the decision rules are in preregistration §6b.

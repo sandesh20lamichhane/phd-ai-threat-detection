@@ -52,6 +52,18 @@ def write_cic(root):
     return d
 
 
+def write_cse(interim, seed=10):
+    """CSE-CIC-IDS2018-shaped files: CICIDS2017-like days moved to 2018, with attacks spread over the day."""
+    d = interim / "csecicids2018_improved"
+    d.mkdir(parents=True, exist_ok=True)
+    for i, (day, date) in enumerate((("wednesday", "2018-02-14"), ("friday", "2018-02-16"))):
+        df = cic_day(day, n=3000, seed=seed + i)
+        t = pd.to_datetime(df["Timestamp"])
+        df["Timestamp"] = (pd.Timestamp(date) + (t - t.dt.normalize())).dt.strftime("%Y-%m-%d %H:%M:%S.%f")
+        df.to_csv(d / f"{date}.csv", index=False)
+    return d
+
+
 def write_unsw(interim, n=3000, seed=0):
     from src.data.load import load_config
     cols = load_config()["datasets"]["unsw_nb15"]["columns"]

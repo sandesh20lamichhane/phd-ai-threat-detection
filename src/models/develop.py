@@ -30,8 +30,8 @@ SOURCE = "cicids2017_improved"
 DEV_PARTITIONS = ("train", "val")
 
 
-def load_models_config(path=MODELS_CONFIG):
-    return yaml.safe_load(Path(path).read_text())
+def load_models_config(path=None):
+    return yaml.safe_load(Path(path or MODELS_CONFIG).read_text())
 
 
 def seeds():
