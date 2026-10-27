@@ -1,0 +1,71 @@
+command: scripts/explore.py --operating-point --eval cicids2017_test
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/exploratory/logs/20261027T124043Z_operating_point.log
+[cicids2017_test] 221,066 rows read
+[cicids2017_test/cic] seed 11: 183 distinct scores, PR-AUC 0.999957, 1 s so far
+[cicids2017_test/cic] seed 23: 173 distinct scores, PR-AUC 0.999759, 2 s so far
+[cicids2017_test/cic] seed 37: 175 distinct scores, PR-AUC 0.999946, 3 s so far
+[cicids2017_test/cic] seed 51: 174 distinct scores, PR-AUC 0.999964, 4 s so far
+[cicids2017_test/cic] seed 73: 169 distinct scores, PR-AUC 0.999960, 6 s so far
+[cicids2017_test/cic] written (5.7 s)
+[cicids2017_test/unsw_canonical] seed 11: 194 distinct scores, PR-AUC 0.999783, 1 s so far
+[cicids2017_test/unsw_canonical] seed 23: 191 distinct scores, PR-AUC 0.999365, 2 s so far
+[cicids2017_test/unsw_canonical] seed 37: 191 distinct scores, PR-AUC 0.999690, 4 s so far
+[cicids2017_test/unsw_canonical] seed 51: 198 distinct scores, PR-AUC 0.999742, 5 s so far
+[cicids2017_test/unsw_canonical] seed 73: 185 distinct scores, PR-AUC 0.999736, 6 s so far
+[cicids2017_test/unsw_canonical] written (6.0 s)
+# Exploratory analysis E1: ranking versus operating point
+
+_Post hoc and outside the Holm family (plan: `docs/protocol/exploratory_analyses.md`, written after the confirmatory results). Frozen proposed detector, 5 seeds; estimate = seed mean, 95 % CI = 300 s block bootstrap (B = 10 000). **Oracle** columns choose the threshold from target labels: upper bounds that no deployed detector could reach. Budget columns alert on the top-scored rows and use no labels. Oracle, budget and "ties split" figures split the rows tied at the cut-off score in proportion (the straight segment of the ROC curve); the frozen threshold and the first FPR at 95 % detection do not, as scored._
+
+## Ranking and operating points
+
+| evaluation / space | attack share | PR-AUC | AP-lift | ROC-AUC | recall at frozen threshold | its FPR | oracle recall, FPR 0.1 % | oracle recall, FPR 1 % | oracle recall, FPR 5 % | recall, top 1 % | recall, top 5 % | FPR at 95 % detection | same, ties split | attacks undetectable below 100 % FPR |
+|---|---:|---|---|---|---|---:|---|---|---|---|---|---|---|---|
+| cicids2017_test / cic | 6.74 % | 1.000 [0.991, 1.000] | 0.932 [0.849, 0.990] | 1.000 [1.000, 1.000] | 0.997 [0.956, 0.999] | 0.018 % | 0.999 [0.988, 1.000] | 1.000 [0.999, 1.000] | 1.000 [0.999, 1.000] | 0.148 [0.066, 0.999] | 0.741 [0.332, 1.000] | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.001] |
+| cicids2017_test / unsw_canonical | 6.74 % | 1.000 [0.981, 1.000] | 0.932 [0.849, 0.989] | 1.000 [0.998, 1.000] | 0.996 [0.955, 0.999] | 0.016 % | 0.997 [0.971, 1.000] | 1.000 [0.992, 1.000] | 1.000 [0.996, 1.000] | 0.148 [0.066, 0.998] | 0.741 [0.332, 1.000] | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.004] |
+
+## Attack families
+
+| evaluation / space | family | rows | recall at frozen threshold | oracle recall, FPR 1 % | recall, top 5 % | ROC-AUC against benign | undetectable below 100 % FPR |
+|---|---|---:|---|---|---|---|---|
+| cicids2017_test / cic | Bot | 33 | 1.000 [1.000, 1.000] | 1.000 [1.000, 1.000] | 0.588 [0.258, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] |
+| cicids2017_test / cic | BruteForce | 418 | 0.975 [0.000, 1.000] | 0.998 [0.988, 1.000] | 0.713 [0.108, 1.000] | 0.999 [0.995, 1.000] | 0.001 [0.000, 0.009] |
+| cicids2017_test / cic | DDoS | 5,911 | 0.997 [0.997, 0.997] | 1.000 [1.000, 1.000] | 0.754 [0.319, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] |
+| cicids2017_test / cic | DoS | 7,483 | 0.999 [0.560, 1.000] | 1.000 [0.990, 1.000] | 0.754 [0.000, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] |
+| cicids2017_test / cic | Heartbleed | 2 | 1.000 [1.000, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] |
+| cicids2017_test / cic | Infiltration | 902 | 1.000 [1.000, 1.000] | 1.000 [1.000, 1.000] | 0.639 [0.209, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] |
+| cicids2017_test / cic | PortScan | 149 | 0.895 [0.600, 0.897] | 1.000 [1.000, 1.000] | 0.369 [0.000, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] |
+| cicids2017_test / cic | WebAttack | 12 | 1.000 [1.000, 1.000] | 1.000 [1.000, 1.000] | 0.458 [0.000, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] |
+| cicids2017_test / unsw_canonical | Bot | 33 | 1.000 [1.000, 1.000] | 1.000 [1.000, 1.000] | 0.599 [0.261, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] |
+| cicids2017_test / unsw_canonical | BruteForce | 418 | 0.978 [0.000, 1.000] | 0.998 [0.061, 1.000] | 0.715 [0.085, 1.000] | 0.999 [0.591, 1.000] | 0.002 [0.000, 0.800] |
+| cicids2017_test / unsw_canonical | DDoS | 5,911 | 0.996 [0.996, 0.996] | 1.000 [1.000, 1.000] | 0.752 [0.318, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] |
+| cicids2017_test / unsw_canonical | DoS | 7,483 | 1.000 [0.840, 1.000] | 1.000 [1.000, 1.000] | 0.756 [0.000, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] |
+| cicids2017_test / unsw_canonical | Heartbleed | 2 | 1.000 [1.000, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] |
+| cicids2017_test / unsw_canonical | Infiltration | 902 | 0.998 [0.989, 0.998] | 1.000 [1.000, 1.000] | 0.635 [0.175, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] |
+| cicids2017_test / unsw_canonical | PortScan | 149 | 0.858 [0.400, 0.861] | 0.972 [0.938, 1.000] | 0.334 [0.000, 1.000] | 0.993 [0.992, 1.000] | 0.013 [0.000, 0.014] |
+| cicids2017_test / unsw_canonical | WebAttack | 12 | 1.000 [1.000, 1.000] | 1.000 [1.000, 1.000] | 0.473 [0.000, 1.000] | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] |
+
+## Ties at the lowest score
+
+| evaluation / space | lowest-score share, attack rows | lowest-score share, benign rows |
+|---|---|---|
+| cicids2017_test / cic | 0.000 [0.000, 0.001] | 0.985 [0.980, 0.988] |
+| cicids2017_test / unsw_canonical | 0.000 [0.000, 0.004] | 0.981 [0.973, 0.985] |
+
+## Checks (every one must hold, or nothing is written)
+
+| evaluation / space | rows | blocks | distinct scores per seed | PR-AUC vs unit record | FPR at 95 % vs unit record |
+|---|---:|---:|---|---:|---:|
+| cicids2017_test / cic | 221,066 | 75 | 183, 173, 175, 174, 169 | 0.0e+00 | 0.0e+00 |
+| cicids2017_test / unsw_canonical | 221,066 | 75 | 194, 191, 191, 198, 185 | 0.0e+00 | 0.0e+00 |
+
+Scores SHA-256, row order, groups and alerts at the frozen threshold reproduce the confirmatory records exactly for every seed; PR-AUC and FPR at 95 % detection are recomputed from the float32 scores and differ from the float64 unit records by at most the figures shown.
+
+Not yet run: unsw_nb15 / unsw_canonical, csecicids2018 / cic.
+
+| analysis | evaluation set | space | written |
+|---|---|---|---|
+| E1 | cicids2017_test | cic | yes |
+| E1 | cicids2017_test | unsw_canonical | yes |
+| E1 | unsw_nb15 | unsw_canonical | no |
+| E1 | csecicids2018 | cic | no |
