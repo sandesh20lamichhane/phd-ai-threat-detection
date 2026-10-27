@@ -1,0 +1,50 @@
+command: scripts/score.py --lanl
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/confirmatory/logs/20261027T083628Z_lanl.log
+[lanl/logreg] seed 11: 6 of 44 test hosts alerted early, false alarms 1.4409% of 503,778 host-days
+[lanl/logreg] seed 23: 6 of 44 test hosts alerted early, false alarms 1.4409% of 503,778 host-days
+[lanl/logreg] seed 37: 6 of 44 test hosts alerted early, false alarms 1.4409% of 503,778 host-days
+[lanl/logreg] seed 51: 6 of 44 test hosts alerted early, false alarms 1.4409% of 503,778 host-days
+[lanl/logreg] seed 73: 6 of 44 test hosts alerted early, false alarms 1.4409% of 503,778 host-days
+[lanl/random_forest] seed 11: 8 of 44 test hosts alerted early, false alarms 4.1336% of 503,778 host-days
+[lanl/random_forest] seed 23: 9 of 44 test hosts alerted early, false alarms 4.0704% of 503,778 host-days
+[lanl/random_forest] seed 37: 8 of 44 test hosts alerted early, false alarms 4.1693% of 503,778 host-days
+[lanl/random_forest] seed 51: 10 of 44 test hosts alerted early, false alarms 3.9958% of 503,778 host-days
+[lanl/random_forest] seed 73: 8 of 44 test hosts alerted early, false alarms 3.9043% of 503,778 host-days
+[lanl/xgboost] seed 11: 11 of 44 test hosts alerted early, false alarms 1.1713% of 503,778 host-days
+[lanl/xgboost] seed 23: 10 of 44 test hosts alerted early, false alarms 1.2436% of 503,778 host-days
+[lanl/xgboost] seed 37: 10 of 44 test hosts alerted early, false alarms 1.2355% of 503,778 host-days
+[lanl/xgboost] seed 51: 9 of 44 test hosts alerted early, false alarms 1.1783% of 503,778 host-days
+[lanl/xgboost] seed 73: 9 of 44 test hosts alerted early, false alarms 1.1753% of 503,778 host-days
+[lanl/mlp] seed 11: 9 of 44 test hosts alerted early, false alarms 1.0751% of 503,778 host-days
+[lanl/mlp] seed 23: 13 of 44 test hosts alerted early, false alarms 1.6918% of 503,778 host-days
+[lanl/mlp] seed 37: 11 of 44 test hosts alerted early, false alarms 1.0395% of 503,778 host-days
+[lanl/mlp] seed 51: 10 of 44 test hosts alerted early, false alarms 0.8829% of 503,778 host-days
+[lanl/mlp] seed 73: 9 of 44 test hosts alerted early, false alarms 0.9455% of 503,778 host-days
+| level | evaluation set | space | candidate | seeds scored |
+|---|---|---|---|---:|
+| 1-2 | cicids2017_test | cic | logreg | 5/5 |
+| 1-2 | cicids2017_test | cic | random_forest | 5/5 |
+| 1-2 | cicids2017_test | cic | xgboost | 5/5 |
+| 1-2 | cicids2017_test | cic | mlp | 5/5 |
+| 1-2 | cicids2017_test | cic | cnn_lstm | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | logreg | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | random_forest | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | xgboost | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | mlp | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | cnn_lstm | 5/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | logreg | 5/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | random_forest | 5/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | xgboost | 5/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | mlp | 5/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | cnn_lstm | 5/5 |
+| 1-2 | csecicids2018 | cic | logreg | 5/5 |
+| 1-2 | csecicids2018 | cic | random_forest | 5/5 |
+| 1-2 | csecicids2018 | cic | xgboost | 5/5 |
+| 1-2 | csecicids2018 | cic | mlp | 5/5 |
+| 1-2 | csecicids2018 | cic | cnn_lstm | 5/5 |
+| 3 | lanl_cyber1 days 14-58 | host-hour | logreg | 5/5 |
+| 3 | lanl_cyber1 days 14-58 | host-hour | random_forest | 5/5 |
+| 3 | lanl_cyber1 days 14-58 | host-hour | xgboost | 5/5 |
+| 3 | lanl_cyber1 days 14-58 | host-hour | mlp | 5/5 |
+
+confirmatory analysis: not run
