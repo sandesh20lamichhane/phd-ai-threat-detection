@@ -1,0 +1,124 @@
+command: scripts/score.py --level12 --eval csecicids2018
+log: /content/drive/MyDrive/PhD-AI-Cyber/code/phd-ai-threat-detection/results/confirmatory/logs/20261027T073245Z_level12.log
+[csecicids2018] cached part 1: 873,579 rows
+[csecicids2018] cached part 2: 772,823 rows
+[csecicids2018] cached part 3: 735,176 rows
+[csecicids2018] cached part 4: 771,222 rows
+[csecicids2018] cached part 5: 811,187 rows
+[csecicids2018] cached part 6: 879,818 rows
+[csecicids2018] cached part 7: 250,933 rows
+[csecicids2018] cached part 8: 733,669 rows
+[csecicids2018] cached part 9: 710,038 rows
+[csecicids2018] cached part 10: 700,797 rows
+[csecicids2018] cached part 11: 671,990 rows
+[csecicids2018] cached part 12: 703,075 rows
+[csecicids2018] cached part 13: 827,946 rows
+[csecicids2018] cached part 14: 985,487 rows
+[csecicids2018] cached part 15: 388,787 rows
+[csecicids2018] cached part 16: 724,670 rows
+[csecicids2018] cached part 17: 695,774 rows
+[csecicids2018] cached part 18: 669,031 rows
+[csecicids2018] cached part 19: 662,720 rows
+[csecicids2018] cached part 20: 683,511 rows
+[csecicids2018] cached part 21: 790,497 rows
+[csecicids2018] cached part 22: 737,333 rows
+[csecicids2018] cached part 23: 700,032 rows
+[csecicids2018] cached part 24: 692,285 rows
+[csecicids2018] cached part 25: 691,256 rows
+[csecicids2018] cached part 26: 775,741 rows
+[csecicids2018] cached part 27: 767,068 rows
+[csecicids2018] cached part 28: 424,629 rows
+[csecicids2018] cached part 29: 681,854 rows
+[csecicids2018] cached part 30: 611,855 rows
+[csecicids2018] cached part 31: 605,259 rows
+[csecicids2018] cached part 32: 600,847 rows
+[csecicids2018] cached part 33: 693,857 rows
+[csecicids2018] cached part 34: 353,140 rows
+[csecicids2018] cached part 35: 716,007 rows
+[csecicids2018] cached part 36: 657,473 rows
+[csecicids2018] cached part 37: 633,752 rows
+[csecicids2018] cached part 38: 650,421 rows
+[csecicids2018] cached part 39: 711,530 rows
+[csecicids2018] cached part 40: 766,312 rows
+[csecicids2018] cached part 41: 60,978 rows
+[csecicids2018] cached part 42: 700,437 rows
+[csecicids2018] cached part 43: 626,115 rows
+[csecicids2018] cached part 44: 649,508 rows
+[csecicids2018] cached part 45: 645,422 rows
+[csecicids2018] cached part 46: 654,872 rows
+[csecicids2018] cached part 47: 848,362 rows
+[csecicids2018] cached part 48: 53,406 rows
+[csecicids2018] cached part 49: 638,433 rows
+[csecicids2018] cached part 50: 610,369 rows
+[csecicids2018] cached part 51: 605,178 rows
+[csecicids2018] cached part 52: 626,003 rows
+[csecicids2018] cached part 53: 693,771 rows
+[csecicids2018] cached part 54: 577,370 rows
+[csecicids2018] cached part 55: 671,158 rows
+[csecicids2018] cached part 56: 652,312 rows
+[csecicids2018] cached part 57: 637,102 rows
+[csecicids2018] cached part 58: 623,292 rows
+[csecicids2018] cached part 59: 670,898 rows
+[csecicids2018] cached part 60: 825,047 rows
+[csecicids2018] cached part 61: 961,477 rows
+[csecicids2018] cached part 62: 722,704 rows
+[csecicids2018] cached part 63: 673,328 rows
+[csecicids2018] cached part 64: 664,248 rows
+[csecicids2018] cached part 65: 645,226 rows
+[csecicids2018] cached part 66: 677,415 rows
+[csecicids2018] cached part 67: 762,033 rows
+[csecicids2018] cached part 68: 457,447 rows
+[csecicids2018] 45,147,292 rows in 4,903 groups (block x label x seen)
+[csecicids2018/cic/logreg] seed 11: 2,595,452 of 45,147,292 rows alerted (104.2 s)
+[csecicids2018/cic/logreg] seed 23: 2,595,452 of 45,147,292 rows alerted (90.4 s)
+[csecicids2018/cic/logreg] seed 37: 2,595,452 of 45,147,292 rows alerted (87.9 s)
+[csecicids2018/cic/logreg] seed 51: 2,595,452 of 45,147,292 rows alerted (88.3 s)
+[csecicids2018/cic/logreg] seed 73: 2,595,452 of 45,147,292 rows alerted (88.1 s)
+[csecicids2018/cic/random_forest] seed 11: 75,047 of 45,147,292 rows alerted (194.2 s)
+[csecicids2018/cic/random_forest] seed 23: 541,088 of 45,147,292 rows alerted (191.0 s)
+[csecicids2018/cic/random_forest] seed 37: 711,251 of 45,147,292 rows alerted (189.9 s)
+[csecicids2018/cic/random_forest] seed 51: 73,509 of 45,147,292 rows alerted (189.7 s)
+[csecicids2018/cic/random_forest] seed 73: 796,860 of 45,147,292 rows alerted (190.2 s)
+[csecicids2018/cic/xgboost] seed 11: 322,796 of 45,147,292 rows alerted (95.6 s)
+[csecicids2018/cic/xgboost] seed 23: 730,849 of 45,147,292 rows alerted (91.8 s)
+[csecicids2018/cic/xgboost] seed 37: 463,220 of 45,147,292 rows alerted (104.1 s)
+[csecicids2018/cic/xgboost] seed 51: 377,288 of 45,147,292 rows alerted (86.0 s)
+[csecicids2018/cic/xgboost] seed 73: 41,809 of 45,147,292 rows alerted (70.9 s)
+[csecicids2018/cic/mlp] seed 11: 982,962 of 45,147,292 rows alerted (123.3 s)
+[csecicids2018/cic/mlp] seed 23: 551,721 of 45,147,292 rows alerted (123.0 s)
+[csecicids2018/cic/mlp] seed 37: 539,867 of 45,147,292 rows alerted (122.3 s)
+[csecicids2018/cic/mlp] seed 51: 109,544 of 45,147,292 rows alerted (122.5 s)
+[csecicids2018/cic/mlp] seed 73: 232,913 of 45,147,292 rows alerted (122.4 s)
+[csecicids2018/cic/cnn_lstm] seed 11: 1,174,742 of 45,147,292 rows alerted (239.9 s)
+[csecicids2018/cic/cnn_lstm] seed 23: 1,810,723 of 45,147,292 rows alerted (239.3 s)
+[csecicids2018/cic/cnn_lstm] seed 37: 1,148,805 of 45,147,292 rows alerted (242.3 s)
+[csecicids2018/cic/cnn_lstm] seed 51: 8,175,128 of 45,147,292 rows alerted (247.4 s)
+[csecicids2018/cic/cnn_lstm] seed 73: 2,452,204 of 45,147,292 rows alerted (245.1 s)
+| level | evaluation set | space | candidate | seeds scored |
+|---|---|---|---|---:|
+| 1-2 | cicids2017_test | cic | logreg | 5/5 |
+| 1-2 | cicids2017_test | cic | random_forest | 5/5 |
+| 1-2 | cicids2017_test | cic | xgboost | 5/5 |
+| 1-2 | cicids2017_test | cic | mlp | 5/5 |
+| 1-2 | cicids2017_test | cic | cnn_lstm | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | logreg | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | random_forest | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | xgboost | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | mlp | 5/5 |
+| 1-2 | cicids2017_test | unsw_canonical | cnn_lstm | 5/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | logreg | 5/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | random_forest | 5/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | xgboost | 5/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | mlp | 5/5 |
+| 1-2 | unsw_nb15 | unsw_canonical | cnn_lstm | 5/5 |
+| 1-2 | csecicids2018 | cic | logreg | 5/5 |
+| 1-2 | csecicids2018 | cic | random_forest | 5/5 |
+| 1-2 | csecicids2018 | cic | xgboost | 5/5 |
+| 1-2 | csecicids2018 | cic | mlp | 5/5 |
+| 1-2 | csecicids2018 | cic | cnn_lstm | 5/5 |
+| 3 | lanl_cyber1 days 14-58 | host-hour | logreg | 0/5 |
+| 3 | lanl_cyber1 days 14-58 | host-hour | random_forest | 0/5 |
+| 3 | lanl_cyber1 days 14-58 | host-hour | xgboost | 0/5 |
+| 3 | lanl_cyber1 days 14-58 | host-hour | mlp | 0/5 |
+
+confirmatory analysis: not run
