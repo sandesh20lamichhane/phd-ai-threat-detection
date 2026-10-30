@@ -451,6 +451,12 @@ other extractor or setting is tried without a new amendment.
   (`docs/protocol/level4_extraction.md`) and committed before the first ToN_IoT capture is processed. The agreement of
   its binary labels with the published Zeek-record labels, matched on 5-tuple and time, is reported.
 
+  *Amendment 1.8 (2026-10-30, before any capture was processed).* The ground-truth network files turned out to be
+  attack connection records (`ts`, five-tuple, `proto`, `type`), not time windows, and the first source address
+  in them (192.168.1.35) lies outside 192.168.159.30-39. A flow is therefore labelled by matching it to these records
+  on protocol, endpoints and time (level4_extraction.md §4). Flows that match no record are normal, and the address
+  range becomes sensitivity S-L1, reported without a decision.
+
 **Preprocessing.** The protocol 1.1 rules apply unchanged: identifiers (flow id, addresses, ports, timestamp)
 removed from the features as for CICIDS2017, exact duplicates removed, conflicting-label groups kept and flagged,
 value problems set to NaN, data cards, `--verify` (§10a). New dataset ids `ton_iot_flows`, `ciciomt2024_flows` and

@@ -1,0 +1,65 @@
+# Level 4 extraction plan, machine-readable values (amendments 1.7 and 1.8).
+# Text and rationale: docs/protocol/level4_extraction.md. Change only through
+# docs/protocol/protocol_amendments.md; the SHA-256 of this file goes into results/level4/data_freeze.json.
+
+version: "1.8"
+written: 2026-10-30
+
+extractor:
+  upstream: https://github.com/GintsEngelen/CICFlowMeter
+  fork: https://github.com/sandesh20lamichhane/CICFlowMeter
+  # Newest commit whose CSV writer emits all 82 shared features (plan §2.1). Chosen by reading the code and
+  # filled in before the first build; the pipeline refuses to build while it is null.
+  commit: null
+  flow_timeout_us: null        # read from the command-line entry point of that commit, never changed
+  activity_timeout_us: null
+  jvm_timezone: UTC
+  features: config/feature_mapping/cic_shared_features.yaml
+
+extractor_check:                 # plan §3
+  capture: Thursday-WorkingHours.pcap
+  capture_dir: data/raw/cicids2017_improved/pcap
+  reference_csv: thursday.csv
+  key: [Src IP, Src Port, Dst IP, Dst Port, Protocol]
+  time_column: Timestamp
+  time_resolution_us: 1
+  offset_multiple_s: 900
+  min_matched_share: 0.99
+  min_feature_agreement: 0.99
+  rel_tol: 1.0e-6
+  abs_tol: 1.0e-9
+
+ton_iot:                         # plan §4
+  captures: data/raw/ton_iot/pcap
+  ground_truth_glob: 'SecuityEvents_GroundTruth_datasets/SecurityEvents_Network_datasets/GroundTruth_Network_*.csv'
+  ground_truth_columns: [ts, src_ip, src_port, dst_ip, dst_port, proto, type]
+  processed_glob: 'Processed_datasets/Processed_Network_dataset/Network_dataset_*.csv'
+  proto_map: {6: tcp, 17: udp, 1: icmp}
+  ports_ignored_for: [icmp]
+  direction: unordered
+  margin_before_s: 1
+  margin_after_s: 1
+  alignment:
+    capture: first normal_attack capture in name order
+    window_s: 86400
+    max_pairs_per_key: 10000
+    zero_if_within_s: 2
+    timezone_multiple_s: 900
+    timezone_tolerance_s: 2
+  benign_raw_label: normal
+  label_rules: ton               # config/preprocessing.yaml, unchanged
+  sensitivity:
+    S-L1: {remove_normal_with_endpoint_in: 192.168.159.30-192.168.159.39}
+    S-L2: {keep_only: label agrees with matched Zeek record}
+
+ciciomt2024:                     # plan §5
+  captures: data/raw/ciciomt2024/pcap
+  label_from_filename: '^(?P<label>.+?)\d*_(train|test)\.pcap$'
+  label_rules: ciciomt
+  attacker_addresses: null       # none in README_Wifi_and_MQTT_attacks.pdf (read 2026-10-30)
+
+ciciot2023:
+  captures: data/raw/ciciot2023/pcap
+  label_from_path: '(?:^|/)PCAP/(?P<label>[^/]+)/'
+  label_rules: ciciot
+  attacker_addresses: null       # CSV READMEs name none; capture README read at download (plan §5)
