@@ -37,7 +37,7 @@ The registry is [`config/datasets.yaml`](config/datasets.yaml). It follows the F
 | ids-adapt processed parquets (copy, reference only) | `ids-adapt/data/processed` | 8.5 GB | nothing |
 | CSE-CIC-IDS2018 original (off by default) | public AWS bucket | 6.4 GB | set `enabled: true` if you want the uncorrected baseline |
 
-PCAP captures are never downloaded. The planned datasets come to roughly 40–50 GB (about 27 GB of that
+PCAP captures are not downloaded, except the Level 4 captures of ToN_IoT, CICIoMT2024 and CIC-IoT2023, which are re-extracted into CICFlowMeter flows (amendment 1.7, preregistration §9a). The planned datasets come to roughly 40–50 GB (about 27 GB of that
 is known exactly; run `--plan` for the rest), plus 17 GB of copies of data already in Drive. The downloader refuses to push raw data past 190 GB (`--budget-gb`).
 
 Command line, from the repo root:

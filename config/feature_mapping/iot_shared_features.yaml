@@ -1,7 +1,8 @@
-# Level 4 feature alignment: NOT FROZEN. See docs/protocol/preregistration.md §9 item 1.
+# Not used for H4: amendment 1.7 re-extracts the Level 4 packet captures into the `cic` space
+# (docs/protocol/preregistration.md §9a), so no cross-extractor mapping is needed. Kept as a record of the
+# released CSV columns, for any later exploratory analysis of those files.
 # CIC-IoT2023 and CICIoMT2024 share one packet-window extractor (their common columns are an exact match);
 # ToN_IoT network data come from Zeek; none of the three shares CICFlowMeter features with CICIDS2017.
-# The Level 4 design (canonical cross-extractor set vs retrain-in-domain) is fixed before the first Level 4 run.
 version: "draft"
 features: []
 label_map: {}

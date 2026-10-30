@@ -29,7 +29,7 @@ about those datasets, not about every operational network.
 | CSE-CIC-IDS2018, corrected (Liu et al. 2022) | Level 2 external target (same flow extractor) | yes |
 | UNSW-NB15 (official CSVs 1–4) | Level 2 external target (different flow extractor) | yes |
 | LANL Cyber1 | Level 3 temporal / predictive test | yes |
-| CICIoMT2024, CIC-IoT2023, ToN_IoT (network) | Level 4 domain targets | yes, once the Level 4 design in §9 is fixed |
+| CICIoMT2024, CIC-IoT2023, ToN_IoT (network) | Level 4 domain targets, re-extracted from their packet captures (§9a) | yes (amendment 1.7) |
 | NSL-KDD | historical baseline only | no |
 | Edge-IIoTset | reference copy, not in the finalised plan | no (profiled only) |
 | ids-adapt legacy parquets | earlier project's output, probably uncorrected labels | no, never used for any reported number |
@@ -390,6 +390,7 @@ primary one; if not, the paper's abstract and discussion say the claim depends o
    "best model of Levels 1–3 applied unchanged" may have no defensible common features. Before the first Level 4
    run the protocol must fix either a canonical cross-extractor feature set (as for UNSW-NB15) or a
    retrain-in-domain design with the frozen recipe, and say which Level 2 number Δ4 is measured against.
+   Closed by §9a (amendment 1.7, 2026-10-30): re-extraction of the packet captures into the source feature space.
 2. **H3 non-inferiority margin for disruption cost**, before the first response run.
 3. **Prior-exposure details** in [prior_exposure.md](prior_exposure.md) that only the author can fill in.
    Closed: completed in notebook 06, step 2 (2026-10-27), before the freeze, with an addendum (amendment 1.6)
@@ -397,6 +398,91 @@ primary one; if not, the paper's abstract and discussion say the claim depends o
 4. **Schema confirmation.** Column and label lists in the config come from the dataset documentation; the
    profiling step (`scripts/preprocess.py --profile`) checks them against the files in Drive, and any difference is
    logged as an amendment before preprocessing runs.
+
+## 9a. Level 4 design (amendment 1.7)
+
+*Closes §9 item 1. Written 2026-10-30, after every Level 1-3 confirmatory result (notebook 08) and exploratory
+analysis E1 (notebook 09) were known. No model has scored any Level 4 row. Known about Level 4 at the time: the
+data cards of the released CSV files (profiling and preprocessing counts) and the listings and sizes of the packet
+captures.*
+
+**Route: re-extraction into the source feature space.** The three Level 4 datasets are re-extracted from their
+published packet captures with the CICFlowMeter version that produced the corrected CICIDS2017 release used as the
+source (DistriNet; Engelen et al. 2021, Liu et al. 2022). This yields the 82 shared `cic` features of
+`config/feature_mapping/cic_shared_features.yaml`. Every frozen model of the `cic` space (`results/models/freeze.json`),
+the proposed detector included, is then applied unchanged with its frozen validation threshold: no model is
+trained, tuned or re-thresholded and no feature is mapped. The released CSV features of the three datasets (packet
+windows for CIC-IoT2023 and CICIoMT2024, Zeek records for ToN_IoT) are not used for H4.
+
+*Why.* Level 2 (CICIDS2017 → CSE-CIC-IDS2018) and Level 4 then share the model, the features and the extractor,
+so Δ4 measures the change of domain alone, as hypotheses.md defines it against a Level 2 number. The two routes
+named in §9 item 1 were rejected. A canonical set built from the released CSVs mixes the change of extractor with
+the change of domain, and the CIC IoT rows are averages over windows of 10 or 100 packets, not flows. Retraining
+inside each domain compares in-domain learning with a transfer number; it is expected to be supported in all three
+domains and would then turn H1a (p support 0.0054) to supported through Holm (§6b) for a reason unrelated to
+transfer. Retraining inside each domain may run later as an exploratory analysis, after H4 is decided.
+
+**Captures.** Stored in Drive under `data/raw/<dataset>/pcap/`, each with its SHA-256 in the dataset's
+`MANIFEST.json` (raw data in Drive only, §11).
+
+| Domain | Dataset | Captures used | Size |
+|---|---|---|---|
+| government/industrial | ToN_IoT | `Raw_datasets/network_data/Network_dataset_pcaps/`: `normal_attack_pcaps` (9 files) and `normal_pcaps` (15 files) | 48.1 GB (listing, 2026-10-30) |
+| healthcare | CICIoMT2024 | `WiFI_and_MQTT/attacks/PCAP/train` (51 files) and `test` (21 files), the scope of the released CSVs; the Bluetooth and profiling captures are not used | not reported by the server; about 100-140 GB estimated from the CIC-IoT2023 ratio |
+| IoT | CIC-IoT2023 | `PCAP/<capture>/`: `Benign_Final` and the 33 attack folders | about 548 GB (Neto et al. 2023, §4) |
+
+**Extractor check, before any Level 4 capture is processed.** The extractor (source, version and SHA-256 recorded)
+is run on one CICIDS2017 capture day of the official release, and its output is compared with the corrected
+CICIDS2017 CSV of that day, flows matched on 5-tuple and start timestamp. The check passes if at least 99 % of the
+CSV's flows are matched and, for each of the 82 shared features, at least 99 % of the matched flows agree within a
+relative tolerance of 1e-6 (absolute 1e-9 near zero). If it fails, Level 4 stops and the difference is reported; no
+other extractor or setting is tried without a new amendment.
+
+**Labels** (binary primary, §3; fixed before extraction).
+
+- *CIC-IoT2023 and CICIoMT2024.* Each flow takes the attack named by its capture folder or file, the convention of
+  the released CSVs; the benign captures (`Benign_Final`, `Benign_train`, `Benign_test`) are benign. Raw label to
+  family follows the regex table in `config/preprocessing.yaml`; a name that matches no rule stops the pipeline. If
+  the dataset documentation names the addresses of the attacking devices, a sensitivity analysis keeps in attack
+  captures only the flows with an attacking endpoint and is reported beside H4, without a decision.
+- *ToN_IoT.* Labels follow the published ground truth: the attacker addresses 192.168.159.30-39 and the attack
+  time windows of `SecurityEvents_GroundTruth_datasets` (already in Drive under `data/raw/ton_iot`). The rule that
+  matches a flow to the ground truth is written from that documentation into the Level 4 extraction plan
+  (`docs/protocol/level4_extraction.md`) and committed before the first ToN_IoT capture is processed. The agreement of
+  its binary labels with the published Zeek-record labels, matched on 5-tuple and time, is reported.
+
+**Preprocessing.** The protocol 1.1 rules apply unchanged: identifiers (flow id, addresses, ports, timestamp)
+removed from the features as for CICIDS2017, exact duplicates removed, conflicting-label groups kept and flagged,
+value problems set to NaN, data cards, `--verify` (§10a). New dataset ids `ton_iot_flows`, `ciciomt2024_flows` and
+`ciciot2023_flows`, role `domain_target`, split type `external` (all rows), 300 s blocks from the flow start times
+(the captures carry real timestamps, unlike the row order of the released CSVs). S7 (§8.1) compares Level 4 rows with
+CICIDS2017 train ∪ val on the 82 shared features, the data the scored models were fitted and tuned on.
+
+**Evaluation rows.** All primary rows of each target, as for CSE-CIC-IDS2018, since the transfer design uses none
+of them for training; "Level 4 domain test sets" in §8.1 means these rows.
+
+**Order and sealing.** ToN_IoT, then CICIoMT2024, then CIC-IoT2023 are acquired, extracted and preprocessed. No
+Level 4 row is scored by any model until all three pass `--verify` and a Level 4 data record is committed
+(`results/level4/data_freeze.json`: SHA-256 of every processed and split file, of the extractor and of the label
+rules), which the scoring code checks before reading any Level 4 row.
+
+**Estimand and test** (hypotheses.md unchanged, made explicit). Δ4(domain) = macro-F1 of the proposed detector on
+CSE-CIC-IDS2018 (`cic`, the target side of H1b, 0.554) − its macro-F1 on the Level 4 target; seed means. The block
+bootstrap of §6 resamples CSE-CIC-IDS2018 blocks and target blocks independently, as H1b resamples its two sides
+(B = 10 000, seed 20261025). p support = (k + 1) / (B + 1) with k the replicates with Δ4 >= 0.05; p against, with k
+the replicates with Δ4 <= 0.05. Holm runs over the seven claims as in §6b, with the H1a-H2 p-values of
+`results/confirmatory/decisions.json` unchanged. H1b, H1c and H2 cannot change; the H1a decision becomes final. The
+1.6 decisions file is kept as written.
+
+**Reported beside each H4 decision** (descriptive): the Level 4 macro-F1 with its CI; per seed, the macro-F1, Δ4
+and the frozen threshold (E1 showed that on CSE-CIC-IDS2018 the thresholds of two of the five seeds miss DDoS
+entirely); balanced accuracy, FPR, attack recall and attack share; the macro-F1 of a detector that flags every row
+(about 0.49 at the roughly 95 % attack share of the released CSVs, Δ4 near 0.065); recall per attack family; the S7
+result; the attack share of the released CSVs for comparison. Baselines of the `cic` space are scored on the same
+rows and compared in a separate Level 4 table (§6).
+
+**Afterwards, exploratory only:** E1 on the Level 4 targets and retraining inside each domain, each planned in
+[exploratory_analyses.md](exploratory_analyses.md) before it runs.
 
 ## 10. No-shortcut rule
 

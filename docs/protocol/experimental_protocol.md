@@ -9,7 +9,7 @@ and the thresholds in [hypotheses.md](hypotheses.md).
 | 1 Within dataset | CICIDS2017, earliest 70 % of each day's 300 s blocks per attack family (15 % val) | latest 15 % of blocks; by-day split as sensitivity S1 | the model can learn the attacks |
 | 2 Across datasets | CICIDS2017 train partition | CSE-CIC-IDS2018 (shared CICFlowMeter features); UNSW-NB15 (canonical mapped features) | works on unseen traffic |
 | 3 Across time | LANL days 1-40 (contingency rule in preregistration §7) | LANL days 41-58 | flags compromise early (lead time) |
-| 4 Across domains | see preregistration §9 (design to be fixed before the first run) | CICIoMT2024, ToN_IoT, CIC-IoT2023 | holds in healthcare, IoT and government settings |
+| 4 Across domains | CICIDS2017 train partition (the frozen Level 2 `cic` models, unchanged) | CICIoMT2024, ToN_IoT, CIC-IoT2023, re-extracted from their packet captures into CICFlowMeter flows (preregistration §9a) | holds in healthcare, IoT and government settings |
 
 **Primary task.** Binary benign vs attack; multiclass family task as sensitivity S6.
 **Metrics.** Macro-F1 (primary), per-class precision/recall/F1, balanced accuracy, FPR, PR-AUC, FPR at a fixed
